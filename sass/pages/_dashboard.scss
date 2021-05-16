@@ -1,1 +1,44 @@
 @use "../abstracts/variables" as a;
+
+// main {
+//   display: inline-flex;
+//   align-content: space-between;
+//   flex-grow: 1;
+//   width: 100%;
+//   gap: 1em;
+// }
+
+main {
+  display: grid;
+  max-width: 90%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 2rem;
+  margin: auto;
+}
+h2 {
+  text-transform: uppercase;
+  color: a.$black;
+  font: a.$primary-font;
+}
+.orders {
+  box-shadow: 5px 5px 15px 5px a.$grey-light;
+}
+.order-id {
+  background-color: a.$yellow;
+  color: a.$black;
+  display: flex;
+  flex-direction: column;
+}
+.beer-type {
+  background-color: a.$white;
+  color: a.$black;
+  padding: 5px;
+}
+
+.beer-type ul {
+  list-style-type: none;
+}
+
+.order-id.time p {
+  color: a.$black;
+}
