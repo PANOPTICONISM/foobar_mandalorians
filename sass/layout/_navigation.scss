@@ -1,0 +1,53 @@
+@use '../abstracts/variables' as *;
+header {
+    background-color: $green-dark;
+    height: calc(100vh - 70px);
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+
+    ul {
+        padding: 0;
+    }
+
+    li {
+        list-style: none;
+        padding: 0px;
+        margin: 10px 0;
+    }
+
+    li a {
+        font-family: $primary-font;
+        color: $white;
+        font-weight: $font-weight-bold;
+        text-decoration: none;
+        padding: 14px;
+        display: block;
+        width: 180px;
+
+        i {
+            width: 30px;
+            height: auto;
+        }
+
+        &:hover {
+            background-color: $green-mid;
+            border-radius: 4px;
+        }
+    }
+
+    .log_in a, .user {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .log_in img {
+        width: 30px;
+        height: auto;
+        margin-right: 10px;
+    }
+}
