@@ -1,63 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FooBar's dashboard</title>
-  </head>
 
-  <body>
-    <header>
-      <img src="" />
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FooBar's dashboard</title>
+</head>
+
+<body>
+
+  <header>
+    <img src="public/foobar_logo.png" alt="logo" />
+
+    <input type="checkbox" id="toggle">
+    <label for="toggle" class="hamburger"></label>
+
+    <div class="slide-in">
       <nav>
         <ul>
-          <li><a href=""></a></li>
-          <li><a href=""></a></li>
-          <li><a href=""></a></li>
-          <li><a href=""></a></li>
-          <li><a href=""></a></li>
-          <li><a href=""></a></li>
-          <li><a href=""></a></li>
+          <li><a href=""><i class="fas fa-home"></i> Home</a></li>
+          <li><a href=""><i class="fas fa-shopping-bag"></i> Products</a></li>
+          <li><a href=""><i class="fas fa-users"></i> Customers</a></li>
+          <li><a href=""><i class="fas fa-spinner"></i> Orders</a></li>
+          <li><a href=""><i class="far fa-comment-dots"></i> Messages</a></li>
+          <li><a href=""><i class="fas fa-chart-bar"></i> Statistics</a></li>
+          <li><a href=""><i class="fas fa-cogs"></i> Settings</a></li>
         </ul>
       </nav>
       <div class="log_in">
-        <li><a href=""></a></li>
+        <li><a href="">
+            <div class="user">
+              <img src="public/foobar_avatar.png"> Foobar
+            </div>
+            <i class="fas fa-ellipsis-v"></i>
+          </a></li>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <div class="search_bar"></div>
+  <div class="search_bar"></div>
 
-    <main>
-      <section>
-        <h2>Ready for pick up</h2>
-        <div class="orders">
-          <div class="order"></div>
-          <div class="order"></div>
-          <div class="order"></div>
+  <main>
+    <section>
+      <h2>Ready for pick up</h2>
+      <div class="orders">
+        <div class="order"></div>
+        <div class="order"></div>
+        <div class="order"></div>
+      </div>
+      <div class="chart"></div>
+    </section>
+    <section>
+      <h2>Upcoming orders</h2>
+      <div class="orders">
+        <div class="order">
+          <p class="id"></p>
+          <p class="time"></p>
+          <p class="beer"></p>
         </div>
-        <div class="chart"></div>
-      </section>
-      <section>
-        <h2>Upcoming orders</h2>
-        <div class="orders">
-          <div class="order">
-            <p class="id"></p>
-            <p class="time"></p>
-            <p class="beer"></p>
-          </div>
-          <div class="order"></div>
-          <div class="order"></div>
-        </div>
-      </section>
-    </main>
+        <div class="order"></div>
+        <div class="order"></div>
+      </div>
+    </section>
+  </main>
 
-    <sidebar>
-      <div class="queue_number"></div>
-    </sidebar>
+  <sidebar>
+    <div class="queue_number"></div>
+  </sidebar>
 
-    <div class="time"></div>
+  <div class="time"></div>
 
-    <script type="module" src="/main.js"></script>
-  </body>
+  <script type="module" src="/main.js"></script>
+  <script src="https://kit.fontawesome.com/62614983e3.js" crossorigin="anonymous"></script>
+</body>
+
 </html>
