@@ -1,7 +1,7 @@
-//when DOM loads we want to start live update of the dashboard_data
+//when DOM loads we want to start live update of the dashboard_data KRISTA
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
-//SHORT POLLING DATA- fetch updates every 2 sec
+//SHORT POLLING DATA- fetch updates every 2 sec KRISTA
 function startLiveUpdate() {
   setInterval(async () => {
     const response = await fetch("https://foobar-mandalorians.herokuapp.com/");
@@ -11,28 +11,34 @@ function startLiveUpdate() {
   }, 2000);
 }
 
-//loop through upcoming orders and prepare objects for display
+//loop through upcoming orders and prepare objects for display KRISTA
 function prepareOrders(orders) {
   let upcomingOrder = orders.queue;
-  TODO: console.log("ORDERS IN QUEUE:" + upcomingOrder.length);
+  let queue = upcomingOrder.length;
+
   upcomingOrder.forEach((order) => {
-    let id = order.id;
-    let time = order.startTime;
-    let beerName = order.order;
-    console.log(order.order);
-    displayUpcomingOrders(id, time, beerName);
+    let ids = order.id;
+    let times = order.startTime;
+    let beerOrders = order.order;
+    //call function to display updates
+    displayUpcomingOrders(ids, times, beerOrders);
   });
+
+  //TODO:call funcion to display queue
+  console.log(`ORDERS IN QUEUE:${queue}`);
 }
 
-//display incoming orders
-function displayUpcomingOrders(id, time, beerName) {
-  // console.log(id);
+//display incoming orders KRISTA
+function displayUpcomingOrders(ids, times, beerOrders) {
+  console.log(ids);
+  console.log(times);
+  console.log(beerOrders);
   const orderId = document.querySelector(".id");
-  orderId.innerHTML = `Order nr: ${id}`;
+  orderId.textContent = `Order nr: ${ids}`;
 
-  const orderTime = document.querySelector(".time");
-  orderTime.innerHTML = `Order time: ${time}`;
+  const orderTimes = document.querySelector(".time");
+  orderTimes.innerHTML = `Order time: ${times}`;
 
-  const beerType = document.querySelector(".beer");
-  beerType.innerHTML = `Beers: ${beerName}`;
+  const beerOrder = document.querySelector(".beer");
+  beerOrder.innerHTML = `Beers: ${beerOrders}`;
 }
