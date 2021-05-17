@@ -27,7 +27,9 @@ function eachBeerCard(beer) {
     beerCard.setAttribute("class", "card");
 
     // create and insert the api data into the right elements
-    // TODO: missing image
+    // TODO: missing image - put into common.js
+    // TODO: price
+    // TODO: counter
     const topLayer = document.createElement("div");
     topLayer.setAttribute("class", "top_layer");
     const beerName = document.createElement("h3");
@@ -42,9 +44,9 @@ function eachBeerCard(beer) {
     readMore.setAttribute("class", "read_more");
     readMore.textContent = "Read more";
 
-    // const alcoholPercentage = document.createElement("h5");
-    // alcoholPercentage.textContent = beer.alc;
-    // bottomLayer.appendChild(alcoholPercentage);
+    const alcoholPercentage = document.createElement("h5");
+    alcoholPercentage.textContent = beer.alc;
+    bottomLayer.appendChild(alcoholPercentage);
 
     topLayer.append(beerName, beerType);
     bottomLayer.append(readMore);
