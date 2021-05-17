@@ -1,3 +1,6 @@
-@use "./abstracts";
-@use "./core/typography";
-@use "./pages/dashboard";
+@use 'abstracts';
+@use 'animations';
+@use 'components';
+@use 'core';
+@use 'layout';
+@use 'pages';
