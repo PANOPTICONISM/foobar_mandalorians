@@ -14,33 +14,44 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 2rem;
   margin: auto;
+
+  h2 {
+    text-transform: uppercase;
+    color: a.$black;
+    font: a.$primary-font;
+    font-weight: a.$font-weight-bold;
+  }
 }
-h2 {
-  text-transform: uppercase;
-  color: a.$black;
-  font: a.$primary-font;
-}
+
 .orders {
   max-width: 450px;
   box-shadow: 5px 5px 15px 5px a.$grey-light;
-}
-.order-id {
-  background-color: a.$yellow;
-  color: a.$black;
-  display: flex;
-  flex-direction: column;
-  font-family: a.$primary-font;
-}
-.beer-type {
-  background-color: a.$white;
-  color: a.$black;
-  padding: 5px;
-}
+  .order-id {
+    background-color: a.$yellow;
+    //color: a.$black;
+    display: flex;
+    flex-direction: column;
+    font-family: a.$primary-font;
+    font-weight: a.$font-weight-bold;
+    margin: 0;
+  }
 
-.beer-type ul {
-  list-style-type: none;
-}
-
-.order-id.time p {
-  color: a.$black;
+  .beer-type {
+    background-color: a.$white;
+    color: a.$black;
+    padding: 5px;
+  }
+  .beer-type ul {
+    list-style-type: none;
+  }
+  .beer-type li {
+    border-bottom: 0.5px solid a.$grey-light;
+    padding: 7.5px;
+  }
+  .id {
+    color: a.$black;
+  }
+  .time {
+    color: a.$grey-dark;
+  }
 }

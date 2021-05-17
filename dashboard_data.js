@@ -1,7 +1,7 @@
 //when DOM loads we want to start live update of the dashboard_data KRISTA
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
-//SHORT POLLING- fetch updates every 3,5 sec KRISTA
+//SHORT POLLING- fetch updates every 3 sec KRISTA
 function startLiveUpdate() {
   setInterval(async () => {
     //TODO:fetch ONLY what you need
@@ -9,9 +9,9 @@ function startLiveUpdate() {
     const jsonData = await response.json();
     prepareOrders(jsonData);
     //console.log(jsonData);
-  }, 3500);
+  }, 3000);
 }
-let displayArr = [];
+
 //loop through upcoming orders and prepare objects for display KRISTA
 function prepareOrders(orders) {
   let upcomingOrder = orders.queue;
@@ -20,16 +20,6 @@ function prepareOrders(orders) {
   document.querySelector("main").innerHTML = "";
 
   upcomingOrder.forEach((order) => {
-    // let dataArr = Array.from(Object.values(order));
-    //console.log(dataArr);
-
-    //ccompare arrays and remove double
-    // for (let i = 0; i < dataArr.length; i++) {
-    //   if (displayArr.indexOf(dataArr[i]) === -1) {
-    //     displayArr.push(dataArr[i]);
-    //   }
-    // }
-
     //console.log(displayArr);
     displayUpcomingOrders(order);
   });
@@ -56,10 +46,10 @@ function displayUpcomingOrders(order) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
   let seconds = date.getSeconds();
-  let formattedTime = `${hours}:${minutes}:${seconds}`;
+  let formattedTime = ` ${hours}:${minutes}:${seconds}`;
 
   const orderTimes = copy.querySelector(".time");
-  orderTimes.innerHTML = `Order time: ${formattedTime}`;
+  orderTimes.innerHTML = `Order time:  ${formattedTime}`;
 
   //compare if there is duplicates in beer array to display it differently, then create HTML list for beers and populate it KRISTA
 
@@ -72,8 +62,8 @@ function displayUpcomingOrders(order) {
       value,
       beerOrder.filter((beerName) => beerName === value).length,
     ]);
-    console.log(duplicates[i]);
-    let beerNameValue = duplicates[i].join(" ");
+    //console.log(duplicates[i]);
+    let beerNameValue = duplicates[i].join("  ");
     const beerNames = document.createElement("li");
     beerNames.textContent = `${beerNameValue}x`;
     copy.querySelector(".beer").appendChild(beerNames);
