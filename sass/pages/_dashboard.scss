@@ -1,4 +1,5 @@
 @use "../abstracts/variables" as a;
+@use '../abstracts/mixins' as mx;
 
 body {
   margin: 0;
@@ -6,14 +7,33 @@ body {
   grid-template-columns: repeat(12, 1fr);
 }
 
+header {
+  grid-column: 1/-1;
+  grid-row: 1;
+}
+
 main {
-  grid-column: 2/11;
-  grid-row: 1/1;
-  display: grid;
-  max-width: 30%;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 2rem;
-  margin: auto;
+  grid-column: 1/-1;
+  grid-row: 2;
+  padding: 40px;
+
+  .beers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-rows: auto;
+    grid-gap: 2rem;
+
+    .card {
+      background-color: a.$white;
+      border: 1px solid black;
+      padding: 25px;
+      border-radius: 4px;
+
+      h3 {
+        margin-top: 0;
+      }
+    }
+  }
 
   h2 {
     text-transform: uppercase;
@@ -59,4 +79,18 @@ main {
   .time {
     color: a.$grey-dark;
   }
+}
+
+@media (min-width: mx.$screen-ipad) {
+
+  header {
+    grid-column: 1/2;
+    height: calc(100vh - 100px);
+  }
+
+  main {
+    grid-column: 2/-1;
+    grid-row: 1;
+  }
+
 }

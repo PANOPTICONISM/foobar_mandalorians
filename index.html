@@ -1,22 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FooBar's dashboard</title>
-  </head>
 
-  <body>
-    <header>
-      <img src="public/foobar_logo.png" alt="logo" />
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FooBar's dashboard</title>
+</head>
 
-      <input type="checkbox" id="toggle" />
-      <label for="toggle" class="hamburger"></label>
-
+<body>
   <header>
     <img src="public/foobar_logo.png" alt="logo" />
-
     <input type="checkbox" id="toggle">
     <label for="toggle" class="hamburger"></label>
 
@@ -48,9 +42,10 @@
             <span class="iconify" data-inline="false" data-icon="akar-icons:more-vertical"></span>
           </a></li>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <div class="search_bar"></div>
+  <div class="search_bar"></div>
 
   <main>
     <section>
@@ -66,7 +61,7 @@
       <h2>Upcoming orders</h2>
     </section>
   </main>
-    
+
   <template>
     <div class="orders">
       <div class="order-id">
@@ -78,7 +73,7 @@
       </div>
     </div>
   </template>
-    
+
   <sidebar>
     <div class="queue_number"></div>
   </sidebar>
@@ -89,4 +84,5 @@
   <script type="module" src="/main.js"></script>
   <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
 </body>
+
 </html>
