@@ -11,7 +11,7 @@
 main {
   display: grid;
   max-width: 90%;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 2rem;
   margin: auto;
 }
@@ -21,6 +21,7 @@ h2 {
   font: a.$primary-font;
 }
 .orders {
+  max-width: 450px;
   box-shadow: 5px 5px 15px 5px a.$grey-light;
 }
 .order-id {
@@ -28,6 +29,7 @@ h2 {
   color: a.$black;
   display: flex;
   flex-direction: column;
+  font-family: a.$primary-font;
 }
 .beer-type {
   background-color: a.$white;

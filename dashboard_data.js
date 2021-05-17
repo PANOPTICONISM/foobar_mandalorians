@@ -16,6 +16,8 @@ let displayArr = [];
 function prepareOrders(orders) {
   let upcomingOrder = orders.queue;
   let queue = upcomingOrder.length;
+  //clear DOM elements
+  document.querySelector("main").innerHTML = "";
 
   upcomingOrder.forEach((order) => {
     // let dataArr = Array.from(Object.values(order));
@@ -27,6 +29,7 @@ function prepareOrders(orders) {
     //     displayArr.push(dataArr[i]);
     //   }
     // }
+
     //console.log(displayArr);
     displayUpcomingOrders(order);
   });
