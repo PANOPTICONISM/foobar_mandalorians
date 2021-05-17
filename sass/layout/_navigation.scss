@@ -38,13 +38,52 @@ header {
       border-radius: 4px;
     }
   }
+  
+    .active {
+        background-color: $green-mid;
+        border-radius: 4px;
+    }
 
-  .log_in a,
-  .user {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+    .border_section {
+        position: relative;
+    }
+
+    .border_section::before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: 0;
+        width: 100%;
+        background-color: $white;
+        height: 0.6px;
+    }
+
+    li a {
+        font-family: $primary-font;
+        color: $white;
+        font-weight: $font-weight-bold;
+        text-decoration: none;
+        padding: 14px;
+        display: flex;
+        align-items: center;
+        width: 180px;
+
+        i {
+            width: 30px;
+            height: auto;
+        }
+
+        &:hover {
+            background-color: $green-mid;
+            border-radius: 4px;
+        }
+    }
+
+    .log_in a, .user {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
   .log_in img {
     width: 30px;
@@ -70,22 +109,21 @@ header {
 }
 
 .hamburger {
-  width: 30px;
-  height: 2px;
-  background-color: white;
-  cursor: pointer;
-  position: relative;
+    width: 30px;
+    height: 2px;
+    background-color: $white;
+    cursor: pointer;
+    position: relative;
 }
 
-.hamburger::before,
-.hamburger::after {
-  content: "";
-  position: absolute;
-  height: 2px;
-  background-color: white;
-  border-radius: 10px;
-  transition: 0.3s;
-  right: 0;
+.hamburger::before, .hamburger::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    background-color: $white;
+    border-radius: 10px;
+    transition: 0.3s;
+    right: 0;
 }
 
 .hamburger::before {

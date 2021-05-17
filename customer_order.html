@@ -10,18 +10,34 @@
 
 <body>
     <header>
-        <img src="">
-        <nav>
-            <ul>
-                <li><a href=""></a></li>
-                <li><a href=""></a></li>
-                <li><a href=""></a></li>
-                <li><a href=""></a></li>
-                <li><a href=""></a></li>
-            </ul>
-        </nav>
-        <div class="log_in">
-            <li><a href=""></a></li>
+        <img src="public/foobar_logo.png" alt="logo" />
+
+        <input type="checkbox" id="toggle">
+        <label for="toggle" class="hamburger"></label>
+
+        <div class="slide-in">
+            <nav>
+                <ul>
+                    <li><a href=""><span class="iconify" data-icon="fluent:home-32-regular"></span> Home</a></li>
+                    <li><a href="" class="active"><span class="iconify" data-inline="false"
+                                data-icon="dashicons:products"></span>
+                            Products</a></li>
+                    <li><a href=""><span class="iconify" data-inline="false"
+                                data-icon="fluent:history-24-regular"></span> Order history</a></li>
+                    <li><a href=""><span class="iconify" data-inline="false" data-icon="ion:beer"></span> Checkout</a>
+                    </li>
+                    <li><a href="" class="border_section"><span class="iconify" data-inline="false"
+                                data-icon="clarity:settings-outline-alerted"></span> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="log_in">
+                <li><a href="">
+                        <div class="user">
+                            <img src="public/foobar_avatar.png"> Foobar
+                        </div>
+                        <span class="iconify" data-inline="false" data-icon="akar-icons:more-vertical"></span>
+                    </a></li>
+            </div>
         </div>
     </header>
 
@@ -34,27 +50,30 @@
                 <div class="filter"></div>
                 <div class="search_bar"></div>
             </div>
-            <div class="cards">
-                <div class="card">
-                    <img src="" alt="">
-                    <div class="name_category">
-                        <h3>Ruined Childhood</h3>
-                        <h4>Belgian</h4>
-                    </div>
-                    <div class="details">
-                        <h5>10% alcohol</h5>
-                        <h6>DKK <span>32</span></h6>
-                    </div>
-                    <div class="buttons">
-                        <button>Read more</button>
-                        <button>- 0 +</button>
-                    </div>
-                </div>
+            <div class="beers">
             </div>
         </section>
     </main>
 
-    <div id="beer_modal">
+    <template id="beer_type">
+        <!-- <div class="card">
+            <img src="" alt="">
+            <div class="name_category">
+                <h3>Ruined Childhood</h3>
+                <h4>Belgian</h4>
+            </div>
+            <div class="details">
+                <h5>10% alcohol</h5>
+                <h6>DKK <span>32</span></h6>
+            </div>
+            <div class="buttons">
+                <button>Read more</button>
+                <button>- 0 +</button>
+            </div>
+        </div> -->
+    </template>
+
+    <!-- <div id="beer_modal">
         <div class="modal_inner">
             <div class="headline">
                 <img src="" alt="">
@@ -67,9 +86,9 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla in excepturi placeat reprehenderit
                 adipisci dicta atque, tempora quidem. At, voluptate?</p>
         </div>
-    </div>
+    </div> -->
 
-    <div id="order_modal">
+    <!-- <div id="order_modal">
         <div class="modal_inner">
             <h2>Order confirmation</h2>
             <main>
@@ -117,16 +136,17 @@
                 </div>
             </sidebar>
         </div>
-    </div>
+    </div> -->
 
-    <div id="confirmation_modal">
+    <!-- <div id="confirmation_modal">
         <div class="modal_inner">
             <img src="">
             <span>Your order has been received.</span>
         </div>
-    </div>
+    </div> -->
 
-    <script type="module" src="/main.js"></script>
+    <script type="module" src="/order.js"></script>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
 </body>
 
 </html>
