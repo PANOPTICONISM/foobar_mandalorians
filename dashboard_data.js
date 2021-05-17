@@ -1,14 +1,15 @@
 //when DOM loads we want to start live update of the dashboard_data KRISTA
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
-//SHORT POLLING- fetch updates every 3 sec KRISTA
+//SHORT POLLING- fetch updates every 3,5 sec KRISTA
 function startLiveUpdate() {
   setInterval(async () => {
+    //TODO:fetch ONLY what you need
     const response = await fetch("https://foobar-mandalorians.herokuapp.com/");
     const jsonData = await response.json();
     prepareOrders(jsonData);
     //console.log(jsonData);
-  }, 3000);
+  }, 3500);
 }
 let displayArr = [];
 //loop through upcoming orders and prepare objects for display KRISTA
@@ -60,8 +61,6 @@ function displayUpcomingOrders(order) {
   //compare if there is duplicates in beer array to display it differently, then create HTML list for beers and populate it KRISTA
 
   for (let i = 0; i < beerOrder.length; i++) {
-    //Initial array
-
     // Duplicate array, it will hold unique val later
     let unique = [...new Set(beerOrder)];
 
@@ -70,9 +69,10 @@ function displayUpcomingOrders(order) {
       value,
       beerOrder.filter((beerName) => beerName === value).length,
     ]);
-    console.log(duplicates[i].join(" "));
+    console.log(duplicates[i]);
+    let beerNameValue = duplicates[i].join(" ");
     const beerNames = document.createElement("li");
-    beerNames.textContent = `${duplicates[i].join("  ")}x`;
+    beerNames.textContent = `${beerNameValue}x`;
     copy.querySelector(".beer").appendChild(beerNames);
   }
 
