@@ -39,7 +39,7 @@ function displayUpcomingOrders(order) {
   const copy = template.cloneNode(true);
   //update elements with data
   const orderId = copy.querySelector(".id");
-  orderId.textContent = `Order nr: ${id}`;
+  orderId.textContent = `Order Nr: ${id}`;
 
   //transform time to normal time
   let date = new Date(time);
@@ -49,7 +49,7 @@ function displayUpcomingOrders(order) {
   let formattedTime = ` ${hours}:${minutes}:${seconds}`;
 
   const orderTimes = copy.querySelector(".time");
-  orderTimes.innerHTML = `Order time:  ${formattedTime}`;
+  orderTimes.innerHTML = `Order Time:  ${formattedTime}`;
 
   //compare if there is duplicates in beer array to display it differently, then create HTML list for beers and populate it KRISTA
 
@@ -63,10 +63,24 @@ function displayUpcomingOrders(order) {
       beerOrder.filter((beerName) => beerName === value).length,
     ]);
     //console.log(duplicates[i]);
-    let beerNameValue = duplicates[i].join("  ");
+    let beerNameValue = duplicates[i];
+    //create span tag to fit list in
+    const span = document.createElement("span");
+    copy.querySelector(".beer").appendChild(span);
+    //fix beernames from array to be used for img
+    let beerNameString = beerNameValue.toString();
+    let toLowerCase = beerNameString.toLowerCase();
+    let strConcat = toLowerCase.replace(/\s+/g, "");
+    let strIndex = strConcat.indexOf(",");
+    const img = document.createElement("img");
+    let imgName = strConcat.substring(0, strIndex);
+    img.src = `${imgName}.png`;
+    copy.querySelector("span").appendChild(img);
+    console.log(img);
+    //create beer list
     const beerNames = document.createElement("li");
-    beerNames.textContent = `${beerNameValue}x`;
-    copy.querySelector(".beer").appendChild(beerNames);
+    beerNames.textContent = `${beerNameValue.join(" ")}x`;
+    copy.querySelector("span").appendChild(beerNames);
   }
 
   // append clone to list
