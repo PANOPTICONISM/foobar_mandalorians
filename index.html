@@ -19,13 +19,21 @@
     <div class="slide-in">
       <nav>
         <ul>
-          <li><a href=""><i class="fas fa-home"></i> Home</a></li>
-          <li><a href=""><i class="fas fa-shopping-bag"></i> Products</a></li>
-          <li><a href=""><i class="fas fa-users"></i> Customers</a></li>
-          <li><a href=""><i class="fas fa-spinner"></i> Orders</a></li>
-          <li><a href=""><i class="far fa-comment-dots"></i> Messages</a></li>
-          <li><a href=""><i class="fas fa-chart-bar"></i> Statistics</a></li>
-          <li><a href=""><i class="fas fa-cogs"></i> Settings</a></li>
+          <li><a href=""><span class="iconify" data-icon="fluent:home-32-regular"></span> Home</a></li>
+          <li><a href=""><span class="iconify" data-inline="false" data-icon="dashicons:products"></span> Products</a>
+          </li>
+          <li><a href=""><span class="iconify" data-inline="false"
+                data-icon="fluent:people-community-20-regular"></span> Customers</a></li>
+          <li><a href="" class="active"><span class="iconify" data-inline="false"
+                data-icon="fluent:history-24-regular"></span>
+              Orders</a></li>
+          <li><a href="" class="border_section"><span class="iconify" data-inline="false"
+                data-icon="ant-design:message-outlined"></span>
+              Messages</a></li>
+          <li><a href=""><span class="iconify" data-inline="false" data-icon="ion:stats-chart"></span> Statistics</a>
+          </li>
+          <li><a href=""><span class="iconify" data-inline="false" data-icon="clarity:settings-outline-alerted"></span>
+              Settings</a></li>
         </ul>
       </nav>
       <div class="log_in">
@@ -54,31 +62,30 @@
     </section>
     <section>
       <h2>Upcoming orders</h2>
-    
+
     </section>
   </main>
-<template>
-      <div class="orders">
-        <div class="order-id">
-          <p class="id"></p>
-          <p class="time"></p>
-          <div class="beer-type">
-            <ul class="beer"></ul>
-          </div>
+  <template>
+    <div class="orders">
+      <div class="order-id">
+        <p class="id"></p>
+        <p class="time"></p>
+        <div class="beer-type">
+          <ul class="beer"></ul>
         </div>
       </div>
-    </template>
+    </div>
+  </template>
   <sidebar>
     <div class="queue_number"></div>
   </sidebar>
 
   <div class="time"></div>
-  
+
 
   <script type="module" src="/main.js"></script>
-  <script src="https://kit.fontawesome.com/62614983e3.js" crossorigin="anonymous"></script>
+  <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
 </body>
 
 
 </html>
-

@@ -19,13 +19,23 @@ header {
         margin: 10px 0;
     }
 
+    .active {
+        background-color: $green-mid;
+        border-radius: 4px;
+    }
+
+    .border_section {
+        border-top: 1px solid white;
+    }
+
     li a {
         font-family: $primary-font;
         color: $white;
         font-weight: $font-weight-bold;
         text-decoration: none;
         padding: 14px;
-        display: block;
+        display: flex;
+        align-items: center;
         width: 180px;
 
         i {
