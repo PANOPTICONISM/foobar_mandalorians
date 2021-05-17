@@ -2,147 +2,148 @@
 @use '../abstracts/mixins' as mx;
 
 header {
-    grid-column: 1/-1;
-    background-color: $green-dark;
+  grid-column: 1/-1;
+  background-color: $green-dark;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    list-style: none;
+    padding: 0px;
+    margin: 10px 0;
+  }
+
+  li a {
+    font-family: $primary-font;
+    color: $white;
+    font-weight: $font-weight-bold;
+    text-decoration: none;
+    padding: 14px;
+    display: block;
+    width: 180px;
+
+    i {
+      width: 30px;
+      height: auto;
+    }
+
+    &:hover {
+      background-color: $green-mid;
+      border-radius: 4px;
+    }
+  }
+
+  .log_in a,
+  .user {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 40px;
+  }
 
-    ul {
-        padding: 0;
-    }
-
-    li {
-        list-style: none;
-        padding: 0px;
-        margin: 10px 0;
-    }
-
-    li a {
-        font-family: $primary-font;
-        color: $white;
-        font-weight: $font-weight-bold;
-        text-decoration: none;
-        padding: 14px;
-        display: block;
-        width: 180px;
-
-        i {
-            width: 30px;
-            height: auto;
-        }
-
-        &:hover {
-            background-color: $green-mid;
-            border-radius: 4px;
-        }
-    }
-
-    .log_in a, .user {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .log_in img {
-        width: 30px;
-        height: auto;
-        margin-right: 10px;
-    }
+  .log_in img {
+    width: 30px;
+    height: auto;
+    margin-right: 10px;
+  }
 }
 
 // burger menu
 .slide-in {
-    background-color: $green-dark;
-    transition: 0.5s;
-    position: fixed;
-    top: calc(0px + 100px);
-    right: -100%;
-    padding: 35px;
-    border-radius: 0 0 0 80px;
-    height: calc(100vh - 170px);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+  background-color: $green-dark;
+  transition: 0.5s;
+  position: fixed;
+  top: calc(0px + 100px);
+  right: -100%;
+  padding: 35px;
+  border-radius: 0 0 0 80px;
+  height: calc(100vh - 170px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .hamburger {
-    width: 30px;
-    height: 2px;
-    background-color: white;
-    cursor: pointer;
-    position: relative;
+  width: 30px;
+  height: 2px;
+  background-color: white;
+  cursor: pointer;
+  position: relative;
 }
 
-.hamburger::before, .hamburger::after {
-    content: "";
-    position: absolute;
-    height: 2px;
-    background-color: white;
-    border-radius: 10px;
-    transition: 0.3s;
-    right: 0;
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  background-color: white;
+  border-radius: 10px;
+  transition: 0.3s;
+  right: 0;
 }
 
 .hamburger::before {
-    top: -10px;
-    width: 100%;
+  top: -10px;
+  width: 100%;
 }
 
 .hamburger::after {
-    top: 10px;
-    width: 70%;
+  top: 10px;
+  width: 70%;
 }
 
 #toggle {
-    position: absolute;
-    width: 30px;
-    height: 100%;
-    z-index: 2;
-    opacity: 0;
-    cursor: pointer;
+  position: absolute;
+  width: 30px;
+  height: 100%;
+  z-index: 2;
+  opacity: 0;
+  cursor: pointer;
 }
 
 header input:checked ~ .hamburger {
-    background: transparent;
+  background: transparent;
 }
 
 header input:checked ~ .hamburger::before {
-    top: 0;
-    transform: rotate(45deg);
-    width: 100%;
+  top: 0;
+  transform: rotate(45deg);
+  width: 100%;
 }
 
 header input:checked ~ .hamburger::after {
-    top: 0;
-    transform: rotate(-45deg);
-    width: 100%;
+  top: 0;
+  transform: rotate(-45deg);
+  width: 100%;
 }
 
 header input:checked ~ .slide-in {
-    right: 0;
+  right: 0;
 }
 
 @media (min-width: mx.$screen-ipad) {
-    .hamburger, #toggle {
-        display: none;
-    }
+  .hamburger,
+  #toggle {
+    display: none;
+  }
 
-    header {
-        display: flex;
-        flex-direction: column;
-        grid-column: 1/2;
-        height: calc(100vh - 100px);
-        border-radius: 0 80px 0 0;
-        padding-top: 60px;
-    }
+  header {
+    display: flex;
+    flex-direction: column;
+    grid-column: 1/2;
+    height: calc(100vh - 100px);
+    border-radius: 0 80px 0 0;
+    padding-top: 60px;
+  }
 
-    .slide-in {
-        position: static;
-        padding: 0 35px;
-    }
-    
+  .slide-in {
+    position: static;
+    padding: 0 35px;
+  }
 }
-

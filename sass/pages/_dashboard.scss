@@ -7,9 +7,10 @@ body {
 }
 
 main {
-  grid-column: 2/-1;
+  grid-column: 2/11;
+  grid-row: 1/1;
   display: grid;
-  max-width: 90%;
+  max-width: 30%;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 2rem;
   margin: auto;
@@ -46,6 +47,11 @@ main {
   .beer-type li {
     border-bottom: 0.5px solid a.$grey-light;
     padding: 7.5px;
+  }
+
+  img {
+    max-width: 15%;
+    border-radius: 50%;
   }
   .id {
     color: a.$black;
