@@ -1,19 +1,13 @@
 @use "../abstracts/variables" as a;
 
 body {
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
 }
-// main {
-//   display: inline-flex;
-//   align-content: space-between;
-//   flex-grow: 1;
-//   width: 100%;
-//   gap: 1em;
-// }
 
 main {
+  grid-column: 2/-1;
   display: grid;
   max-width: 90%;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
