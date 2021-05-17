@@ -63,12 +63,22 @@ function displayUpcomingOrders(order) {
       beerOrder.filter((beerName) => beerName === value).length,
     ]);
     //console.log(duplicates[i]);
-    let beerNameValue = duplicates[i].join("  ");
+    let beerNameValue = duplicates[i];
+    //fix beernames to be used for img
+    let beerNameString = beerNameValue.toString();
+    let toLowerCase = beerNameString.toLowerCase();
+    let strConcat = toLowerCase.replace(/\s+/g, "");
+    let strIndex = strConcat.indexOf(",");
+    const img = document.createElement("img");
+    let imgName = strConcat.substring(0, strIndex);
+    img.src = `${imgName}.png`;
+    copy.querySelector(".beer").appendChild(img);
+    console.log(img);
+    //create beer list
     const beerNames = document.createElement("li");
-    beerNames.textContent = `${beerNameValue}x`;
+    beerNames.textContent = `${beerNameValue.join(" ")}x`;
     copy.querySelector(".beer").appendChild(beerNames);
   }
-
   // append clone to list
   document.querySelector("main").appendChild(copy);
 }
