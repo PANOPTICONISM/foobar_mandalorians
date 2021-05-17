@@ -1,44 +1,74 @@
 //when DOM loads we want to start live update of the dashboard_data KRISTA
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
-//SHORT POLLING DATA- fetch updates every 2 sec KRISTA
+//SHORT POLLING- fetch updates every 3 sec KRISTA
 function startLiveUpdate() {
   setInterval(async () => {
+    //TODO:fetch ONLY what you need
     const response = await fetch("https://foobar-mandalorians.herokuapp.com/");
     const jsonData = await response.json();
     prepareOrders(jsonData);
     //console.log(jsonData);
-  }, 2000);
+  }, 3000);
 }
 
 //loop through upcoming orders and prepare objects for display KRISTA
 function prepareOrders(orders) {
   let upcomingOrder = orders.queue;
   let queue = upcomingOrder.length;
+  //clear DOM elements
+  document.querySelector("main").innerHTML = "";
 
   upcomingOrder.forEach((order) => {
-    let ids = order.id;
-    let times = order.startTime;
-    let beerOrders = order.order;
-    //call function to display updates
-    displayUpcomingOrders(ids, times, beerOrders);
+    //console.log(displayArr);
+    displayUpcomingOrders(order);
   });
 
   //TODO:call funcion to display queue
   console.log(`ORDERS IN QUEUE:${queue}`);
 }
 
-//display incoming orders KRISTA
-function displayUpcomingOrders(ids, times, beerOrders) {
-  console.log(ids);
-  console.log(times);
-  console.log(beerOrders);
-  const orderId = document.querySelector(".id");
-  orderId.textContent = `Order nr: ${ids}`;
+//display incoming orders with filtered values KRISTA
+function displayUpcomingOrders(order) {
+  let id = order.id;
+  let time = order.startTime;
+  let beerOrder = order.order;
 
-  const orderTimes = document.querySelector(".time");
-  orderTimes.innerHTML = `Order time: ${times}`;
+  //clone template
+  const template = document.querySelector("template").content;
+  const copy = template.cloneNode(true);
+  //update elements with data
+  const orderId = copy.querySelector(".id");
+  orderId.textContent = `Order nr: ${id}`;
 
-  const beerOrder = document.querySelector(".beer");
-  beerOrder.innerHTML = `Beers: ${beerOrders}`;
+  //transform time to normal time
+  let date = new Date(time);
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  let seconds = date.getSeconds();
+  let formattedTime = ` ${hours}:${minutes}:${seconds}`;
+
+  const orderTimes = copy.querySelector(".time");
+  orderTimes.innerHTML = `Order time:  ${formattedTime}`;
+
+  //compare if there is duplicates in beer array to display it differently, then create HTML list for beers and populate it KRISTA
+
+  for (let i = 0; i < beerOrder.length; i++) {
+    // Duplicate array, it will hold unique val later
+    let unique = [...new Set(beerOrder)];
+
+    // This array counts duplicates READ MORE about SET
+    let duplicates = unique.map((value) => [
+      value,
+      beerOrder.filter((beerName) => beerName === value).length,
+    ]);
+    //console.log(duplicates[i]);
+    let beerNameValue = duplicates[i].join("  ");
+    const beerNames = document.createElement("li");
+    beerNames.textContent = `${beerNameValue}x`;
+    copy.querySelector(".beer").appendChild(beerNames);
+  }
+
+  // append clone to list
+  document.querySelector("main").appendChild(copy);
 }

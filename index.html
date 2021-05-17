@@ -41,6 +41,7 @@
 
   <div class="search_bar"></div>
 
+
   <main>
     <section>
       <h2>Ready for pick up</h2>
@@ -53,26 +54,31 @@
     </section>
     <section>
       <h2>Upcoming orders</h2>
-      <div class="orders">
-        <div class="order">
-          <p class="id"></p>
-          <p class="time"></p>
-          <p class="beer"></p>
-        </div>
-        <div class="order"></div>
-        <div class="order"></div>
-      </div>
+    
     </section>
   </main>
-
+<template>
+      <div class="orders">
+        <div class="order-id">
+          <p class="id"></p>
+          <p class="time"></p>
+          <div class="beer-type">
+            <ul class="beer"></ul>
+          </div>
+        </div>
+      </div>
+    </template>
   <sidebar>
     <div class="queue_number"></div>
   </sidebar>
 
   <div class="time"></div>
+  
 
   <script type="module" src="/main.js"></script>
   <script src="https://kit.fontawesome.com/62614983e3.js" crossorigin="anonymous"></script>
 </body>
 
+
 </html>
+
