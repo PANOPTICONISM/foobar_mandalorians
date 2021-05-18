@@ -14,18 +14,20 @@ async function fetchData() {
     buildCards(data);
 }
 
+let allBeers = [];
 // divide our data - maria
 function buildCards(beers) {
+    allBeers = beers;
     beers.forEach(eachBeerCard);
-    groupFilters(beers);
+    groupFilters();
+    filterClicked();
 }
 
 // array of all beertypes - maria
-function groupFilters(fil) {
+function groupFilters() {
     let filterArr = [];
-
-    for (let i = 0; i < fil.length; i++) {
-        let result = filterArr.push(fil[i].category);
+    for (let i = 0; i < allBeers.length; i++) {
+        let result = filterArr.push(allBeers[i].category);
     }
     createFilters(filterArr);
 }
@@ -51,13 +53,35 @@ function appendFilters(filter) {
         document.querySelector(".filters").appendChild(filterOption);
     })
 
-    document.querySelectorAll(".filter").forEach(btn => btn.addEventListener("click", sortItems));
+}
 
+// filters in action - maria
+function filterClicked() {
+    document.querySelectorAll(".filter").forEach(btn => btn.addEventListener("click", sortItems));
 }
 
 function sortItems(e) {
-    console.log(e.target.textContent);
 
+    const allCards = document.querySelectorAll(".card");
+    const filteredBeers = allBeers.filter(isBeertype);
+
+    function isBeertype(beer) {
+        if (e.target.textContent === beer.category) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    rebuildList(filteredBeers);
+    return filteredBeers;
+
+}
+
+// rebuild beer list upon clicked filter
+function rebuildList(newList) {
+    document.querySelector(".beers").innerHTML = "";
+    newList.forEach(eachBeerCard)
 }
 
 // insert data into the DOM - maria
