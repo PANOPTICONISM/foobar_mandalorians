@@ -34,19 +34,23 @@ main {
     // grid-template-rows: 350px;
     // grid-gap: 2rem;
   }
+  h2 {
+    margin-top: 0;
+    text-transform: uppercase;
+  }
   .orders,
   .serving {
     display: inline-flex;
     flex-wrap: nowrap;
     width: 100%;
-
-    h3 {
-      margin-top: 0;
-    }
   }
 
+  img {
+    max-width: 15%;
+    border-radius: 50%;
+  }
   .orders,
-  .serving {
+  .servings {
     max-width: 300px;
     box-shadow: 5px 5px 15px 5px a.$grey-light;
     .order-id {

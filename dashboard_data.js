@@ -41,51 +41,51 @@ function displayUpcomingServings(serving) {
   const template = document.querySelector("template").content;
   const copy = template.cloneNode(true);
   //create section#serving
-  const sectionServing = document.createElement("section");
-  sectionServing.setAttribute("id", "serving");
-  document.querySelector("main").appendChild(sectionServing);
-  //create serving h2
-  const servingTitle = document.createElement("h2");
-  servingTitle.textContent = "ready for pick up";
-  //create div serving
-  const servingDiv = document.createElement("div");
-  servingDiv.setAttribute("class", "serving");
-  sectionServing.append(servingTitle, servingDiv);
-  //create div serving-id
-  const servingDivId = document.createElement("div");
-  servingDiv.setAttribute("class", "serving-id");
-  servingDiv.append(servingDivId);
+  const sectionServings = document.createElement("section");
+  sectionServings.setAttribute("id", "serving");
+  document.querySelector("main").appendChild(sectionServings);
+  //create servings h2
+  const servingsTitle = document.createElement("h2");
+  servingsTitle.textContent = "ready to pick up";
 
-  //create p serving-id
+  //create div servings
+  const servingsDiv = document.createElement("div");
+  servingsDiv.setAttribute("class", "servings");
+  sectionServings.append(servingsTitle, servingsDiv);
+
+  //create div serving-id
+  const servingsDivId = document.createElement("div");
+  servingsDivId.setAttribute("class", "serving-id");
+  servingsDiv.append(servingsDivId);
+
+  //create p order-id
   const servingsId = document.createElement("p");
   servingsId.setAttribute("class", "serving-id");
-  servingsId.textContent = `Serving Nr: ${servingId}`;
+  servingsId.innerHTML = `Order Nr: ${servingId}`;
+
   //create p time-id
-  let date = new Date(servingTime);
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
-  let seconds = date.getSeconds();
-  let formattedTime = ` ${hours}:${minutes}:${seconds}`;
-  const servingsTime = document.createElement("p");
-  servingsTime.setAttribute("class", "time-id");
-  servingsTime.innerHTML = `Order Time:  ${formattedTime}`;
-  //append paragraphs
-  servingDivId.append(servingsId, servingsTime);
+  //transform time to human readable time
+  const date = new Date(servingTime);
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+  const formattedTime = ` ${hours}:${minutes}:${seconds}`;
+  const servingTimeId = document.createElement("p");
+  servingTimeId.setAttribute("class", "time-id");
+  servingTimeId.innerHTML = `Serving Time:  ${formattedTime}`;
 
   //create div beer-type
   const beerType = document.createElement("div");
   beerType.setAttribute("class", "beer-type");
-  servingDiv.append(beerType);
-
+  //append paragraphs
+  servingsDivId.append(servingsId, servingTime, beerType);
   const beerUl = document.createElement("ul");
   beerUl.setAttribute("class", "beer");
   beerType.append(beerUl);
-
   //compare if there is duplicates in beer array to display it differently, then create HTML list for beers and populate it KRISTA
   for (let i = 0; i < beerServing.length; i++) {
     // Duplicate array, it will hold unique val later
     let unique = [...new Set(beerServing)];
-    //console.log(unique);
     // This array counts duplicates READ MORE about SET
     let duplicates = unique.map((value) => [
       value,
@@ -93,27 +93,27 @@ function displayUpcomingServings(serving) {
     ]);
     //console.log(duplicates[i]);
     let beerNameValue = duplicates[i];
-    //if we wait for serving
     if (beerNameValue === undefined) {
-      console.log("beer is pouring");
+      console.log("waiting for orders");
     } else {
       //create beer list
-      const beerNames = document.createElement("li");
-      beerNames.textContent = `${beerNameValue.join(" ")}x`;
-      beerNames.append(beerUl);
+      const beerNamesLi = document.createElement("li");
       //create span tag to fit list in
       const liSpan = document.createElement("span");
-      beerNames.append(liSpan);
+
       //fix beernames from array to be used for img
       let beerNameString = beerNameValue.toString();
       let toLowerCase = beerNameString.toLowerCase();
       let strConcat = toLowerCase.replace(/\s+/g, "");
       let strIndex = strConcat.indexOf(",");
+      //create img element
       const img = document.createElement("img");
       let imgName = strConcat.substring(0, strIndex);
       img.src = `${imgName}.png`;
-      liSpan.appendChild(img);
-      console.log(img);
+      beerNamesLi.append(img);
+      liSpan.textContent = `${beerNameValue.join(" ")}x`;
+      beerNamesLi.append(liSpan);
+      beerUl.append(beerNamesLi);
     }
   }
   // append clone to list
