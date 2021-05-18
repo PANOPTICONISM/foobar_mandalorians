@@ -10,39 +10,17 @@ body {
 main {
   grid-column: 2/-1;
   grid-row: 2/3;
-  //padding: 40px;
-  // display: grid;
-  // grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  // grid-template-rows: 350px;
-  // grid-gap: 2rem;
-  #serving {
-    display: grid;
-    grid-column: 2/-1;
-    grid-row: 2/2;
-    // display: grid;
-    // grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    // grid-template-rows: 350px;
-    // grid-gap: 2rem;
+
+  #serving,
+  #orders {
+    display: inline-flex;
+    font: a.$primary-font;
   }
 
-  #orders {
-    display: grid;
-    grid-column: 2/-1;
-    grid-row: 3/3;
-    // display: grid;
-    // grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    // grid-template-rows: 350px;
-    // grid-gap: 2rem;
-  }
   h2 {
     margin-top: 0;
     text-transform: uppercase;
-  }
-  .orders,
-  .serving {
-    display: inline-flex;
-    flex-wrap: nowrap;
-    width: 100%;
+    font-weight: a.$font-weight-bold;
   }
 
   img {
@@ -52,10 +30,22 @@ main {
   .orders,
   .servings {
     max-width: 300px;
+    height: 350px;
     box-shadow: 5px 5px 15px 5px a.$grey-light;
-    .order-id {
+
+    .orders-id {
       background-color: a.$yellow;
-      //color: a.$black;
+      color: a.$black;
+      display: flex;
+      flex-direction: column;
+      font-family: a.$primary-font;
+      font-weight: a.$font-weight-bold;
+      margin: 0;
+    }
+
+    .servings-id {
+      background-color: a.$green-dark;
+      color: a.$black;
       display: flex;
       flex-direction: column;
       font-family: a.$primary-font;
@@ -75,16 +65,19 @@ main {
       border-bottom: 0.5px solid a.$grey-light;
       padding: 7.5px;
     }
-
+    span {
+      padding: 25px;
+    }
     img {
       max-width: 15%;
       border-radius: 50%;
+      margin-left: -30px;
     }
-    .id {
-      color: a.$black;
+    .serving-id {
+      margin-left: 15px;
     }
-    .time {
-      color: a.$grey-dark;
+    .time-id {
+      margin-left: 15px;
     }
   }
 }

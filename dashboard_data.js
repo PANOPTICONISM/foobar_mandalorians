@@ -14,7 +14,7 @@ function startLiveUpdate() {
 //clear the list, loop through upcoming orders/serving, find queue length and call display all updates KRISTA
 function prepareData(dashboardData) {
   //clear DOM
-  //document.querySelector("main").innerHTML = "";
+  document.querySelector("main").innerHTML = "";
   dashboardData.serving.forEach((serving) => {
     displayUpcomingServings(serving);
   });
@@ -44,7 +44,7 @@ function displayUpcomingServings(serving) {
   const sectionServings = document.createElement("section");
   sectionServings.setAttribute("id", "serving");
   document.querySelector("main").appendChild(sectionServings);
-  //create servings h2
+  //TODO: fix create servings h2
   const servingsTitle = document.createElement("h2");
   servingsTitle.textContent = "ready to pick up";
 
@@ -55,7 +55,7 @@ function displayUpcomingServings(serving) {
 
   //create div serving-id
   const servingsDivId = document.createElement("div");
-  servingsDivId.setAttribute("class", "serving-id");
+  servingsDivId.setAttribute("class", "servings-id");
   servingsDiv.append(servingsDivId);
 
   //create p order-id
@@ -72,13 +72,13 @@ function displayUpcomingServings(serving) {
   const formattedTime = ` ${hours}:${minutes}:${seconds}`;
   const servingTimeId = document.createElement("p");
   servingTimeId.setAttribute("class", "time-id");
-  servingTimeId.innerHTML = `Serving Time:  ${formattedTime}`;
+  servingTimeId.innerHTML = `Order Time:  ${formattedTime}`;
 
   //create div beer-type
   const beerType = document.createElement("div");
   beerType.setAttribute("class", "beer-type");
   //append paragraphs
-  servingsDivId.append(servingsId, servingTime, beerType);
+  servingsDivId.append(servingsId, servingTimeId, beerType);
   const beerUl = document.createElement("ul");
   beerUl.setAttribute("class", "beer");
   beerType.append(beerUl);
@@ -133,7 +133,7 @@ function displayUpcomingOrders(order) {
   const sectionOrders = document.createElement("section");
   sectionOrders.setAttribute("id", "orders");
   document.querySelector("main").appendChild(sectionOrders);
-  //create orders h2
+  //TODO: fixcreate orders h2
   const ordersTitle = document.createElement("h2");
   ordersTitle.textContent = "upcoming orders";
 
