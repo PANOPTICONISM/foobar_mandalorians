@@ -2,7 +2,6 @@
 @use '../abstracts/mixins' as mx;
 
 header {
-  grid-column: 1/-1;
   background-color: $green-dark;
   display: flex;
   justify-content: space-between;
@@ -174,14 +173,12 @@ header input:checked ~ .slide-in {
   header {
     display: flex;
     flex-direction: column;
-    grid-column: 1/2;
-    height: calc(100vh - 100px);
     border-radius: 0 80px 0 0;
     padding-top: 60px;
   }
 
   .slide-in {
     position: static;
-    padding: 0 35px;
+    padding: 0 15px;
   }
 }

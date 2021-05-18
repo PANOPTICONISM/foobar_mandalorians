@@ -1,0 +1,21 @@
+@use "../abstracts/variables" as a;
+
+.beers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-rows: auto;
+    grid-gap: 2rem;
+
+    .card {
+      background-color: a.$white;
+      padding: 25px;
+      border-radius: 4px;
+      -webkit-box-shadow: 0px 0px 5px 0px rgba(196,196,196,1);
+      -moz-box-shadow: 0px 0px 5px 0px rgba(196,196,196,1);
+      box-shadow: 0px 0px 5px 0px rgba(196,196,196,1);
+
+      h3 {
+        margin-top: 0;
+      }
+    }
+  }
