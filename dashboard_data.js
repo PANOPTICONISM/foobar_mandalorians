@@ -14,7 +14,7 @@ function startLiveUpdate() {
 //clear the list, loop through upcoming orders/serving, find queue length and call display all updates KRISTA
 function prepareData(dashboardData) {
   //clear DOM
-  document.querySelector("main").innerHTML = "";
+  //document.querySelector("main").innerHTML = "";
   dashboardData.serving.forEach((serving) => {
     displayUpcomingServings(serving);
   });
@@ -35,6 +35,7 @@ function displayUpcomingServings(serving) {
   let servingId = serving.id;
   let servingTime = serving.startTime;
   let beerServing = serving.order;
+  //console.log(beerServing.length);
 
   //clone template
   const template = document.querySelector("template").content;
@@ -68,20 +69,23 @@ function displayUpcomingServings(serving) {
   const servingsTime = document.createElement("p");
   servingsTime.setAttribute("class", "time-id");
   servingsTime.innerHTML = `Order Time:  ${formattedTime}`;
-  //servingDiv.append(servingsId, servingsTime);
+  //append paragraphs
+  servingDivId.append(servingsId, servingsTime);
 
   //create div beer-type
   const beerType = document.createElement("div");
   beerType.setAttribute("class", "beer-type");
-  //append paragraphs
-  servingDivId.append(servingsId, servingsTime, beerType);
+  servingDiv.append(beerType);
+
   const beerUl = document.createElement("ul");
   beerUl.setAttribute("class", "beer");
   beerType.append(beerUl);
+
   //compare if there is duplicates in beer array to display it differently, then create HTML list for beers and populate it KRISTA
   for (let i = 0; i < beerServing.length; i++) {
     // Duplicate array, it will hold unique val later
     let unique = [...new Set(beerServing)];
+    //console.log(unique);
     // This array counts duplicates READ MORE about SET
     let duplicates = unique.map((value) => [
       value,
@@ -89,13 +93,17 @@ function displayUpcomingServings(serving) {
     ]);
     //console.log(duplicates[i]);
     let beerNameValue = duplicates[i];
+    //if we wait for serving
     if (beerNameValue === undefined) {
       console.log("beer is pouring");
     } else {
+      //create beer list
+      const beerNames = document.createElement("li");
+      beerNames.textContent = `${beerNameValue.join(" ")}x`;
+      beerNames.append(beerUl);
       //create span tag to fit list in
       const liSpan = document.createElement("span");
-      beerType.appendChild(liSpan);
-
+      beerNames.append(liSpan);
       //fix beernames from array to be used for img
       let beerNameString = beerNameValue.toString();
       let toLowerCase = beerNameString.toLowerCase();
@@ -105,11 +113,7 @@ function displayUpcomingServings(serving) {
       let imgName = strConcat.substring(0, strIndex);
       img.src = `${imgName}.png`;
       liSpan.appendChild(img);
-      //console.log(img);
-      //create beer list
-      const beerNames = document.createElement("li");
-      beerNames.textContent = `${beerNameValue.join(" ")}x`;
-      liSpan.appendChild(beerNames);
+      console.log(img);
     }
   }
   // append clone to list
@@ -181,29 +185,27 @@ function displayUpcomingOrders(order) {
     if (beerNameValue === undefined) {
       console.log("waiting for orders");
     } else {
+      //create beer list
+      const beerNamesLi = document.createElement("li");
       //create span tag to fit list in
       const liSpan = document.createElement("span");
-      beerType.appendChild(liSpan);
 
       //fix beernames from array to be used for img
       let beerNameString = beerNameValue.toString();
       let toLowerCase = beerNameString.toLowerCase();
       let strConcat = toLowerCase.replace(/\s+/g, "");
       let strIndex = strConcat.indexOf(",");
+      //create img element
       const img = document.createElement("img");
       let imgName = strConcat.substring(0, strIndex);
       img.src = `${imgName}.png`;
-      liSpan.appendChild(img);
-      //console.log(img);
-      //create beer list
-      const beerNames = document.createElement("li");
-      beerNames.textContent = `${beerNameValue.join(" ")}x`;
-      liSpan.appendChild(beerNames);
+      beerNamesLi.append(img);
+      liSpan.textContent = `${beerNameValue.join(" ")}x`;
+      beerNamesLi.append(liSpan);
+      beerUl.append(beerNamesLi);
     }
   }
 
   // append clone to list
   document.querySelector("main").appendChild(copy);
 }
-
-//ordersDivId.appendChild(orderId, orderTimeId);
