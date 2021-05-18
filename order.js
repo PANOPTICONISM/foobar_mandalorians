@@ -19,6 +19,9 @@ function buildCards(beers) {
     beers.forEach(eachBeerCard);
 }
 
+// TODO: filters
+// TODO: search bar - in common.js
+
 // insert data into the DOM
 function eachBeerCard(beer) {
     console.log(beer);

@@ -1,6 +1,8 @@
 //when DOM loads we want to start live update of the dashboard_data KRISTA
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
+// import imageSources from './common.js';
+
 //SHORT POLLING- fetch updates every 3 sec KRISTA
 function startLiveUpdate() {
   setInterval(async () => {
@@ -67,7 +69,7 @@ function displayUpcomingOrders(order) {
     //create span tag to fit list in
     const span = document.createElement("span");
     copy.querySelector(".beer").appendChild(span);
-    //fix beernames from array to be used for img
+    // images
     let beerNameString = beerNameValue.toString();
     let toLowerCase = beerNameString.toLowerCase();
     let strConcat = toLowerCase.replace(/\s+/g, "");

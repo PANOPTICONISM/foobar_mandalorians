@@ -1,2 +1,20 @@
+@use "../abstracts/variables" as a;
 
+h2 {
+    font-family: a.$primary-font;
+    font-weight: a.$font-weight-bolder;
+    text-transform: uppercase;
+    color: a.$black;
+    position: relative;
 
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 80px;
+        height: 6px;
+        border-radius: 4px;
+        background-color: a.$green-dark;
+    }
+}

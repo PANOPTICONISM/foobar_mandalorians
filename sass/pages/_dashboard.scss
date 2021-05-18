@@ -16,31 +16,6 @@ main {
   grid-column: 1/-1;
   grid-row: 2;
   padding: 40px;
-
-  .beers {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-template-rows: auto;
-    grid-gap: 2rem;
-
-    .card {
-      background-color: a.$white;
-      border: 1px solid black;
-      padding: 25px;
-      border-radius: 4px;
-
-      h3 {
-        margin-top: 0;
-      }
-    }
-  }
-
-  h2 {
-    text-transform: uppercase;
-    color: a.$black;
-    font: a.$primary-font;
-    font-weight: a.$font-weight-bold;
-  }
 }
 
 .orders {
