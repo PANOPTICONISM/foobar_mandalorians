@@ -51,6 +51,13 @@ function appendFilters(filter) {
         document.querySelector(".filters").appendChild(filterOption);
     })
 
+    document.querySelectorAll(".filter").forEach(btn => btn.addEventListener("click", sortItems));
+
+}
+
+function sortItems(e) {
+    console.log(e.target.textContent);
+
 }
 
 // insert data into the DOM - maria
