@@ -17,14 +17,42 @@ async function fetchData() {
 // divide our data
 function buildCards(beers) {
     beers.forEach(eachBeerCard);
+    groupFilters(beers);
 }
 
-// TODO: filters
-// TODO: search bar - in common.js
+// array of beertypes
+function groupFilters(fil) {
+    let filterArr = [];
+
+    for (let i = 0; i < fil.length; i++) {
+        let result = filterArr.push(fil[i].category);
+    }
+
+    createFilters(filterArr);
+}
+
+// filters to find a specific beer type
+function createFilters(categories) {
+    const filterOption = document.createElement("button");
+    filterOption.setAttribute("class", "filter");
+
+    console.log(categories)
+
+    const cleanRepetitiveFilters = categories.filter(cat => {
+        if (cat == cat) {
+            console.log(cat)
+        } else {
+            console.log("ignore")
+        }
+    });
+    // console.log(cleanRepetitiveFilters);
+
+    // filterOption.textContent = cat.category;
+    // document.querySelector(".filters").appendChild(filterOption);
+}
 
 // insert data into the DOM
 function eachBeerCard(beer) {
-    console.log(beer);
     // create a box for each beer, with a class named card
     const beerCard = document.createElement("div");
     beerCard.setAttribute("class", "card");
