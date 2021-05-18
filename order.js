@@ -5,7 +5,7 @@ import "./sass/style.scss";
 // load on start - maria
 window.addEventListener("DOMContentLoaded", fetchData);
 
-// fetch data from api
+// fetch data from api - maria
 async function fetchData() {
     const beertypes = "https://foobar-mandalorians.herokuapp.com/beertypes";
     const response = await fetch(beertypes);
@@ -14,44 +14,46 @@ async function fetchData() {
     buildCards(data);
 }
 
-// divide our data
+// divide our data - maria
 function buildCards(beers) {
     beers.forEach(eachBeerCard);
     groupFilters(beers);
 }
 
-// array of beertypes
+// array of all beertypes - maria
 function groupFilters(fil) {
     let filterArr = [];
 
     for (let i = 0; i < fil.length; i++) {
         let result = filterArr.push(fil[i].category);
     }
-
     createFilters(filterArr);
 }
 
-// filters to find a specific beer type
+// clean array from repetitive categories - maria
 function createFilters(categories) {
-    const filterOption = document.createElement("button");
-    filterOption.setAttribute("class", "filter");
 
-    console.log(categories)
+    function isUnique(a, b) {
+        return categories.indexOf(a) == b;
+    }
+    const cleanRepetitiveFilters = categories.filter(isUnique);
 
-    const cleanRepetitiveFilters = categories.filter(cat => {
-        if (cat == cat) {
-            console.log(cat)
-        } else {
-            console.log("ignore")
-        }
-    });
-    // console.log(cleanRepetitiveFilters);
-
-    // filterOption.textContent = cat.category;
-    // document.querySelector(".filters").appendChild(filterOption);
+    appendFilters(cleanRepetitiveFilters);
 }
 
-// insert data into the DOM
+// create and append filters to dom - maria
+function appendFilters(filter) {
+
+    filter.forEach(f => {
+        const filterOption = document.createElement("button");
+        filterOption.setAttribute("class", "filter");
+        filterOption.textContent = f;
+        document.querySelector(".filters").appendChild(filterOption);
+    })
+
+}
+
+// insert data into the DOM - maria
 function eachBeerCard(beer) {
     // create a box for each beer, with a class named card
     const beerCard = document.createElement("div");
