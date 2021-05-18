@@ -1,4 +1,5 @@
 @use "../abstracts/variables" as a;
+@use '../abstracts/mixins' as mx;
 
 body {
   margin: 0;
@@ -7,56 +8,91 @@ body {
 }
 
 main {
-  grid-column: 2/11;
-  grid-row: 1/1;
-  display: grid;
-  max-width: 30%;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 2rem;
-  margin: auto;
+  grid-column: 2/-1;
+  grid-row: 2/3;
+  //padding: 40px;
+  // display: grid;
+  // grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  // grid-template-rows: 350px;
+  // grid-gap: 2rem;
+  #serving {
+    display: grid;
+    grid-column: 2/-1;
+    grid-row: 2/2;
+    // display: grid;
+    // grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    // grid-template-rows: 350px;
+    // grid-gap: 2rem;
+  }
 
-  h2 {
-    text-transform: uppercase;
-    color: a.$black;
-    font: a.$primary-font;
-    font-weight: a.$font-weight-bold;
+  #orders {
+    display: grid;
+    grid-column: 2/-1;
+    grid-row: 3/3;
+    // display: grid;
+    // grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    // grid-template-rows: 350px;
+    // grid-gap: 2rem;
+  }
+  .orders,
+  .serving {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    width: 100%;
+
+    h3 {
+      margin-top: 0;
+    }
+  }
+
+  .orders,
+  .serving {
+    max-width: 300px;
+    box-shadow: 5px 5px 15px 5px a.$grey-light;
+    .order-id {
+      background-color: a.$yellow;
+      //color: a.$black;
+      display: flex;
+      flex-direction: column;
+      font-family: a.$primary-font;
+      font-weight: a.$font-weight-bold;
+      margin: 0;
+    }
+
+    .beer-type {
+      background-color: a.$white;
+      color: a.$black;
+      padding: 5px;
+    }
+    .beer-type ul {
+      list-style-type: none;
+    }
+    .beer-type li {
+      border-bottom: 0.5px solid a.$grey-light;
+      padding: 7.5px;
+    }
+
+    img {
+      max-width: 15%;
+      border-radius: 50%;
+    }
+    .id {
+      color: a.$black;
+    }
+    .time {
+      color: a.$grey-dark;
+    }
   }
 }
 
-.orders {
-  max-width: 450px;
-  box-shadow: 5px 5px 15px 5px a.$grey-light;
-  .order-id {
-    background-color: a.$yellow;
-    //color: a.$black;
-    display: flex;
-    flex-direction: column;
-    font-family: a.$primary-font;
-    font-weight: a.$font-weight-bold;
-    margin: 0;
+@media (min-width: mx.$screen-ipad) {
+  header {
+    grid-column: 1/2;
+    height: calc(100vh - 100px);
   }
 
-  .beer-type {
-    background-color: a.$white;
-    color: a.$black;
-    padding: 5px;
-  }
-  .beer-type ul {
-    list-style-type: none;
-  }
-  .beer-type li {
-    border-bottom: 0.5px solid a.$grey-light;
-    padding: 7.5px;
-  }
-
-  img {
-    max-width: 15%;
-    border-radius: 50%;
-  }
-  .id {
-    color: a.$black;
-  }
-  .time {
-    color: a.$grey-dark;
+  main {
+    grid-column: 2/-1;
+    grid-row: 1;
   }
 }
