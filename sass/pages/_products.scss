@@ -2,7 +2,7 @@
 
 .beers {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-template-rows: auto;
     grid-gap: 2rem;
 
@@ -16,6 +16,12 @@
 
       h3 {
         margin-top: 0;
+      }
+
+      .bottom_layer {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
       }
     }
   }

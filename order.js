@@ -58,7 +58,8 @@ function appendFilters(filter) {
 
 // filters in action - maria
 function filterClicked() {
-    document.querySelectorAll(".filter").forEach(btn => btn.addEventListener("click", sortItems));
+    const filter = document.querySelectorAll(".filter");
+    filter.forEach(btn => btn.addEventListener("click", sortItems));
 }
 
 function sortItems(e) {
@@ -113,14 +114,15 @@ function eachBeerCard(beer) {
     bottomLayer.setAttribute("class", "bottom_layer");
     const readMore = document.createElement("button");
     readMore.setAttribute("class", "read_more");
-    readMore.textContent = "Read more";
+    readMore.textContent = "read more";
+    const clone = document.querySelector("#counter").content.cloneNode(true);
+    clone.querySelector(".counter");
 
     const alcoholPercentage = document.createElement("h5");
     alcoholPercentage.textContent = beer.alc;
-    bottomLayer.appendChild(alcoholPercentage);
 
-    topLayer.append(beerImage, beerName, beerType);
-    bottomLayer.append(readMore);
+    topLayer.append(beerImage, beerName, beerType, alcoholPercentage);
+    bottomLayer.append(readMore, clone);
 
     beerCard.append(topLayer, bottomLayer);
 
