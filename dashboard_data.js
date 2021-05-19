@@ -2,8 +2,8 @@
 //when DOM loads we want to start live update of the dashboard_data KRISTA
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
-//fix beernames from array to be used for img
-// let names = ["maria", "john", "kris"];
+//fix beernames from array to be used for img KRISTA
+// let names = ["maria", "john", "kris", "peter"];
 const imgName = function fixImgName(arr) {
   const beerNameString = arr.toString();
   const toLowerCase = beerNameString.toLowerCase();
@@ -15,6 +15,7 @@ const imgName = function fixImgName(arr) {
 // console.log(imgName(names));
 // imgName(names);
 
+//Global time format funct KRISTA
 const formattedTime = function currentTime(timestamp) {
   const date = new Date(timestamp);
   const hours = date.getHours();
@@ -46,19 +47,27 @@ function prepareData(dashboardData) {
   });
   let queue = dashboardData.queue.length;
   showQueueLength(queue);
+
+  let time = dashboardData.timestamp;
+  showCurrentTime(time);
 }
 
+//queue length KRISTA
 function showQueueLength(queueLength) {
   console.log(`ORDERS IN QUEUE:${queueLength}`);
 }
 
-//create elements and display servings
+// showint timestam as time
+function showCurrentTime(time) {
+  document.querySelector(".time").textContent = formattedTime(time);
+}
+
+//create HTML elements and display servings KRISTA
 function displayUpcomingServings(serving) {
   //this is data for serving list
   let servingId = serving.id;
   let servingTime = serving.startTime;
   let beerServing = serving.order;
-  //console.log(beerServing.length);
 
   //clone template
   const template = document.querySelector("template").content;
@@ -99,7 +108,7 @@ function displayUpcomingServings(serving) {
   const beerUl = document.createElement("ul");
   beerUl.setAttribute("class", "beer");
   beerType.append(beerUl);
-  //compare if there is duplicates in beer array to display it differently, then create HTML list for beers and populate it KRISTA
+  //compare if there is duplicates in beer array to display duplicate as number, then create HTML list for beers and populate it KRISTA
   for (let i = 0; i < beerServing.length; i++) {
     // Duplicate array, it will hold unique val later
     let unique = [...new Set(beerServing)];
@@ -115,23 +124,36 @@ function displayUpcomingServings(serving) {
     } else {
       //create beer list
       const beerNamesLi = document.createElement("li");
-      //create span tag to fit list in
+      //create span tag to fit in list
       const liSpan = document.createElement("span");
       //create img element
       const img = document.createElement("img");
+      //uses global fixname function to pass in specific val as param
       img.src = `${imgName(beerNameValue)}.png`;
       beerNamesLi.append(img);
-      liSpan.textContent = `${beerNameValue.join(" ")}x`;
+      liSpan.textContent = `${beerNameValue.join("  ")}x`;
       beerNamesLi.append(liSpan);
       beerUl.append(beerNamesLi);
     }
   }
+
+  //TODO: cannot be in clone create chart elements
+  // const chartContainer = document.createElement("div");
+  // chartContainer.setAttribute("class", "chart-container");
+  // //append chart container
+  // sectionServings.append(chartContainer);
+  // chartContainer.innerHTML = "CHART GOES HERE";
+  // //create canvas element
+  // const myChart = document.createElement("canvas");
+  // myChart.setAttribute("id", "my-chart");
+  // chartContainer.appendChild(myChart);
+
   // append clone to list
-  document.querySelector("main").appendChild(copy);
+  document.querySelector("main").append(copy);
 }
 
 function displayUpcomingOrders(order) {
-  console.log(order);
+  //console.log(order);
   //this is data for upcoming orders list
   const ordersId = order.id;
   const ordersTime = order.startTime;
