@@ -7,14 +7,11 @@ body {
   grid-template-columns: repeat(12, 1fr);
 }
 
-
-
-
-  #serving,
-  #orders {
-    display: inline-flex;
-    font: a.$primary-font;
-  }
+#serving,
+#orders {
+  display: inline-flex;
+  font: a.$primary-font;
+}
 
 header {
   grid-column: 1/-1;
@@ -27,77 +24,72 @@ main {
   padding: 40px;
 }
 
+h2 {
+  margin-top: 0;
+  text-transform: uppercase;
+  font-weight: a.$font-weight-bold;
+}
 
-  h2 {
-    margin-top: 0;
-    text-transform: uppercase;
+.order-img {
+  max-width: 15%;
+  border-radius: 50%;
+}
+.orders,
+.servings {
+  max-width: 300px;
+  height: 350px;
+  box-shadow: 5px 5px 15px 5px a.$grey-light;
+
+  .orders-id {
+    background-color: a.$yellow;
+    color: a.$black;
+    display: flex;
+    flex-direction: column;
+    font-family: a.$primary-font;
     font-weight: a.$font-weight-bold;
+    margin: 0;
   }
 
+  .servings-id {
+    background-color: a.$green-dark;
+    color: a.$black;
+    display: flex;
+    flex-direction: column;
+    font-family: a.$primary-font;
+    font-weight: a.$font-weight-bold;
+    margin: 0;
+  }
+
+  .chart-container {
+    position: relative;
+    height: 30vh;
+    width: 50vw;
+  }
+
+  .beer-type {
+    background-color: a.$white;
+    color: a.$black;
+    padding: 5px;
+  }
+
+  .beer-type li {
+    border-bottom: 0.5px solid a.$grey-light;
+    padding: 7.5px;
+    list-style-type: none;
+  }
+  span {
+    padding: 25px;
+  }
   img {
     max-width: 15%;
     border-radius: 50%;
+    margin-left: -30px;
   }
-  .orders,
-  .servings {
-    max-width: 300px;
-    height: 350px;
-    box-shadow: 5px 5px 15px 5px a.$grey-light;
-
-    .orders-id {
-      background-color: a.$yellow;
-      color: a.$black;
-      display: flex;
-      flex-direction: column;
-      font-family: a.$primary-font;
-      font-weight: a.$font-weight-bold;
-      margin: 0;
-    }
-
-    .servings-id {
-      background-color: a.$green-dark;
-      color: a.$black;
-      display: flex;
-      flex-direction: column;
-      font-family: a.$primary-font;
-      font-weight: a.$font-weight-bold;
-      margin: 0;
-    }
-
-    .chart-container {
-      position: relative;
-      display: inline-flex;
-      height: 30vh;
-      width: 50vw;
-      background-color: hotpink;
-    }
-
-    .beer-type {
-      background-color: a.$white;
-      color: a.$black;
-      padding: 5px;
-    }
-    .beer-type ul {
-      list-style-type: none;
-    }
-    .beer-type li {
-      border-bottom: 0.5px solid a.$grey-light;
-      padding: 7.5px;
-    }
-    span {
-      padding: 25px;
-    }
-    img {
-      max-width: 15%;
-      border-radius: 50%;
-      margin-left: -30px;
-    }
-    .serving-id {
-      margin-left: 15px;
-    }
-    .time-id {
-      margin-left: 15px;
-    }
+  .serving-id {
+    margin-left: 15px;
+  }
+  .time-id {
+    margin-left: 15px;
   }
 }
 
@@ -125,7 +117,6 @@ main {
 }
 
 @media (min-width: mx.$screen-ipad) {
-
   header {
     grid-column: 1/2;
     height: calc(100vh - 100px);
@@ -135,5 +126,4 @@ main {
     grid-column: 2/-1;
     grid-row: 1;
   }
-
 }

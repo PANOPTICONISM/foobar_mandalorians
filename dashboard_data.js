@@ -63,14 +63,14 @@ function startLiveUpdate() {
 
 //loop through upcoming orders/servings, find queue length and call updates functions KRISTA
 function prepareData(dashboardData) {
-  //clear DOM
-  //document.querySelector("main").innerHTML = "";
+  // //TODO:clear DOM
+  // document.querySelector(".card-box").innerHTML = "";
 
   dashboardData.serving.forEach((serving) => {
     displayUpcomingServings(serving);
   });
   dashboardData.queue.forEach((order) => {
-    //displayUpcomingOrders(order);
+    displayUpcomingOrders(order);
   });
   let queue = dashboardData.queue.length;
   showQueueLength(queue);
@@ -135,7 +135,7 @@ function displayUpcomingServings(serving) {
     //console.log(duplicates[i]);
     let beerNameValue = duplicates[i];
     if (beerNameValue === undefined) {
-      console.log("waiting for orders");
+      console.log("beer is pouring");
     } else {
       //create beer list
       const beerNamesLi = document.createElement("li");
@@ -143,7 +143,8 @@ function displayUpcomingServings(serving) {
       const liSpan = document.createElement("span");
       //create img element
       const img = document.createElement("img");
-      //uses global fixname function to pass in specific val as param
+      img.setAttribute("class", "order-img");
+      //uses  fixname function to pass in specific val as param
       img.src = `${fixImgName(beerNameValue)}.png`;
       beerNamesLi.append(img);
       liSpan.textContent = `${beerNameValue.join("  ")}x`;
@@ -154,93 +155,68 @@ function displayUpcomingServings(serving) {
   document.querySelector("#serving").append(cardBoxDivs);
 }
 
-// function displayUpcomingOrders(order) {
-//   //console.log(order);
-//   //this is data for upcoming orders list
-//   const ordersId = order.id;
-//   const ordersTime = order.startTime;
-//   const beerOrder = order.order;
+function displayUpcomingOrders(order) {
+  //console.log(order);
+  //this is data for upcoming orders list
+  const orderId = order.id;
+  const ordersTime = order.startTime;
+  const beerOrder = order.order;
 
-//   //create section#orders
-//   const sectionOrders = document.createElement("section");
-//   sectionOrders.setAttribute("id", "orders");
-//   document.querySelector("main").appendChild(sectionOrders);
-//
+  //create div card-box
+  const cardBoxDivs = document.createElement("div");
+  cardBoxDivs.setAttribute("class", "card-box");
 
-//   //create div orders
-//   const ordersDiv = document.createElement("div");
-//   ordersDiv.setAttribute("class", "orders");
-//   sectionOrders.append(ordersDiv);
+  //create div orders
+  const infoCardDiv = document.createElement("div");
+  infoCardDiv.setAttribute("class", "info-card");
+  cardBoxDivs.append(infoCardDiv);
 
-//   //create div order-id
-//   const ordersDivId = document.createElement("div");
-//   ordersDivId.setAttribute("class", "orders-id");
-//   ordersDiv.append(ordersDivId);
+  //create p order-id
+  const ordersId = document.createElement("p");
+  ordersId.setAttribute("class", "order-id");
+  ordersId.innerHTML = `Order Nr: ${orderId}`;
+  //create p time-id
+  const orderTimeId = document.createElement("p");
+  orderTimeId.setAttribute("class", "time-id");
+  orderTimeId.innerHTML = `Order Time:  ${currentTime(ordersTime)}`;
+  infoCardDiv.append(ordersId, orderTimeId);
 
-//   //create p order-id
-//   const orderId = document.createElement("p");
-//   orderId.setAttribute("class", "order-id");
-//   orderId.innerHTML = `Order Nr: ${ordersId}`;
-
-//   //create p time-id
-//   const orderTimeId = document.createElement("p");
-//   orderTimeId.setAttribute("class", "time-id");
-//   orderTimeId.innerHTML = `Order Time:  ${formattedTime(ordersTime)}`;
-
-//   //create div beer-type
-//   const beerType = document.createElement("div");
-//   beerType.setAttribute("class", "beer-type");
-//   //append paragraphs
-//   ordersDivId.append(orderId, orderTimeId, beerType);
-//   const beerUl = document.createElement("ul");
-//   beerUl.setAttribute("class", "beer");
-//   beerType.append(beerUl);
-//   //compare if there is duplicates in beer array to display it differently, then create HTML list for beers and populate it KRISTA
-//   for (let i = 0; i < beerOrder.length; i++) {
-//     // Duplicate array, it will hold unique val later
-//     let unique = [...new Set(beerOrder)];
-//     // This array counts duplicates READ MORE about SET
-//     let duplicates = unique.map((value) => [
-//       value,
-//       beerOrder.filter((beerName) => beerName === value).length,
-//     ]);
-//     //console.log(duplicates[i]);
-//     let beerNameValue = duplicates[i];
-//     if (beerNameValue === undefined) {
-//       console.log("waiting for orders");
-//     } else {
-//       //create beer list
-//       const beerNamesLi = document.createElement("li");
-//       //create span tag to fit list in
-//       const liSpan = document.createElement("span");
-//       //create img element
-//       const img = document.createElement("img");
-//       img.src = `${imgName(beerNameValue)}.png`;
-//       beerNamesLi.append(img);
-//       liSpan.textContent = `${beerNameValue.join(" ")}x`;
-//       beerNamesLi.append(liSpan);
-//       beerUl.append(beerNamesLi);
-//     }
-
-//     //create span tag to fit list in
-//     const span = document.createElement("span");
-//     copy.querySelector(".beer").appendChild(span);
-//     // images
-//     let beerNameString = beerNameValue.toString();
-//     let toLowerCase = beerNameString.toLowerCase();
-//     let strConcat = toLowerCase.replace(/\s+/g, "");
-//     let strIndex = strConcat.indexOf(",");
-//     const img = document.createElement("img");
-//     let imgName = strConcat.substring(0, strIndex);
-//     img.src = `${imgName}.png`;
-//     copy.querySelector("span").appendChild(img);
-//     console.log(img);
-//     //create beer list
-//     const beerNames = document.createElement("li");
-//     beerNames.textContent = `${beerNameValue.join(" ")}x`;
-//     copy.querySelector("span").appendChild(beerNames);
-//   }
-
-//   // append clone to list
-//   document.querySelector("main").appendChild(copy);
-// }
+  //create div beer-type
+  const beerType = document.createElement("div");
+  beerType.setAttribute("class", "beer-type");
+  //append paragraphs
+  cardBoxDivs.append(orderId, orderTimeId, beerType);
+  const beerUl = document.createElement("ul");
+  beerUl.setAttribute("class", "beer");
+  beerType.append(beerUl);
+  //compare if there is duplicates in beer array to display number, then create HTML list for beers and populate it KRISTA
+  for (let i = 0; i < beerOrder.length; i++) {
+    // Duplicate array, it will hold unique val later
+    let unique = [...new Set(beerOrder)];
+    // This array counts duplicates READ MORE about SET
+    let duplicates = unique.map((value) => [
+      value,
+      beerOrder.filter((beerName) => beerName === value).length,
+    ]);
+    //console.log(duplicates[i]);
+    let beerNameValue = duplicates[i];
+    if (beerNameValue === undefined) {
+      console.log("waiting for orders");
+    } else {
+      //create beer list
+      const beerNamesLi = document.createElement("li");
+      //create span tag to fit list in
+      const liSpan = document.createElement("span");
+      //create img element
+      const img = document.createElement("img");
+      img.setAttribute("class", "order-img");
+      //uses  fixname function to pass in specific val as param
+      img.src = `${fixImgName(beerNameValue)}.png`;
+      beerNamesLi.append(img);
+      liSpan.textContent = `${beerNameValue.join(" ")}x`;
+      beerNamesLi.append(liSpan);
+      beerUl.append(beerNamesLi);
+    }
+  }
+  document.querySelector("#order").append(cardBoxDivs);
+}
