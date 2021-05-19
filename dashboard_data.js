@@ -4,18 +4,18 @@ window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
 //TODO:?fix beernames from array to be used for img
 // let names = ["maria", "john", "kris"];
-// let imgName = function fixImgName(arr) {
-//   let beerNameString = arr.toString();
-//   let toLowerCase = beerNameString.toLowerCase();
-//   let strConcat = toLowerCase.replace(/\s+/g, "");
-//   let strIndex = strConcat.indexOf(",");
-//   let imgName = strConcat.substring(0, strIndex);
-//   return imgName;
-// };
+let imgName = function fixImgName(arr) {
+  const beerNameString = arr.toString();
+  const toLowerCase = beerNameString.toLowerCase();
+  const strConcat = toLowerCase.replace(/\s+/g, "");
+  const strIndex = strConcat.indexOf(",");
+  const imgName = strConcat.substring(0, strIndex);
+  return imgName;
+};
 // console.log(imgName(names));
 // imgName(names);
 
-let formattedTime = function currentTime(timestamp) {
+const formattedTime = function currentTime(timestamp) {
   const date = new Date(timestamp);
   const hours = date.getHours();
   const minutes = date.getMinutes();
@@ -117,16 +117,9 @@ function displayUpcomingServings(serving) {
       const beerNamesLi = document.createElement("li");
       //create span tag to fit list in
       const liSpan = document.createElement("span");
-
-      //fix beernames from array to be used for img
-      let beerNameString = beerNameValue.toString();
-      let toLowerCase = beerNameString.toLowerCase();
-      let strConcat = toLowerCase.replace(/\s+/g, "");
-      let strIndex = strConcat.indexOf(",");
       //create img element
       const img = document.createElement("img");
-      let imgName = strConcat.substring(0, strIndex);
-      img.src = `${imgName}.png`;
+      img.src = `${imgName(beerNameValue)}.png`;
       beerNamesLi.append(img);
       liSpan.textContent = `${beerNameValue.join(" ")}x`;
       beerNamesLi.append(liSpan);
@@ -201,15 +194,9 @@ function displayUpcomingOrders(order) {
       const beerNamesLi = document.createElement("li");
       //create span tag to fit list in
       const liSpan = document.createElement("span");
-      //fix beernames from array to be used for img
-      let beerNameString = beerNameValue.toString();
-      let toLowerCase = beerNameString.toLowerCase();
-      let strConcat = toLowerCase.replace(/\s+/g, "");
-      let strIndex = strConcat.indexOf(",");
       //create img element
       const img = document.createElement("img");
-      let imgName = strConcat.substring(0, strIndex);
-      img.src = `${imgName}.png`;
+      img.src = `${imgName(beerNameValue)}.png`;
       beerNamesLi.append(img);
       liSpan.textContent = `${beerNameValue.join(" ")}x`;
       beerNamesLi.append(liSpan);
