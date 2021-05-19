@@ -11,12 +11,12 @@ async function fetchData() {
     const response = await fetch(beertypes);
     const data = await response.json();
 
-    buildCards(data);
+    filterData(data);
 }
 
 let allBeers = [];
 // divide our data - maria
-function buildCards(beers) {
+function filterData(beers) {
     allBeers = beers;
     beers.forEach(eachBeerCard);
     groupFilters();
@@ -29,11 +29,11 @@ function groupFilters() {
     for (let i = 0; i < allBeers.length; i++) {
         let result = filterArr.push(allBeers[i].category);
     }
-    createFilters(filterArr);
+    cleanFilters(filterArr);
 }
 
 // clean array from repetitive categories - maria
-function createFilters(categories) {
+function cleanFilters(categories) {
 
     function isUnique(a, b) {
         return categories.indexOf(a) == b;
@@ -62,7 +62,6 @@ function filterClicked() {
 
 function sortItems(e) {
 
-    const allCards = document.querySelectorAll(".card");
     const filteredBeers = allBeers.filter(isBeertype);
 
     function isBeertype(beer) {
@@ -73,15 +72,13 @@ function sortItems(e) {
         }
     }
 
-    rebuildList(filteredBeers);
-    return filteredBeers;
-
+    return rebuildList(filteredBeers);
 }
 
-// rebuild beer list upon clicked filter
+// rebuild beer list options upon clicked filter - maria
 function rebuildList(newList) {
     document.querySelector(".beers").innerHTML = "";
-    newList.forEach(eachBeerCard)
+    newList.forEach(eachBeerCard);
 }
 
 // insert data into the DOM - maria
