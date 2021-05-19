@@ -101,12 +101,20 @@ function eachBeerCard(beer) {
     // create and insert the api data into the right elements
     const topLayer = document.createElement("div");
     topLayer.setAttribute("class", "top_layer");
+    const topfirstLayer = document.createElement("div");
+    topfirstLayer.setAttribute("class", "first_layer");
+    const topSecondLayer = document.createElement("div");
+    topSecondLayer.setAttribute("class", "second_layer");
     const beerName = document.createElement("h3");
     beerName.textContent = beer.name;
     const beerImage = document.createElement("img");
     beerImage.src = beer.label;
     beerImage.setAttribute("alt", beerName.textContent);
 
+    const middleLayer = document.createElement("div");
+    middleLayer.setAttribute("class", "middle_layer");
+    const price = document.createElement("p");
+    price.textContent = "DKK " + Math.floor(Math.random() * 100 + 10);
     const beerType = document.createElement("h4");
     beerType.textContent = beer.category;
 
@@ -119,9 +127,12 @@ function eachBeerCard(beer) {
     clone.querySelector(".counter");
 
     const alcoholPercentage = document.createElement("h5");
-    alcoholPercentage.textContent = beer.alc;
+    alcoholPercentage.textContent = beer.alc + " %";
 
-    topLayer.append(beerImage, beerName, beerType, alcoholPercentage);
+    topLayer.append(topfirstLayer);
+    topfirstLayer.append(beerImage, topSecondLayer);
+    topSecondLayer.append(beerName, beerType, middleLayer);
+    middleLayer.append(alcoholPercentage, price);
     bottomLayer.append(readMore, clone);
 
     beerCard.append(topLayer, bottomLayer);
