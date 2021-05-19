@@ -2,9 +2,9 @@
 //when DOM loads we want to start live update of the dashboard_data KRISTA
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
-//TODO:?fix beernames from array to be used for img
+//fix beernames from array to be used for img
 // let names = ["maria", "john", "kris"];
-let imgName = function fixImgName(arr) {
+const imgName = function fixImgName(arr) {
   const beerNameString = arr.toString();
   const toLowerCase = beerNameString.toLowerCase();
   const strConcat = toLowerCase.replace(/\s+/g, "");
@@ -68,13 +68,13 @@ function displayUpcomingServings(serving) {
   sectionServings.setAttribute("id", "serving");
   document.querySelector("main").appendChild(sectionServings);
   //TODO: fix create servings h2
-  const servingsTitle = document.createElement("h2");
-  servingsTitle.textContent = "ready to pick up";
+  // const servingsTitle = document.createElement("h2");
+  // servingsTitle.textContent = "ready to pick up";
 
   //create div servings
   const servingsDiv = document.createElement("div");
   servingsDiv.setAttribute("class", "servings");
-  sectionServings.append(servingsTitle, servingsDiv);
+  sectionServings.append(servingsDiv);
 
   //create div serving-id
   const servingsDivId = document.createElement("div");
@@ -145,13 +145,13 @@ function displayUpcomingOrders(order) {
   sectionOrders.setAttribute("id", "orders");
   document.querySelector("main").appendChild(sectionOrders);
   //TODO: fixcreate orders h2
-  const ordersTitle = document.createElement("h2");
-  ordersTitle.textContent = "upcoming orders";
+  // const ordersTitle = document.createElement("h2");
+  // ordersTitle.textContent = "upcoming orders";
 
   //create div orders
   const ordersDiv = document.createElement("div");
   ordersDiv.setAttribute("class", "orders");
-  sectionOrders.append(ordersTitle, ordersDiv);
+  sectionOrders.append(ordersDiv);
 
   //create div order-id
   const ordersDivId = document.createElement("div");
