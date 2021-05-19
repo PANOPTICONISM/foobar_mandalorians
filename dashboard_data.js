@@ -52,19 +52,22 @@ function currentTime(timestamp) {
   return formattedTime;
 }
 
+let counter = 0;
 //SHORT POLLING- fetch updates every 2sec KRISTA
 function startLiveUpdate() {
   setInterval(async () => {
     const response = await fetch("https://foobar-mandalorians.herokuapp.com/");
     const jsonData = await response.json();
-    prepareData(jsonData);
+    counter++;
+    prepareData(jsonData, counter);
   }, 2000);
 }
 
 //loop through upcoming orders/servings, find queue length and call updates functions KRISTA
-function prepareData(dashboardData) {
-  // //TODO:clear DOM
-  // document.querySelector(".card-box").innerHTML = "";
+function prepareData(dashboardData, counter) {
+  if (counter > 1) {
+    document.querySelector(".card-box").innerHTML = "";
+  }
 
   dashboardData.serving.forEach((serving) => {
     displayUpcomingServings(serving);
