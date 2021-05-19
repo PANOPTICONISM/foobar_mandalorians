@@ -27,7 +27,7 @@ function filterData(beers) {
 function groupFilters() {
     let filterArr = [];
     for (let i = 0; i < allBeers.length; i++) {
-        let result = filterArr.push(allBeers[i].category);
+        let result = filterArr.push("all", allBeers[i].category);
     }
     cleanFilters(filterArr);
 }
@@ -65,7 +65,7 @@ function sortItems(e) {
     const filteredBeers = allBeers.filter(isBeertype);
 
     function isBeertype(beer) {
-        if (e.target.textContent === beer.category) {
+        if (e.target.textContent === beer.category || e.target.textContent === "all") {
             return true;
         } else {
             return false;
