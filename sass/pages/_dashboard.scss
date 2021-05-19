@@ -7,15 +7,26 @@ body {
   grid-template-columns: repeat(12, 1fr);
 }
 
-main {
-  grid-column: 2/-1;
-  grid-row: 2/3;
+
+
 
   #serving,
   #orders {
     display: inline-flex;
     font: a.$primary-font;
   }
+
+header {
+  grid-column: 1/-1;
+  grid-row: 1;
+}
+
+main {
+  grid-column: 1/-1;
+  grid-row: 2;
+  padding: 40px;
+}
+
 
   h2 {
     margin-top: 0;
@@ -111,4 +122,18 @@ main {
     grid-column: 2/-1;
     grid-row: 1;
   }
+}
+
+@media (min-width: mx.$screen-ipad) {
+
+  header {
+    grid-column: 1/2;
+    height: calc(100vh - 100px);
+  }
+
+  main {
+    grid-column: 2/-1;
+    grid-row: 1;
+  }
+
 }

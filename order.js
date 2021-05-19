@@ -5,7 +5,7 @@ import "./sass/style.scss";
 // load on start - maria
 window.addEventListener("DOMContentLoaded", fetchData);
 
-// fetch data from api
+// fetch data from api - maria
 async function fetchData() {
     const beertypes = "https://foobar-mandalorians.herokuapp.com/beertypes";
     const response = await fetch(beertypes);
@@ -14,20 +14,86 @@ async function fetchData() {
     buildCards(data);
 }
 
-// divide our data
+let allBeers = [];
+// divide our data - maria
 function buildCards(beers) {
+    allBeers = beers;
     beers.forEach(eachBeerCard);
+    groupFilters();
+    filterClicked();
 }
 
-// insert data into the DOM
+// array of all beertypes - maria
+function groupFilters() {
+    let filterArr = [];
+    for (let i = 0; i < allBeers.length; i++) {
+        let result = filterArr.push(allBeers[i].category);
+    }
+    createFilters(filterArr);
+}
+
+// clean array from repetitive categories - maria
+function createFilters(categories) {
+
+    function isUnique(a, b) {
+        return categories.indexOf(a) == b;
+    }
+    const cleanRepetitiveFilters = categories.filter(isUnique);
+
+    appendFilters(cleanRepetitiveFilters);
+}
+
+// create and append filters to dom - maria
+function appendFilters(filter) {
+
+    filter.forEach(f => {
+        const filterOption = document.createElement("button");
+        filterOption.setAttribute("class", "filter");
+        filterOption.textContent = f;
+        document.querySelector(".filters").appendChild(filterOption);
+    })
+
+}
+
+// filters in action - maria
+function filterClicked() {
+    document.querySelectorAll(".filter").forEach(btn => btn.addEventListener("click", sortItems));
+}
+
+function sortItems(e) {
+
+    const allCards = document.querySelectorAll(".card");
+    const filteredBeers = allBeers.filter(isBeertype);
+
+    function isBeertype(beer) {
+        if (e.target.textContent === beer.category) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    rebuildList(filteredBeers);
+    return filteredBeers;
+
+}
+
+// rebuild beer list upon clicked filter
+function rebuildList(newList) {
+    document.querySelector(".beers").innerHTML = "";
+    newList.forEach(eachBeerCard)
+}
+
+// insert data into the DOM - maria
 function eachBeerCard(beer) {
-    console.log(beer);
     // create a box for each beer, with a class named card
     const beerCard = document.createElement("div");
     beerCard.setAttribute("class", "card");
 
     // create and insert the api data into the right elements
-    // TODO: missing image
+    // TODO: missing image - put into common.js
+    // TODO: price
+    // TODO: counter
     const topLayer = document.createElement("div");
     topLayer.setAttribute("class", "top_layer");
     const beerName = document.createElement("h3");
@@ -42,9 +108,9 @@ function eachBeerCard(beer) {
     readMore.setAttribute("class", "read_more");
     readMore.textContent = "Read more";
 
-    // const alcoholPercentage = document.createElement("h5");
-    // alcoholPercentage.textContent = beer.alc;
-    // bottomLayer.appendChild(alcoholPercentage);
+    const alcoholPercentage = document.createElement("h5");
+    alcoholPercentage.textContent = beer.alc;
+    bottomLayer.appendChild(alcoholPercentage);
 
     topLayer.append(beerName, beerType);
     bottomLayer.append(readMore);

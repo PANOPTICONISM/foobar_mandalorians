@@ -2,6 +2,7 @@
 //when DOM loads we want to start live update of the dashboard_data KRISTA
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
+
 //fix beernames from array to be used for img KRISTA
 // let names = ["maria", "john", "kris", "peter"];
 const imgName = function fixImgName(arr) {
@@ -26,6 +27,9 @@ const formattedTime = function currentTime(timestamp) {
 };
 
 //SHORT POLLING- fetch updates every 2 sec KRISTA
+// import imageSources from './common.js';
+
+//SHORT POLLING- fetch updates every 3 sec KRISTA
 function startLiveUpdate() {
   setInterval(async () => {
     const response = await fetch("https://foobar-mandalorians.herokuapp.com/");
@@ -224,6 +228,25 @@ function displayUpcomingOrders(order) {
       beerNamesLi.append(liSpan);
       beerUl.append(beerNamesLi);
     }
+
+    //create span tag to fit list in
+    const span = document.createElement("span");
+    copy.querySelector(".beer").appendChild(span);
+    // images
+    let beerNameString = beerNameValue.toString();
+    let toLowerCase = beerNameString.toLowerCase();
+    let strConcat = toLowerCase.replace(/\s+/g, "");
+    let strIndex = strConcat.indexOf(",");
+    const img = document.createElement("img");
+    let imgName = strConcat.substring(0, strIndex);
+    img.src = `${imgName}.png`;
+    copy.querySelector("span").appendChild(img);
+    console.log(img);
+    //create beer list
+    const beerNames = document.createElement("li");
+    beerNames.textContent = `${beerNameValue.join(" ")}x`;
+    copy.querySelector("span").appendChild(beerNames);
+
   }
 
   // append clone to list
