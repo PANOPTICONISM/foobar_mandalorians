@@ -102,7 +102,6 @@ main {
 @media (min-width: mx.$screen-ipad) {
   header {
     grid-column: 1/2;
-    height: calc(100vh - 100px);
   }
 
   main {
