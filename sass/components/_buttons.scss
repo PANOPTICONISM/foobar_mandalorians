@@ -1,1 +1,26 @@
 // buttons, grab colours and styling from variables
+@use '../abstracts/variables' as v;
+
+.filters button {
+    text-transform: capitalize;
+    outline: none;
+    border: none;
+    padding: 8px;
+    margin: 0 10px 20px 0;
+    border-radius: 4px;
+    background-color: transparent;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(196,196,196,1);
+      -moz-box-shadow: 0px 0px 5px 0px rgba(196,196,196,1);
+      box-shadow: 0px 0px 5px 0px rgba(196,196,196,1);
+
+    &:hover {
+        background-color: v.$green-dark;
+        color: v.$white;
+    }
+
+}
+
+button.active_filter {
+    background-color: v.$green-dark;
+    color: v.$white;
+  }

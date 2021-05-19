@@ -52,7 +52,8 @@ function appendFilters(filter) {
         filterOption.textContent = f;
         document.querySelector(".filters").appendChild(filterOption);
     })
-
+    let allButton = document.querySelector(".filters").firstElementChild;
+    allButton.setAttribute("class", "filter active_filter");
 }
 
 // filters in action - maria
@@ -71,6 +72,13 @@ function sortItems(e) {
             return false;
         }
     }
+
+    // change active button upon click
+    const activeFilter = document.querySelector(".active_filter");
+    if (activeFilter !== null) {
+        activeFilter.classList.remove("active_filter");
+    }
+    e.target.classList.toggle("active_filter")
 
     return rebuildList(filteredBeers);
 }
