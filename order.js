@@ -87,14 +87,16 @@ function eachBeerCard(beer) {
     const beerCard = document.createElement("div");
     beerCard.setAttribute("class", "card");
 
-    // create and insert the api data into the right elements
-    // TODO: missing image - put into common.js
     // TODO: price
     // TODO: counter
+    // create and insert the api data into the right elements
     const topLayer = document.createElement("div");
     topLayer.setAttribute("class", "top_layer");
     const beerName = document.createElement("h3");
     beerName.textContent = beer.name;
+    const beerImage = document.createElement("img");
+    beerImage.src = beer.label;
+    beerImage.setAttribute("alt", beerName.textContent);
 
     const beerType = document.createElement("h4");
     beerType.textContent = beer.category;
@@ -109,7 +111,7 @@ function eachBeerCard(beer) {
     alcoholPercentage.textContent = beer.alc;
     bottomLayer.appendChild(alcoholPercentage);
 
-    topLayer.append(beerName, beerType);
+    topLayer.append(beerImage, beerName, beerType);
     bottomLayer.append(readMore);
 
     beerCard.append(topLayer, bottomLayer);
