@@ -2,6 +2,28 @@
 //when DOM loads we want to start live update of the dashboard_data KRISTA
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
+//TODO:?fix beernames from array to be used for img
+// let names = ["maria", "john", "kris"];
+// let imgName = function fixImgName(arr) {
+//   let beerNameString = arr.toString();
+//   let toLowerCase = beerNameString.toLowerCase();
+//   let strConcat = toLowerCase.replace(/\s+/g, "");
+//   let strIndex = strConcat.indexOf(",");
+//   let imgName = strConcat.substring(0, strIndex);
+//   return imgName;
+// };
+// console.log(imgName(names));
+// imgName(names);
+
+let formattedTime = function currentTime(timestamp) {
+  const date = new Date(timestamp);
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+  const formattedTime = ` ${hours}:${minutes}:${seconds}`;
+  return formattedTime;
+};
+
 //SHORT POLLING- fetch updates every 2 sec KRISTA
 function startLiveUpdate() {
   setInterval(async () => {
@@ -15,6 +37,7 @@ function startLiveUpdate() {
 function prepareData(dashboardData) {
   //clear DOM
   document.querySelector("main").innerHTML = "";
+
   dashboardData.serving.forEach((serving) => {
     displayUpcomingServings(serving);
   });
@@ -64,15 +87,9 @@ function displayUpcomingServings(serving) {
   servingsId.innerHTML = `Order Nr: ${servingId}`;
 
   //create p time-id
-  //transform time to human readable time
-  const date = new Date(servingTime);
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const seconds = date.getSeconds();
-  const formattedTime = ` ${hours}:${minutes}:${seconds}`;
   const servingTimeId = document.createElement("p");
   servingTimeId.setAttribute("class", "time-id");
-  servingTimeId.innerHTML = `Order Time:  ${formattedTime}`;
+  servingTimeId.innerHTML = `Order Time:  ${formattedTime(servingTime)}`;
 
   //create div beer-type
   const beerType = document.createElement("div");
@@ -121,6 +138,7 @@ function displayUpcomingServings(serving) {
 }
 
 function displayUpcomingOrders(order) {
+  console.log(order);
   //this is data for upcoming orders list
   const ordersId = order.id;
   const ordersTime = order.startTime;
@@ -153,15 +171,9 @@ function displayUpcomingOrders(order) {
   orderId.innerHTML = `Order Nr: ${ordersId}`;
 
   //create p time-id
-  //transform time to human readable time
-  const date = new Date(ordersTime);
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const seconds = date.getSeconds();
-  const formattedTime = ` ${hours}:${minutes}:${seconds}`;
   const orderTimeId = document.createElement("p");
   orderTimeId.setAttribute("class", "time-id");
-  orderTimeId.innerHTML = `Order Time:  ${formattedTime}`;
+  orderTimeId.innerHTML = `Order Time:  ${formattedTime(ordersTime)}`;
 
   //create div beer-type
   const beerType = document.createElement("div");
@@ -189,7 +201,6 @@ function displayUpcomingOrders(order) {
       const beerNamesLi = document.createElement("li");
       //create span tag to fit list in
       const liSpan = document.createElement("span");
-
       //fix beernames from array to be used for img
       let beerNameString = beerNameValue.toString();
       let toLowerCase = beerNameString.toLowerCase();
