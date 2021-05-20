@@ -1,0 +1,17 @@
+@use "../abstracts/variables" as a;
+
+.search-bar {
+    grid-row: 1/1;
+    grid-column: 10/12;
+    input {
+      height: 5px;
+      width: 80%;
+      border: 1px solid a.$grey-light;
+      border-radius: 15px;
+      padding: 12px;
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      -ms-border-radius: 15px;
+      -o-border-radius: 15px;
+    }
+  }

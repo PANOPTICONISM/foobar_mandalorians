@@ -1,42 +1,9 @@
 @use "../abstracts/variables" as a;
-@use '../abstracts/mixins' as mx;
-
-body {
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-}
-
-header {
-  grid-column: 1/-1;
-  grid-row: 1;
-}
-
-main {
-  display: grid;
-  grid-column: 1/-1;
-  grid-row: 2/2;
-  padding: 10px 30px;
-}
-
-.order-img {
-  max-width: 20%;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-}
 
 #serving {
-  // display: grid;
-  // grid-template-rows: 2/2;
   max-width: 70%;
 }
 #order {
-  // display: grid;
-  // grid-template-columns: 1/-1;
-  // grid-template-rows: 2/2;
   max-width: 90%;
 }
 .serving-box,
@@ -45,8 +12,6 @@ main {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-template-rows: 1fr;
   grid-gap: 2rem;
-  // display: flex;
-  // gap: 2rem;
 }
 
 .servings {
@@ -59,6 +24,7 @@ main {
   font-weight: a.$font-weight-bold;
   box-shadow: 5px 5px 15px 5px a.$grey-light;
 }
+
 .orders {
   background-color: a.$yellow;
   color: a.$black;
@@ -69,18 +35,6 @@ main {
   font-weight: a.$font-weight-bold;
   box-shadow: 5px 5px 15px 5px a.$grey-light;
 }
-
-h2 {
-  margin-top: 0;
-  text-transform: uppercase;
-  font-weight: a.$font-weight-bold;
-}
-
-// .chart-container {
-//   position: relative;
-//   height: 30vh;
-//   width: 50vw;
-// }
 
 .beer-type {
   background-color: a.$white;
@@ -105,43 +59,3 @@ span {
   margin-left: 15px;
 }
 
-.time {
-  grid-row: 1/1;
-  grid-column: 6/6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 7.5vw;
-  height: 2vw;
-  background-color: a.$green-dark;
-  color: a.$white;
-  font-weight: a.$font-weight-bold;
-}
-
-.search-bar {
-  grid-row: 1/1;
-  grid-column: 10/12;
-  input {
-    height: 5px;
-    width: 80%;
-    border: 1px solid a.$grey-light;
-    border-radius: 15px;
-    padding: 12px;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    -ms-border-radius: 15px;
-    -o-border-radius: 15px;
-  }
-}
-
-@media (min-width: mx.$screen-ipad) {
-  header {
-    grid-column: 1/2;
-  }
-
-  main {
-    grid-column: 2/-1;
-    grid-row: 1;
-    padding: 40px;
-  }
-}
