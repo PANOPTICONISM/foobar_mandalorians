@@ -1,11 +1,25 @@
 @use "../abstracts/variables" as a;
 
-#serving {
-  max-width: 70%;
+// example
+.container {
+  display: grid;
+  grid-template-columns: 12fr;
+  grid-template-rows: auto;
 }
-#order {
-  max-width: 90%;
+
+.serving-box {
+  grid-column: 1/8;
+  grid-row: 1;
 }
+
+.chart {
+  background-color: black;
+  width: 100px;
+  height: 100px;
+  grid-column: 10/-1;
+  grid-row: 1;
+}
+
 .serving-box,
 .order-box {
   display: grid;
