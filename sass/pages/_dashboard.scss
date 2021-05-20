@@ -13,38 +13,54 @@ header {
 }
 
 main {
+  display: grid;
   grid-column: 1/-1;
-  grid-row: 2;
-  padding: 40px;
+  grid-row: 2/2;
+  padding: 30px;
 }
 
 .order-img {
-  max-width: 7.5%;
+  max-width: 10%;
   border-radius: 50%;
 }
 
 #serving {
-  display: grid;
-  grid-template-columns: 1/-1;
-  grid-template-rows: 1/2;
+  // display: grid;
+  // grid-template-rows: 2/2;
+  max-width: 70%;
 }
 #order {
-  display: grid;
-  grid-template-columns: 1/-1;
-  grid-template-rows: 2/3;
+  // display: grid;
+  // grid-template-columns: 1/-1;
+  // grid-template-rows: 2/2;
+  max-width: 90%;
 }
 .serving-box,
 .order-box {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-template-rows: auto;
-  grid-gap: 1rem;
+  grid-template-rows: 1fr;
+  grid-gap: 2rem;
+  // display: flex;
+  // gap: 2rem;
+}
+
+.servings {
+  background-color: a.$green-dark;
+  color: a.$black;
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  font-family: a.$primary-font;
+  font-weight: a.$font-weight-bold;
+  box-shadow: 5px 5px 15px 5px a.$grey-light;
 }
 .orders {
   background-color: a.$yellow;
   color: a.$black;
   display: flex;
   flex-direction: column;
+  max-width: 350px;
   font-family: a.$primary-font;
   font-weight: a.$font-weight-bold;
   box-shadow: 5px 5px 15px 5px a.$grey-light;
@@ -56,40 +72,21 @@ h2 {
   font-weight: a.$font-weight-bold;
 }
 
-.orders {
-  background-color: a.$yellow;
-  color: a.$black;
-  display: flex;
-  flex-direction: column;
-  font-family: a.$primary-font;
-  font-weight: a.$font-weight-bold;
-  box-shadow: 5px 5px 15px 5px a.$grey-light;
-}
-
-// .servings {
-//   background-color: a.$green-dark;
-//   color: a.$black;
-//   display: flex;
-//   flex-direction: column;
-//   font-family: a.$primary-font;
-//   font-weight: a.$font-weight-bold;
-//   box-shadow: 5px 5px 15px 5px a.$grey-light;
-// }
-
 .chart-container {
   position: relative;
   height: 30vh;
   width: 50vw;
 }
 
-.beer-type ul {
-  list-style-type: none;
+.beer-type {
   background-color: a.$white;
   color: a.$black;
   padding: 5px;
+  height: 240px;
 }
 
 .beer-type li {
+  list-style-type: none;
   border-bottom: 0.5px solid a.$grey-light;
   padding: 7.5px;
 }
@@ -103,7 +100,7 @@ span {
 }
 
 .time {
-  grid-row: 2/2;
+  grid-row: 1/1;
   grid-column: 6/6;
   display: flex;
   align-items: center;
