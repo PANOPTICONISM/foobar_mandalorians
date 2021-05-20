@@ -2,11 +2,12 @@
 
 .beers {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-template-rows: auto;
     grid-gap: 2rem;
 
     .card {
+      max-width: 300px;
       background-color: a.$white;
       padding: 25px;
       border-radius: 4px;
@@ -14,8 +15,29 @@
       -moz-box-shadow: 0px 0px 5px 0px rgba(196,196,196,1);
       box-shadow: 0px 0px 5px 0px rgba(196,196,196,1);
 
-      h3 {
-        margin-top: 0;
+      h3, h4 {
+        margin: 4px 0;
+      }
+
+      .first_layer {
+        margin-bottom: 10px;
+      }
+
+      .first_layer, .middle_layer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .second_layer {
+        width: 65%;
+      }
+
+      .bottom_layer {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
       }
     }
   }

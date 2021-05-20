@@ -16,7 +16,7 @@ main {
   display: grid;
   grid-column: 1/-1;
   grid-row: 2/2;
-  padding: 30px;
+  padding: 10px 30px;
 }
 
 .order-img {
@@ -110,26 +110,15 @@ span {
   background-color: a.$green-dark;
   color: a.$white;
 }
+
 @media (min-width: mx.$screen-ipad) {
   header {
     grid-column: 1/2;
-    height: calc(100vh - 100px);
   }
 
   main {
     grid-column: 2/-1;
     grid-row: 1;
-  }
-}
-
-@media (min-width: mx.$screen-ipad) {
-  header {
-    grid-column: 1/2;
-    height: calc(100vh - 100px);
-  }
-
-  main {
-    grid-column: 2/-1;
-    grid-row: 1;
+    padding: 40px;
   }
 }

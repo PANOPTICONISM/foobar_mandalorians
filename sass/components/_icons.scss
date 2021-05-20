@@ -1,5 +1,14 @@
-.iconify, nav img {
+// navigation icons
+.iconify {
     height: 18px;
     font-size: 18px;
     margin-right: 20px;
+}
+
+// beer images
+main img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 100%;
 }

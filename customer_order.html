@@ -10,33 +10,36 @@
 
 <body>
     <header>
-        <img src="public/foobar_logo.png" alt="logo" />
+        <div class="navigation">
+            <img src="public/foobar_logo.png" alt="logo" />
 
-        <input type="checkbox" id="toggle">
-        <label for="toggle" class="hamburger"></label>
+            <input type="checkbox" id="toggle">
+            <label for="toggle" class="hamburger"></label>
 
-        <div class="slide-in">
-            <nav>
-                <ul>
-                    <li><a href=""><span class="iconify" data-icon="fluent:home-32-regular"></span> Home</a></li>
-                    <li><a href="" class="active"><span class="iconify" data-inline="false"
-                                data-icon="dashicons:products"></span>
-                            Products</a></li>
-                    <li><a href=""><span class="iconify" data-inline="false"
-                                data-icon="fluent:history-24-regular"></span> Order history</a></li>
-                    <li><a href=""><span class="iconify" data-inline="false" data-icon="ion:beer"></span> Checkout</a>
-                    </li>
-                    <li><a href="" class="border_section"><span class="iconify" data-inline="false"
-                                data-icon="clarity:settings-outline-alerted"></span> Settings</a></li>
-                </ul>
-            </nav>
-            <div class="log_in">
-                <li><a href="">
-                        <div class="user">
-                            <img src="public/foobar_avatar.png"> Foobar
-                        </div>
-                        <span class="iconify" data-inline="false" data-icon="akar-icons:more-vertical"></span>
-                    </a></li>
+            <div class="slide-in">
+                <nav>
+                    <ul>
+                        <li><a href=""><span class="iconify" data-icon="fluent:home-32-regular"></span> Home</a></li>
+                        <li><a href="" class="active"><span class="iconify" data-inline="false"
+                                    data-icon="dashicons:products"></span>
+                                Products</a></li>
+                        <li><a href=""><span class="iconify" data-inline="false"
+                                    data-icon="fluent:history-24-regular"></span> Order history</a></li>
+                        <li><a href=""><span class="iconify" data-inline="false" data-icon="ion:beer"></span>
+                                Checkout</a>
+                        </li>
+                        <li><a href="" class="border_section"><span class="iconify" data-inline="false"
+                                    data-icon="clarity:settings-outline-alerted"></span> Settings</a></li>
+                    </ul>
+                </nav>
+                <div class="log_in">
+                    <li><a href="">
+                            <div class="user">
+                                <img src="public/foobar_avatar.png"> Foobar
+                            </div>
+                            <span class="iconify" data-inline="false" data-icon="akar-icons:more-vertical"></span>
+                        </a></li>
+                </div>
             </div>
         </div>
     </header>
@@ -54,6 +57,14 @@
             </div>
         </section>
     </main>
+
+    <template id="counter">
+        <div class="counter">
+            <input type="button" value="-" class="minus">
+            <input type="text" size="1" value="0" class="count">
+            <input type="button" value="+" class="plus">
+        </div>
+    </template>
 
     <!-- <div id="beer_modal">
         <div class="modal_inner">
