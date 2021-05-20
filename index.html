@@ -80,18 +80,27 @@
       </div>
     </header>
 
-    <div class="search_bar"></div>
+    <div class="search-bar">
+      <input class="search" type="text" placeholder="&#128269; order number" />
+    </div>
 
     <main>
       <section id="serving">
         <h2>ready for pick up</h2>
         <div class="serving-box"></div>
       </section>
+
       <section id="order">
         <h2>upcoming orders</h2>
         <div class="order-box"></div>
       </section>
     </main>
+
+    <sidebar>
+      <div class="queue-number"></div>
+    </sidebar>
+
+    <div class="time">time</div>
 
     <template id="templ-serving">
       <div class="servings">
@@ -110,11 +119,6 @@
         <div class="beer-type"></div>
       </div>
     </template>
-    <sidebar>
-      <div class="queue-number"></div>
-    </sidebar>
-
-    <div class="time">time</div>
 
     <script type="module" src="/main.js"></script>
     <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
