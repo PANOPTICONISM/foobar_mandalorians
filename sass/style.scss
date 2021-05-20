@@ -1,6 +1,9 @@
 @use 'abstracts';
 @use 'animations';
-@use 'components';
+@use 'components/icons';
+@use 'components/search_bar';
 @use 'core';
-@use 'layout';
-@use 'pages';
+@use 'layout/navigation';
+@use 'layout/grid';
+@use 'layout/time';
+@use 'pages/dashboard';

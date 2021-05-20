@@ -1,0 +1,14 @@
+@use "../abstracts/variables" as a;
+
+.time {
+    grid-row: 1/1;
+    grid-column: 6/6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 7.5vw;
+    height: 2vw;
+    background-color: a.$green-dark;
+    color: a.$white;
+    font-weight: a.$font-weight-bold;
+  }
