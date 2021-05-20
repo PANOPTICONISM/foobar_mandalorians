@@ -124,7 +124,7 @@ function eachBeerCard(beer) {
     readMore.setAttribute("class", "read_more");
     readMore.textContent = "read more";
     readMore.addEventListener("click", res => {
-        openDetailedModal
+        openDetailedModal(beer);
     });
     const clone = document.querySelector("#counter").content.cloneNode(true);
     clone.querySelector(".counter");
@@ -143,7 +143,25 @@ function eachBeerCard(beer) {
     document.querySelector(".beers").appendChild(beerCard);
 }
 
-function openDetailedModal(e) {
+// modal with details for each beer - maria
+function openDetailedModal(beer) {
+
+    const beerImage = document.querySelector(".modal_inner img");
+    beerImage.src = beer.label;
+    const beerName = document.querySelector(".modal_inner h3");
+    beerName.textContent = beer.name;
+
+
     const modal = document.querySelector("#beer_modal");
-    console.log("hey", e);
+    modal.style.display = "block";
+
+    window.onclick = function (e) {
+        if (e.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    const closeBtn = document.querySelector(".close");
+    closeBtn.addEventListener("click", () => {
+        modal.style.display = "none";
+    })
 }
