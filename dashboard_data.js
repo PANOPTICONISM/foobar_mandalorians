@@ -1,36 +1,6 @@
 "use strict";
 //when DOM loads we want to create DOM elements KRISTA
-window.addEventListener("DOMContentLoaded", createElements);
-
-function createElements() {
-  //create sections
-  const servingSection = document.createElement("section");
-  servingSection.setAttribute("id", "serving");
-  const orderSection = document.createElement("section");
-  orderSection.setAttribute("id", "order");
-
-  //create h2s
-  const servingsTitle = document.createElement("h2");
-  servingsTitle.textContent = "ready for pick up";
-  servingSection.append(servingsTitle);
-  const ordersTitle = document.createElement("h2");
-  ordersTitle.textContent = "upcoming orders";
-  orderSection.append(ordersTitle);
-
-  //create chart elements
-  const chartContainer = document.createElement("div");
-  chartContainer.setAttribute("class", "chart-container");
-  chartContainer.innerHTML = "CHART GOES HERE";
-  //create canvas element
-  const myChart = document.createElement("canvas");
-  myChart.setAttribute("id", "my-chart");
-  chartContainer.appendChild(myChart);
-  //append to main
-  document
-    .querySelector("main")
-    .append(servingSection, orderSection, chartContainer);
-  startLiveUpdate();
-}
+window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
 //fix beernames from array to be used for img on orders/servings KRISTA
 function fixImgName(arr) {
@@ -63,8 +33,8 @@ function startLiveUpdate() {
 
 //loop through upcoming orders/servings, find queue length and call updates functions KRISTA
 function prepareData(dashboardData) {
-  // //TODO:clear DOM
-  // document.querySelector(".card-box").innerHTML = "";
+  document.querySelector(".serving-box").innerHTML = "";
+  document.querySelector(".order-box").innerHTML = "";
 
   dashboardData.serving.forEach((serving) => {
     displayUpcomingServings(serving);
@@ -89,40 +59,26 @@ function showCurrentTime(time) {
   document.querySelector(".time").textContent = currentTime(time);
 }
 
-//create HTML elements and display servings KRISTA
+//populate template create missing elements and display servings KRISTA
 function displayUpcomingServings(serving) {
   //this is data for serving list
   let servingId = serving.id;
   let servingTime = serving.startTime;
   let beerServing = serving.order;
 
-  //create div card-box
-  const cardBoxDivs = document.createElement("div");
-  cardBoxDivs.setAttribute("class", "card-box");
+  //clone template
+  const template = document.querySelector("#templ-serving").content;
+  const copy = template.cloneNode(true);
+  //update elements with data
+  const orderId = copy.querySelector(".serving-id");
+  orderId.textContent = `Order Nr: ${servingId}`;
+  const time = copy.querySelector(".serving-time");
+  time.textContent = `Order Time: ${currentTime(servingTime)}`;
 
-  //create div servings
-  const infoCardDiv = document.createElement("div");
-  infoCardDiv.setAttribute("class", "info-card");
-  cardBoxDivs.append(infoCardDiv);
-
-  //create p order-id
-  const servingsId = document.createElement("p");
-  servingsId.setAttribute("class", "serving-id");
-  servingsId.innerHTML = `Order Nr: ${servingId}`;
-  //create p time-id
-  const servingTimeId = document.createElement("p");
-  servingTimeId.setAttribute("class", "time-id");
-  servingTimeId.innerHTML = `Order Time:  ${currentTime(servingTime)}`;
-  infoCardDiv.append(servingsId, servingTimeId);
-
-  //create div beer-type
-  const beerType = document.createElement("div");
-  beerType.setAttribute("class", "beer-type");
-  //append paragraphs
-  cardBoxDivs.append(servingsId, servingTimeId, beerType);
+  //create list
   const beerUl = document.createElement("ul");
   beerUl.setAttribute("class", "beer");
-  beerType.append(beerUl);
+  copy.querySelector(".beer-type").appendChild(beerUl);
   //compare if there is duplicates in beer array to display duplicate as number, then create HTML list for beers and populate it KRISTA
   for (let i = 0; i < beerServing.length; i++) {
     // Duplicate array, it will hold unique val later
@@ -144,7 +100,7 @@ function displayUpcomingServings(serving) {
       //create img element
       const img = document.createElement("img");
       img.setAttribute("class", "order-img");
-      //uses  fixname function to pass in specific val as param
+      //       //uses  fixname function to pass in specific val as param
       img.src = `${fixImgName(beerNameValue)}.png`;
       beerNamesLi.append(img);
       liSpan.textContent = `${beerNameValue.join("  ")}x`;
@@ -152,43 +108,25 @@ function displayUpcomingServings(serving) {
       beerUl.append(beerNamesLi);
     }
   }
-  document.querySelector("#serving").append(cardBoxDivs);
+  document.querySelector(".serving-box").appendChild(copy);
 }
-
 function displayUpcomingOrders(order) {
-  //console.log(order);
-  //this is data for upcoming orders list
-  const orderId = order.id;
-  const ordersTime = order.startTime;
-  const beerOrder = order.order;
-
-  //create div card-box
-  const cardBoxDivs = document.createElement("div");
-  cardBoxDivs.setAttribute("class", "card-box");
-
-  //create div orders
-  const infoCardDiv = document.createElement("div");
-  infoCardDiv.setAttribute("class", "info-card");
-  cardBoxDivs.append(infoCardDiv);
-
-  //create p order-id
-  const ordersId = document.createElement("p");
-  ordersId.setAttribute("class", "order-id");
-  ordersId.innerHTML = `Order Nr: ${orderId}`;
-  //create p time-id
-  const orderTimeId = document.createElement("p");
-  orderTimeId.setAttribute("class", "time-id");
-  orderTimeId.innerHTML = `Order Time:  ${currentTime(ordersTime)}`;
-  infoCardDiv.append(ordersId, orderTimeId);
-
-  //create div beer-type
-  const beerType = document.createElement("div");
-  beerType.setAttribute("class", "beer-type");
-  //append paragraphs
-  cardBoxDivs.append(orderId, orderTimeId, beerType);
+  let orderId = order.id;
+  let orderTime = order.startTime;
+  let beerOrder = order.order;
+  //clone template
+  const template = document.querySelector("#templ-orders").content;
+  console.log(template);
+  const copy = template.cloneNode(true);
+  //update elements with data
+  const orderNrId = copy.querySelector(".order-id");
+  orderNrId.textContent = `Order Nr: ${orderId}`;
+  const time = copy.querySelector(".order-time");
+  time.textContent = `Order Time: ${currentTime(orderTime)}`;
+  //create list
   const beerUl = document.createElement("ul");
   beerUl.setAttribute("class", "beer");
-  beerType.append(beerUl);
+  copy.querySelector(".beer-type").appendChild(beerUl);
   //compare if there is duplicates in beer array to display number, then create HTML list for beers and populate it KRISTA
   for (let i = 0; i < beerOrder.length; i++) {
     // Duplicate array, it will hold unique val later
@@ -218,5 +156,5 @@ function displayUpcomingOrders(order) {
       beerUl.append(beerNamesLi);
     }
   }
-  document.querySelector("#order").append(cardBoxDivs);
+  document.querySelector(".order-box").appendChild(copy);
 }

@@ -80,15 +80,45 @@
       </div>
     </header>
 
-    <div class="search_bar"></div>
+    <div class="search-bar">
+      <input class="search" type="text" placeholder="&#128269; order number" />
+    </div>
 
-    <main></main>
+    <main>
+      <section id="serving">
+        <h2>ready for pick up</h2>
+        <div class="serving-box"></div>
+      </section>
+
+      <section id="order">
+        <h2>upcoming orders</h2>
+        <div class="order-box"></div>
+      </section>
+    </main>
 
     <sidebar>
-      <div class="queue_number"></div>
+      <div class="queue-number"></div>
     </sidebar>
 
     <div class="time">time</div>
+
+    <template id="templ-serving">
+      <div class="servings">
+        <p class="serving-id"></p>
+        <p class="serving-time"></p>
+
+        <div class="beer-type"></div>
+      </div>
+    </template>
+
+    <template id="templ-orders">
+      <div class="orders">
+        <p class="order-id"></p>
+        <p class="order-time"></p>
+
+        <div class="beer-type"></div>
+      </div>
+    </template>
 
     <script type="module" src="/main.js"></script>
     <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
