@@ -9,74 +9,81 @@
 
   <body>
     <header>
-      <img src="public/foobar_logo.png" alt="logo" />
-      <input type="checkbox" id="toggle" />
-      <label for="toggle" class="hamburger"></label>
+      <div class="navigation">
+        <img src="public/foobar_logo.png" alt="logo" />
 
-      <div class="slide-in">
-        <nav>
-          <ul>
+        <input type="checkbox" id="toggle" />
+        <label for="toggle" class="hamburger"></label>
+
+        <div class="slide-in">
+          <nav>
+            <ul>
+              <li>
+                <a href=""
+                  ><span
+                    class="iconify"
+                    data-icon="fluent:home-32-regular"
+                  ></span>
+                  Home</a
+                >
+              </li>
+              <li>
+                <a href="" class="active"
+                  ><span
+                    class="iconify"
+                    data-inline="false"
+                    data-icon="dashicons:products"
+                  ></span>
+                  Products</a
+                >
+              </li>
+              <li>
+                <a href=""
+                  ><span
+                    class="iconify"
+                    data-inline="false"
+                    data-icon="fluent:history-24-regular"
+                  ></span>
+                  Order history</a
+                >
+              </li>
+              <li>
+                <a href=""
+                  ><span
+                    class="iconify"
+                    data-inline="false"
+                    data-icon="ion:beer"
+                  ></span>
+                  Checkout</a
+                >
+              </li>
+              <li>
+                <a href="" class="border_section"
+                  ><span
+                    class="iconify"
+                    data-inline="false"
+                    data-icon="clarity:settings-outline-alerted"
+                  ></span>
+                  Settings</a
+                >
+              </li>
+            </ul>
+          </nav>
+          <div class="log_in">
             <li>
-              <a href=""
-                ><span
-                  class="iconify"
-                  data-icon="fluent:home-32-regular"
-                ></span>
-                Home</a
-              >
-            </li>
-            <li>
-              <a href=""
-                ><span
+              <a href="">
+                <div class="user">
+                  <img src="public/foobar_avatar.png" /> Foobar
+                </div>
+                <span
                   class="iconify"
                   data-inline="false"
-                  data-icon="dashicons:products"
+                  data-icon="akar-icons:more-vertical"
                 ></span>
-                Products</a
-              >
+              </a>
             </li>
-            <li>
-              <a href=""
-                ><span
-                  class="iconify"
-                  data-inline="false"
-                  data-icon="fluent:people-community-20-regular"
-                ></span>
-                Customers</a
-              >
-            </li>
-            <li>
-              <a href="" class="active"
-                ><span
-                  class="iconify"
-                  data-inline="false"
-                  data-icon="fluent:history-24-regular"
-                ></span>
-                Orders</a
-              >
-            </li>
-            <li>
-              <a href="" class="border_section"
-                ><span
-                  class="iconify"
-                  data-inline="false"
-                  data-icon="ant-design:message-outlined"
-                ></span>
-                Messages</a
-              >
-            </li>
-            <li>
-              <a href=""
-                ><span
-                  class="iconify"
-                  data-inline="false"
-                  data-icon="ion:stats-chart"
-                ></span>
-                Statistics</a
-              >
-            </li>
-          </ul>
-        </nav>
+          </div>
+        </div>
       </div>
     </header>
 
