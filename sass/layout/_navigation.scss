@@ -138,8 +138,10 @@
 
 #toggle {
   position: absolute;
+  right: 35px;
+  top: 55px;
   width: 30px;
-  height: 100%;
+  height: 30px;
   z-index: 2;
   opacity: 0;
   cursor: pointer;

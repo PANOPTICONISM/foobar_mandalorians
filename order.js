@@ -123,6 +123,9 @@ function eachBeerCard(beer) {
     const readMore = document.createElement("button");
     readMore.setAttribute("class", "read_more");
     readMore.textContent = "read more";
+    readMore.addEventListener("click", res => {
+        openDetailedModal
+    });
     const clone = document.querySelector("#counter").content.cloneNode(true);
     clone.querySelector(".counter");
 
@@ -138,4 +141,9 @@ function eachBeerCard(beer) {
     beerCard.append(topLayer, bottomLayer);
 
     document.querySelector(".beers").appendChild(beerCard);
+}
+
+function openDetailedModal(e) {
+    const modal = document.querySelector("#beer_modal");
+    console.log("hey", e);
 }
