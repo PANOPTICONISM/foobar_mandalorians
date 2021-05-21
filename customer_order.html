@@ -92,47 +92,51 @@
 
     <template id="checkout">
         <div id="order_modal">
-            <div class="modal_inner">
-                <h2>Order confirmation</h2>
-                <main>
-                    <div class="payment_options">
-                        <button>Credit card</button>
-                        <button>MobilePay</button>
-                    </div>
-
-                    <form>
-                        <label for="username">Username</label>
-                        <span>Give yourself a cool name with 2 to 10 letters and then try to find your order on one of
-                            our
-                            tv screens</span>
-                        <input id="username" name="username" autocomplete="username" inputmode="text" type="text"
-                            minlength="2" maxlength="10" required>
-                        <label for="pnumber">Phone-number</label>
-                        <span>This number will only be used to send you your order number</span>
-                        <input id="pnumber" name="phonenumber" inputmode="tel" autocomplete="tel" type="tel" required>
-                        <label for="cardname">Name on the card</label>
-                        <input id="cardname" name="cardname" inputmode="text" type="number" required>
-                        <label for="creditcard">Credit card</label>
-                        <input id="creditcard" name="creditcard" inputmode="numeric" type="number" required>
-                        <label for="expirationdate">Expiration date</label>
-                        <input id="expirationdate" name="expirationdate" inputmode="numeric" type="number" required>
-                        <label for="cvv">CVV</label>
-                        <input id="cvv" name="cvv" inputmode="numeric" type="number" required>
-
-
-                        <p>By clicking “Beer me up”, I agree with FooBar’s Terms of Service and with purchasing the
-                            content
-                            in the
-                            basket summary.</p>
-                        <div class="buttons">
-                            <button type="reset"><span class="iconify" data-inline="false"
-                                    data-icon="bi:arrow-left"></span>
-                                Return</button>
-                            <button type="submit">Beer me up <span class="iconify" data-inline="false"
-                                    data-icon="bi:bag-check"></span></button>
+            <div class="modal_container">
+                <div class="modal_inner_checkout">
+                    <h2>Order confirmation</h2>
+                    <main>
+                        <div class="payment_options">
+                            <button>Credit card</button>
+                            <button>MobilePay</button>
                         </div>
-                    </form>
-                </main>
+
+                        <form>
+                            <label for="username">Username</label>
+                            <span>Give yourself a cool name with 2 to 10 letters and then try to find your order on one
+                                of
+                                our
+                                tv screens</span>
+                            <input id="username" name="username" autocomplete="username" inputmode="text" type="text"
+                                minlength="2" maxlength="10" required>
+                            <label for="pnumber">Phone-number</label>
+                            <span>This number will only be used to send you your order number</span>
+                            <input id="pnumber" name="phonenumber" inputmode="tel" autocomplete="tel" type="tel"
+                                required>
+                            <label for="cardname">Name on the card</label>
+                            <input id="cardname" name="cardname" inputmode="text" type="number" required>
+                            <label for="creditcard">Credit card</label>
+                            <input id="creditcard" name="creditcard" inputmode="numeric" type="number" required>
+                            <label for="expirationdate">Expiration date</label>
+                            <input id="expirationdate" name="expirationdate" inputmode="numeric" type="number" required>
+                            <label for="cvv">CVV</label>
+                            <input id="cvv" name="cvv" inputmode="numeric" type="number" required>
+
+
+                            <p>By clicking “Beer me up”, I agree with FooBar’s Terms of Service and with purchasing the
+                                content
+                                in the
+                                basket summary.</p>
+                            <div class="buttons">
+                                <button type="reset"><span class="iconify" data-inline="false"
+                                        data-icon="bi:arrow-left"></span>
+                                    Return</button>
+                                <button type="submit">Beer me up <span class="iconify" data-inline="false"
+                                        data-icon="bi:bag-check"></span></button>
+                            </div>
+                        </form>
+                    </main>
+                </div>
             </div>
         </div>
     </template>

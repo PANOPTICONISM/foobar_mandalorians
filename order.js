@@ -166,7 +166,7 @@ function openDetailedModal(beer) {
     const modal = document.querySelector("#beer_modal");
     modal.style.display = "block";
     const body = document.querySelector("body");
-    const modalContainer = document.querySelector(".modal_container");
+    const modalContainer = document.querySelector("#beer_modal .modal_container");
     body.style.overflow = "hidden";
     window.onclick = function (e) {
         if (e.target == modalContainer) {
@@ -194,4 +194,15 @@ function displayCheckout() {
     modalCheckout.style.display = "block";
 
     document.querySelector("main section").appendChild(clone);
+
+    const modalContainer = document.querySelector("#order_modal .modal_container");
+    const body = document.querySelector("body");
+    body.style.overflow = "hidden";
+    window.onclick = function (e) {
+        if (e.target == modalContainer) {
+            body.style.overflow = "auto";
+            modalCheckout.remove();
+            console.log(modalCheckout)
+        }
+    }
 }

@@ -1,0 +1,13 @@
+@use "../abstracts/variables" as a;
+@use "../abstracts/mixins" as mix;
+
+.modal_inner_checkout {
+    background-color: a.$green-dark;
+    padding: 20px;
+}
+
+@media (min-width: mix.$screen-phone) {
+    .modal_inner_checkout {
+        width: 70%;
+    }
+}
