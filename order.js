@@ -145,23 +145,28 @@ function eachBeerCard(beer) {
 
 // modal with details for each beer - maria
 function openDetailedModal(beer) {
+    console.log(beer);
 
     const beerImage = document.querySelector(".modal_inner img");
     beerImage.src = beer.label;
     const beerName = document.querySelector(".modal_inner h3");
     beerName.textContent = beer.name;
+    const beerType = document.querySelector(".modal_inner h4");
+    beerType.textContent = beer.category;
+    const beerDescription = document.querySelector(".desc p");
+    beerDescription.textContent = beer.description.flavor;
+    const beerTaste = document.querySelector(".headline p");
+    beerTaste.textContent = beer.description.appearance;
+
 
 
     const modal = document.querySelector("#beer_modal");
     modal.style.display = "block";
-
-    window.onclick = function (e) {
-        if (e.target == modal) {
-            modal.style.display = "none";
-        }
-    }
+    const body = document.querySelector("body");
+    body.style.overflow = "hidden";
     const closeBtn = document.querySelector(".close");
     closeBtn.addEventListener("click", () => {
         modal.style.display = "none";
+        body.style.overflow = "auto";
     })
 }
