@@ -1,4 +1,5 @@
 @use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as mix;
 
 #beer_modal {
     display: none;
@@ -46,12 +47,14 @@
                 height: auto;
                 margin: auto;
             }
-
-            .details {
-                max-width: 460px;
-                margin: auto;
-            }
         }
     }
 }
 
+
+@media (min-width: mix.$screen-ipad) {
+    .details {
+        max-width: 460px;
+        margin: auto;
+    }
+}
