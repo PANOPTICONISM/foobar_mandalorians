@@ -1,12 +1,18 @@
 "use strict";
-//when DOM loads we want to create DOM elements KRISTA
+
+//global arr will hold data for updating chart
+let beerLabels = [];
+let beerOrderNumbers = [];
+
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
+console.log(beerOrderNumbers);
 //fix beernames from array to be used for img on orders/servings KRISTA
+
 function fixImgName(arr) {
   const beerNameString = arr.toString();
   const toLowerCase = beerNameString.toLowerCase();
-  const strConcat = toLowerCase.replace(/\s+/g, "");
+  let strConcat = toLowerCase.replace(/\s+/g, "");
   const strIndex = strConcat.indexOf(",");
   const imgName = strConcat.substring(0, strIndex);
   return imgName;
@@ -31,7 +37,7 @@ function startLiveUpdate() {
   }, 2000);
 }
 
-//loop through upcoming orders/servings, find queue length and call updates functions KRISTA
+//prepare data and call all the functions from here KRISTA
 function prepareData(dashboardData) {
   document.querySelector(".serving-box").innerHTML = "";
   document.querySelector(".order-box").innerHTML = "";
@@ -75,48 +81,52 @@ function displayUpcomingServings(serving) {
   const time = copy.querySelector(".serving-time");
   time.textContent = `Order Time: ${currentTime(servingTime)}`;
 
-  //create list
+  //create beer list
   const beerUl = document.createElement("ul");
   beerUl.setAttribute("class", "beer");
   copy.querySelector(".beer-type").appendChild(beerUl);
-  //compare if there is duplicates in beer array to display duplicate as number, then create HTML list for beers and populate it KRISTA
+
+  //MOVE TO ORDERS
+  let count = 1;
   for (let i = 0; i < beerServing.length; i++) {
-    // Duplicate array, it will hold unique val later
-    let unique = [...new Set(beerServing)];
-    // This array counts duplicates READ MORE about SET
-    let duplicates = unique.map((value) => [
-      value,
-      beerServing.filter((beerName) => beerName === value).length,
-    ]);
-    //console.log(duplicates[i]);
-    let beerNameValue = duplicates[i];
-    if (beerNameValue === undefined) {
-      console.log("beer is pouring");
+    if (beerServing[i] !== beerServing[i + 1]) {
+      let value = `${beerServing[i]} ${count}`;
+      //push this to beer labels
+      beerLabels.push(beerServing[i]);
+      //push this to beer number arr
+      beerOrderNumbers.push(count);
+      let beerNameValue = value;
+      if (beerNameValue === undefined) {
+        console.log("beer is pouring");
+      } else {
+        //create beer list
+        const beerNamesLi = document.createElement("li");
+        //create span tag to fit in list
+        const liSpan = document.createElement("span");
+        //create img element
+        const img = document.createElement("img");
+        img.setAttribute("class", "order-img");
+        //uses  fixname function to pass in specific val as param
+        img.src = `${beerServing[i].toLowerCase().replace(/\s/g, "")}.png`;
+        beerNamesLi.append(img);
+        liSpan.textContent = `${beerNameValue}x`;
+        beerNamesLi.append(liSpan);
+        beerUl.append(beerNamesLi);
+      }
     } else {
-      //create beer list
-      const beerNamesLi = document.createElement("li");
-      //create span tag to fit in list
-      const liSpan = document.createElement("span");
-      //create img element
-      const img = document.createElement("img");
-      img.setAttribute("class", "order-img");
-      //       //uses  fixname function to pass in specific val as param
-      img.src = `${fixImgName(beerNameValue)}.png`;
-      beerNamesLi.append(img);
-      liSpan.textContent = `${beerNameValue.join("  ")}x`;
-      beerNamesLi.append(liSpan);
-      beerUl.append(beerNamesLi);
+      count++;
     }
   }
+
   document.querySelector(".serving-box").appendChild(copy);
 }
+
 function displayUpcomingOrders(order) {
   let orderId = order.id;
   let orderTime = order.startTime;
   let beerOrder = order.order;
   //clone template
   const template = document.querySelector("#templ-orders").content;
-  console.log(template);
   const copy = template.cloneNode(true);
   //update elements with data
   const orderNrId = copy.querySelector(".order-id");

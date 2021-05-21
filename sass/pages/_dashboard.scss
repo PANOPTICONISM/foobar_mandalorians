@@ -1,4 +1,5 @@
 @use "../abstracts/variables" as a;
+@use '../abstracts/mixins' as mx;
 
 // example
 .container {
@@ -12,12 +13,13 @@
   grid-row: 1;
 }
 
-.chart {
-  background-color: black;
-  width: 100px;
-  height: 100px;
+.chart-container {
+  height: 22vh;
+  width: 22vw;
   grid-column: 10/-1;
   grid-row: 1;
+  display: flex;
+  align-items: flex-start;
 }
 
 .serving-box,
@@ -33,7 +35,7 @@
   color: a.$black;
   display: flex;
   flex-direction: column;
-  max-width: 370px;
+  max-width: 300px;
   font-family: a.$primary-font;
   font-weight: a.$font-weight-bold;
   box-shadow: 5px 5px 15px 5px a.$grey-light;
@@ -44,7 +46,7 @@
   color: a.$black;
   display: flex;
   flex-direction: column;
-  max-width: 370px;
+  max-width: 300px;
   font-family: a.$primary-font;
   font-weight: a.$font-weight-bold;
   box-shadow: 5px 5px 15px 5px a.$grey-light;
@@ -54,7 +56,7 @@
   background-color: a.$white;
   color: a.$black;
   padding: 5px;
-  height: 350px;
+  height: 37vh;
 }
 
 .beer-type li {
@@ -72,3 +74,19 @@ span {
   margin-left: 15px;
 }
 
+@media (min-width: mx.$screen-ipad) {
+  .serving-box,
+  .order-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-rows: 1fr;
+    grid-gap: 2rem;
+  }
+}
+
+@media (min-width: mx.$screen-phone) {
+  .orders,
+  .servings {
+    max-width: 250px;
+  }
+}
