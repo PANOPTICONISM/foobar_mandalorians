@@ -25,7 +25,6 @@ h2 {
 }
 
 // read-more modals
-
 .modal_inner_readmore {
     color: a.$white;
     font-family: a.$primary-font;
@@ -42,5 +41,27 @@ h2 {
 
     p {
         font-size: a.$p;
+    }
+}
+
+// checkout modal
+#order_modal {
+    color: a.$white;
+    font-family: a.$primary-font;
+    font-size: a.$p;
+
+    label {
+        font-size: a.$label;
+        font-weight: a.$font-weight-bolder;
+    }
+
+    p {
+        margin: 0;
+        font-size: a.$desc-label;
+    }
+
+    .buttons button {
+        font-weight: a.$font-weight-bold;
+        font-family: a.$primary-font;
     }
 }

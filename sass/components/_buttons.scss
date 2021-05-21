@@ -36,3 +36,34 @@ button.active_filter, .read_more {
         background-color: v.$green-mid;
     }
 }
+
+.buttons {
+    margin: 40px 0;
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+        border: 1px solid v.$green-mid;
+        padding: 14px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        color: v.$white;
+    }
+
+    button.reset {
+        margin-right: 10px;
+
+        &:hover {
+            background-color: v.$green-mid;
+        }
+    }
+
+    button.submit {
+        background-color: v.$green-mid;
+
+        &:hover {
+            background-color: v.$green-dark;
+        }
+    }
+}

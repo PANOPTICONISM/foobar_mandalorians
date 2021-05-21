@@ -4,7 +4,22 @@ form {
     background-color: a.$green-dark;
     padding: 60px;
     border-radius: 60px;
-    max-width: 600px;
+    max-width: 500px;
+
+    fieldset {
+        border: none;
+        padding: 0;
+        margin: 20px 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    input {
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        padding: 6px;
+    }
 
     input:valid {
         border: 1px solid green;
