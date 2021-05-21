@@ -195,7 +195,7 @@ function displayCheckout() {
 
     document.querySelector("main section").appendChild(clone);
 
-    const modalContainer = document.querySelector("#order_modal .modal_container");
+    const modalContainer = document.querySelector("#order_modal .modal_container_b");
     const body = document.querySelector("body");
     body.style.overflow = "hidden";
     window.onclick = function (e) {

@@ -1,10 +1,10 @@
 @use '../abstracts/variables' as v;
 @use '../abstracts/mixins' as mix;
 
-#beer_modal, #order_modal {
+#beer_modal {
     display: none;
     position: fixed;
-    z-index: 999;
+    z-index: 3;
     left: 0;
     top: 0;
     width: 100%;
