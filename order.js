@@ -163,7 +163,14 @@ function openDetailedModal(beer) {
     const modal = document.querySelector("#beer_modal");
     modal.style.display = "block";
     const body = document.querySelector("body");
+    const modalContainer = document.querySelector(".modal_container");
     body.style.overflow = "hidden";
+    window.onclick = function (e) {
+        if (e.target == modalContainer) {
+            modal.style.display = "none";
+            body.style.overflow = "auto";
+        }
+    }
     const closeBtn = document.querySelector(".close");
     closeBtn.addEventListener("click", () => {
         modal.style.display = "none";
