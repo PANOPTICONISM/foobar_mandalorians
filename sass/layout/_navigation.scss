@@ -18,13 +18,15 @@
     margin: 10px 0;
   }
 
-  li a {
+  li a, li button {
+    box-sizing: border-box;
     font-family: $primary-font;
     color: $white;
     font-weight: $font-weight-bold;
     text-decoration: none;
     padding: 14px;
-    display: block;
+    display: flex;
+    align-items: center;
     width: 180px;
 
     i {
@@ -55,27 +57,6 @@
         width: 100%;
         background-color: $white;
         height: 0.6px;
-    }
-
-    li a {
-        font-family: $primary-font;
-        color: $white;
-        font-weight: $font-weight-bold;
-        text-decoration: none;
-        padding: 14px;
-        display: flex;
-        align-items: center;
-        width: 180px;
-
-        i {
-            width: 30px;
-            height: auto;
-        }
-
-        &:hover {
-            background-color: $green-mid;
-            border-radius: 4px;
-        }
     }
 
     .log_in a, .user {

@@ -1,5 +1,10 @@
 @use "../abstracts/variables" as a;
 
+// navigation
+nav li button, nav li a {
+    font-size: a.$links-nav;
+}
+
 h2 {
     font-family: a.$primary-font;
     font-weight: a.$font-weight-bolder;
@@ -21,7 +26,7 @@ h2 {
 
 // read-more modals
 
-.modal_inner {
+.modal_inner_readmore{
     color: a.$white;
     font-family: a.$primary-font;
 

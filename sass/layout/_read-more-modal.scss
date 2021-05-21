@@ -1,7 +1,7 @@
 @use '../abstracts/variables' as v;
 @use '../abstracts/mixins' as mix;
 
-#beer_modal {
+#beer_modal, #order_modal {
     display: none;
     position: fixed;
     z-index: 999;
@@ -16,9 +16,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        height: 100%;
     }
 
-    .modal_inner {
+    .modal_inner_readmore {
         background-color: v.$green-dark;
         margin: 20px;
         max-width: 700px;

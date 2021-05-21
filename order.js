@@ -21,6 +21,7 @@ function filterData(beers) {
     beers.forEach(eachBeerCard);
     groupFilters();
     filterClicked();
+    checkoutButton();
 }
 
 // array of all beertypes - maria
@@ -149,11 +150,11 @@ function openDetailedModal(beer) {
 
     const clone = document.querySelector("#b_modal").content.cloneNode(true);
 
-    const beerImage = clone.querySelector(".modal_inner img");
+    const beerImage = clone.querySelector(".modal_inner_readmore img");
     beerImage.src = beer.label;
-    const beerName = clone.querySelector(".modal_inner h3");
+    const beerName = clone.querySelector(".modal_inner_readmore h3");
     beerName.textContent = beer.name;
-    const beerType = clone.querySelector(".modal_inner h4");
+    const beerType = clone.querySelector(".modal_inner_readmore h4");
     beerType.textContent = beer.category;
     const beerDescription = clone.querySelector(".desc p");
     beerDescription.textContent = beer.description.flavor;
@@ -178,4 +179,19 @@ function openDetailedModal(beer) {
         body.style.overflow = "auto";
         modal.remove();
     })
+}
+
+// checkout
+function checkoutButton() {
+    const buttonClicked = document.querySelector(".checkout");
+    buttonClicked.addEventListener("click", displayCheckout);
+}
+
+function displayCheckout() {
+    const clone = document.querySelector("#checkout").content.cloneNode(true);
+
+    const modalCheckout = clone.querySelector("#order_modal");
+    modalCheckout.style.display = "block";
+
+    document.querySelector("main section").appendChild(clone);
 }
