@@ -204,7 +204,7 @@ function displayUpcomingServings(serving) {
         const liSpan = document.createElement("span");
         //create img element
         const img = document.createElement("img");
-        img.setAttribute("class", "order-img");
+        img.setAttribute("class", "beers");
         //uses  fixname function to pass in specific val as param
         img.src = `${beerServing[i].toLowerCase().replace(/\s/g, "")}.png`;
         beerNamesLi.append(img);
@@ -256,7 +256,7 @@ function displayUpcomingOrders(order) {
       const liSpan = document.createElement("span");
       //create img element
       const img = document.createElement("img");
-      img.setAttribute("class", "order-img");
+      img.setAttribute("class", "beers");
       //uses  fixname function to pass in specific val as param
       img.src = `${fixImgName(beerNameValue)}.png`;
       beerNamesLi.append(img);
