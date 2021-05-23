@@ -1,151 +1,57 @@
 @use "../abstracts/variables" as a;
 @use '../abstracts/mixins' as mx;
 
-.search-bar {
-  z-index: 10;
-  grid-column: 1;
-  width: 200px;
-  margin: 2px 15px;
-}
-
-.time {
-  grid-column: 10/11;
-  margin: 12px;
-}
-
-.container {
-  display: grid;
-  grid-template-columns: 12fr;
-  grid-template-rows: 1;
-}
-.serving-box,
-.order-box {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-template-rows: auto;
-  grid-gap: 1rem;
-}
+// main section
 .chart-container {
-  width: 70vw;
-  grid-column: 1/-1;
-  grid-row: 2;
-  margin: 35px auto;
+  max-width: 400px;
 }
-.servings {
-  background-color: a.$green-dark;
-  color: a.$black;
-  display: flex;
-  flex-direction: column;
+
+.servings_orders {
+  padding: 20px 40px;
+}
+
+.servings, .orders {
   max-width: 300px;
-  font-family: a.$primary-font;
-  font-weight: a.$font-weight-bold;
-  box-shadow: 5px 5px 15px 5px a.$grey-light;
+  padding: 20px;
+  margin: 15px auto;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(196,196,196,1);
+      -moz-box-shadow: 0px 0px 5px 0px rgba(196,196,196,1);
+      box-shadow: 0px 0px 5px 0px rgba(196,196,196,1);
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
 }
 
-.orders {
-  background-color: a.$yellow;
-  color: a.$black;
-  display: flex;
-  flex-direction: column;
-  max-width: 300px;
-  font-family: a.$primary-font;
-  font-weight: a.$font-weight-bold;
-  box-shadow: 5px 5px 15px 5px a.$grey-light;
-}
-
-.beer-type {
-  background-color: a.$white;
-  color: a.$black;
-  margin: 15px 0;
-  padding: 0;
-  height: 25vh;
-}
-.beer-type li {
-  list-style-type: none;
-  border-bottom: 0.5px solid a.$grey-light;
-  font-size: 14px;
-  margin: 0;
-  span {
-    padding: 5px;
-  }
-  .beers {
-    width: 45px;
-    height: 45px;
-  }
-}
-
-//BREAKPOINT NOT GOOD
-@media (min-width: mx.$screen-ipad) {
-  body {
-    background-color: yelow;
-  }
-  .search-bar {
-    //cosmetic fix
-  }
-
-  .time {
-    // cosmetic fix
-  }
-}
-
-//ADDED DESKTOP VIEW
+// media queries
 @media (min-width: mx.$screen-phone) {
-  .chart-container {
-    width: 25vw;
+  .container {
     display: grid;
-    grid-column: 8/-1;
-    grid-row: 1;
-    position: relative;
-
-    #myChart {
-      margin-top: -45px;
-    }
+    grid-template-columns: 12fr;
+    grid-template-rows: auto;
   }
 
-  .serving-box,
-  .order-box {
+  .serving-box, .order-box {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    grid-template-rows: 1fr;
-    grid-gap: 1rem;
+    grid-template-rows: auto;
+    grid-gap: 15px;
   }
 
-  .servings,
-  .orders {
-    max-height: 45vh;
-  }
-
-  .beer-type {
-    margin: 15px 0;
-    padding: 0;
-    height: 45vh;
-  }
-
-  .beer-type li {
-    list-style-type: none;
-    border-bottom: 0.5px solid a.$grey-light;
-    font-size: 16px;
-    margin: 5px auto;
-
-    span {
-      padding: 7px;
-    }
-    .beers {
-      width: 65px;
-      height: 65px;
-      object-fit: cover;
-      border-radius: 100%;
-    }
-  }
-
-  .search-bar {
-    z-index: 100;
-    grid-column: 10/12;
-    width: 300px;
-  }
-
-  .time {
-    grid-column: 6;
+  .servings, .orders {
     margin: 0;
+  }
+}
+
+@media (min-width: mx.$screen-laptop) {
+  .serving-box, .order-box {
+    grid-column: 1/10;
+    grid-row: 1;
+  }
+
+  .chart-container {
+    grid-column: 10/-1;
+    grid-row: 1;
   }
 }
