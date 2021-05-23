@@ -17,7 +17,7 @@ let chart = new Chart(myChart, {
   //data on X-axis
   data: {
     labels: label,
-    //data on Y-axis and their respective labels
+    //data on Y-axis and their labels
     datasets: [
       {
         data: data,
