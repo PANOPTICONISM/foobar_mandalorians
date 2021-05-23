@@ -1,9 +1,84 @@
-"use strict";
+import Chart from "chart.js/auto";
+("use strict");
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
-//global arr will hold data for updating chart
-let beerLabel = [];
-let beerIndex = [];
+//chart data holders
+let data = [];
+let label = [];
+
+// chart object
+let chart = new Chart(myChart, {
+  //type of charts
+  type: "line",
+  //type: "radar",
+  //type: "bar",
+  // type: "polarArea",
+
+  //data on X-axis
+  data: {
+    labels: label,
+    //data on Y-axis and their respective labels
+    datasets: [
+      {
+        data: data,
+        backgroundColor: [
+          "orange",
+          " pink",
+          "bisque",
+          "teal",
+          "green",
+          "lightblue",
+          "red",
+          "lightgreen",
+          "yellow",
+          "black",
+        ],
+        borderColor: ["orange"],
+        borderWidth: 1,
+        //do you want to fill below the line
+        fill: false,
+        lineTension: 0,
+        pointRadius: 10,
+        stepped: false,
+      },
+    ],
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+        maintainAspectRatio: false,
+        gridLines: {
+          display: false,
+        },
+      },
+    },
+
+    animations: {
+      tension: {
+        duration: 1000,
+        easing: "linear",
+        from: 1,
+        to: 0,
+        loop: true,
+      },
+    },
+
+    plugins: {
+      title: {
+        display: true,
+        text: "POPULAR NOW",
+        color: "orange",
+        font: {
+          size: 18,
+        },
+      },
+      legend: {
+        display: false,
+      },
+    },
+  },
+});
 
 //fix beernames from array to be used for img on orders/servings KRISTA
 function fixImgName(arr) {
@@ -36,9 +111,22 @@ function startLiveUpdate() {
 
 //prepare data and call all the functions from here KRISTA
 function prepareData(dashboardData) {
+  //clearr cards
   document.querySelector(".serving-box").innerHTML = "";
   document.querySelector(".order-box").innerHTML = "";
-
+  //clear chart canvas
+  chart.data.labels = [];
+  //chart.data.datasets[0].data = [];
+  const beerArr = chart.data.datasets[0].data.length;
+  if (beerArr > 100) {
+    console.log("update beer data");
+    chart.data.datasets[0].data = [];
+  }
+  dashboardData.storage.forEach((beer) => {
+    label = beer.name;
+    data = beer.amount + Math.floor(Math.random() * 3);
+    addData(chart, label, data);
+  });
   dashboardData.serving.forEach((serving) => {
     displayUpcomingServings(serving);
   });
@@ -57,12 +145,21 @@ function prepareData(dashboardData) {
   showCurrentTime(time);
 }
 
+//update chart data KRISTA
+function addData(chart, label, data) {
+  chart.data.labels.push(label);
+  chart.data.datasets.forEach((dataset) => {
+    dataset.data.push(data);
+  });
+  chart.update();
+}
+
 //queue length KRISTA
 function showQueueLength(queueLength) {
   console.log(`ORDERS IN QUEUE:${queueLength}`);
 }
 
-// showint timestamp as time
+// showint timestamp as time KRISTA
 function showCurrentTime(time) {
   document.querySelector(".time").textContent = currentTime(time);
 }
