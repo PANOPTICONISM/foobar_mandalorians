@@ -21,6 +21,7 @@ let chart = new Chart(myChart, {
     datasets: [
       {
         data: data,
+        //make it dynamic??
         backgroundColor: [
           "orange",
           " pink",
