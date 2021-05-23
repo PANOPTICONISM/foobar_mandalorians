@@ -97,7 +97,7 @@
                     <h2>Order confirmation</h2>
                     <main>
                         <div class="payment_options">
-                            <button>Credit card</button>
+                            <button class="credit_card active_filter">Credit card</button>
                             <button>MobilePay</button>
                         </div>
 
@@ -120,21 +120,28 @@
                             </fieldset>
                             <fieldset>
                                 <label for="cardname">Name on the card</label>
-                                <input id="cardname" name="cardname" inputmode="text" type="number" required>
+                                <input id="cardname" name="cardname" inputmode="text" type="text" required>
                             </fieldset>
                             <fieldset>
                                 <label for="creditcard">Credit card</label>
                                 <input id="creditcard" name="creditcard" inputmode="numeric" type="number" required>
                             </fieldset>
-                            <fieldset>
-                                <label for="expirationdate">Expiration date</label>
-                                <input id="expirationdate" name="expirationdate" inputmode="numeric" type="number"
-                                    required>
-                            </fieldset>
-                            <fieldset>
-                                <label for="cvv">CVV</label>
-                                <input id="cvv" name="cvv" inputmode="numeric" type="number" required>
-                            </fieldset>
+                            <div class="credit_card_details">
+                                <fieldset>
+                                    <label for="expirationdate">Expiration date</label>
+                                    <div>
+                                        <input id="expirationdate" name="expirationmonth" inputmode="numeric"
+                                            type="number" required>
+                                        <span>/</span>
+                                        <input id="expirationdate" name="expirationyear" inputmode="numeric"
+                                            type="number" required>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <label for="cvv">CVV</label>
+                                    <input id="cvv" name="cvv" inputmode="numeric" type="number" required>
+                                </fieldset>
+                            </div>
 
 
                             <p>By clicking “Beer me up”, I agree with FooBar’s Terms of Service and with purchasing the

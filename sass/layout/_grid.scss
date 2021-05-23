@@ -1,10 +1,13 @@
 @use '../abstracts/mixins' as mx;
 
+* {
+  box-sizing: border-box;
+}
+
 body {
     margin: 0;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    box-sizing: border-box;
   }
   
   header {
@@ -16,7 +19,8 @@ body {
     display: grid;
     grid-column: 1/-1;
     grid-row: 2/2;
-    padding: 10px 30px;
+    // make this element more specific
+    // padding: 10px 30px;
   }
   
 @media (min-width: mx.$screen-ipad) {
@@ -27,6 +31,7 @@ body {
     main {
       grid-column: 2/-1;
       grid-row: 1;
-      padding: 40px;
+      // same as above
+      // padding: 40px;
     }
   }

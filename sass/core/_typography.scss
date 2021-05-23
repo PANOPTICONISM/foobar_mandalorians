@@ -1,12 +1,20 @@
 @use "../abstracts/variables" as a;
 
+* {
+    font-family: a.$primary-font;
+}
+
+button {
+    font-weight: a.$font-weight-bold;
+    font-family: a.$primary-font;
+}
+
 // navigation
 nav li button, nav li a {
     font-size: a.$links-nav;
 }
 
 h2 {
-    font-family: a.$primary-font;
     font-weight: a.$font-weight-bolder;
     text-transform: uppercase;
     color: a.$black;
@@ -46,7 +54,7 @@ h2 {
 
 // checkout modal
 #order_modal {
-    color: a.$white;
+    color: a.$black;
     font-family: a.$primary-font;
     font-size: a.$p;
 
@@ -58,10 +66,5 @@ h2 {
     p {
         margin: 0;
         font-size: a.$desc-label;
-    }
-
-    .buttons button {
-        font-weight: a.$font-weight-bold;
-        font-family: a.$primary-font;
     }
 }

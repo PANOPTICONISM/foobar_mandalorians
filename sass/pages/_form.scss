@@ -1,9 +1,6 @@
 @use "../abstracts/variables" as a;
 
 form {
-    background-color: a.$green-dark;
-    padding: 60px;
-    border-radius: 60px;
     max-width: 500px;
 
     fieldset {
@@ -14,18 +11,34 @@ form {
         flex-direction: column;
     }
 
+    .credit_card_details, div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+
+        fieldset, div > input {
+            width: 45%;
+        }
+
+        span {
+            font-size: 30px;
+        }
+    }
+
     input {
         border-radius: 20px;
-        border: none;
+        border: 1px solid a.$grey-form;
         outline: none;
         padding: 6px;
+        margin-top: 5px;
     }
 
     input:valid {
-        border: 1px solid green;
+        border: 1px solid a.$green-dark;
     }
 
     input:focus, input:focus-within {
-        background-color: yellow;
+        background-color: a.$green-light;
     }
 }

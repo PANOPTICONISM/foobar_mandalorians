@@ -8,14 +8,14 @@
     right: -100%;
     top: 146px;
     width: 100%;
-    height: 100%;
+    height: calc(100% -  146px);
     overflow: auto;
     -webkit-animation: slide 1s forwards;
     animation: slide 1s forwards;
+    background-color: a.$white;
 
     .modal_inner_checkout {
-        background-color: a.$white;
-        padding: 20px;
+        padding: 20px 40px;
     }
 }
 
@@ -30,6 +30,8 @@
 @media (min-width: mix.$screen-ipad) {
     #order_modal {
         top: 0;
-        width: calc(100% - 294px);;
+        width: calc(100% - 294px);
+        height: 100vh;
+        padding: 60px 20px;
     }
 }
