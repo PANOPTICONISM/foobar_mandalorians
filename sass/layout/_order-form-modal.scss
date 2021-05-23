@@ -1,0 +1,37 @@
+@use "../abstracts/variables" as a;
+@use "../abstracts/mixins" as mix;
+
+#order_modal {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    right: -100%;
+    top: 146px;
+    width: 100%;
+    height: calc(100% -  146px);
+    overflow: auto;
+    -webkit-animation: slide 1s forwards;
+    animation: slide 1s forwards;
+    background-color: a.$white;
+
+    .modal_inner_checkout {
+        padding: 20px 40px;
+    }
+}
+
+@-webkit-keyframes slide {
+    100% { right: 0; }
+}
+
+@keyframes slide {
+    100% { right: 0; }
+}
+
+@media (min-width: mix.$screen-ipad) {
+    #order_modal {
+        top: 0;
+        width: calc(100% - 294px);
+        height: 100vh;
+        padding: 60px 20px;
+    }
+}

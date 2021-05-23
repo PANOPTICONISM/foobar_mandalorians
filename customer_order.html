@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FooBar's dashboard</title>
+    <title>FooBar</title>
 </head>
 
 <body>
@@ -25,20 +25,23 @@
                                 Products</a></li>
                         <li><a href=""><span class="iconify" data-inline="false"
                                     data-icon="fluent:history-24-regular"></span> Order history</a></li>
-                        <li><a href=""><span class="iconify" data-inline="false" data-icon="ion:beer"></span>
-                                Checkout</a>
+                        <li><button class="checkout"><span class="iconify" data-inline="false"
+                                    data-icon="ion:beer"></span>
+                                Checkout</button>
                         </li>
                         <li><a href="" class="border_section"><span class="iconify" data-inline="false"
                                     data-icon="clarity:settings-outline-alerted"></span> Settings</a></li>
                     </ul>
                 </nav>
                 <div class="log_in">
-                    <li><a href="">
-                            <div class="user">
-                                <img src="public/foobar_avatar.png"> Foobar
-                            </div>
-                            <span class="iconify" data-inline="false" data-icon="akar-icons:more-vertical"></span>
-                        </a></li>
+                    <ul>
+                        <li><a href="">
+                                <div class="user">
+                                    <img src="public/foobar_avatar.png" alt="logo"> Foobar
+                                </div>
+                                <span class="iconify" data-inline="false" data-icon="akar-icons:more-vertical"></span>
+                            </a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -55,24 +58,6 @@
             </div>
             <div class="beers">
             </div>
-            <div id="beer_modal">
-                <div class="modal_container">
-                    <div class="modal_inner">
-                        <span class="close">&times;</span>
-                        <div class="headline">
-                            <img src="" alt="">
-                            <div class="details">
-                                <h3></h3>
-                                <h4></h4>
-                                <p></p>
-                            </div>
-                        </div>
-                        <div class="desc">
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
     </main>
 
@@ -84,24 +69,100 @@
         </div>
     </template>
 
-    <!-- <div id="order_modal">
-        <div class="modal_inner">
-            <h2>Order confirmation</h2>
-            <main>
-                <div class="payment_options">
-                    <button>Credit card</button>
-                    <button>MobilePay</button>
+    <template id="b_modal">
+        <div id="beer_modal">
+            <div class="modal_container">
+                <div class="modal_inner_readmore">
+                    <span class="close">&times;</span>
+                    <div class="headline">
+                        <img src="/" alt="">
+                        <div class="details">
+                            <h3></h3>
+                            <h4></h4>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="desc">
+                        <p></p>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </template>
 
-                <form></form>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo, asperiores.</p>
-                <div class="buttons">
-                    <button>Return</button>
-                    <button>Beer me up</button>
+    <template id="checkout">
+        <div id="order_modal">
+            <div class="modal_container_b">
+                <div class="modal_inner_checkout">
+                    <h2>Order confirmation</h2>
+                    <main>
+                        <div class="payment_options">
+                            <button class="credit_card active_filter">Credit card</button>
+                            <button>MobilePay</button>
+                        </div>
+
+                        <form>
+                            <fieldset>
+                                <label for="username">Username</label>
+                                <p>Give yourself a cool name with 2 to 10 letters and then try to find your order on
+                                    one
+                                    of
+                                    our
+                                    tv screens</p>
+                                <input id="username" name="username" autocomplete="username" inputmode="text"
+                                    type="text" minlength="2" maxlength="10" required>
+                            </fieldset>
+                            <fieldset>
+                                <label for="pnumber">Phone-number</label>
+                                <p>This number will only be used to send you your order number</p>
+                                <input id="pnumber" name="phonenumber" inputmode="tel" autocomplete="tel" type="tel"
+                                    required>
+                            </fieldset>
+                            <fieldset>
+                                <label for="cardname">Name on the card</label>
+                                <input id="cardname" name="cardname" inputmode="text" type="text" required>
+                            </fieldset>
+                            <fieldset>
+                                <label for="creditcard">Credit card</label>
+                                <input id="creditcard" name="creditcard" inputmode="numeric" type="number" required>
+                            </fieldset>
+                            <div class="credit_card_details">
+                                <fieldset>
+                                    <label for="expirationdate">Expiration date</label>
+                                    <div>
+                                        <input id="expirationdate" name="expirationmonth" inputmode="numeric"
+                                            type="number" required>
+                                        <span>/</span>
+                                        <input id="expirationdate" name="expirationyear" inputmode="numeric"
+                                            type="number" required>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <label for="cvv">CVV</label>
+                                    <input id="cvv" name="cvv" inputmode="numeric" type="number" required>
+                                </fieldset>
+                            </div>
+
+
+                            <p>By clicking “Beer me up”, I agree with FooBar’s Terms of Service and with purchasing the
+                                content
+                                in the
+                                basket summary.</p>
+                            <div class="buttons">
+                                <button type="reset" class="reset"><span class="iconify arrow" data-inline="false"
+                                        data-icon="bi:arrow-left"></span>
+                                    Return</button>
+                                <button type="submit" class="submit">Beer me up <span class="iconify purchase"
+                                        data-inline="false" data-icon="bi:bag-check"></span></button>
+                            </div>
+                        </form>
+                    </main>
                 </div>
-            </main>
+            </div>
+        </div>
+    </template>
 
-            <sidebar>
+    <!-- <sidebar>
                 <h3>Basket summary</h3>
                 <div class="summary">
                     <div class="card">
@@ -130,9 +191,7 @@
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod ut vero repudiandae, incidunt alias
                         minima itaque dignissimos enim facilis rerum.</p>
                 </div>
-            </sidebar>
-        </div>
-    </div> -->
+            </sidebar> -->
 
     <!-- <div id="confirmation_modal">
         <div class="modal_inner">

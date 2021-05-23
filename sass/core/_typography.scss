@@ -1,7 +1,20 @@
 @use "../abstracts/variables" as a;
 
-h2 {
+* {
     font-family: a.$primary-font;
+}
+
+button {
+    font-weight: a.$font-weight-bold;
+    font-family: a.$primary-font;
+}
+
+// navigation
+nav li button, nav li a {
+    font-size: a.$links-nav;
+}
+
+h2 {
     font-weight: a.$font-weight-bolder;
     text-transform: uppercase;
     color: a.$black;
@@ -20,8 +33,7 @@ h2 {
 }
 
 // read-more modals
-
-.modal_inner {
+.modal_inner_readmore {
     color: a.$white;
     font-family: a.$primary-font;
 
@@ -37,5 +49,22 @@ h2 {
 
     p {
         font-size: a.$p;
+    }
+}
+
+// checkout modal
+#order_modal {
+    color: a.$black;
+    font-family: a.$primary-font;
+    font-size: a.$p;
+
+    label {
+        font-size: a.$label;
+        font-weight: a.$font-weight-bolder;
+    }
+
+    p {
+        margin: 0;
+        font-size: a.$desc-label;
     }
 }

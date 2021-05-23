@@ -21,6 +21,7 @@ function filterData(beers) {
     beers.forEach(eachBeerCard);
     groupFilters();
     filterClicked();
+    checkoutButton();
 }
 
 // array of all beertypes - maria
@@ -147,26 +148,61 @@ function eachBeerCard(beer) {
 function openDetailedModal(beer) {
     console.log(beer);
 
-    const beerImage = document.querySelector(".modal_inner img");
+    const clone = document.querySelector("#b_modal").content.cloneNode(true);
+
+    const beerImage = clone.querySelector(".modal_inner_readmore img");
     beerImage.src = beer.label;
-    const beerName = document.querySelector(".modal_inner h3");
+    const beerName = clone.querySelector(".modal_inner_readmore h3");
     beerName.textContent = beer.name;
-    const beerType = document.querySelector(".modal_inner h4");
+    const beerType = clone.querySelector(".modal_inner_readmore h4");
     beerType.textContent = beer.category;
-    const beerDescription = document.querySelector(".desc p");
+    const beerDescription = clone.querySelector(".desc p");
     beerDescription.textContent = beer.description.flavor;
-    const beerTaste = document.querySelector(".headline p");
+    const beerTaste = clone.querySelector(".headline p");
     beerTaste.textContent = beer.description.appearance;
 
-
+    document.querySelector("main section").appendChild(clone);
 
     const modal = document.querySelector("#beer_modal");
     modal.style.display = "block";
     const body = document.querySelector("body");
+    const modalContainer = document.querySelector("#beer_modal .modal_container");
     body.style.overflow = "hidden";
+    window.onclick = function (e) {
+        if (e.target == modalContainer) {
+            body.style.overflow = "auto";
+            modal.remove();
+        }
+    }
     const closeBtn = document.querySelector(".close");
     closeBtn.addEventListener("click", () => {
-        modal.style.display = "none";
         body.style.overflow = "auto";
+        modal.remove();
     })
+}
+
+// checkout
+function checkoutButton() {
+    const buttonClicked = document.querySelector(".checkout");
+    buttonClicked.addEventListener("click", displayCheckout);
+}
+
+function displayCheckout() {
+    const clone = document.querySelector("#checkout").content.cloneNode(true);
+
+    const modalCheckout = clone.querySelector("#order_modal");
+    modalCheckout.style.display = "block";
+
+    document.querySelector("main section").appendChild(clone);
+
+    const modalContainer = document.querySelector("#order_modal .modal_container_b");
+    const body = document.querySelector("body");
+    body.style.overflow = "hidden";
+    window.onclick = function (e) {
+        if (e.target == modalContainer) {
+            body.style.overflow = "auto";
+            modalCheckout.remove();
+            console.log(modalCheckout)
+        }
+    }
 }
