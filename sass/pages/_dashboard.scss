@@ -1,13 +1,8 @@
 @use "../abstracts/variables" as a;
 @use '../abstracts/mixins' as mx;
 
-//here
-body {
-  background-color: red;
-}
-//ADDED
 .search-bar {
-  z-index: 100;
+  z-index: 10;
   grid-column: 1;
   width: 200px;
   margin: 2px 15px;
@@ -17,116 +12,130 @@ body {
   grid-column: 10/11;
   margin: 12px;
 }
-//
-.orders,
-.servings {
-  max-width: 250px;
+
+.container {
+  display: grid;
+  grid-template-columns: 12fr;
+  grid-template-rows: 1;
 }
 .serving-box,
 .order-box {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-template-rows: 1fr;
+  grid-template-rows: auto;
   grid-gap: 1rem;
 }
 .chart-container {
-  width: 55vw;
+  width: 70vw;
   grid-column: 1/-1;
   grid-row: 2;
-  margin: auto;
+  margin: 35px auto;
 }
-@media (min-width: mx.$screen-ipad) {
-  .serving-box,
-  .order-box {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-template-rows: 1fr;
-    grid-gap: 1rem;
+.servings {
+  background-color: a.$green-dark;
+  color: a.$black;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  font-family: a.$primary-font;
+  font-weight: a.$font-weight-bold;
+  box-shadow: 5px 5px 15px 5px a.$grey-light;
+}
+
+.orders {
+  background-color: a.$yellow;
+  color: a.$black;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  font-family: a.$primary-font;
+  font-weight: a.$font-weight-bold;
+  box-shadow: 5px 5px 15px 5px a.$grey-light;
+}
+
+.beer-type {
+  background-color: a.$white;
+  color: a.$black;
+  margin: 15px 0;
+  padding: 0;
+  height: 25vh;
+}
+.beer-type li {
+  list-style-type: none;
+  border-bottom: 0.5px solid a.$grey-light;
+  font-size: 14px;
+  margin: 0;
+  span {
+    padding: 5px;
+  }
+  .beers {
+    width: 45px;
+    height: 45px;
   }
 }
 
-//ADDED LAPTOP VIEW
-@media (min-width: mx.$screen-phone) {
-  //this is added
-  .search-bar {
-    z-index: 100;
-  }
+//BREAKPOINT NOT GOOD
+@media (min-width: mx.$screen-ipad) {
   body {
-    background-color: pink;
+    background-color: yelow;
   }
-  .container {
-    display: grid;
-    grid-template-columns: 12fr;
-    grid-template-rows: 1;
+  .search-bar {
+    //cosmetic fix
   }
+
+  .time {
+    // cosmetic fix
+  }
+}
+
+//ADDED DESKTOP VIEW
+@media (min-width: mx.$screen-phone) {
   .chart-container {
-    width: 28vw;
+    width: 25vw;
     display: grid;
     grid-column: 8/-1;
     grid-row: 1;
     position: relative;
-    margin-left: auto;
-  }
-  .serving-box {
-    grid-column: 1/8;
-    grid-row: 1;
+
+    #myChart {
+      margin-top: -50px;
+    }
   }
 
   .serving-box,
   .order-box {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     grid-template-rows: 1fr;
     grid-gap: 1rem;
   }
 
-  .servings {
-    background-color: a.$green-dark;
-    color: a.$black;
-    display: flex;
-    flex-direction: column;
-    max-width: 300px;
-    font-family: a.$primary-font;
-    font-weight: a.$font-weight-bold;
-    box-shadow: 5px 5px 15px 5px a.$grey-light;
-  }
-
+  .servings,
   .orders {
-    background-color: a.$yellow;
-    color: a.$black;
-    display: flex;
-    flex-direction: column;
-    max-width: 300px;
-    font-family: a.$primary-font;
-    font-weight: a.$font-weight-bold;
-    box-shadow: 5px 5px 15px 5px a.$grey-light;
+    max-height: 45vh;
   }
 
   .beer-type {
-    background-color: a.$white;
-    color: a.$black;
-    //added
-    margin: 0;
+    margin: 15px 0;
     padding: 0;
-    height: 35vh;
+    height: 40vh;
   }
 
   .beer-type li {
     list-style-type: none;
     border-bottom: 0.5px solid a.$grey-light;
-  }
-  span {
-    padding: 5px;
+    font-size: 16px;
+    margin: 5px auto;
+
+    span {
+      padding: 7px;
+    }
+    .beers {
+      width: 70px;
+      height: 70px;
+    }
   }
 
-  .serving-id,
-  .serving-time,
-  .order-time,
-  .order-id {
-    //added
-    margin: 0 15px;
-    padding: 5px;
-  }
   .search-bar {
     z-index: 100;
     grid-column: 10/12;
