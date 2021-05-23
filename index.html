@@ -1,106 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FooBar's dashboard</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FooBar's dashboard</title>
-</head>
+  <body>
+    <header>
+      <div class="navigation">
+        <img src="public/foobar_logo.png" alt="logo" />
 
-<body>
-  <header>
-    <div class="navigation">
-      <img src="public/foobar_logo.png" alt="logo" />
+        <input type="checkbox" id="toggle" />
+        <label for="toggle" class="hamburger"></label>
 
-      <input type="checkbox" id="toggle" />
-      <label for="toggle" class="hamburger"></label>
-
-      <div class="slide-in">
-        <nav>
-          <ul>
+        <div class="slide-in">
+          <nav>
+            <ul>
+              <li>
+                <a href=""
+                  ><span
+                    class="iconify"
+                    data-icon="fluent:home-32-regular"
+                  ></span>
+                  Home</a
+                >
+              </li>
+              <li>
+                <a href="" class="active"
+                  ><span
+                    class="iconify"
+                    data-inline="false"
+                    data-icon="dashicons:products"
+                  ></span>
+                  Products</a
+                >
+              </li>
+              <li>
+                <a href=""
+                  ><span
+                    class="iconify"
+                    data-inline="false"
+                    data-icon="fluent:history-24-regular"
+                  ></span>
+                  Order history</a
+                >
+              </li>
+              <li>
+                <a href=""
+                  ><span
+                    class="iconify"
+                    data-inline="false"
+                    data-icon="ion:beer"
+                  ></span>
+                  Checkout</a
+                >
+              </li>
+              <li>
+                <a href="" class="border_section"
+                  ><span
+                    class="iconify"
+                    data-inline="false"
+                    data-icon="clarity:settings-outline-alerted"
+                  ></span>
+                  Settings</a
+                >
+              </li>
+            </ul>
+          </nav>
+          <div class="log_in">
             <li>
-              <a href=""><span class="iconify" data-icon="fluent:home-32-regular"></span>
-                Home</a>
+              <a href="">
+                <div class="user">
+                  <img src="public/foobar_avatar.png" /> Foobar
+                </div>
+                <span
+                  class="iconify"
+                  data-inline="false"
+                  data-icon="akar-icons:more-vertical"
+                ></span>
+              </a>
             </li>
-            <li>
-              <a href="" class="active"><span class="iconify" data-inline="false" data-icon="dashicons:products"></span>
-                Products</a>
-            </li>
-            <li>
-              <a href=""><span class="iconify" data-inline="false" data-icon="fluent:history-24-regular"></span>
-                Order history</a>
-            </li>
-            <li>
-              <a href=""><span class="iconify" data-inline="false" data-icon="ion:beer"></span>
-                Checkout</a>
-            </li>
-            <li>
-              <a href="" class="border_section"><span class="iconify" data-inline="false"
-                  data-icon="clarity:settings-outline-alerted"></span>
-                Settings</a>
-            </li>
-          </ul>
-        </nav>
-        <div class="log_in">
-          <li>
-            <a href="">
-              <div class="user">
-                <img src="public/foobar_avatar.png" /> Foobar
-              </div>
-              <span class="iconify" data-inline="false" data-icon="akar-icons:more-vertical"></span>
-            </a>
-          </li>
+          </div>
         </div>
       </div>
+    </header>
+
+    <div class="search-bar">
+      <input class="search" type="text" placeholder="&#128269; order number" />
     </div>
-  </header>
 
-  <div class="search-bar">
-    <input class="search" type="text" placeholder="&#128269; order number" />
-  </div>
+    <main>
+      <section id="serving">
+        <h2>ready for pick up</h2>
+        <div class="container">
+          <div class="serving-box"></div>
 
-  <main>
-    <section id="serving">
-      <h2>ready for pick up</h2>
-      <div class="container">
-        <div class="serving-box"></div>
-        <div class="chart"></div>
+          <div class="chart-container">
+            <canvas id="myChart" width="400" height="420"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section id="order">
+        <h2>upcoming orders</h2>
+        <div class="order-box"></div>
+      </section>
+    </main>
+
+    <sidebar>
+      <div class="queue-number"></div>
+    </sidebar>
+
+    <div class="time">time</div>
+
+    <template id="templ-serving">
+      <div class="servings">
+        <p class="serving-id"></p>
+        <p class="serving-time"></p>
+        <div class="beer-type"></div>
       </div>
-    </section>
+    </template>
 
-    <section id="order">
-      <h2>upcoming orders</h2>
-      <div class="order-box"></div>
-    </section>
-  </main>
+    <template id="templ-orders">
+      <div class="orders">
+        <p class="order-id"></p>
+        <p class="order-time"></p>
+        <div class="beer-type"></div>
+      </div>
+    </template>
 
-  <sidebar>
-    <div class="queue-number"></div>
-  </sidebar>
-
-  <div class="time">time</div>
-
-  <template id="templ-serving">
-    <div class="servings">
-      <p class="serving-id"></p>
-      <p class="serving-time"></p>
-
-      <div class="beer-type"></div>
-    </div>
-  </template>
-
-  <template id="templ-orders">
-    <div class="orders">
-      <p class="order-id"></p>
-      <p class="order-time"></p>
-
-      <div class="beer-type"></div>
-    </div>
-  </template>
-
-  <script type="module" src="/main.js"></script>
-  <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
-</body>
-
+    <script type="module" src="/main.js"></script>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+  </body>
 </html>

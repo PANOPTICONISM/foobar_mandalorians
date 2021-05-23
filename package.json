@@ -9,5 +9,8 @@
   "devDependencies": {
     "sass": "^1.32.13",
     "vite": "^2.3.0"
+  },
+  "dependencies": {
+    "chart.js": "^3.2.1"
   }
 }

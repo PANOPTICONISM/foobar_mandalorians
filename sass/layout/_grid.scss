@@ -1,31 +1,31 @@
 @use '../abstracts/mixins' as mx;
 
 body {
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-  }
-  
-  header {
-    grid-column: 1/-1;
-    grid-row: 1;
-  }
-  
-  main {
-    display: grid;
-    grid-column: 1/-1;
-    grid-row: 2/2;
-    padding: 10px 30px;
-  }
-  
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+header {
+  grid-column: 1/-1;
+  grid-row: 1;
+}
+
+main {
+  display: grid;
+  grid-column: 1/-1;
+  grid-row: 2/2;
+  padding: 10px 30px;
+}
+
 @media (min-width: mx.$screen-ipad) {
-    header {
-      grid-column: 1/2;
-    }
-  
-    main {
-      grid-column: 2/-1;
-      grid-row: 1;
-      padding: 40px;
-    }
+  header {
+    grid-column: 1/2;
   }
+
+  main {
+    grid-column: 2/-1;
+    grid-row: 1;
+    padding: 40px;
+  }
+}

@@ -1,39 +1,42 @@
 @use "../abstracts/variables" as a;
+@use '../abstracts/mixins' as mx;
 
-// example
+.search-bar {
+  z-index: 10;
+  grid-column: 1;
+  width: 200px;
+  margin: 2px 15px;
+}
+
+.time {
+  grid-column: 10/11;
+  margin: 12px;
+}
+
 .container {
   display: grid;
   grid-template-columns: 12fr;
-  grid-template-rows: auto;
+  grid-template-rows: 1;
 }
-
-.serving-box {
-  grid-column: 1/8;
-  grid-row: 1;
-}
-
-.chart {
-  background-color: black;
-  width: 100px;
-  height: 100px;
-  grid-column: 10/-1;
-  grid-row: 1;
-}
-
 .serving-box,
 .order-box {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-template-rows: 1fr;
-  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: auto;
+  grid-gap: 1rem;
 }
-
+.chart-container {
+  width: 70vw;
+  grid-column: 1/-1;
+  grid-row: 2;
+  margin: 35px auto;
+}
 .servings {
   background-color: a.$green-dark;
   color: a.$black;
   display: flex;
   flex-direction: column;
-  max-width: 370px;
+  max-width: 300px;
   font-family: a.$primary-font;
   font-weight: a.$font-weight-bold;
   box-shadow: 5px 5px 15px 5px a.$grey-light;
@@ -44,7 +47,7 @@
   color: a.$black;
   display: flex;
   flex-direction: column;
-  max-width: 370px;
+  max-width: 300px;
   font-family: a.$primary-font;
   font-weight: a.$font-weight-bold;
   box-shadow: 5px 5px 15px 5px a.$grey-light;
@@ -53,22 +56,94 @@
 .beer-type {
   background-color: a.$white;
   color: a.$black;
-  padding: 5px;
-  height: 350px;
+  margin: 15px 0;
+  padding: 0;
+  height: 25vh;
 }
-
 .beer-type li {
   list-style-type: none;
   border-bottom: 0.5px solid a.$grey-light;
-}
-span {
-  padding: 5px;
+  font-size: 14px;
+  margin: 0;
+  span {
+    padding: 5px;
+  }
+  .beers {
+    width: 45px;
+    height: 45px;
+  }
 }
 
-.serving-id,
-.serving-time,
-.order-time,
-.order-id {
-  margin-left: 15px;
+//BREAKPOINT NOT GOOD
+@media (min-width: mx.$screen-ipad) {
+  body {
+    background-color: yelow;
+  }
+  .search-bar {
+    //cosmetic fix
+  }
+
+  .time {
+    // cosmetic fix
+  }
 }
 
+//ADDED DESKTOP VIEW
+@media (min-width: mx.$screen-phone) {
+  .chart-container {
+    width: 25vw;
+    display: grid;
+    grid-column: 8/-1;
+    grid-row: 1;
+    position: relative;
+
+    #myChart {
+      margin-top: -45px;
+    }
+  }
+
+  .serving-box,
+  .order-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-rows: 1fr;
+    grid-gap: 1rem;
+  }
+
+  .servings,
+  .orders {
+    max-height: 45vh;
+  }
+
+  .beer-type {
+    margin: 15px 0;
+    padding: 0;
+    height: 45vh;
+  }
+
+  .beer-type li {
+    list-style-type: none;
+    border-bottom: 0.5px solid a.$grey-light;
+    font-size: 16px;
+    margin: 5px auto;
+
+    span {
+      padding: 7px;
+    }
+    .beers {
+      width: 65px;
+      height: 65px;
+    }
+  }
+
+  .search-bar {
+    z-index: 100;
+    grid-column: 10/12;
+    width: 300px;
+  }
+
+  .time {
+    grid-column: 6;
+    margin: 0;
+  }
+}
