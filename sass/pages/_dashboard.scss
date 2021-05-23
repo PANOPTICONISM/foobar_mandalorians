@@ -1,92 +1,140 @@
 @use "../abstracts/variables" as a;
 @use '../abstracts/mixins' as mx;
 
-// example
-.container {
-  display: grid;
-  grid-template-columns: 12fr;
-  grid-template-rows: auto;
+//here
+body {
+  background-color: red;
+}
+//ADDED
+.search-bar {
+  z-index: 100;
+  grid-column: 1;
+  width: 200px;
+  margin: 2px 15px;
 }
 
-.serving-box {
-  grid-column: 1/8;
-  grid-row: 1;
+.time {
+  grid-column: 10/11;
+  margin: 12px;
 }
-
-.chart-container {
-  height: 22vh;
-  width: 22vw;
-  grid-column: 10/-1;
-  grid-row: 1;
-  display: flex;
-  align-items: flex-start;
+//
+.orders,
+.servings {
+  max-width: 250px;
 }
-
 .serving-box,
 .order-box {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-template-rows: 1fr;
-  grid-gap: 2rem;
+  grid-gap: 1rem;
 }
-
-.servings {
-  background-color: a.$green-dark;
-  color: a.$black;
-  display: flex;
-  flex-direction: column;
-  max-width: 300px;
-  font-family: a.$primary-font;
-  font-weight: a.$font-weight-bold;
-  box-shadow: 5px 5px 15px 5px a.$grey-light;
+.chart-container {
+  width: 55vw;
+  grid-column: 1/-1;
+  grid-row: 2;
+  margin: auto;
 }
-
-.orders {
-  background-color: a.$yellow;
-  color: a.$black;
-  display: flex;
-  flex-direction: column;
-  max-width: 300px;
-  font-family: a.$primary-font;
-  font-weight: a.$font-weight-bold;
-  box-shadow: 5px 5px 15px 5px a.$grey-light;
-}
-
-.beer-type {
-  background-color: a.$white;
-  color: a.$black;
-  padding: 5px;
-  height: 37vh;
-}
-
-.beer-type li {
-  list-style-type: none;
-  border-bottom: 0.5px solid a.$grey-light;
-}
-span {
-  padding: 5px;
-}
-
-.serving-id,
-.serving-time,
-.order-time,
-.order-id {
-  margin-left: 15px;
-}
-
 @media (min-width: mx.$screen-ipad) {
   .serving-box,
   .order-box {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-template-rows: 1fr;
-    grid-gap: 2rem;
+    grid-gap: 1rem;
   }
 }
 
+//ADDED LAPTOP VIEW
 @media (min-width: mx.$screen-phone) {
-  .orders,
+  //this is added
+  .search-bar {
+    z-index: 100;
+  }
+  body {
+    background-color: pink;
+  }
+  .container {
+    display: grid;
+    grid-template-columns: 12fr;
+    grid-template-rows: 1;
+  }
+  .chart-container {
+    width: 28vw;
+    display: grid;
+    grid-column: 8/-1;
+    grid-row: 1;
+    position: relative;
+    margin-left: auto;
+  }
+  .serving-box {
+    grid-column: 1/8;
+    grid-row: 1;
+  }
+
+  .serving-box,
+  .order-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-rows: 1fr;
+    grid-gap: 1rem;
+  }
+
   .servings {
-    max-width: 250px;
+    background-color: a.$green-dark;
+    color: a.$black;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    font-family: a.$primary-font;
+    font-weight: a.$font-weight-bold;
+    box-shadow: 5px 5px 15px 5px a.$grey-light;
+  }
+
+  .orders {
+    background-color: a.$yellow;
+    color: a.$black;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    font-family: a.$primary-font;
+    font-weight: a.$font-weight-bold;
+    box-shadow: 5px 5px 15px 5px a.$grey-light;
+  }
+
+  .beer-type {
+    background-color: a.$white;
+    color: a.$black;
+    //added
+    margin: 0;
+    padding: 0;
+    height: 35vh;
+  }
+
+  .beer-type li {
+    list-style-type: none;
+    border-bottom: 0.5px solid a.$grey-light;
+  }
+  span {
+    padding: 5px;
+  }
+
+  .serving-id,
+  .serving-time,
+  .order-time,
+  .order-id {
+    //added
+    margin: 0 15px;
+    padding: 5px;
+  }
+  .search-bar {
+    z-index: 100;
+    grid-column: 10/12;
+    width: 300px;
+  }
+
+  .time {
+    grid-column: 6;
+    margin: 0;
   }
 }

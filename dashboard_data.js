@@ -1,14 +1,11 @@
 "use strict";
-
-//global arr will hold data for updating chart
-let beerLabels = [];
-let beerOrderNumbers = [];
-
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
-console.log(beerOrderNumbers);
-//fix beernames from array to be used for img on orders/servings KRISTA
+//global arr will hold data for updating chart
+let beerLabel = [];
+let beerIndex = [];
 
+//fix beernames from array to be used for img on orders/servings KRISTA
 function fixImgName(arr) {
   const beerNameString = arr.toString();
   const toLowerCase = beerNameString.toLowerCase();
@@ -28,7 +25,7 @@ function currentTime(timestamp) {
   return formattedTime;
 }
 
-//SHORT POLLING- fetch updates every 2sec KRISTA
+//fetch data every 2sec KRISTA
 function startLiveUpdate() {
   setInterval(async () => {
     const response = await fetch("https://foobar-mandalorians.herokuapp.com/");
@@ -47,6 +44,11 @@ function prepareData(dashboardData) {
   });
   dashboardData.queue.forEach((order) => {
     displayUpcomingOrders(order);
+  });
+
+  dashboardData.storage.forEach((beer) => {
+    console.log(beer.name);
+    console.log(beer.amount);
   });
   let queue = dashboardData.queue.length;
   showQueueLength(queue);
@@ -91,10 +93,10 @@ function displayUpcomingServings(serving) {
   for (let i = 0; i < beerServing.length; i++) {
     if (beerServing[i] !== beerServing[i + 1]) {
       let value = `${beerServing[i]} ${count}`;
-      //push this to beer labels
-      beerLabels.push(beerServing[i]);
-      //push this to beer number arr
-      beerOrderNumbers.push(count);
+      // //push this to beer labels
+      // beerLabels.push(beerServing[i]);
+      // //push this to beer number arr
+      // beerOrderNumbers.push(count);
       let beerNameValue = value;
       if (beerNameValue === undefined) {
         console.log("beer is pouring");

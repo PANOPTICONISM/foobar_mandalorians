@@ -56,13 +56,14 @@ let chart = new Chart(myChart, {
       },
     },
   },
-  // options: {
-  //   scales: {
-  //     y: {
-  //       beginAtZero: true,
-  //     },
-  //   },
-  // },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+      maintainAspectRatio: false,
+    },
+  },
 });
 
 function addData(chart, label, data) {
@@ -74,12 +75,12 @@ function addData(chart, label, data) {
   chart.update();
 }
 
-function removeData(chart) {
-  chart.data.labels.pop();
-  chart.data.datasets.forEach((dataset) => {
-    dataset.data.pop();
-  });
-  chart.update();
-}
+// function removeData(chart) {
+//   chart.data.labels.pop();
+//   chart.data.datasets.forEach((dataset) => {
+//     dataset.data.pop();
+//   });
+//   chart.update();
+// }
 
 addData(chart, label, data);
