@@ -18,29 +18,31 @@ let chart = new Chart(myChart, {
   data: {
     labels: label,
     //data on Y-axis and their labels
-    datasets: [{
-      data: data,
-      //make it dynamic??
-      backgroundColor: [
-        "orange",
-        " pink",
-        "bisque",
-        "teal",
-        "green",
-        "lightblue",
-        "red",
-        "lightgreen",
-        "yellow",
-        "black",
-      ],
-      borderColor: ["orange"],
-      borderWidth: 1,
-      //do you want to fill below the line
-      fill: false,
-      lineTension: 0,
-      pointRadius: 10,
-      stepped: false,
-    }, ],
+    datasets: [
+      {
+        data: data,
+        //make it dynamic??
+        backgroundColor: [
+          "orange",
+          " pink",
+          "bisque",
+          "teal",
+          "green",
+          "lightblue",
+          "red",
+          "lightgreen",
+          "yellow",
+          "black",
+        ],
+        borderColor: ["orange"],
+        borderWidth: 1,
+        //do you want to fill below the line
+        fill: false,
+        lineTension: 0,
+        pointRadius: 10,
+        stepped: false,
+      },
+    ],
   },
   options: {
     scales: {
@@ -105,7 +107,7 @@ function startLiveUpdate() {
     const response = await fetch("https://foobar-mandalorians.herokuapp.com/");
     const jsonData = await response.json();
     prepareData(jsonData);
-  }, 12000);
+  }, 2000);
 }
 
 //prepare data and call all the functions from here KRISTA
@@ -211,7 +213,7 @@ function displayUpcomingServings(serving) {
         imageBox.append(img);
         liSpan.textContent = `${beerNameValue}x`;
         imageBox.append(liSpan);
-        console.log(`${beerNameValue}x`)
+        console.log(`${beerNameValue}x`);
         beerNamesLi.append(imageBox);
         beerUl.append(beerNamesLi);
       }
