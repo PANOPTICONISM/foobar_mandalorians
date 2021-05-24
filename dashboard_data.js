@@ -105,7 +105,7 @@ function startLiveUpdate() {
     const response = await fetch("https://foobar-mandalorians.herokuapp.com/");
     const jsonData = await response.json();
     prepareData(jsonData);
-  }, 2000);
+  }, 12000);
 }
 
 //prepare data and call all the functions from here KRISTA
@@ -134,8 +134,8 @@ function prepareData(dashboardData) {
   });
 
   dashboardData.storage.forEach((beer) => {
-    console.log(beer.name);
-    console.log(beer.amount);
+    // console.log(beer.name);
+    // console.log(beer.amount);
   });
   let queue = dashboardData.queue.length;
   showQueueLength(queue);
@@ -155,7 +155,7 @@ function addData(chart, label, data) {
 
 //queue length KRISTA
 function showQueueLength(queueLength) {
-  console.log(`ORDERS IN QUEUE:${queueLength}`);
+  // console.log(`ORDERS IN QUEUE:${queueLength}`);
 }
 
 // showint timestamp as time KRISTA
@@ -206,9 +206,12 @@ function displayUpcomingServings(serving) {
         img.setAttribute("class", "beers");
         //uses  fixname function to pass in specific val as param
         img.src = `${beerServing[i].toLowerCase().replace(/\s/g, "")}.png`;
-        beerNamesLi.append(img);
+        const imageBox = document.createElement("div");
+        imageBox.append(img);
         liSpan.textContent = `${beerNameValue}x`;
-        beerNamesLi.append(liSpan);
+        imageBox.append(liSpan);
+        console.log(`${beerNameValue}x`)
+        beerNamesLi.append(imageBox);
         beerUl.append(beerNamesLi);
       }
     } else {
