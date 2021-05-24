@@ -76,9 +76,12 @@
 // media queries
 @media (min-width: mx.$screen-phone) {
   .container {
-    display: grid;
-    grid-template-columns: 12fr;
-    grid-template-rows: auto;
+    display: flex;
+    justify-content: space-between;
+
+    .serving-box {
+      width: 60%;
+    }
   }
 
   .serving-box, .order-box {
