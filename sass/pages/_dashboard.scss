@@ -1,151 +1,113 @@
 @use "../abstracts/variables" as a;
 @use '../abstracts/mixins' as mx;
 
-.search-bar {
-  z-index: 10;
-  grid-column: 1;
-  width: 200px;
-  margin: 2px 15px;
-}
-
-.time {
-  grid-column: 10/11;
-  margin: 12px;
-}
-
-.container {
-  display: grid;
-  grid-template-columns: 12fr;
-  grid-template-rows: 1;
-}
-.serving-box,
-.order-box {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-template-rows: auto;
-  grid-gap: 1rem;
-}
+// main section
 .chart-container {
-  width: 70vw;
-  grid-column: 1/-1;
-  grid-row: 2;
-  margin: 35px auto;
+  max-width: 370px;
+  margin: auto;
 }
-.servings {
+
+.servings_orders {
+  padding: 20px 40px;
+  height: fit-content;
+  height: -webkit-fill-available;
+}
+
+.servings, .orders {
+  max-width: 300px;
+  height: fit-content;
+  height: -webkit-fill-available;
+  margin: 15px auto;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(196,196,196,1);
+      -moz-box-shadow: 0px 0px 5px 0px rgba(196,196,196,1);
+      box-shadow: 0px 0px 5px 0px rgba(196,196,196,1);
+      border-radius: 4px;
+      overflow: hidden;
+
+      .top_bar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .iconify {
+        font-size: 50px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      ul li {
+        padding: 20px 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        img {
+          margin-right: 10px;
+        }
+
+        &:not(:last-child):after {
+          content: "";
+          position: absolute;
+          bottom: 0px;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background-color: a.$grey-form;
+        }
+      }
+
+      .beer-type {
+        padding: 0 20px;
+      }
+}
+
+.servings .top_bar {
   background-color: a.$green-dark;
-  color: a.$black;
-  display: flex;
-  flex-direction: column;
-  max-width: 300px;
-  font-family: a.$primary-font;
-  font-weight: a.$font-weight-bold;
-  box-shadow: 5px 5px 15px 5px a.$grey-light;
+  padding: 20px;
 }
 
-.orders {
+.orders .top_bar {
   background-color: a.$yellow;
-  color: a.$black;
-  display: flex;
-  flex-direction: column;
-  max-width: 300px;
-  font-family: a.$primary-font;
-  font-weight: a.$font-weight-bold;
-  box-shadow: 5px 5px 15px 5px a.$grey-light;
+  padding: 20px;
 }
 
-.beer-type {
-  background-color: a.$white;
-  color: a.$black;
-  margin: 15px 0;
-  padding: 0;
-  height: 25vh;
-}
-.beer-type li {
-  list-style-type: none;
-  border-bottom: 0.5px solid a.$grey-light;
-  font-size: 14px;
-  margin: 0;
-  span {
-    padding: 5px;
-  }
-  .beers {
-    width: 45px;
-    height: 45px;
-  }
-}
-
-//BREAKPOINT NOT GOOD
-@media (min-width: mx.$screen-ipad) {
-  body {
-    background-color: yelow;
-  }
-  .search-bar {
-    //cosmetic fix
-  }
-
-  .time {
-    // cosmetic fix
-  }
-}
-
-//ADDED DESKTOP VIEW
+// media queries
 @media (min-width: mx.$screen-phone) {
-  .chart-container {
-    width: 25vw;
+  .container {
+    display: flex;
+    justify-content: space-between;
+
+    .serving-box {
+      width: 100%;
+    }
+  }
+
+  .serving-box, .order-box {
     display: grid;
-    grid-column: 8/-1;
-    grid-row: 1;
-    position: relative;
-
-    #myChart {
-      margin-top: -45px;
-    }
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-rows: auto;
+    grid-gap: 15px;
   }
 
-  .serving-box,
-  .order-box {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    grid-template-rows: 1fr;
-    grid-gap: 1rem;
-  }
-
-  .servings,
-  .orders {
-    max-height: 45vh;
-  }
-
-  .beer-type {
-    margin: 15px 0;
-    padding: 0;
-    height: 45vh;
-  }
-
-  .beer-type li {
-    list-style-type: none;
-    border-bottom: 0.5px solid a.$grey-light;
-    font-size: 16px;
-    margin: 5px auto;
-
-    span {
-      padding: 7px;
-    }
-    .beers {
-      width: 65px;
-      height: 65px;
-      object-fit: cover;
-      border-radius: 100%;
-    }
-  }
-
-  .search-bar {
-    z-index: 100;
-    grid-column: 10/12;
-    width: 300px;
-  }
-
-  .time {
-    grid-column: 6;
+  .servings, .orders {
     margin: 0;
+  }
+}
+
+@media (min-width: mx.$screen-laptop) {
+  .serving-box {
+    grid-column: 1/10;
+    grid-row: 1;
+  }
+
+  .chart-container {
+    grid-column: 10/-1;
+    grid-row: 1;
   }
 }

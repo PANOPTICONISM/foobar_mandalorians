@@ -32,6 +32,35 @@ h2 {
     }
 }
 
+// bartender dashboard
+.servings_orders {
+    font-weight: a.$font-weight-bolder;
+
+    .serving-box, .order-box {
+        p {
+            margin: 0;
+
+            &:first-child {
+                font-size: a.$order-nr;
+            }
+
+            &:last-child {
+                font-size: a.$time;
+                font-weight: a.$font-weight-bold;;
+            }
+        }
+    }
+
+    .serving-box p {
+        color: a.$white;
+    }
+}
+
+.time {
+    color: a.$white;
+    font-weight: a.$font-weight-bold;
+}
+
 // read-more modals
 .modal_inner_readmore {
     color: a.$white;
