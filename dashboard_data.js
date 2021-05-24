@@ -1,107 +1,11 @@
-import Chart from "chart.js/auto";
-("use strict");
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
-//chart data holders
-let data = [];
-let label = [];
+//time is in its own file
+import { currentTime } from "./helpers";
+//chart is in its own file
+import { chart } from "./chart";
 
-// chart object
-let chart = new Chart(myChart, {
-  //type of charts
-  type: "line",
-  //type: "radar",
-  //type: "bar",
-  // type: "polarArea",
-
-  //data on X-axis
-  data: {
-    labels: label,
-    //data on Y-axis and their labels
-    datasets: [
-      {
-        data: data,
-        //make it dynamic??
-        backgroundColor: [
-          "orange",
-          " pink",
-          "bisque",
-          "teal",
-          "green",
-          "lightblue",
-          "red",
-          "lightgreen",
-          "yellow",
-          "black",
-        ],
-        borderColor: ["orange"],
-        borderWidth: 1,
-        //do you want to fill below the line
-        fill: false,
-        lineTension: 0,
-        pointRadius: 10,
-        stepped: false,
-      },
-    ],
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
-        maintainAspectRatio: false,
-        gridLines: {
-          display: false,
-        },
-      },
-    },
-
-    animations: {
-      tension: {
-        duration: 1000,
-        easing: "linear",
-        from: 1,
-        to: 0,
-        loop: true,
-      },
-    },
-
-    plugins: {
-      title: {
-        display: true,
-        text: "POPULAR NOW",
-        color: "orange",
-        font: {
-          size: 18,
-        },
-      },
-      legend: {
-        display: false,
-      },
-    },
-  },
-});
-
-//fix beernames from array to be used for img on orders/servings KRISTA
-function fixImgName(arr) {
-  const beerNameString = arr.toString();
-  const toLowerCase = beerNameString.toLowerCase();
-  let strConcat = toLowerCase.replace(/\s+/g, "");
-  const strIndex = strConcat.indexOf(",");
-  const imgName = strConcat.substring(0, strIndex);
-  return imgName;
-}
-
-//Time function KRISTA
-function currentTime(timestamp) {
-  const date = new Date(timestamp);
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const seconds = date.getSeconds();
-  const formattedTime = ` ${hours}:${minutes}:${seconds}`;
-  return formattedTime;
-}
-
-//fetch data every 2sec KRISTA
+//fetch data every 3sec KRISTA
 function startLiveUpdate() {
   setInterval(async () => {
     const response = await fetch("https://foobar-mandalorians.herokuapp.com/");
@@ -112,7 +16,7 @@ function startLiveUpdate() {
 
 //prepare data and call all the functions from here KRISTA
 function prepareData(dashboardData) {
-  //clearr cards
+  //clear cards
   document.querySelector(".serving-box").innerHTML = "";
   document.querySelector(".order-box").innerHTML = "";
   //clear chart canvas
@@ -124,8 +28,9 @@ function prepareData(dashboardData) {
     chart.data.datasets[0].data = [];
   }
   dashboardData.storage.forEach((beer) => {
-    label = beer.name;
-    data = beer.amount + Math.floor(Math.random() * 3);
+    let label = beer.name;
+    //TODO: calculate reverse, so 1=biggestnum
+    let data = beer.amount + Math.floor(Math.random() * 3);
     addData(chart, label, data);
   });
   dashboardData.serving.forEach((serving) => {
@@ -135,10 +40,6 @@ function prepareData(dashboardData) {
     displayUpcomingOrders(order);
   });
 
-  dashboardData.storage.forEach((beer) => {
-    // console.log(beer.name);
-    // console.log(beer.amount);
-  });
   let queue = dashboardData.queue.length;
   showQueueLength(queue);
 
@@ -186,16 +87,14 @@ function displayUpcomingServings(serving) {
   beerUl.setAttribute("class", "beer");
   copy.querySelector(".beer-type").appendChild(beerUl);
 
-  //MOVE TO ORDERS
+  //count beer name and display it as a number
   let count = 1;
   for (let i = 0; i < beerServing.length; i++) {
     if (beerServing[i] !== beerServing[i + 1]) {
-      let value = `${beerServing[i]} ${count}`;
-      // //push this to beer labels
-      // beerLabels.push(beerServing[i]);
-      // //push this to beer number arr
-      // beerOrderNumbers.push(count);
-      let beerNameValue = value;
+      //console.log(beerServing[i + 1]);
+      let beerNameValue = `${beerServing[i]}`;
+      let beerCount = `${count}`;
+      //console.log(count);
       if (beerNameValue === undefined) {
         console.log("beer is pouring");
       } else {
@@ -208,12 +107,13 @@ function displayUpcomingServings(serving) {
         img.setAttribute("class", "beers");
         //uses  fixname function to pass in specific val as param
         img.src = `${beerServing[i].toLowerCase().replace(/\s/g, "")}.png`;
-        // TODO: separate beer name from amount, div under for reference as it needs to be copied to upcoming orders too
+        //this div now displays number of beers ordered
         const imageBox = document.createElement("div");
+        imageBox.innerHTML = `${beerCount}X`;
         imageBox.append(img);
-        liSpan.textContent = `${beerNameValue}x`;
+        liSpan.textContent = `${beerNameValue}`;
         imageBox.append(liSpan);
-        console.log(`${beerNameValue}x`);
+        //console.log(`${beerNameValue}x`);
         beerNamesLi.append(imageBox);
         beerUl.append(beerNamesLi);
       }
@@ -241,33 +141,38 @@ function displayUpcomingOrders(order) {
   const beerUl = document.createElement("ul");
   beerUl.setAttribute("class", "beer");
   copy.querySelector(".beer-type").appendChild(beerUl);
-  //compare if there is duplicates in beer array to display number, then create HTML list for beers and populate it KRISTA
+  //count beer name and display it as a number
+  let count = 1;
   for (let i = 0; i < beerOrder.length; i++) {
-    // Duplicate array, it will hold unique val later
-    let unique = [...new Set(beerOrder)];
-    // This array counts duplicates READ MORE about SET
-    let duplicates = unique.map((value) => [
-      value,
-      beerOrder.filter((beerName) => beerName === value).length,
-    ]);
-    //console.log(duplicates[i]);
-    let beerNameValue = duplicates[i];
-    if (beerNameValue === undefined) {
-      console.log("waiting for orders");
+    if (beerOrder[i] !== beerOrder[i + 1]) {
+      //console.log(beerServing[i + 1]);
+      let beerNameValue = `${beerOrder[i]}`;
+      let beerCount = `${count}`;
+      //console.log(count);
+      if (beerNameValue === undefined) {
+        console.log("waiting for orders");
+      } else {
+        //create beer list
+        const beerNamesLi = document.createElement("li");
+        //create span tag to fit in list
+        const liSpan = document.createElement("span");
+        //create img element
+        const img = document.createElement("img");
+        img.setAttribute("class", "beers");
+        //uses  fixname function to pass in specific val as param
+        img.src = `${beerOrder[i].toLowerCase().replace(/\s/g, "")}.png`;
+        //this div now displays number of beers ordered
+        const imageBox = document.createElement("div");
+        imageBox.innerHTML = `${beerCount}X`;
+        imageBox.append(img);
+        liSpan.textContent = `${beerNameValue}`;
+        imageBox.append(liSpan);
+        //console.log(`${beerNameValue}x`);
+        beerNamesLi.append(imageBox);
+        beerUl.append(beerNamesLi);
+      }
     } else {
-      //create beer list
-      const beerNamesLi = document.createElement("li");
-      //create span tag to fit list in
-      const liSpan = document.createElement("span");
-      //create img element
-      const img = document.createElement("img");
-      img.setAttribute("class", "beers");
-      //uses  fixname function to pass in specific val as param
-      img.src = `${fixImgName(beerNameValue)}.png`;
-      beerNamesLi.append(img);
-      liSpan.textContent = `${beerNameValue.join(" ")}x`;
-      beerNamesLi.append(liSpan);
-      beerUl.append(beerNamesLi);
+      count++;
     }
   }
   document.querySelector(".order-box").appendChild(copy);
