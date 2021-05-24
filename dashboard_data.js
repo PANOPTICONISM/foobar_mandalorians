@@ -206,6 +206,7 @@ function displayUpcomingServings(serving) {
         img.setAttribute("class", "beers");
         //uses  fixname function to pass in specific val as param
         img.src = `${beerServing[i].toLowerCase().replace(/\s/g, "")}.png`;
+        // TODO: separate beer name from amount, div under for reference as it needs to be copied to upcoming orders too
         const imageBox = document.createElement("div");
         imageBox.append(img);
         liSpan.textContent = `${beerNameValue}x`;
