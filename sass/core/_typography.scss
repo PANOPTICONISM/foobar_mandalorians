@@ -56,6 +56,13 @@ h2 {
     }
 }
 
+.amount {
+    font-size: a.$beer-amount;
+    color: a.$white;
+    font-weight: a.$font-weight-light;
+    text-transform: lowercase;
+}
+
 .time {
     color: a.$white;
     font-weight: a.$font-weight-bold;

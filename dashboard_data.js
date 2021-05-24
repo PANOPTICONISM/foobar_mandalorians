@@ -1,9 +1,13 @@
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
 //time is in its own file
-import { currentTime } from "./helpers";
+import {
+  currentTime
+} from "./helpers";
 //chart is in its own file
-import { chart } from "./chart";
+import {
+  chart
+} from "./chart";
 
 //fetch data every 3sec KRISTA
 function startLiveUpdate() {
@@ -11,7 +15,7 @@ function startLiveUpdate() {
     const response = await fetch("https://foobar-mandalorians.herokuapp.com/");
     const jsonData = await response.json();
     prepareData(jsonData);
-  }, 2000);
+  }, 12000);
 }
 
 //prepare data and call all the functions from here KRISTA
@@ -109,12 +113,14 @@ function displayUpcomingServings(serving) {
         img.src = `${beerServing[i].toLowerCase().replace(/\s/g, "")}.png`;
         //this div now displays number of beers ordered
         const imageBox = document.createElement("div");
-        imageBox.innerHTML = `${beerCount}X`;
+        const beerAmount = document.createElement("span");
+        beerAmount.setAttribute("class", "amount");
+        beerAmount.innerHTML = `${beerCount}X`;
         imageBox.append(img);
+        imageBox.append(beerAmount);
         liSpan.textContent = `${beerNameValue}`;
-        imageBox.append(liSpan);
-        //console.log(`${beerNameValue}x`);
         beerNamesLi.append(imageBox);
+        beerNamesLi.append(liSpan);
         beerUl.append(beerNamesLi);
       }
     } else {
@@ -163,12 +169,14 @@ function displayUpcomingOrders(order) {
         img.src = `${beerOrder[i].toLowerCase().replace(/\s/g, "")}.png`;
         //this div now displays number of beers ordered
         const imageBox = document.createElement("div");
-        imageBox.innerHTML = `${beerCount}X`;
+        const beerAmount = document.createElement("span");
+        beerAmount.setAttribute("class", "amount");
+        beerAmount.innerHTML = `${beerCount}X`;
         imageBox.append(img);
+        imageBox.append(beerAmount);
         liSpan.textContent = `${beerNameValue}`;
-        imageBox.append(liSpan);
-        //console.log(`${beerNameValue}x`);
         beerNamesLi.append(imageBox);
+        beerNamesLi.append(liSpan);
         beerUl.append(beerNamesLi);
       }
     } else {

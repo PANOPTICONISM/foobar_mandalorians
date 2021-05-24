@@ -35,6 +35,19 @@
         font-size: 50px;
       }
 
+      div {
+        position: relative;
+
+        .amount {
+          position: absolute;
+          left: -4px;
+          top: -4px;
+          background-color: a.$blue-dark;
+          padding: 4px;
+          border-radius: 100%;
+        }
+      }
+
       ul {
         list-style: none;
         padding: 0;
