@@ -1,14 +1,16 @@
 @use "../abstracts/variables" as a;
+@use '../abstracts/mixins' as mx;
 
-.time {
-    grid-row: 1/1;
-    grid-column: 6/6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 7.5vw;
-    height: 2vw;
-    background-color: a.$green-dark;
-    color: a.$white;
-    font-weight: a.$font-weight-bold;
-  }
+@media (min-width: mx.$screen-ipad) {
+    .time {
+      grid-row: 1/1;
+      grid-column: 6/6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 140px;
+      height: 60px;
+      border-radius: 0 0 20px 20px;
+      background-color: a.$green-dark;
+    }
+}

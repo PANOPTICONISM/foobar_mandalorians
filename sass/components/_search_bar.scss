@@ -1,11 +1,9 @@
 @use "../abstracts/variables" as a;
 
 .search-bar {
-    grid-row: 1/1;
-    grid-column: 10/12;
+  text-align: right;
+  
     input {
-      height: 5px;
-      width: 80%;
       border: 1px solid a.$grey-light;
       border-radius: 15px;
       padding: 12px;

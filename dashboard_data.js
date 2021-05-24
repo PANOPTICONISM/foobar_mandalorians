@@ -230,7 +230,7 @@ function displayUpcomingOrders(order) {
   const orderNrId = copy.querySelector(".order-id");
   orderNrId.textContent = `Order Nr: ${orderId}`;
   const time = copy.querySelector(".order-time");
-  time.textContent = `Order Time: ${currentTime(orderTime)}`;
+  time.textContent = currentTime(orderTime);
   //create list
   const beerUl = document.createElement("ul");
   beerUl.setAttribute("class", "beer");

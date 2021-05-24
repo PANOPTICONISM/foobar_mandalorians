@@ -3,16 +3,20 @@
 
 // main section
 .chart-container {
-  max-width: 400px;
+  max-width: 370px;
+  margin: auto;
 }
 
 .servings_orders {
   padding: 20px 40px;
+  height: fit-content;
+  height: -webkit-fill-available;
 }
 
 .servings, .orders {
   max-width: 300px;
   height: fit-content;
+  height: -webkit-fill-available;
   margin: 15px auto;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(196,196,196,1);
       -moz-box-shadow: 0px 0px 5px 0px rgba(196,196,196,1);
@@ -80,13 +84,13 @@
     justify-content: space-between;
 
     .serving-box {
-      width: 60%;
+      width: 100%;
     }
   }
 
   .serving-box, .order-box {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-template-rows: auto;
     grid-gap: 15px;
   }
@@ -97,7 +101,7 @@
 }
 
 @media (min-width: mx.$screen-laptop) {
-  .serving-box, .order-box {
+  .serving-box {
     grid-column: 1/10;
     grid-row: 1;
   }
