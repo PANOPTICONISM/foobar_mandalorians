@@ -15,7 +15,7 @@ function startLiveUpdate() {
     const response = await fetch("https://foobar-mandalorians.herokuapp.com/");
     const jsonData = await response.json();
     prepareData(jsonData);
-  }, 12000);
+  }, 2000);
 }
 
 //prepare data and call all the functions from here KRISTA
@@ -40,6 +40,8 @@ function prepareData(dashboardData) {
   dashboardData.serving.forEach((serving) => {
     displayUpcomingServings(serving);
   });
+
+  queueDynamic(dashboardData.queue);
   dashboardData.queue.forEach((order) => {
     displayUpcomingOrders(order);
   });
@@ -184,4 +186,13 @@ function displayUpcomingOrders(order) {
     }
   }
   document.querySelector(".order-box").appendChild(copy);
+}
+
+// queue size and bar - maria
+function queueDynamic(q) {
+  const queueNumber = document.querySelector(".queue-number span");
+  queueNumber.textContent = q.length;
+
+  const bar = document.querySelector(".inner_bar");
+  bar.style.width = q.length + "0px";
 }

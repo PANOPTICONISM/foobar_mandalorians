@@ -56,6 +56,27 @@ h2 {
     }
 }
 
+.queue-number {
+    font-family: a.$secondary-font;
+
+    span {
+        color: a.$white;
+        background-color: a.$green-dark;
+        padding: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+    }
+
+    p {
+        font-family: a.$secondary-font;
+        color: a.$green-dark;
+    }
+}
+
 .amount {
     font-size: a.$beer-amount;
     color: a.$white;
