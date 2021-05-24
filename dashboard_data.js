@@ -18,31 +18,29 @@ let chart = new Chart(myChart, {
   data: {
     labels: label,
     //data on Y-axis and their labels
-    datasets: [
-      {
-        data: data,
-        //make it dynamic??
-        backgroundColor: [
-          "orange",
-          " pink",
-          "bisque",
-          "teal",
-          "green",
-          "lightblue",
-          "red",
-          "lightgreen",
-          "yellow",
-          "black",
-        ],
-        borderColor: ["orange"],
-        borderWidth: 1,
-        //do you want to fill below the line
-        fill: false,
-        lineTension: 0,
-        pointRadius: 10,
-        stepped: false,
-      },
-    ],
+    datasets: [{
+      data: data,
+      //make it dynamic??
+      backgroundColor: [
+        "orange",
+        " pink",
+        "bisque",
+        "teal",
+        "green",
+        "lightblue",
+        "red",
+        "lightgreen",
+        "yellow",
+        "black",
+      ],
+      borderColor: ["orange"],
+      borderWidth: 1,
+      //do you want to fill below the line
+      fill: false,
+      lineTension: 0,
+      pointRadius: 10,
+      stepped: false,
+    }, ],
   },
   options: {
     scales: {
@@ -177,9 +175,9 @@ function displayUpcomingServings(serving) {
   const copy = template.cloneNode(true);
   //update elements with data
   const orderId = copy.querySelector(".serving-id");
-  orderId.textContent = `Order Nr: ${servingId}`;
+  orderId.textContent = `Order Nr - ${servingId}`;
   const time = copy.querySelector(".serving-time");
-  time.textContent = `Order Time: ${currentTime(servingTime)}`;
+  time.textContent = currentTime(servingTime);
 
   //create beer list
   const beerUl = document.createElement("ul");
