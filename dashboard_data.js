@@ -1,9 +1,13 @@
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
 //time is in its own file
-import { currentTime } from "./helpers";
+import {
+  currentTime
+} from "./helpers";
 //chart is in its own file
-import { chart } from "./chart";
+import {
+  chart
+} from "./chart";
 
 //fetch data every 3sec KRISTA
 function startLiveUpdate() {
@@ -36,6 +40,8 @@ function prepareData(dashboardData) {
   dashboardData.serving.forEach((serving) => {
     displayUpcomingServings(serving);
   });
+
+  queueDynamic(dashboardData.queue);
   dashboardData.queue.forEach((order) => {
     displayUpcomingOrders(order);
   });
@@ -81,6 +87,9 @@ function displayUpcomingServings(serving) {
   orderId.textContent = `Order Nr - ${servingId}`;
   const time = copy.querySelector(".serving-time");
   time.textContent = currentTime(servingTime);
+  const tableNr = copy.querySelector(".table .number");
+  const lastDigit = serving.id.toString().slice(-1);
+  tableNr.textContent = Number(lastDigit) + 1;
 
   //create beer list
   const beerUl = document.createElement("ul");
@@ -109,12 +118,37 @@ function displayUpcomingServings(serving) {
         img.src = `${beerServing[i].toLowerCase().replace(/\s/g, "")}.png`;
         //this div now displays number of beers ordered
         const imageBox = document.createElement("div");
-        imageBox.innerHTML = `${beerCount}X`;
+        imageBox.setAttribute("class", "image_box");
+        const beerInfo = document.createElement("div");
+        beerInfo.setAttribute("class", "beer_info");
+        const beerAmount = document.createElement("span");
+        beerAmount.setAttribute("class", "amount");
+        beerAmount.innerHTML = `${beerCount}X`;
         imageBox.append(img);
+        imageBox.append(beerAmount);
         liSpan.textContent = `${beerNameValue}`;
-        imageBox.append(liSpan);
-        //console.log(`${beerNameValue}x`);
+        const beerType = document.createElement("span");
+        if (beerNameValue === "Fairy Tale Ale" || beerNameValue === "GitHop" || beerNameValue === "Hoppile Ever After") {
+          beerType.textContent = "IPA";
+        } else if (beerNameValue === "El Hefe") {
+          beerType.textContent = "Hefewizen";
+        } else if (beerNameValue === "Hollaback Lager") {
+          beerType.textContent = "Oktoberfest";
+        } else if (beerNameValue === "Mowintime") {
+          beerType.textContent = "European Lager";
+        } else if (beerNameValue === "Row 26") {
+          beerType.textContent = "Stout";
+        } else if (beerNameValue === "Ruined Childhood" || beerNameValue === "Sleighride") {
+          beerType.textContent = "Belgian Specialty Ale";
+        } else if (beerNameValue === "Steampunk") {
+          beerType.textContent = "California Common";
+        } else {
+          console.log("not me")
+        }
+        beerInfo.append(liSpan);
+        beerInfo.append(beerType);
         beerNamesLi.append(imageBox);
+        beerNamesLi.append(beerInfo);
         beerUl.append(beerNamesLi);
       }
     } else {
@@ -137,7 +171,10 @@ function displayUpcomingOrders(order) {
   orderNrId.textContent = `Order Nr: ${orderId}`;
   const time = copy.querySelector(".order-time");
   time.textContent = currentTime(orderTime);
-  //create list
+  const tableNr = copy.querySelector(".table .number");
+  const lastDigit = order.id.toString().slice(-1);
+  tableNr.textContent = Number(lastDigit) + 1;
+  // create list
   const beerUl = document.createElement("ul");
   beerUl.setAttribute("class", "beer");
   copy.querySelector(".beer-type").appendChild(beerUl);
@@ -163,12 +200,37 @@ function displayUpcomingOrders(order) {
         img.src = `${beerOrder[i].toLowerCase().replace(/\s/g, "")}.png`;
         //this div now displays number of beers ordered
         const imageBox = document.createElement("div");
-        imageBox.innerHTML = `${beerCount}X`;
+        imageBox.setAttribute("class", "image_box");
+        const beerInfo = document.createElement("div");
+        beerInfo.setAttribute("class", "beer_info");
+        const beerAmount = document.createElement("span");
+        beerAmount.setAttribute("class", "amount");
+        beerAmount.innerHTML = `${beerCount}X`;
         imageBox.append(img);
+        imageBox.append(beerAmount);
         liSpan.textContent = `${beerNameValue}`;
-        imageBox.append(liSpan);
-        //console.log(`${beerNameValue}x`);
+        const beerType = document.createElement("span");
+        if (beerNameValue === "Fairy Tale Ale" || beerNameValue === "GitHop" || beerNameValue === "Hoppile Ever After") {
+          beerType.textContent = "IPA";
+        } else if (beerNameValue === "El Hefe") {
+          beerType.textContent = "Hefewizen";
+        } else if (beerNameValue === "Hollaback Lager") {
+          beerType.textContent = "Oktoberfest";
+        } else if (beerNameValue === "Mowintime") {
+          beerType.textContent = "European Lager";
+        } else if (beerNameValue === "Row 26") {
+          beerType.textContent = "Stout";
+        } else if (beerNameValue === "Ruined Childhood" || beerNameValue === "Sleighride") {
+          beerType.textContent = "Belgian Specialty Ale";
+        } else if (beerNameValue === "Steampunk") {
+          beerType.textContent = "California Common";
+        } else {
+          console.log("not me")
+        }
+        beerInfo.append(liSpan);
+        beerInfo.append(beerType);
         beerNamesLi.append(imageBox);
+        beerNamesLi.append(beerInfo);
         beerUl.append(beerNamesLi);
       }
     } else {
@@ -176,4 +238,13 @@ function displayUpcomingOrders(order) {
     }
   }
   document.querySelector(".order-box").appendChild(copy);
+}
+
+// queue size and bar - maria
+function queueDynamic(q) {
+  const queueNumber = document.querySelector(".queue-number span");
+  queueNumber.textContent = q.length;
+
+  const bar = document.querySelector(".inner_bar");
+  bar.style.width = q.length + "0px";
 }

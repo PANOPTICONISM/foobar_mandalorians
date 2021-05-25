@@ -54,6 +54,38 @@ h2 {
     .serving-box p {
         color: a.$white;
     }
+
+    .beer_info span:last-child {
+        color: a.$grey-dark;
+    }
+}
+
+.queue-number {
+    font-family: a.$secondary-font;
+
+    span {
+        color: a.$white;
+        background-color: a.$green-dark;
+        padding: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+    }
+
+    p {
+        font-family: a.$secondary-font;
+        color: a.$green-dark;
+    }
+}
+
+.amount {
+    font-size: a.$beer-amount;
+    color: a.$white;
+    font-weight: a.$font-weight-light;
+    text-transform: lowercase;
 }
 
 .time {

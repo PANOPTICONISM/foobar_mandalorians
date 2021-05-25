@@ -1,6 +1,7 @@
 //FONTS
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Vampiro+One&display=swap");
 $primary-font: "Raleway", sans-serif;
+$font-weight-light: 300;
 $font-weight-bold: 600;
 $font-weight-bolder: 800;
 $secondary-font: "Vampiro One", cursive;
@@ -12,11 +13,13 @@ $white: #ffffff;
 $grey-dark: #a8a8a8;
 $grey-form: #D3D3D3;
 $grey-light: #c4c4c4;
+$blue-dark: #1A5163;
 
 //greens
 $green-dark: #00704a;
 $green-mid: #1fae6c;
 $green-light: #8fd6b5;
+$green-queue: #C9E1D9;
 
 //reds
 $red: #dc4444;
@@ -31,6 +34,7 @@ $p: 15px;
 // dashboard
 $order-nr: 16px;
 $time: 14px;
+$beer-amount: 10px;
 
 // font-size for readmore-modal
 $readmore-h3: 22px;
