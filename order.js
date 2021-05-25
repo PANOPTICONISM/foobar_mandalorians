@@ -132,7 +132,6 @@ function eachBeerCard(beer) {
   //add&remove order and send to basket, Krista
   const beerPlus = document.querySelectorAll(".plus");
   beerPlus.forEach((count) => {
-    //console.log(count);
     count.addEventListener("click", addToBasket);
   });
   const beerMinus = document.querySelectorAll(".minus");
@@ -220,26 +219,56 @@ function displayCheckout() {
   };
 }
 
-//everything to do with basket starts here Krista
+//everything to do with basket starts here Krista, this function creates list and targets clicked elements to show in the list
 function addToBasket(e) {
-  console.log(e.currentTarget.parentElement.children[1]);
+  //console.log(e.currentTarget.parentElement.children[1]);
   const productCard = e.target.parentElement.parentElement;
   const beerLabel = productCard.parentNode.querySelector("h3").textContent;
   const beerType = productCard.parentNode.querySelector("h4").textContent;
   const beerPrice = productCard.parentNode.querySelector("p").textContent;
   const beerImg = productCard.parentNode.querySelector("img").src;
   const beerCount = e.currentTarget.parentElement.children[1];
-  beerCount.value++;
+  const countValue = beerCount.value++;
+  console.log(countValue);
+  const cardCopy = document.createElement("div");
+  cardCopy.setAttribute("class", "card");
+  cardCopy.innerHTML = `   <img src="${beerImg}" alt="" />
+  <div class="name_category">
+    <h3>${beerLabel}</h3>
+    <h4>${beerType}</h4>
+    </div>
+    <div class="counter">
+      <input type="button" value="-" class="minus" />
+      <input type="button" value="+" class="plus" />
+    </div>
+  
 
-  showInBasket(beerLabel, beerType, beerPrice, beerImg);
+  <div class="price">
+    <h6>${beerPrice}</h6>
+  </div>
+  `;
+  document.querySelector(".summary").appendChild(cardCopy);
+  showTotal();
 }
 
-function showInBasket(beerLabel, beerType, beerPrice, beerImg) {
-  console.log(beerLabel, beerType, beerPrice, beerImg);
-  document.querySelector(".summary img").src = beerImg;
-  document.querySelector(".name_category h3").textContent = beerLabel;
-  document.querySelector(".summary h4").textContent = beerType;
-  document.querySelector(".summary h6").textContent = beerPrice;
+function showTotal() {
+  const total = [];
+  let price = document.querySelectorAll("h6");
+  price.forEach((beerPrice) => {
+    let priceString = beerPrice.textContent;
+    //get last three characters of string
+    let price = priceString.slice(-3);
+    console.log(price);
+    //turn string into number and push to array total
+    total.push(parseFloat(price));
+  });
+  console.log(total);
+  //reduce mUST take two params- accumulator what we are returning and current what we are looping through, and also startin gpoint a number
+  const totalPrice = total.reduce((total, beerItem) => {
+    total += beerItem;
+    return total;
+  }, 0);
+  console.log(totalPrice);
 }
 
 function removeFromBasket(e) {
