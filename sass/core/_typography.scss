@@ -54,6 +54,10 @@ h2 {
     .serving-box p {
         color: a.$white;
     }
+
+    .beer_info span:last-child {
+        color: a.$grey-dark;
+    }
 }
 
 .queue-number {

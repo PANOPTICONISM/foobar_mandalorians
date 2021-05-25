@@ -115,14 +115,37 @@ function displayUpcomingServings(serving) {
         img.src = `${beerServing[i].toLowerCase().replace(/\s/g, "")}.png`;
         //this div now displays number of beers ordered
         const imageBox = document.createElement("div");
+        imageBox.setAttribute("class", "image_box");
+        const beerInfo = document.createElement("div");
+        beerInfo.setAttribute("class", "beer_info");
         const beerAmount = document.createElement("span");
         beerAmount.setAttribute("class", "amount");
         beerAmount.innerHTML = `${beerCount}X`;
         imageBox.append(img);
         imageBox.append(beerAmount);
         liSpan.textContent = `${beerNameValue}`;
+        const beerType = document.createElement("span");
+        if (beerNameValue === "Fairy Tale Ale" || beerNameValue === "GitHop" || beerNameValue === "Hoppile Ever After") {
+          beerType.textContent = "IPA";
+        } else if (beerNameValue === "El Hefe") {
+          beerType.textContent = "Hefewizen";
+        } else if (beerNameValue === "Hollaback Lager") {
+          beerType.textContent = "Oktoberfest";
+        } else if (beerNameValue === "Mowintime") {
+          beerType.textContent = "European Lager";
+        } else if (beerNameValue === "Row 26") {
+          beerType.textContent = "Stout";
+        } else if (beerNameValue === "Ruined Childhood" || beerNameValue === "Sleighride") {
+          beerType.textContent = "Belgian Specialty Ale";
+        } else if (beerNameValue === "Steampunk") {
+          beerType.textContent = "California Common";
+        } else {
+          console.log("not me")
+        }
+        beerInfo.append(liSpan);
+        beerInfo.append(beerType);
         beerNamesLi.append(imageBox);
-        beerNamesLi.append(liSpan);
+        beerNamesLi.append(beerInfo);
         beerUl.append(beerNamesLi);
       }
     } else {
@@ -145,6 +168,8 @@ function displayUpcomingOrders(order) {
   orderNrId.textContent = `Order Nr: ${orderId}`;
   const time = copy.querySelector(".order-time");
   time.textContent = currentTime(orderTime);
+  // const tableNr = copy.querySelector(".table .number");
+  // tableNr.textContent = Math.floor(Math.random() * 100);
   //create list
   const beerUl = document.createElement("ul");
   beerUl.setAttribute("class", "beer");
@@ -171,14 +196,37 @@ function displayUpcomingOrders(order) {
         img.src = `${beerOrder[i].toLowerCase().replace(/\s/g, "")}.png`;
         //this div now displays number of beers ordered
         const imageBox = document.createElement("div");
+        imageBox.setAttribute("class", "image_box");
+        const beerInfo = document.createElement("div");
+        beerInfo.setAttribute("class", "beer_info");
         const beerAmount = document.createElement("span");
         beerAmount.setAttribute("class", "amount");
         beerAmount.innerHTML = `${beerCount}X`;
         imageBox.append(img);
         imageBox.append(beerAmount);
         liSpan.textContent = `${beerNameValue}`;
+        const beerType = document.createElement("span");
+        if (beerNameValue === "Fairy Tale Ale" || beerNameValue === "GitHop" || beerNameValue === "Hoppile Ever After") {
+          beerType.textContent = "IPA";
+        } else if (beerNameValue === "El Hefe") {
+          beerType.textContent = "Hefewizen";
+        } else if (beerNameValue === "Hollaback Lager") {
+          beerType.textContent = "Oktoberfest";
+        } else if (beerNameValue === "Mowintime") {
+          beerType.textContent = "European Lager";
+        } else if (beerNameValue === "Row 26") {
+          beerType.textContent = "Stout";
+        } else if (beerNameValue === "Ruined Childhood" || beerNameValue === "Sleighride") {
+          beerType.textContent = "Belgian Specialty Ale";
+        } else if (beerNameValue === "Steampunk") {
+          beerType.textContent = "California Common";
+        } else {
+          console.log("not me")
+        }
+        beerInfo.append(liSpan);
+        beerInfo.append(beerType);
         beerNamesLi.append(imageBox);
-        beerNamesLi.append(liSpan);
+        beerNamesLi.append(beerInfo);
         beerUl.append(beerNamesLi);
       }
     } else {

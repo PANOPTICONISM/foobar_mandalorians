@@ -70,11 +70,22 @@
         align-items: center;
       }
 
-      .iconify {
-        font-size: 50px;
+      .table {
+        width: 30px;
+        height: 30px;
+        border: 2px solid a.$black;
+        transform: rotateZ(45deg);
+        position: relative;
       }
 
-      div {
+      .number {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotateZ(-45deg);
+      }
+
+      .image_box {
         position: relative;
 
         .amount {
@@ -85,6 +96,11 @@
           padding: 4px;
           border-radius: 100%;
         }
+      }
+
+      .beer_info {
+        display: flex;
+        flex-direction: column;
       }
 
       ul {
