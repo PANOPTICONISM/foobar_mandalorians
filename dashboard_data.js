@@ -87,6 +87,9 @@ function displayUpcomingServings(serving) {
   orderId.textContent = `Order Nr - ${servingId}`;
   const time = copy.querySelector(".serving-time");
   time.textContent = currentTime(servingTime);
+  const tableNr = copy.querySelector(".table .number");
+  const lastDigit = serving.id.toString().slice(-1);
+  tableNr.textContent = Number(lastDigit) + 1;
 
   //create beer list
   const beerUl = document.createElement("ul");
@@ -168,9 +171,10 @@ function displayUpcomingOrders(order) {
   orderNrId.textContent = `Order Nr: ${orderId}`;
   const time = copy.querySelector(".order-time");
   time.textContent = currentTime(orderTime);
-  // const tableNr = copy.querySelector(".table .number");
-  // tableNr.textContent = Math.floor(Math.random() * 100);
-  //create list
+  const tableNr = copy.querySelector(".table .number");
+  const lastDigit = order.id.toString().slice(-1);
+  tableNr.textContent = Number(lastDigit) + 1;
+  // create list
   const beerUl = document.createElement("ul");
   beerUl.setAttribute("class", "beer");
   copy.querySelector(".beer-type").appendChild(beerUl);
