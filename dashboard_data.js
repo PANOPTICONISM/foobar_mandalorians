@@ -31,6 +31,7 @@ function prepareData(dashboardData) {
     console.log("update beer data");
     chart.data.datasets[0].data = [];
   }
+  isLowOnStock(dashboardData.storage);
   dashboardData.storage.forEach((beer) => {
     let label = beer.name;
     //TODO: calculate reverse, so 1=biggestnum
@@ -143,7 +144,7 @@ function displayUpcomingServings(serving) {
         } else if (beerNameValue === "Steampunk") {
           beerType.textContent = "California Common";
         } else {
-          console.log("not me")
+          return false;
         }
         beerInfo.append(liSpan);
         beerInfo.append(beerType);
@@ -225,7 +226,7 @@ function displayUpcomingOrders(order) {
         } else if (beerNameValue === "Steampunk") {
           beerType.textContent = "California Common";
         } else {
-          console.log("not me")
+          return false;
         }
         beerInfo.append(liSpan);
         beerInfo.append(beerType);
@@ -247,4 +248,19 @@ function queueDynamic(q) {
 
   const bar = document.querySelector(".inner_bar");
   bar.style.width = q.length + "0px";
+}
+
+// if storage is almost empty, insert reminder - maria
+function isLowOnStock(stock) {
+  const lowOnStock = document.querySelector(".low_stock");
+  // console.log(stock)
+  lowOnStock.innerHTML = "";
+
+  stock.forEach(beer => {
+    if (beer.amount < 2) {
+      const beerElement = document.createElement("p");
+      beerElement.textContent = beer.name + " is low on stock.";
+      document.querySelector(".low_stock").appendChild(beerElement);
+    }
+  })
 }
