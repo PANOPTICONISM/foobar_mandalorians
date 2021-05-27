@@ -1,5 +1,9 @@
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
+import './dark_mode.js';
+
+// darkMode();
+
 //time is in its own file
 import {
   currentTime
@@ -70,7 +74,7 @@ function showQueueLength(queueLength) {
 
 // showint timestamp as time KRISTA
 function showCurrentTime(time) {
-  document.querySelector(".time").textContent = currentTime(time);
+  document.querySelector(".time p").textContent = currentTime(time);
 }
 
 //populate template create missing elements and display servings KRISTA

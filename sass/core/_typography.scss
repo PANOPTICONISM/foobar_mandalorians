@@ -129,3 +129,8 @@ h2 {
         font-size: a.$desc-label;
     }
 }
+
+// dark-mode styling
+.darkmode--activated h2, .darkmode--activated li {
+    color: #fff;
+}
