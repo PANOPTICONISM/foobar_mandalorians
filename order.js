@@ -225,7 +225,8 @@ let basket = {};
 function addToBasket(e) {
   const productCard = e.target.parentElement.parentElement;
   const beerLabel = productCard.parentNode.querySelector("h3").textContent;
-
+  const beerCount = e.currentTarget.parentElement.children[1];
+  const beerQuantity = beerCount.value++;
   if (beerLabel in basket) {
     basket[beerLabel].beerCount += 1;
   } else {
@@ -248,6 +249,9 @@ function showInBasket(beerLabel) {
   const cardSummary = document.querySelector(
     "#" + beerLabel.replace(/\s/g, "")
   );
+  const price = `${parseInt(item.beerPrice.slice(-3))}`;
+  const quantity = Number(`${item.beerCount}`);
+  //document.querySelector(".price h6").textContent = price * quantity;
   const cardCopy = document.createElement("div");
   cardCopy.setAttribute("class", "cardItem");
   cardCopy.setAttribute("id", beerLabel.replace(/\s/g, ""));
@@ -258,11 +262,13 @@ function showInBasket(beerLabel) {
            </div>
            <div class="counter">
              <input type="button" value="-" class="minus" />
-            <input type="text" size="1" value="${item.beerCount}" class="basketCount" />
+            <input type="text" size="1" value="${
+              item.beerCount
+            }" class="basketCount" />
              <input type="button" value="+" class="plus" />
           </div>
         <div class="price">
-          <h6>${item.beerPrice}</h6>
+          <h6>${price * quantity}</h6>
         </div>`;
   if (cardSummary != null) {
     cardSummary.remove();
