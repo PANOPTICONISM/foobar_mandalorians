@@ -245,10 +245,12 @@ function addToBasket(e) {
 function showInBasket(beerLabel) {
   console.log(basket[beerLabel]);
   const item = basket[beerLabel];
-  const cardSummary = document.querySelector("#" + beerLabel.replace(" ", ""));
+  const cardSummary = document.querySelector(
+    "#" + beerLabel.replace(/\s/g, "")
+  );
   const cardCopy = document.createElement("div");
   cardCopy.setAttribute("class", "cardItem");
-  cardCopy.setAttribute("id", beerLabel.replace(" ", ""));
+  cardCopy.setAttribute("id", beerLabel.replace(/\s/g, ""));
   cardCopy.innerHTML = `<img src="${item.beerImg}"  class= "basketImg" alt="" />
     <div class="name_category">
           <h3>${item.beerName}</h3>
@@ -266,9 +268,6 @@ function showInBasket(beerLabel) {
     cardSummary.remove();
   }
   document.querySelector(".summary").appendChild(cardCopy);
-
-  //document.querySelector("#"+beerLabel).innerHTML= cardCopy.innerHTML;
-
   showTotalPrice();
 }
 
@@ -299,6 +298,5 @@ function removeFromBasket(e) {
   if (beerCount.value <= 0) {
     beerCount.value = 0;
   }
-
   //removeFromBasket(beerLabel, beerType, beerPrice, beerImg);
 }
