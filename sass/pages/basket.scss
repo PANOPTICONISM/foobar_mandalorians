@@ -17,7 +17,7 @@ sidebar {
     color: a.$white;
   }
 
-  .card {
+  .cardItem {
     display: flex;
     background-color: a.$green-dark;
     align-items: center;
@@ -27,7 +27,7 @@ sidebar {
     margin-top: 10px;
   }
 
-  .card img {
+  .cardItem img {
     object-fit: cover;
     border-radius: 100%;
     width: 75px;

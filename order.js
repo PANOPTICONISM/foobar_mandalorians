@@ -219,60 +219,81 @@ function displayCheckout() {
   };
 }
 
-//everything to do with basket starts here Krista, this function creates list and targets clicked elements to show in the list
+//everything to do with basket starts here
+let basket = {};
+//this function targets clicked elements to show in the list
 function addToBasket(e) {
-  //console.log(e.currentTarget.parentElement.children[1]);
   const productCard = e.target.parentElement.parentElement;
   const beerLabel = productCard.parentNode.querySelector("h3").textContent;
-  const beerType = productCard.parentNode.querySelector("h4").textContent;
-  const beerPrice = productCard.parentNode.querySelector("p").textContent;
-  const beerImg = productCard.parentNode.querySelector("img").src;
-  const beerCount = e.currentTarget.parentElement.children[1];
-  const countValue = beerCount.value++;
-  console.log(countValue);
-  const cardCopy = document.createElement("div");
-  cardCopy.setAttribute("class", "card");
-  cardCopy.innerHTML = `   <img src="${beerImg}" alt="" />
-  <div class="name_category">
-    <h3>${beerLabel}</h3>
-    <h4>${beerType}</h4>
-    </div>
-    <div class="counter">
-      <input type="button" value="-" class="minus" />
-      <input type="button" value="+" class="plus" />
-    </div>
-  
 
-  <div class="price">
-    <h6>${beerPrice}</h6>
-  </div>
-  `;
-  document.querySelector(".summary").appendChild(cardCopy);
-  showTotal();
+  if (beerLabel in basket) {
+    basket[beerLabel].beerCount += 1;
+  } else {
+    let basketItem = {
+      beerName: beerLabel,
+      beerType: productCard.parentNode.querySelector("h4").textContent,
+      beerPrice: productCard.parentNode.querySelector("p").textContent,
+      beerImg: productCard.parentNode.querySelector("img").src,
+      beerCount: 1,
+    };
+    basket[beerLabel] = basketItem;
+  }
+  console.log(basket);
+  showInBasket(beerLabel);
 }
 
-function showTotal() {
+function showInBasket(beerLabel) {
+  console.log(basket[beerLabel]);
+  const item = basket[beerLabel];
+  const cardSummary = document.querySelector("#" + beerLabel.replace(" ", ""));
+  const cardCopy = document.createElement("div");
+  cardCopy.setAttribute("class", "cardItem");
+  cardCopy.setAttribute("id", beerLabel.replace(" ", ""));
+  cardCopy.innerHTML = `<img src="${item.beerImg}"  class= "basketImg" alt="" />
+    <div class="name_category">
+          <h3>${item.beerName}</h3>
+           <h4>${item.beerType}</h4>
+           </div>
+           <div class="counter">
+             <input type="button" value="-" class="minus" />
+            <input type="text" size="1" value="${item.beerCount}" class="basketCount" />
+             <input type="button" value="+" class="plus" />
+          </div>
+        <div class="price">
+          <h6>${item.beerPrice}</h6>
+        </div>`;
+  if (cardSummary != null) {
+    cardSummary.remove();
+  }
+  document.querySelector(".summary").appendChild(cardCopy);
+
+  //document.querySelector("#"+beerLabel).innerHTML= cardCopy.innerHTML;
+
+  showTotalPrice();
+}
+
+function showTotalPrice() {
   const total = [];
   let price = document.querySelectorAll("h6");
   price.forEach((beerPrice) => {
     let priceString = beerPrice.textContent;
     //get last three characters of string
     let price = priceString.slice(-3);
-    console.log(price);
     //turn string into number and push to array total
-    total.push(parseFloat(price));
+    total.push(Number(price));
   });
-  console.log(total);
-  //reduce mUST take two params- accumulator what we are returning and current what we are looping through, and also startin gpoint a number
+  //console.log(total);
+  //reduce mUST take two params- accumulator what we are returning and current what we are looping through, and also startin point a number
   const totalPrice = total.reduce((total, beerItem) => {
     total += beerItem;
     return total;
   }, 0);
-  console.log(totalPrice);
+  // console.log(totalPrice);
+  document.querySelector("#total").innerHTML = `${totalPrice}`;
 }
 
 function removeFromBasket(e) {
-  console.log(e.target);
+  //console.log(e.target);
   const beerCount = e.currentTarget.parentElement.children[1];
   beerCount.value--;
   if (beerCount.value <= 0) {
