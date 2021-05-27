@@ -219,8 +219,14 @@ function displayCheckout() {
   };
 }
 
-//everything to do with basket starts here
-let basket = {};
+//everything to do with basket starts here Krista
+let basket = {
+  beerName: "",
+  beerType: "",
+  beerPrice: "",
+  beerImg: "",
+  beerCount: "",
+};
 //this function targets clicked elements to show in the list
 function addToBasket(e) {
   const productCard = e.target.parentElement.parentElement;
