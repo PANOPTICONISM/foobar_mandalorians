@@ -239,14 +239,14 @@ function addToBasket(e) {
   showInBasket(beerLabel);
 }
 
+//create HTML elements and render correctly in basket
 function showInBasket(beerLabel) {
+  console.log(beerLabel);
+  console.log(basket[beerLabel].beerCount);
   const item = basket[beerLabel];
-  const cardSummary = document.querySelector(
-    "#" + beerLabel.replace(/\s/g, "")
-  );
   const price = `${parseInt(item.beerPrice.slice(-3))}`;
   const quantity = Number(`${item.beerCount}`);
-  //document.querySelector(".price h6").textContent = price * quantity;
+  //console.log(quantity);
   const cardCopy = document.createElement("div");
   cardCopy.setAttribute("class", "cardItem");
   cardCopy.setAttribute("id", beerLabel.replace(/\s/g, ""));
@@ -257,18 +257,26 @@ function showInBasket(beerLabel) {
            </div>
            <div class="counter">
              <input type="button" value="-" class="minus" />
-            <input type="text" size="1" value="${
-              item.beerCount
-            }" class="basketCount" />
+            <input type="text" size="1" value="${quantity}" class="basketCount" />
              <input type="button" value="+" class="plus" />
           </div>
         <div class="price">
           <h6>${price * quantity}</h6>
         </div>`;
-  if (cardSummary != null) {
-    cardSummary.remove();
+
+  //console.log(item.beerCount);
+  //select beer by its ID= beername, it is beerLabel without white space
+  const cardBeerName = document.querySelector(
+    "#" + beerLabel.replace(/\s/g, "")
+  );
+  //if same beer clicked >1 add up only price and quantyty, not whole new beer order card
+  if (cardBeerName != null) {
+    cardBeerName.remove();
   }
+  console.log(price === undefined);
+
   document.querySelector(".summary").appendChild(cardCopy);
+
   showTotalPrice();
 }
 
@@ -317,10 +325,15 @@ function removeFromBasket(e) {
 
     basket[beerLabel] = basketItem;
   }
+
+  //if beers = 0, remove that specific beer form basket and also from object
   if (beerLabel in basket && basket[beerLabel].beerCount == 0) {
+    let beerInBasket = document.querySelector(
+      "#" + beerLabel.replace(/\s/g, "")
+    );
+    beerInBasket.remove();
     delete basket[beerLabel];
-    console.log("delete me");
+    showTotalPrice();
   }
-  console.log(basket);
   showInBasket(beerLabel);
 }
