@@ -127,19 +127,6 @@ function eachBeerCard(beer) {
   });
   const clone = document.querySelector("#counter").content.cloneNode(true);
   clone.querySelector(".counter");
-  // TODO: price
-  // TODO: counter
-  //add&remove order and send to basket, Krista
-  const beerPlus = document.querySelectorAll(".plus");
-  beerPlus.forEach((count) => {
-    count.addEventListener("click", addToBasket);
-  });
-  const beerMinus = document.querySelectorAll(".minus");
-  beerMinus.forEach((count) => {
-    //console.log(count);
-    count.addEventListener("click", removeFromBasket);
-  });
-
   const alcoholPercentage = document.createElement("h5");
   alcoholPercentage.textContent = beer.alc + " %";
 
@@ -152,6 +139,20 @@ function eachBeerCard(beer) {
   beerCard.append(topLayer, bottomLayer);
 
   document.querySelector(".beers").appendChild(beerCard);
+
+  // TODO: price
+  // TODO: counter
+  //add&remove order and send to basket, Krista
+  const beerPlus = document.querySelectorAll(".plus");
+  beerPlus.forEach((count) => {
+    console.log("plus");
+    count.addEventListener("click", addToBasket);
+  });
+  const beerMinus = document.querySelectorAll(".minus");
+  beerMinus.forEach((count) => {
+    console.log("minus");
+    count.addEventListener("click", removeFromBasket);
+  });
 }
 
 // modal with details for each beer - maria
@@ -220,18 +221,14 @@ function displayCheckout() {
 }
 
 //everything to do with basket starts here Krista
-let basket = {
-  beerName: "",
-  beerType: "",
-  beerPrice: "",
-  beerImg: "",
-  beerCount: "",
-};
+let basket = {};
+console.log(basket);
 //this function targets clicked elements to show in the list
 function addToBasket(e) {
   const productCard = e.target.parentElement.parentElement;
   const beerLabel = productCard.parentNode.querySelector("h3").textContent;
   const beerCount = e.currentTarget.parentElement.children[1];
+  console.log(beerCount);
   const beerQuantity = beerCount.value++;
   if (beerLabel in basket) {
     basket[beerLabel].beerCount += 1;
@@ -245,12 +242,12 @@ function addToBasket(e) {
     };
     basket[beerLabel] = basketItem;
   }
-  console.log(basket);
+  //console.log(basket);
   showInBasket(beerLabel);
 }
 
 function showInBasket(beerLabel) {
-  console.log(basket[beerLabel]);
+  console.log(basket);
   const item = basket[beerLabel];
   const cardSummary = document.querySelector(
     "#" + beerLabel.replace(/\s/g, "")
