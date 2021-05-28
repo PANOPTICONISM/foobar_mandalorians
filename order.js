@@ -140,25 +140,19 @@ function eachBeerCard(beer) {
 
   document.querySelector(".beers").appendChild(beerCard);
 
-  // TODO: price
-  // TODO: counter
   //add&remove order and send to basket, Krista
   const beerPlus = document.querySelectorAll(".plus");
   beerPlus.forEach((count) => {
-    console.log("plus");
     count.addEventListener("click", addToBasket);
   });
   const beerMinus = document.querySelectorAll(".minus");
   beerMinus.forEach((count) => {
-    console.log("minus");
     count.addEventListener("click", removeFromBasket);
   });
 }
 
 // modal with details for each beer - maria
 function openDetailedModal(beer) {
-  console.log(beer);
-
   const clone = document.querySelector("#b_modal").content.cloneNode(true);
 
   const beerImage = clone.querySelector(".modal_inner_readmore img");
@@ -227,9 +221,8 @@ console.log(basket);
 function addToBasket(e) {
   const productCard = e.target.parentElement.parentElement;
   const beerLabel = productCard.parentNode.querySelector("h3").textContent;
-  const beerCount = e.currentTarget.parentElement.children[1];
-  console.log(beerCount);
-  const beerQuantity = beerCount.value++;
+  const beerCount = e.target.parentElement.children[1];
+  beerCount.value++;
   if (beerLabel in basket) {
     basket[beerLabel].beerCount += 1;
   } else {
@@ -247,7 +240,6 @@ function addToBasket(e) {
 }
 
 function showInBasket(beerLabel) {
-  console.log(basket);
   const item = basket[beerLabel];
   const cardSummary = document.querySelector(
     "#" + beerLabel.replace(/\s/g, "")
@@ -301,11 +293,34 @@ function showTotalPrice() {
 }
 
 function removeFromBasket(e) {
-  //console.log(e.target);
-  const beerCount = e.currentTarget.parentElement.children[1];
+  const productCard = e.target.parentElement.parentElement;
+  const beerLabel = productCard.parentNode.querySelector("h3").textContent;
+  const beerCount = e.target.parentElement.children[1];
+  //value in minus box is not going under 0
   beerCount.value--;
   if (beerCount.value <= 0) {
     beerCount.value = 0;
   }
-  //removeFromBasket(beerLabel, beerType, beerPrice, beerImg);
+
+  //subtract 1 from what is current number of beers
+  if (beerLabel in basket) {
+    basket[beerLabel].beerCount -= 1;
+    // console.log(basket[beerLabel].beerCount);
+  } else {
+    let basketItem = {
+      beerName: beerLabel,
+      beerType: productCard.parentNode.querySelector("h4").textContent,
+      beerPrice: productCard.parentNode.querySelector("p").textContent,
+      beerImg: productCard.parentNode.querySelector("img").src,
+      beerCount: 1,
+    };
+
+    basket[beerLabel] = basketItem;
+  }
+  if (beerLabel in basket && basket[beerLabel].beerCount == 0) {
+    delete basket[beerLabel];
+    console.log("delete me");
+  }
+  console.log(basket);
+  showInBasket(beerLabel);
 }
