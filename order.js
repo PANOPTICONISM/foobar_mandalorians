@@ -113,7 +113,8 @@ function eachBeerCard(beer) {
   const middleLayer = document.createElement("div");
   middleLayer.setAttribute("class", "middle_layer");
   const price = document.createElement("p");
-  price.textContent = "DKK " + Math.floor(Math.random() * 100 + 10);
+  //TODO: "DKK"removed
+  price.textContent = Math.floor(Math.random() * 100 + 10);
   const beerType = document.createElement("h4");
   beerType.textContent = beer.category;
 
@@ -215,8 +216,8 @@ function displayCheckout() {
 }
 
 //everything to do with basket starts here Krista
-let basket = {};
-console.log(basket);
+const basket = {};
+
 //this function targets clicked elements to show in the list
 function addToBasket(e) {
   const productCard = e.target.parentElement.parentElement;
@@ -225,6 +226,7 @@ function addToBasket(e) {
   beerCount.value++;
   if (beerLabel in basket) {
     basket[beerLabel].beerCount += 1;
+    //beerCount.value = basket[beerLabel].beerCount;
   } else {
     let basketItem = {
       beerName: beerLabel,
@@ -235,7 +237,7 @@ function addToBasket(e) {
     };
     basket[beerLabel] = basketItem;
   }
-  //console.log(basket);
+
   showInBasket(beerLabel);
 }
 
@@ -277,13 +279,43 @@ function showInBasket(beerLabel) {
   //TODO: with btns from the basket adjust price and items
   const beerPlus = document.querySelectorAll(".plus");
   beerPlus.forEach((count) => {
-    count.addEventListener("click", addToBasket);
+    count.addEventListener("click", editBasketPlus);
   });
   const beerMinus = document.querySelectorAll(".minus");
   beerMinus.forEach((count) => {
-    count.addEventListener("click", removeFromBasket);
+    count.addEventListener("click", editBasketMinus);
   });
 
+  showTotalPrice();
+}
+
+//edit items already in basket on +
+function editBasketPlus(e) {
+  const beerLabel = e.target.parentElement.parentElement.id;
+  let beerCount = e.target.parentElement.children[1];
+  beerCount.value++;
+  if (beerLabel in basket) {
+    basket[beerLabel].beerCount += 1;
+    e.target.parentElement.parentElement.querySelector("h6").textContent =
+      Number(basket[beerLabel].beerCount) * Number(basket[beerLabel].beerPrice);
+    // console.log(basket[beerLabel].beerCount * basket[beerLabel].beerPrice);
+  }
+  console.log(basket);
+  showTotalPrice();
+}
+
+//edit items already in basket on -
+function editBasketMinus(e) {
+  const beerLabel = e.target.parentElement.parentElement.id;
+  let beerCount = e.target.parentElement.children[1];
+  beerCount.value--;
+  if (beerLabel in basket) {
+    basket[beerLabel].beerCount -= 1;
+    e.target.parentElement.parentElement.querySelector("h6").textContent =
+      Number(basket[beerLabel].beerCount) * Number(basket[beerLabel].beerPrice);
+    // console.log(basket[beerLabel].beerCount * basket[beerLabel].beerPrice);
+  }
+  console.log(basket);
   showTotalPrice();
 }
 
@@ -323,16 +355,6 @@ function removeFromBasket(e) {
   if (beerLabel in basket) {
     basket[beerLabel].beerCount -= 1;
     // console.log(basket[beerLabel].beerCount);
-  } else {
-    let basketItem = {
-      beerName: beerLabel,
-      beerType: productCard.parentNode.querySelector("h4").textContent,
-      beerPrice: productCard.parentNode.querySelector("p").textContent,
-      beerImg: productCard.parentNode.querySelector("img").src,
-      beerCount: 1,
-    };
-
-    basket[beerLabel] = basketItem;
   }
 
   //if beers = 0, remove that specific beer form basket and also from object and update price
@@ -346,3 +368,4 @@ function removeFromBasket(e) {
   }
   showInBasket(beerLabel);
 }
+console.log(basket);
