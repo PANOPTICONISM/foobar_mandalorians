@@ -264,6 +264,7 @@ function isLowOnStock(stock) {
     if (beer.amount < 2) {
       const beerElement = document.createElement("p");
       beerElement.textContent = beer.name + " is low on stock.";
+      beerElement.classList.add("warning");
       document.querySelector(".low_stock").appendChild(beerElement);
     }
   })

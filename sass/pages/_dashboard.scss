@@ -150,9 +150,8 @@
 
   .serving-box, .order-box {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, 300px);
     grid-template-rows: auto;
-    align-items: flex-start;
     grid-gap: 15px;
   }
 
@@ -208,6 +207,23 @@
 }
 
 // to be placed elsewhere and styled
-.low_stock {
+.warning {
   color: a.$white;
+  font-size: a.$links-nav;
+  padding: 10px;
+  background-color: brown;
+  border-radius: 4px;
+  margin: 10px;
+  animation: pulse 1s ease-in-out infinite;
+
+  @keyframes pulse
+{
+   0% {
+      box-shadow: 0 0 0 0px rgba(255, 83, 81, 0.5);
+   }
+
+   100% {
+      box-shadow: 0 0 0 15px rgba(0, 0, 0, 0);
+   }
+}
 }

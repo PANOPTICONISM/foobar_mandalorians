@@ -2,8 +2,8 @@
 import Darkmode from 'darkmode-js';
 
 const options = {
-    bottom: '64px',
-    right: '64px',
+    bottom: '30px',
+    right: '30px',
     time: '0.5s',
     mixColor: '#fff',
     backgroundColor: '#fff',
