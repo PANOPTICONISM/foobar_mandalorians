@@ -18,7 +18,7 @@
     margin: 10px 0;
   }
 
-  li a, li button {
+  li a, button {
     box-sizing: border-box;
     font-family: $primary-font;
     color: $white;
@@ -59,7 +59,7 @@
         height: 0.6px;
     }
 
-    .log_in a, .user {
+    .log_in button, .log_in a, .user {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -86,7 +86,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  z-index: 4;
+  z-index: 999;
 }
 
 .hamburger {

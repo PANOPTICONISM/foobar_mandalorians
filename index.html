@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <header>
+  <header class="darkmode-ignore">
     <div class="navigation">
       <img src="public/foobar_logo.png" alt="logo" />
 
@@ -55,14 +55,22 @@
         <div class="low_stock">
         </div>
         <div class="log_in">
-          <li>
-            <a href="">
-              <div class="user">
-                <img src="public/foobar_avatar.png" /> Foobar
-              </div>
-              <span class="iconify" data-inline="false" data-icon="akar-icons:more-vertical"></span>
-            </a>
-          </li>
+          <button>
+            <div class="user">
+              <img src="/foobar_avatar.png" /> Foobar
+            </div>
+            <span class="iconify" data-inline="false" data-icon="akar-icons:more-vertical"></span>
+          </button>
+          <div class="slide_out">
+            <li>
+              <a href="/customer_order.html">
+                <div class="user">
+                  <img src="/elhefe.png" alt="logo"> Table
+                </div>
+                <span class="iconify" data-inline="false" data-icon="akar-icons:more-vertical"></span>
+              </a>
+            </li>
+          </div>
         </div>
       </div>
     </div>
@@ -82,13 +90,15 @@
 
     <section id="order">
       <h2>upcoming orders</h2>
-      <div class="order-box"></div>
-      <div class="queue-number">
-        <span></span>
-        <div class="bar">
-          <p>Queue</p>
-          <div class="progress_bar">
-            <div class="inner_bar"></div>
+      <div class="container">
+        <div class="order-box"></div>
+        <div class="queue-number">
+          <span></span>
+          <div class="bar">
+            <p>Queue</p>
+            <div class="progress_bar">
+              <div class="inner_bar"></div>
+            </div>
           </div>
         </div>
       </div>

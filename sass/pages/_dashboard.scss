@@ -191,10 +191,15 @@
     justify-content: space-between;
   }
 
+  #order .container {
+    align-items: center;
+  }
+
   .order-box {
     grid-column: 1/10;
     grid-row: 2/6;
-    width: calc(100% - 100px);
+    width: calc(100% - 200px);
+    min-height: 260px;
   }
 
   .queue-number {
@@ -204,6 +209,34 @@
     grid-column: 11/-1;
     grid-row: 3/4;
   }
+}
+
+// users
+.log_in {
+  position: relative;
+}
+
+.slide_out {
+  position: absolute;
+  top: -80px;
+  left: 0;
+  opacity: 0;
+}
+
+.log_in button:hover + .slide_out {
+  transition: 0.8s;
+  opacity: 1;
+}
+
+.activated {
+  opacity: 1;
+}
+
+.log_in button:hover + .log_in {
+  height: 100px;
+  width: 200px;
+  display: block;
+  background-color: burlywood;
 }
 
 // to be placed elsewhere and styled
