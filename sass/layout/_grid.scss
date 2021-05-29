@@ -16,26 +16,45 @@ header {
   grid-row: 1;
 }
 
-main {
-  display: grid;
+.servings_orders {
   grid-column: 1/-1;
-  grid-row: 2/2;
+  grid-row: 2;
   // padding: 10px 30px;
 }
 
 .darkmode-layer {
   z-index: -1;
 }
+
+// customer_order
+.checkout_beer {
+  grid-column: 12/-1;
+  grid-row: 2;
+}
+
+.products {
+  grid-column: 1/-1;
+  grid-row: 3;
+}
   
 @media (min-width: mx.$screen-ipad) {
     header {
       grid-column: 1/2;
+      grid-row: 1/12;
     }
   
-    main {
+    .servings_orders {
       grid-column: 2/-1;
       grid-row: 1;
-      // same as above
-      // padding: 40px;
+    }
+
+    // customer_order
+    .checkout_beer {
+      grid-row: 1;
+    }
+
+    .products {
+      grid-column: 2/-1;
+      grid-row: 2;
     }
 }
