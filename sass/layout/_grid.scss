@@ -26,6 +26,12 @@ header {
   z-index: -1;
 }
 
+.search_filters {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 // customer_order
 .checkout_beer {
   grid-column: 12/-1;

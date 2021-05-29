@@ -205,8 +205,8 @@ function openDetailedModal(beer) {
 
 // checkout
 function checkoutButton() {
-  const buttonClicked = document.querySelector(".checkout");
-  buttonClicked.addEventListener("click", displayCheckout);
+  const buttonClicked = document.querySelectorAll(".checkout");
+  buttonClicked.forEach(btn => btn.addEventListener("click", displayCheckout));
 }
 
 function displayCheckout() {
