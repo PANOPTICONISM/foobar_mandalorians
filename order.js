@@ -1,9 +1,17 @@
 import "./sass/customer.scss";
 
 import './dark_mode.js';
+import {
+  loadingScreen,
+  switchUser
+} from './common.js';
 
-import { addToBasket } from "./basket";
-import { removeFromBasket } from "./basket";
+import {
+  addToBasket
+} from "./basket";
+import {
+  removeFromBasket
+} from "./basket";
 
 
 ("use strict");
@@ -156,6 +164,8 @@ export function eachBeerCard(beer) {
   beerMinus.forEach((count) => {
     count.addEventListener("click", removeFromBasket);
   });
+
+  functionalExtras();
 }
 
 // modal with details for each beer - maria
@@ -219,4 +229,9 @@ function displayCheckout() {
       console.log(modalCheckout);
     }
   };
+}
+
+function functionalExtras() {
+  loadingScreen();
+  switchUser();
 }
