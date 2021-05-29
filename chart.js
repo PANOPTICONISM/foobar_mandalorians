@@ -59,7 +59,7 @@ export let chart = new Chart(myChart, {
       title: {
         display: true,
         text: "POPULAR NOW",
-        color: "black",
+        color: "#00704a",
         font: {
           size: 22,
         },
