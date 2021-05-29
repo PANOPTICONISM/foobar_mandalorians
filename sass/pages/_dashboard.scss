@@ -232,14 +232,7 @@
   opacity: 1;
 }
 
-.log_in button:hover + .log_in {
-  height: 100px;
-  width: 200px;
-  display: block;
-  background-color: burlywood;
-}
-
-// to be placed elsewhere and styled
+// low on stock
 .warning {
   color: a.$white;
   font-size: a.$links-nav;
@@ -260,3 +253,5 @@
    }
 }
 }
+
+
