@@ -20,7 +20,6 @@ main {
   display: grid;
   grid-column: 1/-1;
   grid-row: 2/2;
-  z-index: -1;
   // padding: 10px 30px;
 }
   
@@ -35,4 +34,4 @@ main {
       // same as above
       // padding: 40px;
     }
-  }
+}
