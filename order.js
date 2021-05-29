@@ -221,13 +221,15 @@ const basket = {};
 //this function targets clicked elements to show in the list
 function addToBasket(e) {
   const productCard = e.target.parentElement.parentElement;
-  const beerLabel = productCard.parentNode.querySelector("h3").textContent;
-
+  const beerName = productCard.parentNode.querySelector("h3").textContent;
+  //remove whitespaces from beerLabel to use it beerLabe as an ID
+  const beerLabel = beerName.replace(/\s/g, "");
   const beerCount = e.target.parentElement.children[1];
-  console.log(beerCount);
-  //beerCount.value ++;
+  console.log(beerCount.value);
+  beerCount.value++;
   if (beerLabel in basket) {
     basket[beerLabel].beerCount += 1;
+    // beerCount.value = basket[beerLabel].beerCount;
   } else {
     let basketItem = {
       beerName: beerLabel,
@@ -237,7 +239,6 @@ function addToBasket(e) {
       beerCount: 1,
     };
     basket[beerLabel] = basketItem;
-    beerCount.value = basket[beerLabel].beerCount;
   }
 
   showInBasket(beerLabel);
@@ -245,23 +246,23 @@ function addToBasket(e) {
 
 //create HTML elements and render correctly in basket
 function showInBasket(beerLabel) {
-  //console.log(beerLabel);
   const item = basket[beerLabel];
   const price = `${parseInt(item.beerPrice.slice(-3))}`;
   const quantity = Number(`${item.beerCount}`);
   //console.log(quantity);
   const cardCopy = document.createElement("div");
   cardCopy.setAttribute("class", "cardItem");
-  cardCopy.setAttribute("id", beerLabel.replace(/\s/g, ""));
+  //TODO: beerLabel replace white space removed
+  cardCopy.setAttribute("id", beerLabel);
   cardCopy.innerHTML = `<img src="${item.beerImg}"  class= "basketImg" alt="" />
     <div class="name_category">
           <h3>${item.beerName}</h3>
            <h4>${item.beerType}</h4>
            </div>
            <div class="counter">
-             <input type="button" value="-" class="minus" />
+             <input type="button" value="-" class="minusBasket" />
             <input type="text" size="1" value="${quantity}" class="basketCount" />
-             <input type="button" value="+" class="plus" />
+             <input type="button" value="+" class="plusBasket" />
           </div>
         <div class="price">
           <h6>${price * quantity}</h6>
@@ -278,12 +279,12 @@ function showInBasket(beerLabel) {
   }
 
   document.querySelector(".summary").appendChild(cardCopy);
-  //TODO: with btns from the basket adjust price and items
-  const beerPlus = document.querySelectorAll(".plus");
+  //with btns from the basket adjust price and items
+  const beerPlus = document.querySelectorAll(".plusBasket");
   beerPlus.forEach((count) => {
     count.addEventListener("click", editBasketPlus);
   });
-  const beerMinus = document.querySelectorAll(".minus");
+  const beerMinus = document.querySelectorAll(".minusBasket");
   beerMinus.forEach((count) => {
     count.addEventListener("click", editBasketMinus);
   });
@@ -309,21 +310,20 @@ function editBasketPlus(e) {
 //edit items already in basket on -
 function editBasketMinus(e) {
   const beerLabel = e.target.parentElement.parentElement.id;
-  let beerCount = e.target.parentElement.children[1];
+  const beerCount = e.target.parentElement.children[1];
+  const price = e.target.parentElement.parentElement.querySelector("h6");
   beerCount.value--;
   if (beerLabel in basket && basket[beerLabel].beerCount > 1) {
     basket[beerLabel].beerCount -= 1;
-    e.target.parentElement.parentElement.querySelector("h6").textContent =
+
+    price.textContent =
       Number(basket[beerLabel].beerCount) * Number(basket[beerLabel].beerPrice);
     console.log(basket[beerLabel].beerCount);
   } else {
     console.log("delete me");
-    let beerInBasket = document.querySelector(
-      "#" + beerLabel.replace(/\s/g, "")
-    );
-    beerInBasket.remove();
+    const beerLabelCard = e.target.parentElement.parentElement;
+    beerLabelCard.remove();
   }
-
   showTotalPrice();
 }
 
@@ -351,19 +351,16 @@ function removeFromBasket(e) {
   const productCard = e.target.parentElement.parentElement;
   const beerLabel = productCard.parentNode.querySelector("h3").textContent;
   const beerCount = e.target.parentElement.children[1];
-  console.log(beerCount.value);
+  beerCount.value--;
   //value in minus box is not going under 0
-  if (beerCount.value === 0) {
+  if (beerCount.value <= 0) {
     beerCount.value = 0;
-    console.log(e.target);
-    console.log(beerCount.value);
-    e.target.preventDefault();
+    beerCount.disabled = true;
   }
 
   //subtract 1 from what is current number of beers
   if (beerLabel in basket) {
     basket[beerLabel].beerCount -= 1;
-    // console.log(basket[beerLabel].beerCount);
   }
   //if beers = 0, remove that specific beer form basket and also from object and update price
   if (beerLabel in basket && basket[beerLabel].beerCount == 0) {
