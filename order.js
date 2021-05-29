@@ -1,4 +1,5 @@
 import "./sass/customer.scss";
+import './dark_mode.js';
 
 "use strict";
 
