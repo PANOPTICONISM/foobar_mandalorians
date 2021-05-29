@@ -150,25 +150,35 @@
 
   .serving-box, .order-box {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-template-rows: auto;
+    align-items: flex-start;
     grid-gap: 15px;
   }
 
   .servings, .orders {
     margin: 0;
   }
+
+  .chart-container {
+    margin: 0 10px;
+  }
+
+  .serving-box {
+    grid-column: 1/10;
+    grid-row: 1;
+  }
 }
 
 @media (min-width: mx.$screen-laptop) {
-  .container, #order {
+  #order {
     display: grid;
     grid-template-columns: 12fr;
     grid-template-rows: auto;
   }
+
   .serving-box {
-    grid-column: 1/10;
-    grid-row: 1;
+    width: calc(100% - 470px);
   }
 
   .chart-container {
@@ -176,9 +186,16 @@
     grid-row: 1;
   }
 
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
   .order-box {
     grid-column: 1/10;
-    grid-row: 2;
+    grid-row: 2/6;
+    width: calc(100% - 100px);
   }
 
   .queue-number {
@@ -186,7 +203,7 @@
     align-items: flex-start;
     max-height: 40px;
     grid-column: 11/-1;
-    grid-row: 2;
+    grid-row: 3/4;
   }
 }
 
