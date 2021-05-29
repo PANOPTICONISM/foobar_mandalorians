@@ -222,11 +222,12 @@ const basket = {};
 function addToBasket(e) {
   const productCard = e.target.parentElement.parentElement;
   const beerLabel = productCard.parentNode.querySelector("h3").textContent;
+
   const beerCount = e.target.parentElement.children[1];
-  beerCount.value++;
+  console.log(beerCount);
+  //beerCount.value ++;
   if (beerLabel in basket) {
     basket[beerLabel].beerCount += 1;
-    //beerCount.value = basket[beerLabel].beerCount;
   } else {
     let basketItem = {
       beerName: beerLabel,
@@ -236,6 +237,7 @@ function addToBasket(e) {
       beerCount: 1,
     };
     basket[beerLabel] = basketItem;
+    beerCount.value = basket[beerLabel].beerCount;
   }
 
   showInBasket(beerLabel);
@@ -294,11 +296,11 @@ function editBasketPlus(e) {
   const beerLabel = e.target.parentElement.parentElement.id;
   let beerCount = e.target.parentElement.children[1];
   beerCount.value++;
+  //get  data from object and adjust object
   if (beerLabel in basket) {
     basket[beerLabel].beerCount += 1;
     e.target.parentElement.parentElement.querySelector("h6").textContent =
       Number(basket[beerLabel].beerCount) * Number(basket[beerLabel].beerPrice);
-    // console.log(basket[beerLabel].beerCount * basket[beerLabel].beerPrice);
   }
   console.log(basket);
   showTotalPrice();
@@ -309,13 +311,19 @@ function editBasketMinus(e) {
   const beerLabel = e.target.parentElement.parentElement.id;
   let beerCount = e.target.parentElement.children[1];
   beerCount.value--;
-  if (beerLabel in basket) {
+  if (beerLabel in basket && basket[beerLabel].beerCount > 1) {
     basket[beerLabel].beerCount -= 1;
     e.target.parentElement.parentElement.querySelector("h6").textContent =
       Number(basket[beerLabel].beerCount) * Number(basket[beerLabel].beerPrice);
-    // console.log(basket[beerLabel].beerCount * basket[beerLabel].beerPrice);
+    console.log(basket[beerLabel].beerCount);
+  } else {
+    console.log("delete me");
+    let beerInBasket = document.querySelector(
+      "#" + beerLabel.replace(/\s/g, "")
+    );
+    beerInBasket.remove();
   }
-  console.log(basket);
+
   showTotalPrice();
 }
 
@@ -343,11 +351,12 @@ function removeFromBasket(e) {
   const productCard = e.target.parentElement.parentElement;
   const beerLabel = productCard.parentNode.querySelector("h3").textContent;
   const beerCount = e.target.parentElement.children[1];
-  console.log(e.target);
+  console.log(beerCount.value);
   //value in minus box is not going under 0
-  beerCount.value--;
-  if (beerCount.value < 0) {
+  if (beerCount.value === 0) {
     beerCount.value = 0;
+    console.log(e.target);
+    console.log(beerCount.value);
     e.target.preventDefault();
   }
 
@@ -356,7 +365,6 @@ function removeFromBasket(e) {
     basket[beerLabel].beerCount -= 1;
     // console.log(basket[beerLabel].beerCount);
   }
-
   //if beers = 0, remove that specific beer form basket and also from object and update price
   if (beerLabel in basket && basket[beerLabel].beerCount == 0) {
     let beerInBasket = document.querySelector(
