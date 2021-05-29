@@ -2,7 +2,6 @@
 
 //everything to do with basket starts here Krista
 const basket = {};
-
 //this function targets clicked elements to show in the list
 export function addToBasket(e) {
   const productCard = e.target.parentElement.parentElement;
@@ -10,14 +9,14 @@ export function addToBasket(e) {
   //remove whitespaces from beerLabel to use it beerLabe as an ID
   const beerLabel = beerName.replace(/\s/g, "");
   const beerCount = e.target.parentElement.children[1];
-  console.log(beerCount.value);
+
   beerCount.value++;
   if (beerLabel in basket) {
     basket[beerLabel].beerCount += 1;
     // beerCount.value = basket[beerLabel].beerCount;
   } else {
     let basketItem = {
-      beerName: beerLabel,
+      beerName: beerName,
       beerType: productCard.parentNode.querySelector("h4").textContent,
       beerPrice: productCard.parentNode.querySelector("p").textContent,
       beerImg: productCard.parentNode.querySelector("img").src,
@@ -27,10 +26,13 @@ export function addToBasket(e) {
   }
 
   showInBasket(beerLabel);
+  // console.log(basket[beerLabel].beerName, basket[beerLabel].beerCount);
+  //post orders to app
+  postOrder(basket[beerLabel].beerName, basket[beerLabel].beerCount);
 }
 
 //create HTML elements and render correctly in basket
-export function showInBasket(beerLabel) {
+function showInBasket(beerLabel) {
   const item = basket[beerLabel];
   const price = `${parseInt(item.beerPrice.slice(-3))}`;
   const quantity = Number(`${item.beerCount}`);
@@ -103,7 +105,6 @@ function editBasketMinus(e) {
 
     price.textContent =
       Number(basket[beerLabel].beerCount) * Number(basket[beerLabel].beerPrice);
-    console.log(basket[beerLabel].beerCount);
   } else {
     console.log("delete me");
     const beerLabelCard = e.target.parentElement.parentElement;
@@ -112,7 +113,7 @@ function editBasketMinus(e) {
   showTotalPrice();
 }
 
-export function showTotalPrice() {
+function showTotalPrice() {
   const total = [];
   let price = document.querySelectorAll("h6");
   price.forEach((beerPrice) => {
@@ -158,4 +159,23 @@ export function removeFromBasket(e) {
   }
   showInBasket(beerLabel);
 }
-console.log(basket);
+
+function postOrder(beer, amount) {
+  const orderData = [{ name: beer, amount: amount }];
+
+  console.log(orderData);
+
+  const postData = JSON.stringify(orderData);
+  console.log(postData);
+  fetch("https://foobar-mandalorians.herokuapp.com/order", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+
+      //"cache-control": "no-cache",
+    },
+    body: postData,
+  })
+    .then((res) => res.json())
+    .then((orderData) => console.log(orderData));
+}
