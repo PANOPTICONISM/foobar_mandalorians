@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <header>
+  <header class="darkmode-ignore">
     <div class="navigation">
       <img src="public/foobar_logo.png" alt="logo" />
 
@@ -53,32 +53,36 @@
           </ul>
         </nav>
         <div class="low_stock">
-          <p></p>
         </div>
         <div class="log_in">
-          <li>
-            <a href="">
-              <div class="user">
-                <img src="public/foobar_avatar.png" /> Foobar
-              </div>
-              <span class="iconify" data-inline="false" data-icon="akar-icons:more-vertical"></span>
-            </a>
-          </li>
+          <button>
+            <div class="user">
+              <img src="/foobar_avatar.png" /> Foobar
+            </div>
+            <span class="iconify" data-inline="false" data-icon="akar-icons:more-vertical"></span>
+          </button>
+          <div class="slide_out">
+            <li>
+              <a href="/customer_order.html">
+                <div class="user">
+                  <img src="/elhefe.png" alt="logo"> Table
+                </div>
+                <span class="iconify" data-inline="false" data-icon="akar-icons:more-vertical"></span>
+              </a>
+            </li>
+          </div>
         </div>
       </div>
     </div>
   </header>
 
   <main class="servings_orders">
-    <div class="search-bar">
-      <input class="search" type="text" placeholder="&#128269; order number" />
-    </div>
     <section id="serving">
       <h2>ready for pick up</h2>
       <div class="container">
         <div class="serving-box"></div>
 
-        <div class="chart-container">
+        <div class="chart-container darkmode-ignore">
           <canvas id="myChart" width="400" height="420"></canvas>
         </div>
       </div>
@@ -86,24 +90,28 @@
 
     <section id="order">
       <h2>upcoming orders</h2>
-      <div class="order-box"></div>
-      <div class="queue-number">
-        <span></span>
-        <div class="bar">
-          <p>Queue</p>
-          <div class="progress_bar">
-            <div class="inner_bar"></div>
+      <div class="container">
+        <div class="order-box"></div>
+        <div class="queue-number">
+          <span></span>
+          <div class="bar">
+            <p>Queue</p>
+            <div class="progress_bar">
+              <div class="inner_bar"></div>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <div class="time">time</div>
+  <div class="time">
+    <p>time</p>
+  </div>
 
   <template id="templ-serving">
     <div class="servings">
-      <div class="top_bar">
+      <div class="top_bar darkmode-ignore">
         <div class="left_section">
           <p class="serving-id"></p>
           <p class="serving-time"></p>
@@ -119,7 +127,7 @@
 
   <template id="templ-orders">
     <div class="orders">
-      <div class="top_bar">
+      <div class="top_bar darkmode-ignore">
         <div class="left_section">
           <p class="order-id"></p>
           <p class="order-time"></p>

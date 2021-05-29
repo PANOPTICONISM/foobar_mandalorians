@@ -11,6 +11,7 @@
     "vite": "^2.3.0"
   },
   "dependencies": {
-    "chart.js": "^3.2.1"
+    "chart.js": "^3.2.1",
+    "darkmode-js": "^1.5.7"
   }
 }

@@ -10,7 +10,7 @@ button {
 }
 
 // navigation
-nav li button, nav li a {
+nav li button, nav li a, .log_in button, .log_in li a {
     font-size: a.$links-nav;
 }
 
@@ -128,4 +128,9 @@ h2 {
         margin: 0;
         font-size: a.$desc-label;
     }
+}
+
+// dark-mode styling
+.darkmode--activated h2, .darkmode--activated li {
+    color: #fff;
 }

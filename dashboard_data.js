@@ -1,5 +1,9 @@
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
+import './dark_mode.js';
+
+// darkMode();
+
 //time is in its own file
 import {
   currentTime
@@ -70,7 +74,7 @@ function showQueueLength(queueLength) {
 
 // showint timestamp as time KRISTA
 function showCurrentTime(time) {
-  document.querySelector(".time").textContent = currentTime(time);
+  document.querySelector(".time p").textContent = currentTime(time);
 }
 
 //populate template create missing elements and display servings KRISTA
@@ -260,7 +264,31 @@ function isLowOnStock(stock) {
     if (beer.amount < 2) {
       const beerElement = document.createElement("p");
       beerElement.textContent = beer.name + " is low on stock.";
+      beerElement.classList.add("warning");
       document.querySelector(".low_stock").appendChild(beerElement);
     }
   })
+}
+
+// switch user on the navigation - maria
+switchUser();
+
+function switchUser() {
+  const button = document.querySelector(".log_in button");
+
+  button.addEventListener("click", activateDropdown);
+
+  function activateDropdown() {
+    const boxClicked = document.querySelector(".log_in")
+    const extraUser = document.querySelector(".slide_out");
+
+    window.onclick = function (e) {
+      if (boxClicked.contains(e.target)) {
+        extraUser.classList.add("activated");
+      } else {
+        console.log("outside")
+        extraUser.classList.remove("activated");
+      }
+    }
+  }
 }
