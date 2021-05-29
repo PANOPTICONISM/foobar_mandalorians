@@ -28,7 +28,8 @@ export function addToBasket(e) {
   showInBasket(beerLabel);
   // console.log(basket[beerLabel].beerName, basket[beerLabel].beerCount);
   //post orders to app
-  postOrder(basket[beerLabel].beerName, basket[beerLabel].beerCount);
+  // postOrder(basket[beerLabel].beerName, basket[beerLabel].beerCount);
+  console.log(basket[beerLabel]);
 }
 
 //create HTML elements and render correctly in basket
