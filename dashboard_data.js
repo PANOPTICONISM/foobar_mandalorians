@@ -2,7 +2,10 @@ window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
 import './dark_mode.js';
 
-// darkMode();
+import {
+  loadingScreen,
+  switchUser
+} from './common.js';
 
 //time is in its own file
 import {
@@ -19,7 +22,7 @@ function startLiveUpdate() {
     const response = await fetch("https://foobar-mandalorians.herokuapp.com/");
     const jsonData = await response.json();
     prepareData(jsonData);
-  }, 2000);
+  }, 3000);
 }
 
 //prepare data and call all the functions from here KRISTA
@@ -46,12 +49,11 @@ function prepareData(dashboardData) {
     displayUpcomingServings(serving);
   });
 
-  queueDynamic(dashboardData.queue);
   dashboardData.queue.forEach((order) => {
     displayUpcomingOrders(order);
   });
 
-  let queue = dashboardData.queue.length;
+  let queue = dashboardData.queue;
   showQueueLength(queue);
 
   let time = dashboardData.timestamp;
@@ -67,9 +69,13 @@ function addData(chart, label, data) {
   chart.update();
 }
 
-//queue length KRISTA
-function showQueueLength(queueLength) {
-  // console.log(`ORDERS IN QUEUE:${queueLength}`);
+// queue size and bar - maria
+function showQueueLength(q) {
+  const queueNumber = document.querySelector(".queue-number span");
+  queueNumber.textContent = q.length;
+
+  const bar = document.querySelector(".inner_bar");
+  bar.style.width = q.length + "0px";
 }
 
 // showint timestamp as time KRISTA
@@ -242,16 +248,8 @@ function displayUpcomingOrders(order) {
       count++;
     }
   }
+  functionalExtras();
   document.querySelector(".order-box").appendChild(copy);
-}
-
-// queue size and bar - maria
-function queueDynamic(q) {
-  const queueNumber = document.querySelector(".queue-number span");
-  queueNumber.textContent = q.length;
-
-  const bar = document.querySelector(".inner_bar");
-  bar.style.width = q.length + "0px";
 }
 
 // if storage is almost empty, insert reminder - maria
@@ -270,25 +268,7 @@ function isLowOnStock(stock) {
   })
 }
 
-// switch user on the navigation - maria
-switchUser();
-
-function switchUser() {
-  const button = document.querySelector(".log_in button");
-
-  button.addEventListener("click", activateDropdown);
-
-  function activateDropdown() {
-    const boxClicked = document.querySelector(".log_in")
-    const extraUser = document.querySelector(".slide_out");
-
-    window.onclick = function (e) {
-      if (boxClicked.contains(e.target)) {
-        extraUser.classList.add("activated");
-      } else {
-        console.log("outside")
-        extraUser.classList.remove("activated");
-      }
-    }
-  }
+function functionalExtras() {
+  loadingScreen();
+  switchUser();
 }

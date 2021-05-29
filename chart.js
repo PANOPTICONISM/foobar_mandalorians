@@ -10,31 +10,29 @@ export let chart = new Chart(myChart, {
   data: {
     labels: label,
     //data on Y-axis and their labels
-    datasets: [
-      {
-        data: data,
-        //make it dynamic??
-        backgroundColor: [
-          "orange",
-          " pink",
-          "bisque",
-          "teal",
-          "green",
-          "lightblue",
-          "red",
-          "lightgreen",
-          "yellow",
-          "black",
-        ],
-        borderColor: ["orange"],
-        borderWidth: 1,
-        //do you want to fill below the line
-        fill: false,
-        lineTension: 0,
-        pointRadius: 10,
-        stepped: false,
-      },
-    ],
+    datasets: [{
+      data: data,
+      //make it dynamic??
+      backgroundColor: [
+        "orange",
+        " pink",
+        "bisque",
+        "teal",
+        "green",
+        "lightblue",
+        "red",
+        "lightgreen",
+        "yellow",
+        "black",
+      ],
+      borderColor: ["orange"],
+      borderWidth: 1,
+      //do you want to fill below the line
+      fill: false,
+      lineTension: 0,
+      pointRadius: 10,
+      stepped: false,
+    }, ],
   },
   options: {
     scales: {
@@ -61,9 +59,9 @@ export let chart = new Chart(myChart, {
       title: {
         display: true,
         text: "POPULAR NOW",
-        color: "orange",
+        color: "#00704a",
         font: {
-          size: 18,
+          size: 22,
         },
       },
       legend: {

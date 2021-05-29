@@ -1,6 +1,10 @@
 import "./sass/customer.scss";
+
+import './dark_mode.js';
+
 import { addToBasket } from "./basket";
 import { removeFromBasket } from "./basket";
+
 
 ("use strict");
 

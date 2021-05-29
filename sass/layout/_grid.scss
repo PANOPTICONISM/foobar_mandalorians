@@ -20,22 +20,12 @@ main {
   display: grid;
   grid-column: 1/-1;
   grid-row: 2/2;
+  z-index: -1;
   // padding: 10px 30px;
 }
 
-@media (min-width: mx.$screen-ipad) {
-  header {
-    grid-column: 1/2;
-  }
-
-  main {
-    display: grid;
-    grid-column: 1/-1;
-    grid-row: 2/2;
-    // make this element more specific
-    // padding: 10px 30px;
-  }
-
+.darkmode-layer {
+  z-index: -1;
 }
   
 @media (min-width: mx.$screen-ipad) {
@@ -49,4 +39,4 @@ main {
       // same as above
       // padding: 40px;
     }
-  }
+}
