@@ -67,6 +67,7 @@ function showInBasket(beerLabel) {
   }
 
   document.querySelector(".summary").appendChild(cardCopy);
+
   //with btns from the basket adjust price and items
   const beerPlus = document.querySelectorAll(".plusBasket");
   beerPlus.forEach((count) => {
