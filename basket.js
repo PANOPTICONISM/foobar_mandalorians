@@ -46,16 +46,18 @@ function showInBasket(beerLabel) {
   cardCopy.setAttribute("class", "cardItem");
   //TODO: beerLabel replace white space removed
   cardCopy.setAttribute("id", beerLabel);
-  cardCopy.innerHTML = `<img src="${item.beerImg}"  class= "basketImg" alt="" />
+  cardCopy.innerHTML = `<div class ="beer-card">
+  <img src="${item.beerImg}"  class= "basketImg" alt="" />
     <div class="name_category">
           <h3>${item.beerName}</h3>
            <h4>${item.beerType}</h4>
            </div>
+           </div>
            <div class="counter">
-             <input type="button" value="-" class="minusBasket" />
-            <input type="text" size="1" value="${quantity}" class="basketCount" />
-             <input type="button" value="+" class="plusBasket" />
-          </div>
+           <input type="button" value="-" class="minusBasket" />
+          <input type="text" size="1" value="${quantity}" class="basketCount" />
+           <input type="button" value="+" class="plusBasket" />
+        </div>  
         <div class="price">
           <h6>${price * quantity}</h6>
         </div>
