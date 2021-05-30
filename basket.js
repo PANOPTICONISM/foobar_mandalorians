@@ -1,7 +1,8 @@
 //add&remove order and send to basket, Krista
 
 //everything to do with basket starts here Krista
-const basket = {};
+let basket = {};
+let orderData = [];
 //this function targets clicked elements to show in the list
 export function addToBasket(e) {
   const productCard = e.target.parentElement.parentElement;
@@ -26,10 +27,6 @@ export function addToBasket(e) {
   }
 
   showInBasket(beerLabel);
-  // console.log(basket[beerLabel].beerName, basket[beerLabel].beerCount);
-  //post orders to app
-  // postOrder(basket[beerLabel].beerName, basket[beerLabel].beerCount);
-  console.log(basket[beerLabel]);
 }
 
 //create HTML elements and render correctly in basket
@@ -37,14 +34,8 @@ function showInBasket(beerLabel) {
   const item = basket[beerLabel];
   const price = `${parseInt(item.beerPrice.slice(-3))}`;
   const quantity = Number(`${item.beerCount}`);
-  //template elements
-
-  // const template = document.querySelector("#beer-order-card").content;
-  // const copy = template.cloneNode(true);
-
   const cardCopy = document.createElement("div");
   cardCopy.setAttribute("class", "cardItem");
-  //TODO: beerLabel replace white space removed
   cardCopy.setAttribute("id", beerLabel);
   cardCopy.innerHTML = `<div class ="beer-card">
   <img src="${item.beerImg}"  class= "basketImg" alt="" />
@@ -73,10 +64,6 @@ function showInBasket(beerLabel) {
   }
 
   document.querySelector(".summary").appendChild(cardCopy);
-
-  //TODO:append to
-  // document.querySelector("#order_modal").appendChild(copy);
-
   //with btns from the basket adjust price and items
   const beerPlus = document.querySelectorAll(".plusBasket");
   beerPlus.forEach((count) => {
@@ -101,7 +88,7 @@ function editBasketPlus(e) {
     e.target.parentElement.parentElement.querySelector("h6").textContent =
       Number(basket[beerLabel].beerCount) * Number(basket[beerLabel].beerPrice);
   }
-  console.log(basket);
+
   showTotalPrice();
 }
 
@@ -171,19 +158,32 @@ export function removeFromBasket(e) {
   showInBasket(beerLabel);
 }
 
-function postOrder(beer, amount) {
-  const orderData = [{ name: beer, amount: amount }];
+const buttonClicked = document.querySelectorAll(".checkout");
+buttonClicked.forEach((btn) => btn.addEventListener("click", displayCheckout));
 
-  console.log(orderData);
+function displayCheckout() {
+  console.log("click");
+  document.querySelector("button").addEventListener("click", postOrder);
+  console.log(document.querySelector(".submit"));
+}
+
+function postOrder() {
+  console.log(basket);
+  const keys = Object.keys(basket);
+  keys.forEach((key) => {
+    orderData.push({
+      name: basket[key].beerName,
+      amount: basket[key].beerCount,
+    });
+    console.log(orderData);
+  });
 
   const postData = JSON.stringify(orderData);
-  console.log(postData);
+  console.log(orderData);
   fetch("https://foobar-mandalorians.herokuapp.com/order", {
     method: "post",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
-
-      //"cache-control": "no-cache",
     },
     body: postData,
   })
