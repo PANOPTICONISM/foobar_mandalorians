@@ -119,7 +119,7 @@
     </div>
 
     <main class="products">
-      <section>
+      <section id="products">
         <h2>Ready for beer o'clock?</h2>
         <div class="search_filters">
           <div class="filters"></div>
@@ -128,6 +128,46 @@
           </div>
         </div>
         <div class="beers"></div>
+      </section>
+      <section id="orders">
+        <div id="order_modal">
+          <div class="modal_container_b">
+            <div class="form-container"></div>
+            <sidebar>
+              <h2>Basket summary</h2>
+              <div class="summary">
+                <!-- <div class="cardItem">
+            <img src="" alt="" />
+            <div class="name_category">
+              <h3></h3>
+              <h4></h4>
+  
+              <div class="counter">
+                <input type="button" value="-" class="minus" />
+                <input type="text" size="1" value="0" class="count" />
+                <input type="button" value="+" class="plus" />
+              </div>
+            </div>
+  
+            <div class="price">
+              <h6>price</h6>
+            </div>
+          </div-->
+              </div>
+              <div class="total">
+                <p>Total</p>
+                <p id="total">DKK 64</p>
+              </div>
+              <div class="reminder">
+                <img src="#" alt="" />
+                <p>
+                  You can see the status of your order in one of our tv screens
+                  or stay in tune with the app’s upcoming notifications.
+                </p>
+              </div>
+            </sidebar>
+          </div>
+        </div>
       </section>
     </main>
 
@@ -161,173 +201,135 @@
     </template>
 
     <template id="checkout">
-      <div id="order_modal">
-        <div class="modal_container_b">
-          <div class="modal_inner_checkout">
-            <h2>Order confirmation</h2>
-            <main>
-              <div class="payment_options">
-                <button class="credit_card active_filter">Credit card</button>
-                <button>MobilePay</button>
-              </div>
+      <div class="modal_inner_checkout">
+        <h2>Order confirmation</h2>
+        <div class="form">
+          <div class="payment_options">
+            <button class="credit_card active_filter">Credit card</button>
+            <button>MobilePay</button>
+          </div>
 
-              <form>
-                <fieldset>
-                  <label for="username">Username</label>
-                  <p>
-                    Give yourself a cool name with 2 to 10 letters and then try
-                    to find your order on one of our tv screens
-                  </p>
+          <form>
+            <fieldset>
+              <label for="username">Username</label>
+              <p>
+                Give yourself a cool name with 2 to 10 letters and then try to
+                find your order on one of our tv screens
+              </p>
+              <input
+                id="username"
+                name="username"
+                autocomplete="username"
+                inputmode="text"
+                type="text"
+                minlength="2"
+                maxlength="10"
+                required
+              />
+            </fieldset>
+            <fieldset>
+              <label for="pnumber">Phone-number</label>
+              <p>This number will only be used to send you your order number</p>
+              <input
+                id="pnumber"
+                name="phonenumber"
+                inputmode="tel"
+                autocomplete="tel"
+                type="tel"
+                required
+              />
+            </fieldset>
+            <fieldset>
+              <label for="cardname">Name on the card</label>
+              <input
+                id="cardname"
+                name="cardname"
+                inputmode="text"
+                type="text"
+                required
+              />
+            </fieldset>
+            <fieldset>
+              <label for="creditcard">Credit card</label>
+              <input
+                id="creditcard"
+                name="creditcard"
+                inputmode="numeric"
+                type="number"
+                required
+              />
+            </fieldset>
+            <div class="credit_card_details">
+              <fieldset>
+                <label for="expirationdate">Expiration date</label>
+                <div>
                   <input
-                    id="username"
-                    name="username"
-                    autocomplete="username"
-                    inputmode="text"
-                    type="text"
-                    minlength="2"
-                    maxlength="10"
-                    required
-                  />
-                </fieldset>
-                <fieldset>
-                  <label for="pnumber">Phone-number</label>
-                  <p>
-                    This number will only be used to send you your order number
-                  </p>
-                  <input
-                    id="pnumber"
-                    name="phonenumber"
-                    inputmode="tel"
-                    autocomplete="tel"
-                    type="tel"
-                    required
-                  />
-                </fieldset>
-                <fieldset>
-                  <label for="cardname">Name on the card</label>
-                  <input
-                    id="cardname"
-                    name="cardname"
-                    inputmode="text"
-                    type="text"
-                    required
-                  />
-                </fieldset>
-                <fieldset>
-                  <label for="creditcard">Credit card</label>
-                  <input
-                    id="creditcard"
-                    name="creditcard"
+                    id="expirationdate"
+                    name="expirationmonth"
                     inputmode="numeric"
                     type="number"
                     required
                   />
-                </fieldset>
-                <div class="credit_card_details">
-                  <fieldset>
-                    <label for="expirationdate">Expiration date</label>
-                    <div>
-                      <input
-                        id="expirationdate"
-                        name="expirationmonth"
-                        inputmode="numeric"
-                        type="number"
-                        required
-                      />
-                      <span>/</span>
-                      <input
-                        id="expirationdate"
-                        name="expirationyear"
-                        inputmode="numeric"
-                        type="number"
-                        required
-                      />
-                    </div>
-                  </fieldset>
-                  <fieldset>
-                    <label for="cvv">CVV</label>
-                    <input
-                      id="cvv"
-                      name="cvv"
-                      inputmode="numeric"
-                      type="number"
-                      required
-                    />
-                  </fieldset>
+                  <span>/</span>
+                  <input
+                    id="expirationdate"
+                    name="expirationyear"
+                    inputmode="numeric"
+                    type="number"
+                    required
+                  />
                 </div>
-
-                <p>
-                  By clicking “Beer me up”, I agree with FooBar’s Terms of
-                  Service and with purchasing the content in the basket summary.
-                </p>
-                <div class="buttons">
-                  <button type="reset" class="reset">
-                    <span
-                      class="iconify arrow"
-                      data-inline="false"
-                      data-icon="bi:arrow-left"
-                    ></span>
-                    Return
-                  </button>
-                  <button type="submit" class="submit">
-                    Beer me up
-                    <span
-                      class="iconify purchase"
-                      data-inline="false"
-                      data-icon="bi:bag-check"
-                    ></span>
-                  </button>
-                </div>
-              </form>
-            </main>
-          </div>
-          <sidebar>
-            <h2>Basket summary</h2>
-            <div class="summary">
-              <!-- <div class="cardItem">
-                <img src="" alt="" />
-                <div class="name_category">
-                  <h3></h3>
-                  <h4></h4>
-      
-                  <div class="counter">
-                    <input type="button" value="-" class="minus" />
-                    <input type="text" size="1" value="0" class="count" />
-                    <input type="button" value="+" class="plus" />
-                  </div>
-                </div>
-      
-                <div class="price">
-                  <h6>price</h6>
-                </div>
-              </div> -->
-            </div>
-            <div class="total">
-              <p>Total</p>
-              <p id="total">DKK 64</p>
+              </fieldset>
+              <fieldset>
+                <label for="cvv">CVV</label>
+                <input
+                  id="cvv"
+                  name="cvv"
+                  inputmode="numeric"
+                  type="number"
+                  required
+                />
+              </fieldset>
             </div>
 
-            <div class="reminder">
-              <img src="#" alt="" />
-              <p>
-                You can see the status of your order in one of our tv screens or
-                stay in tune with the app’s upcoming notifications.
-              </p>
+            <p>
+              By clicking “Beer me up”, I agree with FooBar’s Terms of Service
+              and with purchasing the content in the basket summary.
+            </p>
+            <div class="buttons">
+              <button type="reset" class="reset">
+                <span
+                  class="iconify arrow"
+                  data-inline="false"
+                  data-icon="bi:arrow-left"
+                ></span>
+                Return
+              </button>
+              <button type="submit" class="submit">
+                Beer me up
+                <span
+                  class="iconify purchase"
+                  data-inline="false"
+                  data-icon="bi:bag-check"
+                ></span>
+              </button>
             </div>
-          </sidebar>
+          </form>
+        </div>
+      </div>
 
-          <!-- <div id="confirmation_modal">
+      <!-- <div id="confirmation_modal">
             <div class="modal_inner">
               <img src="" />
               <span>Your order has been received.</span>
             </div>
           </div> -->
-        </div>
-      </div>
     </template>
 
+    <template id="beer-order-card"> </template>
+
     <script type="module" src="/order.js"></script>
-    <!-- <script type="module" src="/basket.js"></script> -->
+    <script type="module" src="/basket.js"></script>
 
     <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
   </body>

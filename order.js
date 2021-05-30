@@ -1,18 +1,10 @@
 import "./sass/customer.scss";
 
-import './dark_mode.js';
-import {
-  loadingScreen,
-  switchUser
-} from './common.js';
+import "./dark_mode.js";
+import { loadingScreen, switchUser } from "./common.js";
 
-import {
-  addToBasket
-} from "./basket";
-import {
-  removeFromBasket
-} from "./basket";
-
+import { addToBasket } from "./basket";
+import { removeFromBasket } from "./basket";
 
 ("use strict");
 
@@ -206,16 +198,18 @@ function openDetailedModal(beer) {
 // checkout
 function checkoutButton() {
   const buttonClicked = document.querySelectorAll(".checkout");
-  buttonClicked.forEach(btn => btn.addEventListener("click", displayCheckout));
+  buttonClicked.forEach((btn) =>
+    btn.addEventListener("click", displayCheckout)
+  );
 }
 
 function displayCheckout() {
   const clone = document.querySelector("#checkout").content.cloneNode(true);
 
-  const modalCheckout = clone.querySelector("#order_modal");
+  const modalCheckout = document.querySelector("#order_modal");
   modalCheckout.style.display = "block";
 
-  document.querySelector("main section").appendChild(clone);
+  document.querySelector(".form-container").appendChild(clone);
 
   const modalContainer = document.querySelector(
     "#order_modal .modal_container_b"

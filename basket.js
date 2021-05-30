@@ -37,7 +37,11 @@ function showInBasket(beerLabel) {
   const item = basket[beerLabel];
   const price = `${parseInt(item.beerPrice.slice(-3))}`;
   const quantity = Number(`${item.beerCount}`);
-  //console.log(quantity);
+  //template elements
+
+  // const template = document.querySelector("#beer-order-card").content;
+  // const copy = template.cloneNode(true);
+
   const cardCopy = document.createElement("div");
   cardCopy.setAttribute("class", "cardItem");
   //TODO: beerLabel replace white space removed
@@ -54,9 +58,9 @@ function showInBasket(beerLabel) {
           </div>
         <div class="price">
           <h6>${price * quantity}</h6>
-        </div>`;
+        </div>
+       `;
 
-  //console.log(item.beerCount);
   //select beer by its ID= beername, it is beerLabel without white space
   const cardBeerName = document.querySelector(
     "#" + beerLabel.replace(/\s/g, "")
@@ -67,6 +71,9 @@ function showInBasket(beerLabel) {
   }
 
   document.querySelector(".summary").appendChild(cardCopy);
+
+  //TODO:append to
+  // document.querySelector("#order_modal").appendChild(copy);
 
   //with btns from the basket adjust price and items
   const beerPlus = document.querySelectorAll(".plusBasket");
