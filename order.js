@@ -5,8 +5,6 @@ import { loadingScreen, switchUser } from "./common.js";
 
 import { addToBasket } from "./basket";
 import { removeFromBasket } from "./basket";
-import { basket } from "./basket";
-import { orderData } from "./basket";
 import { postOrder } from "./basket";
 ("use strict");
 
@@ -228,31 +226,6 @@ function displayCheckout() {
   console.log(document.querySelector("form"));
   document.querySelector("form").addEventListener("submit", postOrder);
 }
-
-// function postOrder() {
-//   console.log(basket);
-
-//   const keys = Object.keys(basket);
-//   keys.forEach((key) => {
-//     orderData.push({
-//       name: basket[key].beerName,
-//       amount: basket[key].beerCount,
-//     });
-//     console.log(orderData);
-//   });
-
-//   const postData = JSON.stringify(orderData);
-//   console.log(orderData);
-//   fetch("https://foobar-mandalorians.herokuapp.com/order", {
-//     method: "post",
-//     headers: {
-//       "Content-Type": "application/json; charset=utf-8",
-//     },
-//     body: postData,
-//   })
-//     .then((res) => res.json())
-//     .then((orderData) => console.log(orderData));
-// }
 
 function functionalExtras() {
   loadingScreen();
