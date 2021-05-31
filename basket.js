@@ -1,8 +1,8 @@
 //add&remove order and send to basket, Krista
 
 //everything to do with basket starts here Krista
-let basket = {};
-let orderData = [];
+export let basket = {};
+export let orderData = [];
 //this function targets clicked elements to show in the list
 export function addToBasket(e) {
   const productCard = e.target.parentElement.parentElement;
@@ -157,17 +157,8 @@ export function removeFromBasket(e) {
   }
   showInBasket(beerLabel);
 }
-
-const buttonClicked = document.querySelectorAll(".checkout");
-buttonClicked.forEach((btn) => btn.addEventListener("click", displayCheckout));
-
-function displayCheckout() {
-  console.log("click");
-  document.querySelector("button").addEventListener("click", postOrder);
-  console.log(document.querySelector(".submit"));
-}
-
-function postOrder() {
+export function postOrder() {
+  orderData = [];
   console.log(basket);
   const keys = Object.keys(basket);
   keys.forEach((key) => {
