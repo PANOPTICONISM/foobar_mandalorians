@@ -1,6 +1,10 @@
 @use "../abstracts/variables" as a;
 @use '../abstracts/mixins' as mx;
 
+.time {
+  display: none;
+}
+
 @media (min-width: mx.$screen-ipad) {
     .time {
       position: absolute;

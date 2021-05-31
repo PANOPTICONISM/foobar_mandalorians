@@ -6,7 +6,7 @@ export let orderData = [];
 //this function targets clicked elements to show in the list
 export function addToBasket(e) {
   const productCard = e.target.parentElement.parentElement;
-  const beerName = productCard.parentNode.querySelector("h3").textContent;
+  const beerName = productCard.parentNode.querySelector("h2").textContent;
   //remove whitespaces from beerLabel to use it beerLabe as an ID
   const beerLabel = beerName.replace(/\s/g, "");
   const beerCount = e.target.parentElement.children[1];
@@ -18,7 +18,7 @@ export function addToBasket(e) {
   } else {
     let basketItem = {
       beerName: beerName,
-      beerType: productCard.parentNode.querySelector("h4").textContent,
+      beerType: productCard.parentNode.querySelector("h3").textContent,
       beerPrice: productCard.parentNode.querySelector("p").textContent,
       beerImg: productCard.parentNode.querySelector("img").src,
       beerCount: 1,
@@ -40,8 +40,8 @@ function showInBasket(beerLabel) {
   cardCopy.innerHTML = `<div class ="beer-card">
   <img src="${item.beerImg}"  class= "basketImg" alt="" />
     <div class="name_category">
-          <h3>${item.beerName}</h3>
-           <h4>${item.beerType}</h4>
+          <h2>${item.beerName}</h2>
+           <h3>${item.beerType}</h3>
            </div>
            </div>
            <div class="counter">
@@ -133,7 +133,7 @@ function showTotalPrice() {
 
 export function removeFromBasket(e) {
   const productCard = e.target.parentElement.parentElement;
-  const beerLabel = productCard.parentNode.querySelector("h3").textContent;
+  const beerLabel = productCard.parentNode.querySelector("h2").textContent;
   const beerCount = e.target.parentElement.children[1];
   beerCount.value--;
   //value in minus box is not going under 0
@@ -173,12 +173,12 @@ export function postOrder(e) {
   const postData = JSON.stringify(orderData);
   console.log(orderData);
   fetch("https://foobar-mandalorians.herokuapp.com/order", {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-    },
-    body: postData,
-  })
+      method: "post",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: postData,
+    })
     .then((res) => res.json())
     .then((orderData) => console.log(orderData));
 }

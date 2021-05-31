@@ -1,11 +1,20 @@
 import "./sass/customer.scss";
 
 import "./dark_mode.js";
-import { loadingScreen, switchUser } from "./common.js";
+import {
+  loadingScreen,
+  switchUser
+} from "./common.js";
 
-import { addToBasket } from "./basket";
-import { removeFromBasket } from "./basket";
-import { postOrder } from "./basket";
+import {
+  addToBasket
+} from "./basket";
+import {
+  removeFromBasket
+} from "./basket";
+import {
+  postOrder
+} from "./basket";
 ("use strict");
 
 // load on start - maria
@@ -134,7 +143,7 @@ export function eachBeerCard(beer) {
   });
   const clone = document.querySelector("#counter").content.cloneNode(true);
   clone.querySelector(".counter");
-  const alcoholPercentage = document.createElement("h5");
+  const alcoholPercentage = document.createElement("h4");
   alcoholPercentage.textContent = beer.alc + " %";
 
   topLayer.append(topfirstLayer);
@@ -166,9 +175,9 @@ function openDetailedModal(beer) {
 
   const beerImage = clone.querySelector(".modal_inner_readmore img");
   beerImage.src = beer.label;
-  const beerName = clone.querySelector(".modal_inner_readmore h3");
+  const beerName = clone.querySelector(".modal_inner_readmore h2");
   beerName.textContent = beer.name;
-  const beerType = clone.querySelector(".modal_inner_readmore h4");
+  const beerType = clone.querySelector(".modal_inner_readmore h3");
   beerType.textContent = beer.category;
   const beerDescription = clone.querySelector(".desc p");
   beerDescription.textContent = beer.description.flavor;
