@@ -8,6 +8,17 @@
   </head>
 
   <body>
+    <div class="loader-box">
+      <div class="container">
+        <div class="keg">
+          <span class="handle"></span>
+          <span class="pipe"></span>
+        </div>
+        <div class="glass">
+          <span class="beer-filled"></span>
+        </div>
+      </div>
+    </div>
     <header>
       <div class="navigation">
         <img src="public/foobar_logo.png" alt="logo" />
@@ -70,11 +81,25 @@
             </ul>
           </nav>
           <div class="log_in">
-            <ul>
+            <button>
+              <div class="user second">
+                <div class="table">
+                  <div class="number">1</div>
+                </div>
+                <span>Table 1</span>
+              </div>
+              <span
+                class="iconify"
+                data-inline="false"
+                data-icon="akar-icons:more-vertical"
+              ></span>
+            </button>
+            <div class="slide_out">
               <li>
-                <a href="">
+                <a href="/index.html">
                   <div class="user">
-                    <img src="public/foobar_avatar.png" alt="logo" /> Foobar
+                    <img src="/foobar_avatar.png" />
+                    <span>Foobar</span>
                   </div>
                   <span
                     class="iconify"
@@ -83,22 +108,55 @@
                   ></span>
                 </a>
               </li>
-            </ul>
+            </div>
           </div>
         </div>
       </div>
     </header>
 
-    <div class="checkout_beer"></div>
+    <div class="checkout_beer checkout">
+      <span class="iconify" data-inline="false" data-icon="ion:beer"></span>
+    </div>
 
-    <main>
-      <section>
+    <main class="products">
+      <section id="products">
         <h2>Ready for beer o'clock?</h2>
         <div class="search_filters">
           <div class="filters"></div>
-          <div class="search_bar"></div>
+          <div class="search_bar">
+            <input type="text" placeholder="Search.." />
+          </div>
         </div>
         <div class="beers"></div>
+      </section>
+      <section id="orders">
+        <div id="order_modal">
+          <div class="modal_container_b">
+            <div class="form-container"></div>
+            <aside>
+              <div class="basket-container">
+                <h2>Basket summary</h2>
+                <div class="summary"></div>
+                <div class="total">
+                  <p>Total</p>
+                  <p id="total"></p>
+                </div>
+              </div>
+
+              <div class="reminder">
+                <span
+                  class="iconify"
+                  data-inline="false"
+                  data-icon="oi:lightbulb"
+                ></span>
+                <p>
+                  You can see the status of your order in one of our tv screens
+                  or stay in tune with the app’s upcoming notifications.
+                </p>
+              </div>
+            </aside>
+          </div>
+        </div>
       </section>
     </main>
 
@@ -132,172 +190,132 @@
     </template>
 
     <template id="checkout">
-      <div id="order_modal">
-        <div class="modal_container_b">
-          <div class="modal_inner_checkout">
-            <h2>Order confirmation</h2>
-            <main>
-              <div class="payment_options">
-                <button class="credit_card active_filter">Credit card</button>
-                <button>MobilePay</button>
-              </div>
+      <div class="modal_inner_checkout">
+        <h2>Order confirmation</h2>
+        <div class="form">
+          <div class="payment_options">
+            <button class="credit_card active_filter">Credit card</button>
+            <button>MobilePay</button>
+          </div>
 
-              <form>
-                <fieldset>
-                  <label for="username">Username</label>
-                  <p>
-                    Give yourself a cool name with 2 to 10 letters and then try
-                    to find your order on one of our tv screens
-                  </p>
+          <form>
+            <fieldset>
+              <label for="username">Username</label>
+              <p>
+                Give yourself a cool name with 2 to 10 letters and then try to
+                find your order on one of our tv screens
+              </p>
+              <input
+                id="username"
+                name="username"
+                autocomplete="username"
+                inputmode="text"
+                type="text"
+                minlength="2"
+                maxlength="10"
+                required
+              />
+            </fieldset>
+            <fieldset>
+              <label for="pnumber">Phone-number</label>
+              <p>This number will only be used to send you your order number</p>
+              <input
+                id="pnumber"
+                name="phonenumber"
+                inputmode="tel"
+                autocomplete="tel"
+                type="tel"
+                required
+              />
+            </fieldset>
+            <fieldset>
+              <label for="cardname">Name on the card</label>
+              <input
+                id="cardname"
+                name="cardname"
+                inputmode="text"
+                type="text"
+                required
+              />
+            </fieldset>
+            <fieldset>
+              <label for="creditcard">Credit card</label>
+              <input
+                id="creditcard"
+                name="creditcard"
+                inputmode="numeric"
+                type="number"
+                required
+              />
+            </fieldset>
+            <div class="credit_card_details">
+              <fieldset>
+                <label for="expirationdate">Expiration date</label>
+                <div>
                   <input
-                    id="username"
-                    name="username"
-                    autocomplete="username"
-                    inputmode="text"
-                    type="text"
-                    minlength="2"
-                    maxlength="10"
-                    required
-                  />
-                </fieldset>
-                <fieldset>
-                  <label for="pnumber">Phone-number</label>
-                  <p>
-                    This number will only be used to send you your order number
-                  </p>
-                  <input
-                    id="pnumber"
-                    name="phonenumber"
-                    inputmode="tel"
-                    autocomplete="tel"
-                    type="tel"
-                    required
-                  />
-                </fieldset>
-                <fieldset>
-                  <label for="cardname">Name on the card</label>
-                  <input
-                    id="cardname"
-                    name="cardname"
-                    inputmode="text"
-                    type="text"
-                    required
-                  />
-                </fieldset>
-                <fieldset>
-                  <label for="creditcard">Credit card</label>
-                  <input
-                    id="creditcard"
-                    name="creditcard"
+                    id="expirationdate"
+                    name="expirationmonth"
                     inputmode="numeric"
                     type="number"
                     required
                   />
-                </fieldset>
-                <div class="credit_card_details">
-                  <fieldset>
-                    <label for="expirationdate">Expiration date</label>
-                    <div>
-                      <input
-                        id="expirationdate"
-                        name="expirationmonth"
-                        inputmode="numeric"
-                        type="number"
-                        required
-                      />
-                      <span>/</span>
-                      <input
-                        id="expirationdate"
-                        name="expirationyear"
-                        inputmode="numeric"
-                        type="number"
-                        required
-                      />
-                    </div>
-                  </fieldset>
-                  <fieldset>
-                    <label for="cvv">CVV</label>
-                    <input
-                      id="cvv"
-                      name="cvv"
-                      inputmode="numeric"
-                      type="number"
-                      required
-                    />
-                  </fieldset>
+                  <span>/</span>
+                  <input
+                    id="expirationdate"
+                    name="expirationyear"
+                    inputmode="numeric"
+                    type="number"
+                    required
+                  />
                 </div>
+              </fieldset>
+              <fieldset>
+                <label for="cvv">CVV</label>
+                <input
+                  id="cvv"
+                  name="cvv"
+                  inputmode="numeric"
+                  type="number"
+                  required
+                />
+              </fieldset>
+            </div>
 
-                <p>
-                  By clicking “Beer me up”, I agree with FooBar’s Terms of
-                  Service and with purchasing the content in the basket summary.
-                </p>
-                <div class="buttons">
-                  <button type="reset" class="reset">
-                    <span
-                      class="iconify arrow"
-                      data-inline="false"
-                      data-icon="bi:arrow-left"
-                    ></span>
-                    Return
-                  </button>
-                  <button type="submit" class="submit">
-                    Beer me up
-                    <span
-                      class="iconify purchase"
-                      data-inline="false"
-                      data-icon="bi:bag-check"
-                    ></span>
-                  </button>
-                </div>
-              </form>
-            </main>
-          </div>
+            <p>
+              By clicking “Beer me up”, I agree with FooBar’s Terms of Service
+              and with purchasing the content in the basket summary.
+            </p>
+            <div class="buttons">
+              <button type="reset" class="reset">
+                <span
+                  class="iconify arrow"
+                  data-inline="false"
+                  data-icon="bi:arrow-left"
+                ></span>
+                Return
+              </button>
+              <button type="submit" class="submit">
+                Beer me up
+                <span
+                  class="iconify purchase"
+                  data-inline="false"
+                  data-icon="bi:bag-check"
+                ></span>
+              </button>
+            </div>
+          </form>
         </div>
       </div>
+
+      <!-- <div id="confirmation_modal">
+            <div class="modal_inner">
+              <img src="" />
+              <span>Your order has been received.</span>
+            </div>
+          </div> -->
     </template>
 
-    <sidebar>
-      <h2>Basket summary</h2>
-      <div class="summary">
-        <!-- <div class="cardItem">
-          <img src="" alt="" />
-          <div class="name_category">
-            <h3></h3>
-            <h4></h4>
-
-            <div class="counter">
-              <input type="button" value="-" class="minus" />
-              <input type="text" size="1" value="0" class="count" />
-              <input type="button" value="+" class="plus" />
-            </div>
-          </div>
-
-          <div class="price">
-            <h6>price</h6>
-          </div>
-        </div> -->
-      </div>
-      <div class="total">
-        <p>Total</p>
-        <p id="total">DKK 64</p>
-      </div>
-
-      <div class="reminder">
-        <img src="#" alt="" />
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod ut vero
-          repudiandae, incidunt alias minima itaque dignissimos enim facilis
-          rerum.
-        </p>
-      </div>
-    </sidebar>
-
-    <!-- <div id="confirmation_modal">
-        <div class="modal_inner">
-            <img src="">
-            <span>Your order has been received.</span>
-        </div>
-    </div> -->
+    <template id="beer-order-card"> </template>
 
     <script type="module" src="/order.js"></script>
     <script type="module" src="/basket.js"></script>

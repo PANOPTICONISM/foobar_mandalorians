@@ -1,7 +1,8 @@
 //add&remove order and send to basket, Krista
 
 //everything to do with basket starts here Krista
-const basket = {};
+export let basket = {};
+export let orderData = [];
 //this function targets clicked elements to show in the list
 export function addToBasket(e) {
   const productCard = e.target.parentElement.parentElement;
@@ -26,10 +27,6 @@ export function addToBasket(e) {
   }
 
   showInBasket(beerLabel);
-  // console.log(basket[beerLabel].beerName, basket[beerLabel].beerCount);
-  //post orders to app
-  // postOrder(basket[beerLabel].beerName, basket[beerLabel].beerCount);
-  console.log(basket[beerLabel]);
 }
 
 //create HTML elements and render correctly in basket
@@ -37,26 +34,26 @@ function showInBasket(beerLabel) {
   const item = basket[beerLabel];
   const price = `${parseInt(item.beerPrice.slice(-3))}`;
   const quantity = Number(`${item.beerCount}`);
-  //console.log(quantity);
   const cardCopy = document.createElement("div");
   cardCopy.setAttribute("class", "cardItem");
-  //TODO: beerLabel replace white space removed
   cardCopy.setAttribute("id", beerLabel);
-  cardCopy.innerHTML = `<img src="${item.beerImg}"  class= "basketImg" alt="" />
+  cardCopy.innerHTML = `<div class ="beer-card">
+  <img src="${item.beerImg}"  class= "basketImg" alt="" />
     <div class="name_category">
           <h3>${item.beerName}</h3>
            <h4>${item.beerType}</h4>
            </div>
+           </div>
            <div class="counter">
-             <input type="button" value="-" class="minusBasket" />
-            <input type="text" size="1" value="${quantity}" class="basketCount" />
-             <input type="button" value="+" class="plusBasket" />
-          </div>
+           <input type="button" value="-" class="minusBasket" />
+          <input type="text" size="1" value="${quantity}" class="basketCount" />
+           <input type="button" value="+" class="plusBasket" />
+        </div>  
         <div class="price">
           <h6>${price * quantity}</h6>
-        </div>`;
+        </div>
+       `;
 
-  //console.log(item.beerCount);
   //select beer by its ID= beername, it is beerLabel without white space
   const cardBeerName = document.querySelector(
     "#" + beerLabel.replace(/\s/g, "")
@@ -91,7 +88,7 @@ function editBasketPlus(e) {
     e.target.parentElement.parentElement.querySelector("h6").textContent =
       Number(basket[beerLabel].beerCount) * Number(basket[beerLabel].beerPrice);
   }
-  console.log(basket);
+
   showTotalPrice();
 }
 
@@ -160,20 +157,25 @@ export function removeFromBasket(e) {
   }
   showInBasket(beerLabel);
 }
-
-function postOrder(beer, amount) {
-  const orderData = [{ name: beer, amount: amount }];
-
-  console.log(orderData);
+export function postOrder(e) {
+  e.preventDefault();
+  orderData = [];
+  console.log(basket);
+  const keys = Object.keys(basket);
+  keys.forEach((key) => {
+    orderData.push({
+      name: basket[key].beerName,
+      amount: basket[key].beerCount,
+    });
+    console.log(orderData);
+  });
 
   const postData = JSON.stringify(orderData);
-  console.log(postData);
+  console.log(orderData);
   fetch("https://foobar-mandalorians.herokuapp.com/order", {
     method: "post",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
-
-      //"cache-control": "no-cache",
     },
     body: postData,
   })

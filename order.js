@@ -1,11 +1,11 @@
 import "./sass/customer.scss";
 
-import './dark_mode.js';
+import "./dark_mode.js";
+import { loadingScreen, switchUser } from "./common.js";
 
 import { addToBasket } from "./basket";
 import { removeFromBasket } from "./basket";
-
-
+import { postOrder } from "./basket";
 ("use strict");
 
 // load on start - maria
@@ -156,6 +156,8 @@ export function eachBeerCard(beer) {
   beerMinus.forEach((count) => {
     count.addEventListener("click", removeFromBasket);
   });
+
+  functionalExtras();
 }
 
 // modal with details for each beer - maria
@@ -195,21 +197,21 @@ function openDetailedModal(beer) {
 
 // checkout
 function checkoutButton() {
-  const buttonClicked = document.querySelector(".checkout");
-  buttonClicked.addEventListener("click", displayCheckout);
+  const buttonClicked = document.querySelectorAll(".checkout");
+  buttonClicked.forEach((btn) =>
+    btn.addEventListener("click", displayCheckout)
+  );
 }
 
 function displayCheckout() {
   const clone = document.querySelector("#checkout").content.cloneNode(true);
 
-  const modalCheckout = clone.querySelector("#order_modal");
+  const modalCheckout = document.querySelector("#order_modal");
   modalCheckout.style.display = "block";
 
-  document.querySelector("main section").appendChild(clone);
+  document.querySelector(".form-container").appendChild(clone);
 
-  const modalContainer = document.querySelector(
-    "#order_modal .modal_container_b"
-  );
+  const modalContainer = document.querySelector("#order_modal");
   const body = document.querySelector("body");
   body.style.overflow = "hidden";
   window.onclick = function (e) {
@@ -219,4 +221,13 @@ function displayCheckout() {
       console.log(modalCheckout);
     }
   };
+
+  //post beers on submit Krista
+  console.log(document.querySelector("form"));
+  document.querySelector("form").addEventListener("submit", postOrder);
+}
+
+function functionalExtras() {
+  loadingScreen();
+  switchUser();
 }

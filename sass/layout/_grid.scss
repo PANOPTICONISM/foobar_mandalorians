@@ -8,7 +8,7 @@ body {
   margin: 0;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  max-width: 2000px;
+  max-width: 1920px;
 }
 
 header {
@@ -16,27 +16,56 @@ header {
   grid-row: 1;
 }
 
-main {
-  display: grid;
+.servings_orders {
   grid-column: 1/-1;
-  grid-row: 2/2;
-  z-index: -1;
-  // padding: 10px 30px;
+  grid-row: 2;
 }
 
 .darkmode-layer {
   z-index: -1;
 }
-  
+
+.search_filters {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 15px 0;
+}
+
+//products section
+.products {
+  padding: 0 25px 25px 25px;
+}
+
+// customer_order
+.checkout_beer {
+  grid-column: 12/-1;
+  grid-row: 2;
+}
+
+.products {
+  grid-column: 1/-1;
+  grid-row: 3;
+}
+
 @media (min-width: mx.$screen-ipad) {
-    header {
-      grid-column: 1/2;
-    }
-  
-    main {
-      grid-column: 2/-1;
-      grid-row: 1;
-      // same as above
-      // padding: 40px;
-    }
+  header {
+    grid-column: 1/2;
+    grid-row: 1/12;
+  }
+
+  .servings_orders {
+    grid-column: 2/-1;
+    grid-row: 1;
+  }
+
+  // customer_order
+  .checkout_beer {
+    grid-row: 1;
+  }
+
+  .products {
+    grid-column: 2/-1;
+    grid-row: 2;
+  }
 }

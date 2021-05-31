@@ -1,56 +1,103 @@
 @use "../abstracts/variables" as a;
 
-sidebar {
-  display: grid;
-  grid-column: 9/-1;
-  background-color: a.$green-mid;
+.modal_container_b {
+  padding: 20px;
+  color: a.$white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
 
   .summary {
-    display: flex;
-    flex-direction: column;
-    background-color: a.$green-dark;
-    align-items: center;
-    padding: 50px;
+    max-height: 380px;
+    overflow-y: scroll;
   }
+}
+
+aside {
+  max-width: 450px;
+}
+
+.basket-container,
+.reminder {
+  background-color: a.$green-dark;
+  padding: 20px;
+  border-radius: 40px;
+  margin: 20px 0;
+
   h2 {
     text-transform: uppercase;
     color: a.$white;
   }
 
   .cardItem {
+    background-color: a.$green-darker;
     display: flex;
-    background-color: a.$green-dark;
+    flex-wrap: wrap;
+    justify-content: space-around;
     align-items: center;
-    justify-content: space-between;
-    margin-right: 1.5em;
-    padding-bottom: 10px;
-    margin-top: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: a.$border-radius;
+    -webkit-border-radius: a.$border-radius;
+    -moz-border-radius: a.$border-radius;
+    -ms-border-radius: a.$border-radius;
+    -o-border-radius: a.$border-radius;
   }
 
   .cardItem img {
     object-fit: cover;
     border-radius: 100%;
-    width: 75px;
-    height: 75px;
-    margin-right: 15px;
+    width: 55px;
+    height: 55px;
   }
 
-  .name-category {
+  .beer-card {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+
+    .name_category {
+      padding: 0 10px;
+    }
   }
+
   h3,
   h4,
   h5,
   h6 {
-    color: a.$white;
+    margin: 0;
   }
 
-  .counter {
-    margin-right: auto;
-    margin-top: 20px;
-  }
   h6 {
     font-size: 1.1rem;
   }
+
+  .total {
+    display: flex;
+    justify-content: space-between;
+  }
+  .total p {
+    font-size: 1.2rem;
+    font-weight: a.$font-weight-bold;
+  }
 }
+
+.reminder {
+  display: flex;
+  align-items: center;
+
+  .iconify {
+    color: #ffef2f;
+    font-size: 75px;
+    width: 100px;
+  }
+  p {
+    font-size: a.$p;
+  }
+}
+
+// @media (min-width: mix.$screen-ipad) {
+//   #order_modal {
+//     display: flex;
+//   }
+// }
