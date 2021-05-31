@@ -37,6 +37,7 @@ function filterData(beers) {
   groupFilters();
   filterClicked();
   checkoutButton();
+  searchCorrectBeers(beers);
 }
 
 // array of all beertypes - maria
@@ -233,4 +234,20 @@ function displayCheckout() {
 function functionalExtras() {
   loadingScreen();
   switchUser();
+}
+
+// search bar - maria
+function searchCorrectBeers(beers) {
+  const searchBar = document.getElementById("search-bar");
+
+  searchBar.addEventListener("keyup", (e) => {
+    const writtenKeyword = e.target.value.toLowerCase();
+
+    function isBeer(beer) {
+      return beer.name.toLowerCase().includes(writtenKeyword);
+    }
+
+    const searchedList = beers.filter(isBeer);
+    return rebuildList(searchedList);
+  })
 }
