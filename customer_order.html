@@ -82,6 +82,7 @@
   </header>
 
   <div class="checkout_beer checkout">
+    <div class="amount_beers">1</div>
     <span class="iconify" data-inline="false" data-icon="ion:beer"></span>
   </div>
 
@@ -153,68 +154,68 @@
   </template>
 
   <template id="checkout">
-    <div class="modal_inner_checkout">
-      <h1>Order confirmation</h1>
-      <div class="form">
-        <div class="payment_options">
-          <button class="credit_card active_filter">Credit card</button>
-          <button>MobilePay</button>
+    <h1>Order confirmation</h1>
+    <div class="form">
+      <div class="payment_options">
+        <button class="credit_card active_filter">Credit card</button>
+        <button>MobilePay</button>
+      </div>
+
+      <form>
+        <fieldset>
+          <label for="username">Username</label>
+          <p>
+            Give yourself a cool name with 2 to 10 letters and then try to
+            find your order on one of our tv screens
+          </p>
+          <input id="username" name="username" autocomplete="username" inputmode="text" type="text" minlength="2"
+            maxlength="10" required />
+        </fieldset>
+        <fieldset>
+          <label for="pnumber">Phone-number</label>
+          <p>This number will only be used to send you your order number</p>
+          <input id="pnumber" name="phonenumber" inputmode="tel" autocomplete="tel" type="tel" required />
+        </fieldset>
+        <fieldset>
+          <label for="cardname">Name on the card</label>
+          <p>Full name as presented on your credit card</p>
+          <input id="cardname" name="cardname" inputmode="text" type="text" required />
+        </fieldset>
+        <fieldset>
+          <label for="creditcard">Credit card</label>
+          <p>This information will be used for this purchase only and not stored anywhere</p>
+          <input id="creditcard" name="creditcard" inputmode="numeric" type="number" required />
+        </fieldset>
+        <div class="credit_card_details">
+          <fieldset>
+            <label for="expirationdate">Expiration date</label>
+            <div>
+              <input id="expirationdate" name="expirationmonth" inputmode="numeric" type="number" required />
+              <span>/</span>
+              <input id="expirationdate" name="expirationyear" inputmode="numeric" type="number" required />
+            </div>
+          </fieldset>
+          <fieldset>
+            <label for="cvv">CVV</label>
+            <input id="cvv" name="cvv" inputmode="numeric" type="number" required />
+          </fieldset>
         </div>
 
-        <form>
-          <fieldset>
-            <label for="username">Username</label>
-            <p>
-              Give yourself a cool name with 2 to 10 letters and then try to
-              find your order on one of our tv screens
-            </p>
-            <input id="username" name="username" autocomplete="username" inputmode="text" type="text" minlength="2"
-              maxlength="10" required />
-          </fieldset>
-          <fieldset>
-            <label for="pnumber">Phone-number</label>
-            <p>This number will only be used to send you your order number</p>
-            <input id="pnumber" name="phonenumber" inputmode="tel" autocomplete="tel" type="tel" required />
-          </fieldset>
-          <fieldset>
-            <label for="cardname">Name on the card</label>
-            <input id="cardname" name="cardname" inputmode="text" type="text" required />
-          </fieldset>
-          <fieldset>
-            <label for="creditcard">Credit card</label>
-            <input id="creditcard" name="creditcard" inputmode="numeric" type="number" required />
-          </fieldset>
-          <div class="credit_card_details">
-            <fieldset>
-              <label for="expirationdate">Expiration date</label>
-              <div>
-                <input id="expirationdate" name="expirationmonth" inputmode="numeric" type="number" required />
-                <span>/</span>
-                <input id="expirationdate" name="expirationyear" inputmode="numeric" type="number" required />
-              </div>
-            </fieldset>
-            <fieldset>
-              <label for="cvv">CVV</label>
-              <input id="cvv" name="cvv" inputmode="numeric" type="number" required />
-            </fieldset>
-          </div>
-
-          <p>
-            By clicking “Beer me up”, I agree with FooBar’s Terms of Service
-            and with purchasing the content in the basket summary.
-          </p>
-          <div class="buttons">
-            <button type="reset" class="reset">
-              <span class="iconify arrow" data-inline="false" data-icon="bi:arrow-left"></span>
-              Return
-            </button>
-            <button type="submit" class="submit">
-              Beer me up
-              <span class="iconify purchase" data-inline="false" data-icon="bi:bag-check"></span>
-            </button>
-          </div>
-        </form>
-      </div>
+        <p>
+          By clicking “Beer me up”, I agree with FooBar’s Terms of Service
+          and with purchasing the content in the basket summary.
+        </p>
+        <div class="buttons">
+          <button type="reset" class="reset">
+            <span class="iconify arrow" data-inline="false" data-icon="bi:arrow-left"></span>
+            Return
+          </button>
+          <button type="submit" class="submit">
+            Beer me up
+            <span class="iconify purchase" data-inline="false" data-icon="bi:bag-check"></span>
+          </button>
+        </div>
+      </form>
     </div>
 
     <!-- <div id="confirmation_modal">

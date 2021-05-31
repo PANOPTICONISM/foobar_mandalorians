@@ -220,16 +220,10 @@ function displayCheckout() {
 
   document.querySelector(".form-container").appendChild(clone);
 
-  const modalContainer = document.querySelector("#order_modal");
   const body = document.querySelector("body");
   body.style.overflow = "hidden";
-  window.onclick = function (e) {
-    if (e.target == modalContainer) {
-      body.style.overflow = "auto";
-      modalCheckout.remove();
-      console.log(modalCheckout);
-    }
-  };
+
+  // TODO: remove overflow upon closing modal
 
   //post beers on submit Krista
   console.log(document.querySelector("form"));
