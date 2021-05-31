@@ -36,6 +36,10 @@ h1 {
   }
 }
 
+.basket-container h1 {
+  color: a.$white;
+}
+
 h2 {
   font-size: a.$h2;
 }
@@ -137,10 +141,4 @@ h2 {
     margin: 0;
     font-size: a.$desc-label;
   }
-}
-
-// dark-mode styling
-.darkmode--activated h2,
-.darkmode--activated li {
-  color: #fff;
 }
