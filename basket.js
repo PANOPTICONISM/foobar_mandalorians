@@ -157,7 +157,8 @@ export function removeFromBasket(e) {
   }
   showInBasket(beerLabel);
 }
-export function postOrder() {
+export function postOrder(e) {
+  e.preventDefault();
   orderData = [];
   console.log(basket);
   const keys = Object.keys(basket);

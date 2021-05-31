@@ -225,8 +225,8 @@ function displayCheckout() {
   };
 
   //post beers on submit Krista
-  console.log(document.querySelector(".submit"));
-  document.querySelector(".submit").addEventListener("click", postOrder);
+  console.log(document.querySelector("form"));
+  document.querySelector("form").addEventListener("submit", postOrder);
 }
 
 // function postOrder() {
