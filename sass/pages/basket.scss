@@ -1,4 +1,5 @@
 @use "../abstracts/variables" as a;
+@use '../abstracts/mixins' as mx;
 
 .modal_container_b {
   padding: 20px;
@@ -15,26 +16,31 @@
 }
 
 aside {
-  max-width: 450px;
+  max-width: 600px;
 }
 
 .basket-container,
 .reminder {
   background-color: a.$green-dark;
-  padding: 20px;
+  padding: 40px;
   border-radius: 40px;
   margin: 20px 0;
+
+  h1 {
+    margin: 0;
+  }
 
   h2 {
     text-transform: uppercase;
     color: a.$white;
+    margin: 0;
   }
 
   .cardItem {
     background-color: a.$green-darker;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 20px;
     margin: 20px 0;
@@ -96,8 +102,15 @@ aside {
   }
 }
 
-// @media (min-width: mix.$screen-ipad) {
-//   #order_modal {
-//     display: flex;
-//   }
-// }
+@media (min-width: mx.$screen-ipad) {
+
+  .modal_container_b {
+    justify-content: flex-start;
+
+    .basket-container,
+    .reminder {
+      margin: 40px;
+    }
+  }
+
+}
