@@ -1,11 +1,20 @@
 import "./sass/customer.scss";
 
 import "./dark_mode.js";
-import { loadingScreen, switchUser } from "./common.js";
+import {
+  loadingScreen,
+  switchUser
+} from "./common.js";
 
-import { addToBasket } from "./basket";
-import { removeFromBasket } from "./basket";
-import { postOrder } from "./basket";
+import {
+  addToBasket
+} from "./basket";
+import {
+  removeFromBasket
+} from "./basket";
+import {
+  postOrder
+} from "./basket";
 ("use strict");
 
 // load on start - maria
@@ -28,6 +37,7 @@ function filterData(beers) {
   groupFilters();
   filterClicked();
   checkoutButton();
+  searchCorrectBeers(beers);
 }
 
 // array of all beertypes - maria
@@ -110,7 +120,7 @@ export function eachBeerCard(beer) {
   topfirstLayer.setAttribute("class", "first_layer");
   const topSecondLayer = document.createElement("div");
   topSecondLayer.setAttribute("class", "second_layer");
-  const beerName = document.createElement("h3");
+  const beerName = document.createElement("h2");
   beerName.textContent = beer.name;
   const beerImage = document.createElement("img");
   beerImage.src = beer.label;
@@ -121,7 +131,7 @@ export function eachBeerCard(beer) {
   const price = document.createElement("p");
   //TODO: "DKK"removed
   price.textContent = Math.floor(Math.random() * 100 + 10);
-  const beerType = document.createElement("h4");
+  const beerType = document.createElement("h3");
   beerType.textContent = beer.category;
 
   const bottomLayer = document.createElement("div");
@@ -134,7 +144,7 @@ export function eachBeerCard(beer) {
   });
   const clone = document.querySelector("#counter").content.cloneNode(true);
   clone.querySelector(".counter");
-  const alcoholPercentage = document.createElement("h5");
+  const alcoholPercentage = document.createElement("h4");
   alcoholPercentage.textContent = beer.alc + " %";
 
   topLayer.append(topfirstLayer);
@@ -166,9 +176,9 @@ function openDetailedModal(beer) {
 
   const beerImage = clone.querySelector(".modal_inner_readmore img");
   beerImage.src = beer.label;
-  const beerName = clone.querySelector(".modal_inner_readmore h3");
+  const beerName = clone.querySelector(".modal_inner_readmore h2");
   beerName.textContent = beer.name;
-  const beerType = clone.querySelector(".modal_inner_readmore h4");
+  const beerType = clone.querySelector(".modal_inner_readmore h3");
   beerType.textContent = beer.category;
   const beerDescription = clone.querySelector(".desc p");
   beerDescription.textContent = beer.description.flavor;
@@ -211,16 +221,10 @@ function displayCheckout() {
 
   document.querySelector(".form-container").appendChild(clone);
 
-  const modalContainer = document.querySelector("#order_modal");
   const body = document.querySelector("body");
   body.style.overflow = "hidden";
-  window.onclick = function (e) {
-    if (e.target == modalContainer) {
-      body.style.overflow = "auto";
-      modalCheckout.remove();
-      console.log(modalCheckout);
-    }
-  };
+
+  // TODO: remove overflow upon closing modal
 
   //post beers on submit Krista
   console.log(document.querySelector("form"));
@@ -230,4 +234,20 @@ function displayCheckout() {
 function functionalExtras() {
   loadingScreen();
   switchUser();
+}
+
+// search bar - maria
+function searchCorrectBeers(beers) {
+  const searchBar = document.getElementById("search-bar");
+
+  searchBar.addEventListener("keyup", (e) => {
+    const writtenKeyword = e.target.value.toLowerCase();
+
+    function isBeer(beer) {
+      return beer.name.toLowerCase().includes(writtenKeyword);
+    }
+
+    const searchedList = beers.filter(isBeer);
+    return rebuildList(searchedList);
+  })
 }

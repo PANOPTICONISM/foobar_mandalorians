@@ -1,5 +1,27 @@
 @use "../abstracts/variables" as a;
 @use '../abstracts/mixins' as mx;
+
+.checkout_beer {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+
+  .amount_beers {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    width: 25px;
+    height: 25px;
+    background-color: a.$icons-yellow;
+    font-weight: a.$font-weight-bolder;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+  }
+}
+
 .beers {
   display: grid;
   grid-template-columns: repeat(auto-fill, 300px);

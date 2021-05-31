@@ -17,8 +17,9 @@ nav li a,
   font-size: a.$links-nav;
 }
 
-h2 {
+h1 {
   font-weight: a.$font-weight-bolder;
+  font-size: a.$h1;
   text-transform: uppercase;
   color: a.$black;
   position: relative;
@@ -33,6 +34,14 @@ h2 {
     border-radius: 4px;
     background-color: a.$green-dark;
   }
+}
+
+.basket-container h1 {
+  color: a.$white;
+}
+
+h2 {
+  font-size: a.$h2;
 }
 
 // bartender dashboard
@@ -102,12 +111,12 @@ h2 {
   color: a.$white;
   font-family: a.$primary-font;
 
-  h3 {
+  h2 {
     font-size: a.$readmore-h3;
     margin-bottom: 5px;
   }
 
-  h4 {
+  h3 {
     font-size: a.$readmore-h4;
     margin: 0;
   }
@@ -132,10 +141,4 @@ h2 {
     margin: 0;
     font-size: a.$desc-label;
   }
-}
-
-// dark-mode styling
-.darkmode--activated h2,
-.darkmode--activated li {
-  color: #fff;
 }
