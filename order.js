@@ -130,7 +130,7 @@ export function eachBeerCard(beer) {
   middleLayer.setAttribute("class", "middle_layer");
   const price = document.createElement("p");
   //TODO: "DKK"removed
-  price.textContent = Math.floor(Math.random() * 100 + 10);
+  price.textContent = Math.floor(beer.alc * 10);
   const beerType = document.createElement("h3");
   beerType.textContent = beer.category;
 
