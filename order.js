@@ -281,9 +281,11 @@ function switchPaymentMethod() {
     const mobilePay = document.querySelector(".mobilepay");
     const formContainer = document.querySelector("form");
     if (e.target === creditCard) {
+      console.log("hey")
       mobilePay.classList.remove("active_filter");
       creditCard.classList.add("active_filter");
       formContainer.style.display = "block";
+      document.querySelector(".official_mobilepay").remove();
     } else if (e.target === mobilePay) {
       creditCard.classList.remove("active_filter");
       mobilePay.classList.add("active_filter");
@@ -297,4 +299,16 @@ function switchPaymentMethod() {
 
 function mobilePayPayment() {
   console.log("sup")
+
+  const mobilePayButton = document.createElement("button");
+  mobilePayButton.setAttribute("class", "official_mobilepay")
+
+  const image = document.createElement("img");
+  image.src = "./mobilepay.jpg";
+  const p = document.createElement("p");
+  p.textContent = "Pay with MobilePay";
+
+  mobilePayButton.append(image, p);
+
+  document.querySelector(".form").appendChild(mobilePayButton);
 }

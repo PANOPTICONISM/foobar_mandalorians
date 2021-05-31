@@ -115,6 +115,24 @@ aside {
   }
 }
 
+.official_mobilepay {
+  background-color: a.$mobilepay;
+  color: a.$white;
+  padding: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+  img {
+    max-width: 40px;
+  }
+}
+
 @media (min-width: mx.$screen-desktop) {
 
   .modal_container_b {
