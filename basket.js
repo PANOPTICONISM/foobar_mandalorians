@@ -1,6 +1,7 @@
 "use strict";
 
 //everything to do with basket starts here Krista
+import { lastStr } from "./helpers";
 export let basket = {};
 export let orderData = [];
 document.querySelector(".amount_beers").classList.add("hide");
@@ -28,8 +29,6 @@ export function addToBasket(e) {
 
   document.querySelector(".amount_beers").classList.remove("hide");
   document.querySelector(".checkout_beer").classList.add("shake");
-  //TODO:show products in beer keg
-
   document.querySelector(".amount_beers").innerHTML = "+";
   showInBasket(beerLabel);
 }
@@ -38,11 +37,12 @@ export function addToBasket(e) {
 function showInBasket(beerLabel) {
   const item = basket[beerLabel];
   //TODO:
-
+  console.log(item);
   if (item === undefined) {
     console.log("you have 0 beers, item removed");
   }
   const price = `${Number(item.beerPrice.slice(-3))}`;
+  console.log(price);
   const quantity = Number(`${item.beerCount}`);
   const cardCopy = document.createElement("div");
   cardCopy.setAttribute("class", "cardItem");
@@ -60,7 +60,7 @@ function showInBasket(beerLabel) {
            <input type="button" value="+" class="plusBasket" />
         </div>  
         <div class="price">
-          <h6>${price * quantity}</h6>
+          <h6>DKK ${price * quantity}</h6>
         </div>
        `;
 
@@ -89,13 +89,17 @@ function showInBasket(beerLabel) {
 //edit items already in basket on +
 function editBasketPlus(e) {
   const beerLabel = e.target.parentElement.parentElement.id;
-  let beerCount = e.target.parentElement.children[1];
+  const beerCount = e.target.parentElement.children[1];
+  const calcPrice = e.target.parentElement.parentElement.querySelector("h6");
   beerCount.value++;
   //get  data from object and adjust object
   if (beerLabel in basket) {
+    const price =
+      Number(basket[beerLabel].beerCount) *
+      Number(basket[beerLabel].beerPrice.slice(-3));
+    console.log(price);
     basket[beerLabel].beerCount += 1;
-    e.target.parentElement.parentElement.querySelector("h6").textContent =
-      Number(basket[beerLabel].beerCount) * Number(basket[beerLabel].beerPrice);
+    calcPrice.textContent = `DKK ${price}`;
   }
   showTotalPrice();
 }
@@ -104,13 +108,14 @@ function editBasketPlus(e) {
 function editBasketMinus(e) {
   const beerLabel = e.target.parentElement.parentElement.id;
   const beerCount = e.target.parentElement.children[1];
-  const price = e.target.parentElement.parentElement.querySelector("h6");
+  const calcPrice = e.target.parentElement.parentElement.querySelector("h6");
   beerCount.value--;
   if (beerLabel in basket && basket[beerLabel].beerCount > 1) {
     basket[beerLabel].beerCount -= 1;
-
-    price.textContent =
-      Number(basket[beerLabel].beerCount) * Number(basket[beerLabel].beerPrice);
+    const price =
+      Number(basket[beerLabel].beerCount) *
+      Number(basket[beerLabel].beerPrice.slice(-3));
+    calcPrice.textContent = `DKK ${price}`;
   } else {
     console.log("delete me");
     const beerLabelCard = e.target.parentElement.parentElement;
@@ -136,7 +141,7 @@ function showTotalPrice() {
     return total;
   }, 0);
   // console.log(totalPrice);
-  document.querySelector("#total").innerHTML = `${totalPrice}`;
+  document.querySelector("#total").innerHTML = `DKK ${totalPrice}`;
 }
 
 export function removeFromBasket(e) {
