@@ -34,6 +34,7 @@ export function addToBasket(e) {
   document.querySelector(".checkout_beer").classList.add("shake");
   document.querySelector(".amount_beers").innerHTML = "✓";
   showInBasket(beerLabel);
+  console.log(beerLabel);
 }
 
 //create HTML elements and render in basket according to data

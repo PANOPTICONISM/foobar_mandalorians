@@ -195,24 +195,31 @@
       </div>
     </template>
 
-
-  <template id="checkout">
-    <h1>Order confirmation</h1>
-    <div class="form">
-      <div class="payment_options">
-        <button class="credit_card active_filter">Credit card</button>
-        <button class="mobilepay">MobilePay</button>
-      </div>
+    <template id="checkout">
+      <h1>Order confirmation</h1>
+      <div class="form">
+        <div class="payment_options">
+          <button class="credit_card active_filter">Credit card</button>
+          <button class="mobilepay">MobilePay</button>
+        </div>
 
         <form>
           <fieldset>
-
-            <label for="expirationdate">Expiration date</label>
-            <div>
-              <input id="expirationmonth" name="expirationmonth" inputmode="numeric" type="number" required />
-              <span>/</span>
-              <input id="expirationyear" name="expirationyear" inputmode="numeric" type="number" required />
-            </div>
+            <label for="username">Username</label>
+            <p>
+              Give yourself a cool name with 2 to 10 letters and then try to
+              find your order on one of our tv screens
+            </p>
+            <input
+              id="username"
+              name="username"
+              autocomplete="username"
+              inputmode="text"
+              type="text"
+              minlength="2"
+              maxlength="10"
+              required
+            />
           </fieldset>
           <fieldset>
             <label for="pnumber">Phone-number</label>
@@ -256,7 +263,7 @@
               <label for="expirationdate">Expiration date</label>
               <div>
                 <input
-                  id="expirationdate"
+                  id="expirationmonth"
                   name="expirationmonth"
                   inputmode="numeric"
                   type="number"
@@ -264,7 +271,7 @@
                 />
                 <span>/</span>
                 <input
-                  id="expirationdate"
+                  id="expirationyear"
                   name="expirationyear"
                   inputmode="numeric"
                   type="number"
