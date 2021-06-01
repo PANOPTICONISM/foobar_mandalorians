@@ -32,7 +32,7 @@ export function addToBasket(e) {
 
   document.querySelector(".amount_beers").classList.remove("hide");
   document.querySelector(".checkout_beer").classList.add("shake");
-  document.querySelector(".amount_beers").innerHTML = "+";
+  document.querySelector(".amount_beers").innerHTML = "✓";
   showInBasket(beerLabel);
 }
 
@@ -40,12 +40,13 @@ export function addToBasket(e) {
 function showInBasket(beerLabel) {
   const item = basket[beerLabel];
   //TODO:
-  console.log(item);
+
   if (item === undefined) {
     console.log("you have 0 beers, item removed");
   }
-  const price = `${Number(item.beerPrice.slice(-3))}`;
-  const quantity = Number(`${item.beerCount}`);
+  const priceStr = lastStr(item.beerPrice);
+  const price = Number(priceStr);
+  const quantity = Number(item.beerCount);
   const cardCopy = document.createElement("div");
   cardCopy.setAttribute("class", "cardItem");
   cardCopy.setAttribute("id", beerLabel);
@@ -66,9 +67,8 @@ function showInBasket(beerLabel) {
         </div>
        `;
 
-  //select beer by its ID= beername, it is beerLabel without white space
+  //give same ID to html element as Key in basket obj
   const cardBeerName = document.querySelector("#" + nameId(beerLabel));
-  console.log(cardBeerName);
   //if same beer clicked >1 add up only price and quantyty, not whole new beer order card
   if (cardBeerName != null) {
     cardBeerName.remove();
@@ -96,11 +96,9 @@ function editBasketPlus(e) {
   //get  data from object and adjust object
   if (beerLabel in basket) {
     basket[beerLabel].beerCount += 1;
-    const price =
-      Number(basket[beerLabel].beerCount) *
-      Number(basket[beerLabel].beerPrice.slice(-3));
-    console.log(price);
-    calcPrice.textContent = price;
+    const priceStr = lastStr(basket[beerLabel].beerPrice);
+    const price = Number(basket[beerLabel].beerCount) * Number(priceStr);
+    calcPrice.textContent = `DKK ${price}`;
   }
   showTotalPrice();
 }
@@ -114,9 +112,8 @@ function editBasketMinus(e) {
   beerCount.value--;
   if (beerLabel in basket && basket[beerLabel].beerCount > 1) {
     basket[beerLabel].beerCount -= 1;
-    const price =
-      Number(basket[beerLabel].beerCount) *
-      Number(basket[beerLabel].beerPrice.slice(-3));
+    const priceStr = lastStr(basket[beerLabel].beerPrice);
+    const price = Number(basket[beerLabel].beerCount) * Number(priceStr);
     calcPrice.textContent = `DKK ${price}`;
   } else {
     console.log("delete me");
@@ -131,8 +128,7 @@ function showTotalPrice() {
   let price = document.querySelectorAll("h6");
   price.forEach((beerPrice) => {
     let priceString = beerPrice.textContent;
-    //get last three characters of string
-    let price = priceString.slice(-3);
+    let price = lastStr(priceString);
     //turn string into number and push to array total
     total.push(Number(price));
   });
