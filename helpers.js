@@ -14,3 +14,8 @@ export function lastStr(str) {
   const lastWord = str.substring(lastSpace + 1);
   return lastWord;
 }
+
+//clear whitespaces
+export function nameId(name) {
+  return name.replace(/\s/g, "");
+}

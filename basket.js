@@ -1,6 +1,9 @@
 "use strict";
 
+import { lastStr } from "./helpers";
+import { nameId } from "./helpers";
 //everything to do with basket starts here Krista
+
 export let basket = {};
 export let orderData = [];
 document.querySelector(".amount_beers").classList.add("hide");
@@ -9,7 +12,8 @@ export function addToBasket(e) {
   const productCard = e.target.parentElement.parentElement;
   const beerName = productCard.parentNode.querySelector("h2").textContent;
   //remove whitespaces from beerLabel to use it beerLabel as an key in obj and an html ID
-  const beerLabel = beerName.replace(/\s/g, "");
+
+  const beerLabel = nameId(beerName);
   const beerCount = e.target.parentElement.children[1];
   beerCount.value++;
 
@@ -30,7 +34,6 @@ export function addToBasket(e) {
   document.querySelector(".checkout_beer").classList.add("shake");
   document.querySelector(".amount_beers").innerHTML = "+";
   showInBasket(beerLabel);
-  console.log(beerLabel);
 }
 
 //create HTML elements and render in basket according to data
@@ -64,9 +67,8 @@ function showInBasket(beerLabel) {
        `;
 
   //select beer by its ID= beername, it is beerLabel without white space
-  const cardBeerName = document.querySelector(
-    "#" + beerLabel.replace(/\s/g, "")
-  );
+  const cardBeerName = document.querySelector("#" + nameId(beerLabel));
+  console.log(cardBeerName);
   //if same beer clicked >1 add up only price and quantyty, not whole new beer order card
   if (cardBeerName != null) {
     cardBeerName.remove();
@@ -148,7 +150,8 @@ function showTotalPrice() {
 export function removeFromBasket(e) {
   const productCard = e.target.parentElement.parentElement;
   const beerName = productCard.parentNode.querySelector("h2").textContent;
-  const beerLabel = beerName.replace(/\s/g, "");
+  const beerLabel = nameId(beerName);
+  console.log(beerLabel);
   const beerCount = e.currentTarget.parentElement.children[1];
   beerCount.value--;
   console.log(beerCount.value);
@@ -168,9 +171,8 @@ export function removeFromBasket(e) {
   }
   //if beers = 0, remove that specific beer form basket and also from object and update price
   if (beerLabel in basket && basket[beerLabel].beerCount == 0) {
-    const beerInBasket = document.querySelector(
-      "#" + beerLabel.replace(/\s/g, "")
-    );
+    const beerInBasket = document.querySelector("#" + nameId(beerLabel));
+    console.log(beerInBasket);
     beerInBasket.remove();
     delete basket[beerLabel];
     showTotalPrice();
