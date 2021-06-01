@@ -7,11 +7,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-start;
 
   .summary {
-    max-height: 230px;
-    overflow-y: scroll;
+    max-height: 345px;
+    overflow-y: auto;
   }
 }
 
@@ -115,13 +115,48 @@ aside {
   }
 }
 
-@media (min-width: mx.$screen-ipad) {
-  .modal_container_b {
-    justify-content: flex-start;
+
+.official_mobilepay {
+  background-color: a.$mobilepay;
+  color: a.$white;
+  padding: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+  img {
+    max-width: 40px;
+  }
+}
+
+// scrollbar themed
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: a.$green-light;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: a.$green-darker;
+}
+
+@media (min-width: mx.$screen-desktop) {
+
 
     .basket-container,
     .reminder {
-      margin: 40px;
+      margin: 20px;
     }
-  }
+
 }

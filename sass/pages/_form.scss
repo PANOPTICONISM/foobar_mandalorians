@@ -1,4 +1,5 @@
 @use "../abstracts/variables" as a;
+@use "../abstracts/mixins" as mix;
 
 form {
   max-width: 500px;
@@ -44,4 +45,9 @@ form {
   input:focus-within {
     background-color: a.$green-light;
   }
+}
+
+.form-container {
+  width: 100%;
+  max-width: 600px;
 }

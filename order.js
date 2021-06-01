@@ -121,7 +121,9 @@ export function eachBeerCard(beer) {
   middleLayer.setAttribute("class", "middle_layer");
   const price = document.createElement("p");
   //TODO: "DKK"removed
+
   price.textContent = "DKK " + Math.floor(Math.random() * 100 + 10);
+
   const beerType = document.createElement("h3");
   beerType.textContent = beer.category;
 
@@ -220,6 +222,20 @@ function displayCheckout() {
   //post beers on submit Krista
   console.log(document.querySelector("form"));
   document.querySelector("form").addEventListener("submit", postOrder);
+
+  switchPaymentMethod();
+  closeCheckout(modalCheckout);
+}
+
+// close checkout page - maria
+function closeCheckout(modalCheckout) {
+  const returnBtn = document.querySelector(".reset");
+  returnBtn.addEventListener("click", returnToProducts);
+
+  function returnToProducts() {
+    modalCheckout.style.display = "none";
+    document.querySelector(".form-container").innerHTML = "";
+  }
 }
 
 function functionalExtras() {
@@ -242,3 +258,53 @@ function searchCorrectBeers(beers) {
     return rebuildList(searchedList);
   });
 }
+ 
+
+
+// switch payments method - maria
+function switchPaymentMethod() {
+  const paymentButtons = document.querySelectorAll(".payment_options button");
+
+  paymentButtons.forEach(btn => {
+    btn.addEventListener("click", switchMethod);
+  })
+
+  function switchMethod(e) {
+    console.log("clicked", e.target)
+
+    const creditCard = document.querySelector(".credit_card");
+    const mobilePay = document.querySelector(".mobilepay");
+    const formContainer = document.querySelector("form");
+    if (e.target === creditCard) {
+      console.log("hey")
+      mobilePay.classList.remove("active_filter");
+      creditCard.classList.add("active_filter");
+      formContainer.style.display = "block";
+      document.querySelector(".official_mobilepay").remove();
+    } else if (e.target === mobilePay) {
+      creditCard.classList.remove("active_filter");
+      mobilePay.classList.add("active_filter");
+      formContainer.style.display = "none";
+      mobilePayPayment();
+    } else {
+      return false;
+    }
+  }
+}
+
+function mobilePayPayment() {
+  console.log("sup")
+
+  const mobilePayButton = document.createElement("button");
+  mobilePayButton.setAttribute("class", "official_mobilepay")
+
+  const image = document.createElement("img");
+  image.src = "./mobilepay.jpg";
+  const p = document.createElement("p");
+  p.textContent = "Pay with MobilePay";
+
+  mobilePayButton.append(image, p);
+
+  document.querySelector(".form").appendChild(mobilePayButton);
+}
+
