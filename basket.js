@@ -1,4 +1,4 @@
-//add&remove order and send to basket, Krista
+"use strict";
 
 //everything to do with basket starts here Krista
 export let basket = {};
@@ -7,14 +7,16 @@ export let orderData = [];
 export function addToBasket(e) {
   const productCard = e.target.parentElement.parentElement;
   const beerName = productCard.parentNode.querySelector("h2").textContent;
-  //remove whitespaces from beerLabel to use it beerLabe as an ID
+  //remove whitespaces from beerLabel to use it beerLabel as an key in obj and an html ID
   const beerLabel = beerName.replace(/\s/g, "");
   const beerCount = e.target.parentElement.children[1];
-
   beerCount.value++;
+  //TODO:show products in beerkeg
+  document.querySelector(".amount_beers").classList.remove(".hide");
+  document.querySelector(".checkout_beer").classList.add(".bounce-top");
+  document.querySelector(".amount_beers").innerHTML = beerCount.value;
   if (beerLabel in basket) {
     basket[beerLabel].beerCount += 1;
-    // beerCount.value = basket[beerLabel].beerCount;
   } else {
     let basketItem = {
       beerName: beerName,
@@ -29,10 +31,15 @@ export function addToBasket(e) {
   showInBasket(beerLabel);
 }
 
-//create HTML elements and render correctly in basket
+//create HTML elements and render in basket according to data
 function showInBasket(beerLabel) {
   const item = basket[beerLabel];
-  const price = `${parseInt(item.beerPrice.slice(-3))}`;
+  //TODO: check item, maybe issue with -
+
+  if (item === undefined) {
+    console.log("you have 0 beers, item removed");
+  }
+  const price = `${Number(item.beerPrice.slice(-3))}`;
   const quantity = Number(`${item.beerCount}`);
   const cardCopy = document.createElement("div");
   cardCopy.setAttribute("class", "cardItem");
@@ -73,7 +80,6 @@ function showInBasket(beerLabel) {
   beerMinus.forEach((count) => {
     count.addEventListener("click", editBasketMinus);
   });
-
   showTotalPrice();
 }
 
@@ -88,7 +94,6 @@ function editBasketPlus(e) {
     e.target.parentElement.parentElement.querySelector("h6").textContent =
       Number(basket[beerLabel].beerCount) * Number(basket[beerLabel].beerPrice);
   }
-
   showTotalPrice();
 }
 
@@ -136,10 +141,14 @@ export function removeFromBasket(e) {
   const beerLabel = productCard.parentNode.querySelector("h2").textContent;
   const beerCount = e.target.parentElement.children[1];
   beerCount.value--;
+  console.log(beerCount.value);
+  //beerkeg number
+  document.querySelector(".amount_beers").innerHTML = beerCount.value;
   //value in minus box is not going under 0
   if (beerCount.value <= 0) {
     beerCount.value = 0;
     beerCount.disabled = true;
+    document.querySelector(".amount_beers").classList.add(".hide");
   }
 
   //subtract 1 from what is current number of beers
@@ -173,12 +182,12 @@ export function postOrder(e) {
   const postData = JSON.stringify(orderData);
   console.log(orderData);
   fetch("https://foobar-mandalorians.herokuapp.com/order", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-      },
-      body: postData,
-    })
+    method: "post",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    body: postData,
+  })
     .then((res) => res.json())
     .then((orderData) => console.log(orderData));
 }

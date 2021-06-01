@@ -1,6 +1,9 @@
 @use "../abstracts/variables" as a;
 @use '../abstracts/mixins' as mx;
 
+.hide {
+  display: none;
+}
 .modal_container_b {
   padding: 20px;
   color: a.$white;
@@ -116,7 +119,6 @@ aside {
 }
 
 @media (min-width: mx.$screen-ipad) {
-
   .modal_container_b {
     justify-content: flex-start;
 
@@ -125,5 +127,4 @@ aside {
       margin: 40px;
     }
   }
-
 }
