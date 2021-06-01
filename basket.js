@@ -1,7 +1,6 @@
 "use strict";
 
 //everything to do with basket starts here Krista
-import { lastStr } from "./helpers";
 export let basket = {};
 export let orderData = [];
 document.querySelector(".amount_beers").classList.add("hide");
@@ -31,6 +30,7 @@ export function addToBasket(e) {
   document.querySelector(".checkout_beer").classList.add("shake");
   document.querySelector(".amount_beers").innerHTML = "+";
   showInBasket(beerLabel);
+  console.log(beerLabel);
 }
 
 //create HTML elements and render in basket according to data
@@ -42,7 +42,6 @@ function showInBasket(beerLabel) {
     console.log("you have 0 beers, item removed");
   }
   const price = `${Number(item.beerPrice.slice(-3))}`;
-  console.log(price);
   const quantity = Number(`${item.beerCount}`);
   const cardCopy = document.createElement("div");
   cardCopy.setAttribute("class", "cardItem");
@@ -94,12 +93,12 @@ function editBasketPlus(e) {
   beerCount.value++;
   //get  data from object and adjust object
   if (beerLabel in basket) {
+    basket[beerLabel].beerCount += 1;
     const price =
       Number(basket[beerLabel].beerCount) *
       Number(basket[beerLabel].beerPrice.slice(-3));
     console.log(price);
-    basket[beerLabel].beerCount += 1;
-    calcPrice.textContent = `DKK ${price}`;
+    calcPrice.textContent = price;
   }
   showTotalPrice();
 }
@@ -108,6 +107,7 @@ function editBasketPlus(e) {
 function editBasketMinus(e) {
   const beerLabel = e.target.parentElement.parentElement.id;
   const beerCount = e.target.parentElement.children[1];
+  console.log(beerCount);
   const calcPrice = e.target.parentElement.parentElement.querySelector("h6");
   beerCount.value--;
   if (beerLabel in basket && basket[beerLabel].beerCount > 1) {
@@ -134,10 +134,11 @@ function showTotalPrice() {
     //turn string into number and push to array total
     total.push(Number(price));
   });
-  //console.log(total);
+
   //reduce mUST take two params- accumulator what we are returning and current what we are looping through, and also startin point a number
-  const totalPrice = total.reduce((total, beerItem) => {
-    total += beerItem;
+  const totalPrice = total.reduce((total, beerItemNr) => {
+    total += beerItemNr;
+
     return total;
   }, 0);
   // console.log(totalPrice);
@@ -146,15 +147,15 @@ function showTotalPrice() {
 
 export function removeFromBasket(e) {
   const productCard = e.target.parentElement.parentElement;
-  const beerLabel = productCard.parentNode.querySelector("h2").textContent;
-  const beerCount = e.target.parentElement.children[1];
+  const beerName = productCard.parentNode.querySelector("h2").textContent;
+  const beerLabel = beerName.replace(/\s/g, "");
+  const beerCount = e.currentTarget.parentElement.children[1];
   beerCount.value--;
   console.log(beerCount.value);
-
-  //beerkeg number
+  // //beerkeg number
   document.querySelector(".amount_beers").innerHTML = "-";
   //value in minus box is not going under 0
-  if (beerCount.value <= 0) {
+  if (beerCount.value < 1) {
     beerCount.value = 0;
     beerCount.disabled = true;
     document.querySelector(".checkout_beer").classList.remove("shake");
@@ -167,7 +168,7 @@ export function removeFromBasket(e) {
   }
   //if beers = 0, remove that specific beer form basket and also from object and update price
   if (beerLabel in basket && basket[beerLabel].beerCount == 0) {
-    let beerInBasket = document.querySelector(
+    const beerInBasket = document.querySelector(
       "#" + beerLabel.replace(/\s/g, "")
     );
     beerInBasket.remove();
@@ -175,7 +176,9 @@ export function removeFromBasket(e) {
     showTotalPrice();
   }
   showInBasket(beerLabel);
+  console.log(beerLabel);
 }
+
 export function postOrder(e) {
   e.preventDefault();
   orderData = [];
