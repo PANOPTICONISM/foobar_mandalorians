@@ -1,9 +1,6 @@
 @use "../abstracts/variables" as a;
 @use '../abstracts/mixins' as mx;
 
-.hide {
-  display: none;
-}
 .modal_container_b {
   padding: 20px;
   color: a.$white;

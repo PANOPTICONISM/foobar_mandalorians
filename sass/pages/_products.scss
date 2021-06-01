@@ -1,8 +1,6 @@
 @use "../abstracts/variables" as a;
 @use '../abstracts/mixins' as mx;
-.hide {
-  display: none;
-}
+
 .checkout_beer {
   position: relative;
   width: fit-content;

@@ -3,6 +3,7 @@
 //everything to do with basket starts here Krista
 export let basket = {};
 export let orderData = [];
+document.querySelector(".amount_beers").classList.add("hide");
 //this function targets clicked elements to show in the list
 export function addToBasket(e) {
   const productCard = e.target.parentElement.parentElement;
@@ -11,10 +12,7 @@ export function addToBasket(e) {
   const beerLabel = beerName.replace(/\s/g, "");
   const beerCount = e.target.parentElement.children[1];
   beerCount.value++;
-  //TODO:show products in beerkeg
-  document.querySelector(".amount_beers").classList.remove(".hide");
-  document.querySelector(".checkout_beer").classList.add(".bounce-top");
-  document.querySelector(".amount_beers").innerHTML = beerCount.value;
+
   if (beerLabel in basket) {
     basket[beerLabel].beerCount += 1;
   } else {
@@ -28,13 +26,18 @@ export function addToBasket(e) {
     basket[beerLabel] = basketItem;
   }
 
+  document.querySelector(".amount_beers").classList.remove("hide");
+  document.querySelector(".checkout_beer").classList.add("shake");
+  //TODO:show products in beer keg
+
+  document.querySelector(".amount_beers").innerHTML = "+";
   showInBasket(beerLabel);
 }
 
 //create HTML elements and render in basket according to data
 function showInBasket(beerLabel) {
   const item = basket[beerLabel];
-  //TODO: check item, maybe issue with -
+  //TODO:
 
   if (item === undefined) {
     console.log("you have 0 beers, item removed");
@@ -142,13 +145,15 @@ export function removeFromBasket(e) {
   const beerCount = e.target.parentElement.children[1];
   beerCount.value--;
   console.log(beerCount.value);
+
   //beerkeg number
-  document.querySelector(".amount_beers").innerHTML = beerCount.value;
+  document.querySelector(".amount_beers").innerHTML = "-";
   //value in minus box is not going under 0
   if (beerCount.value <= 0) {
     beerCount.value = 0;
     beerCount.disabled = true;
-    document.querySelector(".amount_beers").classList.add(".hide");
+    document.querySelector(".checkout_beer").classList.remove("shake");
+    document.querySelector(".amount_beers").classList.add("hide");
   }
 
   //subtract 1 from what is current number of beers
