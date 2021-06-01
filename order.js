@@ -1,20 +1,11 @@
 import "./sass/customer.scss";
 
 import "./dark_mode.js";
-import {
-  loadingScreen,
-  switchUser
-} from "./common.js";
+import { loadingScreen, switchUser } from "./common.js";
 
-import {
-  addToBasket
-} from "./basket";
-import {
-  removeFromBasket
-} from "./basket";
-import {
-  postOrder
-} from "./basket";
+import { addToBasket } from "./basket";
+import { removeFromBasket } from "./basket";
+import { postOrder } from "./basket";
 ("use strict");
 
 // load on start - maria
@@ -130,7 +121,9 @@ export function eachBeerCard(beer) {
   middleLayer.setAttribute("class", "middle_layer");
   const price = document.createElement("p");
   //TODO: "DKK"removed
-  price.textContent = Math.floor(beer.alc * 10);
+
+  price.textContent = "DKK " + Math.floor(Math.random() * 100 + 10);
+
   const beerType = document.createElement("h3");
   beerType.textContent = beer.category;
 
@@ -263,8 +256,10 @@ function searchCorrectBeers(beers) {
 
     const searchedList = beers.filter(isBeer);
     return rebuildList(searchedList);
-  })
+  });
 }
+ 
+
 
 // switch payments method - maria
 function switchPaymentMethod() {
@@ -312,3 +307,4 @@ function mobilePayPayment() {
 
   document.querySelector(".form").appendChild(mobilePayButton);
 }
+
