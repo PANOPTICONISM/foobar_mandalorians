@@ -19,3 +19,13 @@ export function lastStr(str) {
 export function nameId(name) {
   return name.replace(/\s/g, "");
 }
+
+//reverse nr in storage
+export function maxAmount(storage) {
+  let amountStat = [];
+  storage.forEach((beer) => {
+    amountStat.push(beer.amount);
+  });
+
+  return Math.max(...amountStat);
+}

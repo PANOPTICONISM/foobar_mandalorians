@@ -2,7 +2,7 @@ window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
 import "./dark_mode.js";
 import { loadingScreen, switchUser } from "./common.js";
-import { currentTime, nameId } from "./helpers";
+import { currentTime, nameId, maxAmount } from "./helpers";
 import { chart } from "./chart";
 
 //fetch data every 3sec KRISTA
@@ -21,16 +21,18 @@ function prepareData(dashboardData) {
   document.querySelector(".order-box").innerHTML = "";
   //clear chart canvas
   chart.data.labels = [];
+  let maxBeers = maxAmount(dashboardData.storage);
   const beerArr = chart.data.datasets[0].data.length;
   if (beerArr > 100) {
     console.log("update beer data");
     chart.data.datasets[0].data = [];
   }
+
   isLowOnStock(dashboardData.storage);
   dashboardData.storage.forEach((beer) => {
     const label = beer.name;
-    //TODO: calculate reverse, so 1=biggestnum
-    const data = beer.amount;
+    //calculate reverse, so lowers is highest nr
+    const data = maxBeers / beer.amount;
     addData(chart, label, data);
   });
   dashboardData.serving.forEach((serving) => {
