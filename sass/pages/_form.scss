@@ -44,9 +44,11 @@ form {
       background-color: a.$green-queue;
     }
 
-    &:focus:invalid {
+    &:focus:invalid, &:not(:focus):not(:placeholder-shown):invalid {
       border: 1px solid a.$red;
     }
+
+    
   }
 }
 
