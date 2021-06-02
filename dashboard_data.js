@@ -104,7 +104,6 @@ function displayUpcomingServings(serving) {
       // console.log(beerServing[i + 1]);
       let beerNameValue = `${beerServing[i]}`;
       let beerCount = `${count}`;
-      console.log(count);
       if (beerNameValue === undefined) {
         console.log("beer is pouring");
       } else {
