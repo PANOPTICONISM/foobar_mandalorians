@@ -1,21 +1,16 @@
-import "./sass/customer.scss";
+("use strict");
 
-import "./dark_mode.js";
+import "./sass/customer.scss";
 import {
   loadingScreen,
   switchUser
 } from "./common.js";
-
 import {
-  addToBasket
-} from "./basket";
-import {
-  removeFromBasket
-} from "./basket";
-import {
+  addToBasket,
+  removeFromBasket,
   postOrder
 } from "./basket";
-("use strict");
+import "./dark_mode.js";
 
 // load on start - maria
 window.addEventListener("DOMContentLoaded", fetchData);
@@ -26,25 +21,24 @@ async function fetchData() {
   const response = await fetch(beertypes);
   const data = await response.json();
 
-  filterData(data);
+  redirectData(data);
 }
 
-let allBeers = [];
-// divide our data - maria
-function filterData(beers) {
-  allBeers = beers;
+// handle what's required on load - maria
+function redirectData(beers) {
   beers.forEach(eachBeerCard);
-  groupFilters();
-  filterClicked();
+  groupFilters(beers);
+  filterClicked(beers);
   checkoutButton();
   searchCorrectBeers(beers);
 }
 
 // array of all beertypes - maria
-function groupFilters() {
+function groupFilters(allBeers) {
   let filterArr = [];
+  let result;
   for (let i = 0; i < allBeers.length; i++) {
-    let result = filterArr.push("all", allBeers[i].category);
+    result = filterArr.push("all", allBeers[i].category);
   }
   cleanFilters(filterArr);
 }
@@ -60,8 +54,8 @@ function cleanFilters(categories) {
 }
 
 // create and append filters to dom - maria
-function appendFilters(filter) {
-  filter.forEach((f) => {
+function appendFilters(filters) {
+  filters.forEach((f) => {
     const filterOption = document.createElement("button");
     filterOption.setAttribute("class", "filter");
     filterOption.textContent = f;
@@ -72,12 +66,14 @@ function appendFilters(filter) {
 }
 
 // filters in action - maria
-function filterClicked() {
-  const filter = document.querySelectorAll(".filter");
-  filter.forEach((btn) => btn.addEventListener("click", sortItems));
+function filterClicked(allBeers) {
+  const filterBtns = document.querySelectorAll(".filter");
+  filterBtns.forEach((btn) => btn.addEventListener("click", function (e) {
+    sortItems(allBeers, e);
+  }));
 }
 
-function sortItems(e) {
+function sortItems(allBeers, e) {
   const filteredBeers = allBeers.filter(isBeertype);
 
   function isBeertype(beer) {
@@ -96,7 +92,7 @@ function sortItems(e) {
   if (activeFilter !== null) {
     activeFilter.classList.remove("active_filter");
   }
-  e.target.classList.toggle("active_filter");
+  e.target.classList.add("active_filter");
 
   return rebuildList(filteredBeers);
 }
@@ -138,7 +134,7 @@ export function eachBeerCard(beer) {
   const readMore = document.createElement("button");
   readMore.setAttribute("class", "read_more");
   readMore.textContent = "read more";
-  readMore.addEventListener("click", (res) => {
+  readMore.addEventListener("click", () => {
     openDetailedModal(beer);
   });
   const clone = document.querySelector("#counter").content.cloneNode(true);
@@ -184,7 +180,7 @@ function openDetailedModal(beer) {
   const beerTaste = clone.querySelector(".headline p");
   beerTaste.textContent = beer.description.appearance;
 
-  document.querySelector("main section").appendChild(clone);
+  document.querySelector("#products").appendChild(clone);
 
   const modal = document.querySelector("#beer_modal");
   modal.style.display = "block";
@@ -226,13 +222,14 @@ function displayCheckout() {
   //post beers on submit Krista
   document.querySelector("form").addEventListener("submit", postOrder);
 
+  // payment method switch or closing checkout modal - maria
   switchPaymentMethod();
   closeCheckout(modalCheckout);
 }
 
 // close checkout page - maria
 function closeCheckout(modalCheckout) {
-  const returnBtn = document.querySelector(".reset");
+  const returnBtn = document.querySelector(".return");
   returnBtn.addEventListener("click", returnToProducts);
 
   function returnToProducts() {

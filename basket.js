@@ -1,6 +1,9 @@
 "use strict";
 
-import { lastStr, nameId } from "./helpers";
+import {
+  lastStr,
+  nameId
+} from "./helpers";
 //everything to do with basket starts here Krista
 export let basket = {};
 export let orderData = [];
@@ -191,12 +194,12 @@ export function postOrder(e) {
   const postData = JSON.stringify(orderData);
   console.log(orderData);
   fetch("https://foobar-mandalorians.herokuapp.com/order", {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-    },
-    body: postData,
-  })
+      method: "post",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: postData,
+    })
     .then((res) => res.json())
     .then((postData) => {
       console.log(postData);
