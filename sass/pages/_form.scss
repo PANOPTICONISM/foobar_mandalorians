@@ -35,15 +35,18 @@ form {
     outline: none;
     padding: 6px;
     margin-top: 5px;
-  }
 
-  input:valid {
-    border: 1px solid a.$green-dark;
-  }
+    &:valid {
+      border: 1px solid a.$green-dark;
+    }
 
-  input:focus,
-  input:focus-within {
-    background-color: a.$green-light;
+    &:focus, &focus:focus-within {
+      background-color: a.$green-queue;
+    }
+
+    &:focus:invalid {
+      border: 1px solid a.$red;
+    }
   }
 }
 
