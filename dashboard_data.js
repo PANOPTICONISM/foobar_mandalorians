@@ -1,9 +1,18 @@
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
 import "./dark_mode.js";
-import { loadingScreen, switchUser } from "./common.js";
-import { currentTime, nameId, maxAmount } from "./helpers";
-import { chart } from "./chart";
+import {
+  loadingScreen,
+  switchUser
+} from "./common.js";
+import {
+  currentTime,
+  nameId,
+  maxAmount
+} from "./helpers";
+import {
+  chart
+} from "./chart";
 
 //fetch data every 3sec krista
 function startLiveUpdate() {
@@ -110,7 +119,7 @@ function displayUpcomingServings(serving) {
         //create beer list
         const beerNamesLi = document.createElement("li");
         //create span tag to fit in list
-        const liSpan = document.createElement("span");
+        const liSpan = document.createElement("h2");
         //create img element
         const img = document.createElement("img");
         img.setAttribute("class", "beers");
@@ -127,7 +136,7 @@ function displayUpcomingServings(serving) {
         imageBox.append(img);
         imageBox.append(beerAmount);
         liSpan.textContent = `${beerNameValue}`;
-        const beerType = document.createElement("span");
+        const beerType = document.createElement("h3");
         if (
           beerNameValue === "Fairy Tale Ale" ||
           beerNameValue === "GitHop" ||
@@ -197,7 +206,7 @@ function displayUpcomingOrders(order) {
         //create beer list
         const beerNamesLi = document.createElement("li");
         //create span tag to fit in list
-        const liSpan = document.createElement("span");
+        const liSpan = document.createElement("h2");
         //create img element
         const img = document.createElement("img");
         img.setAttribute("class", "beers");
@@ -214,7 +223,7 @@ function displayUpcomingOrders(order) {
         imageBox.append(beerAmount);
         liSpan.textContent = `${beerNameValue}`;
         //elements created maria
-        const beerType = document.createElement("span");
+        const beerType = document.createElement("h3");
         if (
           beerNameValue === "Fairy Tale Ale" ||
           beerNameValue === "GitHop" ||

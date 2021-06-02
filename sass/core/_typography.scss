@@ -36,10 +36,6 @@ h1 {
   }
 }
 
-.basket-container h1 {
-  color: a.$white;
-}
-
 h2 {
   font-size: a.$h2;
 }
@@ -106,6 +102,27 @@ h2 {
   font-weight: a.$font-weight-bold;
 }
 
+// products
+.beers, .serving-box, .order-box {
+    h2 {
+      font-weight: a.$font-weight-bolder;
+      font-size: a.$p;
+    }
+
+    h3 {
+      color: a.$grey-dark;
+      font-size: a.$h3;
+    }
+    h2, h3 {
+      margin: 0;
+    }
+
+    .middle_layer p {
+      font-weight: a.$font-weight-bold;
+    }
+}
+
+
 // read-more modals
 .modal_inner_readmore {
   color: a.$white;
@@ -141,4 +158,9 @@ h2 {
     margin: 0;
     font-size: a.$desc-label;
   }
+}
+
+// basket
+.basket-container h1 {
+  color: a.$white;
 }
