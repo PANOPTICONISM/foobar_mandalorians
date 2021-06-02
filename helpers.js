@@ -1,4 +1,4 @@
-//Time function KRISTA
+//time function
 export function currentTime(timestamp) {
   const date = new Date(timestamp);
   const hours = date.getHours();
@@ -8,7 +8,7 @@ export function currentTime(timestamp) {
   return formattedTime;
 }
 
-//Last word in string
+//last word in string
 export function lastStr(str) {
   const lastSpace = str.lastIndexOf(" ");
   const lastWord = str.substring(lastSpace + 1);
