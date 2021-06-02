@@ -31,6 +31,7 @@ export function addToBasket(e) {
   showInBasket(beerLabel);
 }
 
+//show tere is items in cart
 function addCartActivity() {
   let beersInCart = Object.keys(basket).length === 0;
   if (!beersInCart) {
@@ -47,7 +48,6 @@ function addCartActivity() {
 //create HTML elements and render in basket according to data
 function showInBasket(beerLabel) {
   const item = basket[beerLabel];
-  //TODO: catc errored
   if (item === undefined) {
     console.log("you have 0 beers, item removed");
   }
@@ -56,7 +56,7 @@ function showInBasket(beerLabel) {
   const quantity = Number(item.beerCount);
   const cardCopy = document.createElement("div");
   cardCopy.setAttribute("class", "cardItem");
-  //set ID to html elements same as obj key- it is for basket manipulation
+  //set ID to html elements same as obj key- it is for basket checkout edit
   cardCopy.setAttribute("id", beerLabel);
   cardCopy.innerHTML = `<div class ="beer-card">
   <img src="${item.beerImg}"  class= "basketImg" alt="" />
@@ -168,9 +168,6 @@ export function removeFromBasket(e) {
     const beerInBasket = document.querySelector("#" + nameId(beerLabel));
     console.log(beerInBasket);
     beerInBasket.remove();
-    //thorws undefined in console because it is removed from object, and we are calling showInBasket()
-    //TODO:
-
     delete basket[beerLabel];
     showTotalPrice();
     addCartActivity();
