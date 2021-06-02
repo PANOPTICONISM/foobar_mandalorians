@@ -1,11 +1,20 @@
 import "./sass/customer.scss";
 
 import "./dark_mode.js";
-import { loadingScreen, switchUser } from "./common.js";
+import {
+  loadingScreen,
+  switchUser
+} from "./common.js";
 
-import { addToBasket } from "./basket";
-import { removeFromBasket } from "./basket";
-import { postOrder } from "./basket";
+import {
+  addToBasket
+} from "./basket";
+import {
+  removeFromBasket
+} from "./basket";
+import {
+  postOrder
+} from "./basket";
 ("use strict");
 
 // load on start - maria
@@ -120,10 +129,7 @@ export function eachBeerCard(beer) {
   const middleLayer = document.createElement("div");
   middleLayer.setAttribute("class", "middle_layer");
   const price = document.createElement("p");
-  //TODO: "DKK"removed
-
-  price.textContent = "DKK " + Math.floor(Math.random() * 100 + 10);
-
+  price.textContent = "DKK " + Math.floor(beer.alc * 10);
   const beerType = document.createElement("h3");
   beerType.textContent = beer.category;
 
@@ -198,7 +204,7 @@ function openDetailedModal(beer) {
   });
 }
 
-// checkout
+// checkout modal creation - maria
 function checkoutButton() {
   const buttonClicked = document.querySelectorAll(".checkout");
   buttonClicked.forEach((btn) =>
@@ -217,10 +223,7 @@ function displayCheckout() {
   const body = document.querySelector("body");
   body.style.overflow = "hidden";
 
-  // TODO: remove overflow upon closing modal
-
   //post beers on submit Krista
-  console.log(document.querySelector("form"));
   document.querySelector("form").addEventListener("submit", postOrder);
 
   switchPaymentMethod();
@@ -234,6 +237,7 @@ function closeCheckout(modalCheckout) {
 
   function returnToProducts() {
     modalCheckout.style.display = "none";
+    document.querySelector("body").style.overflow = "scroll";
     document.querySelector(".form-container").innerHTML = "";
     //clear input values in products list, remove beercart activity
     document.querySelectorAll(".count").forEach((input) => {
