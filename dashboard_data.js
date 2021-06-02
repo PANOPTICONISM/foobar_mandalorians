@@ -135,6 +135,7 @@ function displayUpcomingServings(serving) {
         imageBox.append(img);
         imageBox.append(beerAmount);
         liSpan.textContent = `${beerNameValue}`;
+        // add categories to beers - maria
         const beerType = document.createElement("h3");
         if (
           beerNameValue === "Fairy Tale Ale" ||
@@ -172,6 +173,8 @@ function displayUpcomingServings(serving) {
   }
 
   document.querySelector(".serving-box").appendChild(copy);
+
+  functionalExtras();
 }
 
 function displayUpcomingOrders(order) {
@@ -221,7 +224,7 @@ function displayUpcomingOrders(order) {
         imageBox.append(img);
         imageBox.append(beerAmount);
         liSpan.textContent = `${beerNameValue}`;
-        //elements created maria
+        // add categories to beers - maria
         const beerType = document.createElement("h3");
         if (
           beerNameValue === "Fairy Tale Ale" ||
@@ -257,11 +260,10 @@ function displayUpcomingOrders(order) {
       count++;
     }
   }
-  functionalExtras();
   document.querySelector(".order-box").appendChild(copy);
 }
 
-// if storage is almost empty, insert reminder - maria
+// if stock is almost empty, insert reminder - maria
 function isLowOnStock(stock) {
   const lowOnStock = document.querySelector(".low_stock");
   lowOnStock.innerHTML = "";
