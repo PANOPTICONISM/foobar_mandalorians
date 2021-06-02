@@ -5,7 +5,7 @@ import { loadingScreen, switchUser } from "./common.js";
 import { currentTime, nameId, maxAmount } from "./helpers";
 import { chart } from "./chart";
 
-//fetch data every 3sec KRISTA
+//fetch data every 3sec krista
 function startLiveUpdate() {
   setInterval(async () => {
     const response = await fetch("https://foobar-mandalorians.herokuapp.com/");
@@ -14,7 +14,7 @@ function startLiveUpdate() {
   }, 3000);
 }
 
-//prepare data and call all the functions from here KRISTA
+//prepare data and call all the functions from here krista
 function prepareData(dashboardData) {
   //clear cards
   document.querySelector(".serving-box").innerHTML = "";
@@ -50,7 +50,7 @@ function prepareData(dashboardData) {
   showCurrentTime(time);
 }
 
-//update chart data KRISTA
+//update chart data krista
 function addData(chart, label, data) {
   chart.data.labels.push(label);
   chart.data.datasets.forEach((dataset) => {
@@ -68,12 +68,12 @@ function showQueueLength(q) {
   bar.style.width = q.length + "0px";
 }
 
-// showint timestamp as time KRISTA
+// showint timestamp as time krista
 function showCurrentTime(time) {
   document.querySelector(".time p").textContent = currentTime(time);
 }
 
-//populate template create missing elements and display servings KRISTA
+//populate template create missing elements and display servings krista
 function displayUpcomingServings(serving) {
   //this is data for serving list
   const servingId = serving.id;
@@ -190,10 +190,8 @@ function displayUpcomingOrders(order) {
   let count = 1;
   for (let i = 0; i < beerOrder.length; i++) {
     if (beerOrder[i] !== beerOrder[i + 1]) {
-      //console.log(beerServing[i + 1]);
       let beerNameValue = `${beerOrder[i]}`;
       let beerCount = `${count}`;
-      //console.log(count);
       if (beerNameValue === undefined) {
         console.log("waiting for orders");
       } else {
@@ -259,7 +257,6 @@ function displayUpcomingOrders(order) {
 // if storage is almost empty, insert reminder - maria
 function isLowOnStock(stock) {
   const lowOnStock = document.querySelector(".low_stock");
-  // console.log(stock)
   lowOnStock.innerHTML = "";
 
   stock.forEach((beer) => {
