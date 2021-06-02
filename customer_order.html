@@ -269,6 +269,7 @@
               required
             />
           </fieldset>
+
           <div class="credit_card_details">
             <fieldset>
               <label for="expirationdate">Expiration date</label>
@@ -339,7 +340,7 @@
           </div>
         </form>
       </div>
-      <div id="confirmation_modal">
+      <div id="confirmation_modal" class="hide">
         <div class="modal_inner">
           <span class="close">&times;</span>
           <h3>Your order has been received</h3>
@@ -350,7 +351,7 @@
               data-icon="ion:beer"
             ></span>
           </div>
-          <h4>Your order number is:</h4>
+          <h4 class="id">Your order number is:</h4>
         </div>
       </div>
     </template>
