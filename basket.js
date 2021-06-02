@@ -193,5 +193,26 @@ export function postOrder(e) {
     body: postData,
   })
     .then((res) => res.json())
-    .then((postData) => console.log(postData));
+    .then((postData) => {
+      console.log(postData);
+      showConfirmation(postData.id);
+    });
+}
+
+function showConfirmation(orderNr) {
+  console.log(orderNr);
+  document.querySelector("#confirmation_modal").classList.remove("hide");
+  document.querySelector(
+    "#confirmation_modal .id"
+  ).innerHTML = `your order number is: <br/> ${orderNr}`;
+  document.querySelector(".close").addEventListener("click", hideConfirmation);
+  document
+    .querySelector("#confirmation_modal")
+    .addEventListener("click", hideConfirmation);
+}
+
+//hide modal and reset form
+function hideConfirmation() {
+  document.querySelector("#confirmation_modal").classList.add("hide");
+  document.querySelector("form").reset();
 }

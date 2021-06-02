@@ -235,6 +235,12 @@ function closeCheckout(modalCheckout) {
   function returnToProducts() {
     modalCheckout.style.display = "none";
     document.querySelector(".form-container").innerHTML = "";
+    //clear input values in products list, remove beercart activity
+    document.querySelectorAll(".count").forEach((input) => {
+      input.value = "0";
+    });
+    document.querySelector(".checkout_beer").classList.remove("shake");
+    document.querySelector(".amount_beers").classList.add("hide");
   }
 }
 
@@ -258,25 +264,23 @@ function searchCorrectBeers(beers) {
     return rebuildList(searchedList);
   });
 }
- 
-
 
 // switch payments method - maria
 function switchPaymentMethod() {
   const paymentButtons = document.querySelectorAll(".payment_options button");
 
-  paymentButtons.forEach(btn => {
+  paymentButtons.forEach((btn) => {
     btn.addEventListener("click", switchMethod);
-  })
+  });
 
   function switchMethod(e) {
-    console.log("clicked", e.target)
+    console.log("clicked", e.target);
 
     const creditCard = document.querySelector(".credit_card");
     const mobilePay = document.querySelector(".mobilepay");
     const formContainer = document.querySelector("form");
     if (e.target === creditCard) {
-      console.log("hey")
+      console.log("hey");
       mobilePay.classList.remove("active_filter");
       creditCard.classList.add("active_filter");
       formContainer.style.display = "block";
@@ -293,10 +297,10 @@ function switchPaymentMethod() {
 }
 
 function mobilePayPayment() {
-  console.log("sup")
+  console.log("sup");
 
   const mobilePayButton = document.createElement("button");
-  mobilePayButton.setAttribute("class", "official_mobilepay")
+  mobilePayButton.setAttribute("class", "official_mobilepay");
 
   const image = document.createElement("img");
   image.src = "./mobilepay.jpg";
@@ -307,4 +311,3 @@ function mobilePayPayment() {
 
   document.querySelector(".form").appendChild(mobilePayButton);
 }
-
