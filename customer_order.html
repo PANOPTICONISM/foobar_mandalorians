@@ -176,12 +176,13 @@
           <p>This number will only be used to send you your order number</p>
           <input id="pnumber" name="phonenumber" inputmode="tel" autocomplete="tel" type="text"
             pattern="[\+]\d{2}[\s]?\d{2}[\s]?\d{2}[\s]?\d{2}[\s]?\d{2}" minlength="15" maxlength="15"
-            placeholder="+45 00 00 00 00" required />
+            placeholder="e. g. +45 00 00 00 00" required />
         </fieldset>
         <fieldset>
           <label for="cardname">Name on the card</label>
           <p>Full name as presented on your credit card</p>
-          <input id="cardname" name="cardname" inputmode="text" type="text" required />
+          <input id="cardname" name="cardname" inputmode="text" type="text"
+            placeholder="Full name as stated on the card" required />
         </fieldset>
         <fieldset>
           <label for="creditcard">Credit card</label>
@@ -189,24 +190,25 @@
             This information will be used for this purchase only and not
             stored anywhere
           </p>
-          <input id="creditcard" name="creditcard" inputmode="numeric" type="text" pattern="[0-9]{13,16}" minlength="16"
-            maxlength="16" required />
+          <input id="creditcard" name="creditcard" inputmode="numeric" type="text"
+            pattern="[\s]?\d{4}[\s]?\d{4}[\s]?\d{4}[\s]?\d{4}" minlength="19" maxlength="19"
+            placeholder="e. g. 9999 9999 9999 9999" required />
         </fieldset>
         <div class="credit_card_details">
           <fieldset>
             <label for="expirationdate">Expiration date</label>
             <div>
               <input id="expirationmonth" name="expirationmonth" inputmode="numeric" type="text" pattern="[01-12]*"
-                minlength="2" maxlength="2" max="12" required />
+                minlength="2" maxlength="2" max="12" placeholder="e. g. 10" required />
               <span>/</span>
               <input id="expirationyear" name="expirationyear" inputmode="numeric" type="text" pattern="\d+"
-                minlength="2" maxlength="2" required />
+                minlength="2" maxlength="2" placeholder="e. g. 21" required />
             </div>
           </fieldset>
           <fieldset>
             <label for="cvv">CVV</label>
             <input id="cvv" name="cvv" inputmode="numeric" type="text" pattern="\d+" minlength="3" maxlength="3"
-              required />
+              placeholder="e. g. 000" required />
           </fieldset>
         </div>
 
