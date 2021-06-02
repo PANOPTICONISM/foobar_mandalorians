@@ -1,4 +1,4 @@
-//Time function KRISTA
+//time function
 export function currentTime(timestamp) {
   const date = new Date(timestamp);
   const hours = date.getHours();
@@ -8,7 +8,7 @@ export function currentTime(timestamp) {
   return formattedTime;
 }
 
-//Last word in string
+//last word in string
 export function lastStr(str) {
   const lastSpace = str.lastIndexOf(" ");
   const lastWord = str.substring(lastSpace + 1);
@@ -18,4 +18,14 @@ export function lastStr(str) {
 //clear whitespaces
 export function nameId(name) {
   return name.replace(/\s/g, "");
+}
+
+//reverse nr in storage
+export function maxAmount(storage) {
+  let amountStat = [];
+  storage.forEach((beer) => {
+    amountStat.push(beer.amount);
+  });
+
+  return Math.max(...amountStat);
 }

@@ -1,7 +1,6 @@
 "use strict";
 
-import { lastStr } from "./helpers";
-import { nameId } from "./helpers";
+import { lastStr, nameId } from "./helpers";
 //everything to do with basket starts here Krista
 export let basket = {};
 export let orderData = [];
@@ -27,20 +26,28 @@ export function addToBasket(e) {
     };
     //set key to our basket object, and add values
     basket[beerLabel] = basketItem;
+    addCartActivity();
   }
-
-  //beerCart interactivity
-  document.querySelector(".amount_beers").classList.remove("hide");
-  document.querySelector(".checkout_beer").classList.add("shake");
-  document.querySelector(".amount_beers").innerHTML = "✓";
   showInBasket(beerLabel);
-  console.log(beerLabel);
+}
+
+//show tere is items in cart
+function addCartActivity() {
+  let beersInCart = Object.keys(basket).length === 0;
+  if (!beersInCart) {
+    document.querySelector(".checkout_beer").classList.add("shake");
+    document.querySelector(".amount_beers").classList.remove("hide");
+    document.querySelector(".amount_beers").innerHTML = "✓ ";
+  } else {
+    console.log("empty");
+    document.querySelector(".amount_beers").classList.add("hide");
+    document.querySelector(".checkout_beer").classList.remove("shake");
+  }
 }
 
 //create HTML elements and render in basket according to data
 function showInBasket(beerLabel) {
   const item = basket[beerLabel];
-  //TODO: catc errored
   if (item === undefined) {
     console.log("you have 0 beers, item removed");
   }
@@ -49,7 +56,7 @@ function showInBasket(beerLabel) {
   const quantity = Number(item.beerCount);
   const cardCopy = document.createElement("div");
   cardCopy.setAttribute("class", "cardItem");
-  //set ID to html elements same as obj key- it is for basket manipulation
+  //set ID to html elements same as obj key- it is for basket checkout edit
   cardCopy.setAttribute("id", beerLabel);
   cardCopy.innerHTML = `<div class ="beer-card">
   <img src="${item.beerImg}"  class= "basketImg" alt="" />
@@ -146,13 +153,11 @@ export function removeFromBasket(e) {
   console.log(beerLabel);
   const beerCount = e.currentTarget.parentElement.children[1];
   beerCount.value--;
-  document.querySelector(".amount_beers").innerHTML = "✓ ";
+
   //prevent value in minus box to go under 0
   if (beerCount.value < 1) {
     beerCount.value = 0;
     beerCount.disabled = true;
-    document.querySelector(".checkout_beer").classList.remove("shake");
-    document.querySelector(".amount_beers").classList.add("hide");
   }
   //subtract 1 from what is current number of beers
   if (beerLabel in basket) {
@@ -163,9 +168,9 @@ export function removeFromBasket(e) {
     const beerInBasket = document.querySelector("#" + nameId(beerLabel));
     console.log(beerInBasket);
     beerInBasket.remove();
-    //thorws undefined in console because it is removed from object, and we are calling showInBasket()
     delete basket[beerLabel];
     showTotalPrice();
+    addCartActivity();
   }
   showInBasket(beerLabel);
 }
