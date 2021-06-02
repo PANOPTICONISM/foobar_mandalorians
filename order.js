@@ -162,7 +162,7 @@ export function eachBeerCard(beer) {
     count.addEventListener("click", removeFromBasket);
   });
 
-  functionalExtras();
+  functionalityExtras();
 }
 
 // modal with details for each beer - maria
@@ -234,7 +234,7 @@ function closeCheckout(modalCheckout) {
 
   function returnToProducts() {
     modalCheckout.style.display = "none";
-    document.querySelector("body").style.overflow = "scroll";
+    document.querySelector("body").style.overflow = "auto";
     document.querySelector(".form-container").innerHTML = "";
     //clear input values in products list, remove beercart activity
     document.querySelectorAll(".count").forEach((input) => {
@@ -245,7 +245,7 @@ function closeCheckout(modalCheckout) {
   }
 }
 
-function functionalExtras() {
+function functionalityExtras() {
   loadingScreen();
   switchUser();
 }
@@ -275,13 +275,10 @@ function switchPaymentMethod() {
   });
 
   function switchMethod(e) {
-    console.log("clicked", e.target);
-
     const creditCard = document.querySelector(".credit_card");
     const mobilePay = document.querySelector(".mobilepay");
     const formContainer = document.querySelector("form");
     if (e.target === creditCard) {
-      console.log("hey");
       mobilePay.classList.remove("active_filter");
       creditCard.classList.add("active_filter");
       formContainer.style.display = "block";
@@ -298,7 +295,6 @@ function switchPaymentMethod() {
 }
 
 function mobilePayPayment() {
-  console.log("sup");
 
   const mobilePayButton = document.createElement("button");
   mobilePayButton.setAttribute("class", "official_mobilepay");

@@ -1,6 +1,5 @@
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
-import "./dark_mode.js";
 import {
   loadingScreen,
   switchUser
