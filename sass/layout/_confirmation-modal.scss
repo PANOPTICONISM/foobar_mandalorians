@@ -38,12 +38,12 @@
     h4 {
       display: flex;
       flex-wrap: wrap;
-      align-items: flex-start;
+      align-items: center;
       text-transform: capitalize;
+      text-align: center;
       color: v.$green-dark;
     }
 
-    // beer cart
     .beer-icon {
       padding: 30px;
 
