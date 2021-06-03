@@ -58,4 +58,8 @@
         max-width: 460px;
         margin: auto;
     }
+
+    #beer_modal .modal_inner_readmore .headline {
+        flex-wrap: nowrap;
+    }
 }
