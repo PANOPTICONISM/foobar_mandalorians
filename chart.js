@@ -10,29 +10,29 @@ export let chart = new Chart(myChart, {
   data: {
     labels: label,
     //data on Y-axis and their labels
-    datasets: [{
-      data: data,
-      //make it dynamic??
-      backgroundColor: [
-        "orange",
-        " pink",
-        "bisque",
-        "teal",
-        "green",
-        "lightblue",
-        "red",
-        "lightgreen",
-        "yellow",
-        "black",
-      ],
-      borderColor: ["orange"],
-      borderWidth: 1,
-      //do you want to fill below the line
-      fill: false,
-      lineTension: 0,
-      pointRadius: 10,
-      stepped: false,
-    }, ],
+    datasets: [
+      {
+        data: data,
+        backgroundColor: [
+          "orange",
+          " pink",
+          "bisque",
+          "teal",
+          "green",
+          "lightblue",
+          "red",
+          "lightgreen",
+          "yellow",
+          "black",
+        ],
+        borderColor: ["orange"],
+        borderWidth: 1,
+        fill: false,
+        lineTension: 0,
+        pointRadius: 10,
+        stepped: false,
+      },
+    ],
   },
   options: {
     scales: {

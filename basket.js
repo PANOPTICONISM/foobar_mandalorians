@@ -1,15 +1,12 @@
 "use strict";
 
-import {
-  lastStr,
-  nameId
-} from "./helpers";
+import { lastStr, nameId } from "./helpers";
 //everything to do with basket starts here Krista
 export let basket = {};
 export let orderData = [];
 document.querySelector(".amount_beers").classList.add("hide");
 
-//this function targets clicked elements to show in the list
+//target clicked elements to show in the list
 export function addToBasket(e) {
   const productCard = e.target.parentElement.parentElement;
   const beerName = productCard.parentNode.querySelector("h2").textContent;
@@ -34,7 +31,7 @@ export function addToBasket(e) {
   showInBasket(beerLabel);
 }
 
-//show tere is items in cart
+//beer cart
 function addCartActivity() {
   let beersInCart = Object.keys(basket).length === 0;
   if (!beersInCart) {
@@ -58,7 +55,7 @@ function showInBasket(beerLabel) {
   const quantity = Number(item.beerCount);
   const cardCopy = document.createElement("div");
   cardCopy.setAttribute("class", "cardItem");
-  //set ID to html elements same as obj key- it is for basket checkout edit
+  //set ID to html elements same as obj key
   cardCopy.setAttribute("id", beerLabel);
   cardCopy.innerHTML = `<div class ="beer-card">
   <img src="${item.beerImg}"  class= "basketImg" alt="" />
@@ -84,7 +81,7 @@ function showInBasket(beerLabel) {
   }
 
   document.querySelector(".summary").appendChild(cardCopy);
-  //with btns from the basket adjust price and items
+
   const beerPlus = document.querySelectorAll(".plusBasket");
   beerPlus.forEach((count) => {
     count.addEventListener("click", editBasketPlus);
@@ -102,7 +99,6 @@ function editBasketPlus(e) {
   const beerCount = e.target.parentElement.children[1];
   const calcPrice = e.target.parentElement.parentElement.querySelector("h6");
   beerCount.value++;
-  //get  data from object and adjust object
   if (beerLabel in basket) {
     basket[beerLabel].beerCount += 1;
     const priceStr = lastStr(basket[beerLabel].beerPrice);
@@ -139,7 +135,7 @@ function showTotalPrice() {
     //turn string into number and push to array total
     total.push(Number(price));
   });
-  //reduce takes two params- accumulator what we are returning and current what we are looping through, and also starting point which is here 0
+  //reduce to one number
   const totalPrice = total.reduce((total, beerItemNr) => {
     total += beerItemNr;
     return total;
@@ -189,12 +185,12 @@ export function postOrder(e) {
 
   const postData = JSON.stringify(orderData);
   fetch("https://foobar-mandalorians.herokuapp.com/order", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-      },
-      body: postData,
-    })
+    method: "post",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    body: postData,
+  })
     .then((res) => res.json())
     .then((postData) => {
       showConfirmation(postData.id);
