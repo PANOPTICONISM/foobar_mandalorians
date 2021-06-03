@@ -9,6 +9,10 @@
   justify-content: center;
   align-items: flex-start;
 
+  > * {
+    margin: 0 20px;
+  }
+
   .summary {
     max-height: 345px;
     overflow-y: auto;
@@ -16,7 +20,7 @@
 }
 
 aside {
-  max-width: 600px;
+  max-width: 500px;
 }
 
 .basket-container,
@@ -24,7 +28,7 @@ aside {
   background-color: a.$green-dark;
   padding: 30px 40px 0 40px;
   border-radius: 40px;
-  margin: 20px 0;
+  margin: 20px 0 0 0;
 
   h1 {
     margin: 0;
@@ -153,10 +157,8 @@ aside {
 
 @media (min-width: mx.$screen-desktop) {
 
-
-    .basket-container,
-    .reminder {
-      margin: 20px;
-    }
+  .modal_container_b {
+    justify-content: flex-start;
+  }
 
 }
