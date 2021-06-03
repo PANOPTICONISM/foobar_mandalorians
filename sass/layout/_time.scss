@@ -1,10 +1,12 @@
 @use "../abstracts/variables" as a;
 @use '../abstracts/mixins' as mx;
 
+// clock used on dashboard
 .time {
   display: none;
 }
 
+// media query
 @media (min-width: mx.$screen-ipad) {
     .time {
       position: absolute;

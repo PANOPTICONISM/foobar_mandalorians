@@ -1,5 +1,6 @@
 @use '../abstracts/mixins' as mx;
 
+// main parts of the puzzle, positioning
 * {
   box-sizing: border-box;
 }
@@ -41,6 +42,7 @@ header {
 .checkout_beer {
   grid-column: 12/-1;
   grid-row: 2;
+  justify-self: self-end;
 }
 
 .products {
@@ -48,6 +50,7 @@ header {
   grid-row: 3;
 }
 
+// media query
 @media (min-width: mx.$screen-ipad) {
   header {
     grid-column: 1/2;

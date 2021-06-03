@@ -1,12 +1,18 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as mx;
 
+// navigation, aka sidebar
 .navigation {
   background-color: $green-dark;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 40px;
+
+  .logo {
+    width: 214px;
+    height: 66px;
+  }
 
   ul {
     padding: 0;
@@ -77,13 +83,13 @@
     border-radius: 2px;
   }
 
-  .second span {
-    margin-left: 10px;
+  .table {
+    margin-right: 15px;
   }
 
   .log_in img {
     width: 30px;
-    height: auto;
+    height: 30px;
     margin-right: 10px;
   }
 }
@@ -165,6 +171,7 @@ header input:checked ~ .slide-in {
   right: 0;
 }
 
+// media queries
 @media (min-width: mx.$screen-ipad) {
   .hamburger,
   #toggle {

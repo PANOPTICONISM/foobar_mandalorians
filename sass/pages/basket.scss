@@ -1,6 +1,7 @@
 @use "../abstracts/variables" as a;
 @use '../abstracts/mixins' as mx;
 
+// basket section
 .modal_container_b {
   padding: 20px;
   color: a.$white;
@@ -9,6 +10,10 @@
   justify-content: center;
   align-items: flex-start;
 
+  > * {
+    margin: 0 20px;
+  }
+
   .summary {
     max-height: 345px;
     overflow-y: auto;
@@ -16,7 +21,7 @@
 }
 
 aside {
-  max-width: 600px;
+  max-width: 500px;
 }
 
 .basket-container,
@@ -24,7 +29,7 @@ aside {
   background-color: a.$green-dark;
   padding: 30px 40px 0 40px;
   border-radius: 40px;
-  margin: 20px 0;
+  margin: 20px 0 0 0;
 
   h1 {
     margin: 0;
@@ -115,7 +120,7 @@ aside {
   }
 }
 
-
+// mobilepay button
 .official_mobilepay {
   background-color: a.$mobilepay;
   color: a.$white;
@@ -134,29 +139,11 @@ aside {
   }
 }
 
-// scrollbar themed
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #ffffff;
-}
-
-::-webkit-scrollbar-thumb {
-  background: a.$green-light;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: a.$green-darker;
-}
-
+// media query
 @media (min-width: mx.$screen-desktop) {
 
-
-    .basket-container,
-    .reminder {
-      margin: 20px;
-    }
+  .modal_container_b {
+    justify-content: flex-start;
+  }
 
 }

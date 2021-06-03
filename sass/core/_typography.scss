@@ -1,12 +1,12 @@
 @use "../abstracts/variables" as a;
 
+// typograhpy all around
 * {
   font-family: a.$primary-font;
 }
 
 button {
   font-weight: a.$font-weight-bold;
-  font-family: a.$primary-font;
 }
 
 // navigation
@@ -17,6 +17,7 @@ nav li a,
   font-size: a.$links-nav;
 }
 
+// headings
 h1 {
   font-weight: a.$font-weight-bolder;
   font-size: a.$h1;
@@ -34,10 +35,6 @@ h1 {
     border-radius: 4px;
     background-color: a.$green-dark;
   }
-}
-
-.basket-container h1 {
-  color: a.$white;
 }
 
 h2 {
@@ -106,18 +103,39 @@ h2 {
   font-weight: a.$font-weight-bold;
 }
 
+// products
+.beers, .serving-box, .order-box {
+    h2 {
+      font-weight: a.$font-weight-bolder;
+      font-size: a.$p;
+    }
+
+    h3 {
+      color: a.$grey-dark;
+      font-size: a.$h3;
+    }
+    h2, h3 {
+      margin: 0;
+    }
+
+    .middle_layer p {
+      font-weight: a.$font-weight-bold;
+    }
+}
+
+
 // read-more modals
 .modal_inner_readmore {
   color: a.$white;
   font-family: a.$primary-font;
 
   h2 {
-    font-size: a.$readmore-h3;
+    font-size: a.$readmore-h2;
     margin-bottom: 5px;
   }
 
   h3 {
-    font-size: a.$readmore-h4;
+    font-size: a.$readmore-h3;
     margin: 0;
   }
 
@@ -141,4 +159,9 @@ h2 {
     margin: 0;
     font-size: a.$desc-label;
   }
+}
+
+// basket
+.basket-container h1 {
+  color: a.$white;
 }

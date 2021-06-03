@@ -1,6 +1,7 @@
 @use "../abstracts/variables" as a;
 @use "../abstracts/mixins" as mix;
 
+// checkout modal background and animation
 #order_modal {
   display: none;
   position: fixed;
@@ -32,6 +33,6 @@
     top: 0;
     width: calc(100% - 294px);
     height: 100vh;
-    padding: 60px 20px;
+    padding: 25px 20px;
   }
 }

@@ -1,6 +1,6 @@
-// buttons, grab colours and styling from variables
 @use '../abstracts/variables' as v;
 
+// buttons styling
 button {
   outline: none;
   border: none;
@@ -59,7 +59,7 @@ button.active_filter,
 }
 
 .buttons {
-  margin: 40px 0;
+  margin: 40px 0 0 0;
   display: flex;
   justify-content: flex-end;
 
@@ -73,7 +73,7 @@ button.active_filter,
     text-transform: uppercase;
   }
 
-  button.reset {
+  button.return {
     margin-right: 10px;
 
     &:hover {

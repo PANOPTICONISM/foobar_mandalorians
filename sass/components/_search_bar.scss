@@ -1,18 +1,17 @@
 @use "../abstracts/variables" as a;
-@use '../abstracts/mixins' as mx;
 
-.search_bar input {
-  border: 1px solid a.$grey-light;
-  border-radius: 20px;
-  padding: 7px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  -ms-border-radius: 20px;
-  -o-border-radius: 20px;
-}
+// search bar
+.search_bar {
+  margin: auto;
+  margin-right: 0px;
 
-@media (min-width: mx.$screen-ipad) {
-  .search_bar {
-    margin: 0 10px 20px 0;
+  input {
+    border: 1px solid a.$grey-light;
+    border-radius: 20px;
+    padding: 7px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
   }
 }

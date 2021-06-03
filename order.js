@@ -1,12 +1,16 @@
-import "./sass/customer.scss";
-
-import "./dark_mode.js";
-import { loadingScreen, switchUser } from "./common.js";
-
-import { addToBasket } from "./basket";
-import { removeFromBasket } from "./basket";
-import { postOrder } from "./basket";
 ("use strict");
+
+import "./sass/customer.scss";
+import {
+  loadingScreen,
+  switchUser
+} from "./common.js";
+import {
+  addToBasket,
+  removeFromBasket,
+  postOrder
+} from "./basket";
+import "./dark_mode.js";
 
 // load on start - maria
 window.addEventListener("DOMContentLoaded", fetchData);
@@ -17,25 +21,24 @@ async function fetchData() {
   const response = await fetch(beertypes);
   const data = await response.json();
 
-  filterData(data);
+  redirectData(data);
 }
 
-let allBeers = [];
-// divide our data - maria
-function filterData(beers) {
-  allBeers = beers;
+// handle what's required on load - maria
+function redirectData(beers) {
   beers.forEach(eachBeerCard);
-  groupFilters();
-  filterClicked();
+  groupFilters(beers);
+  filterClicked(beers);
   checkoutButton();
   searchCorrectBeers(beers);
 }
 
 // array of all beertypes - maria
-function groupFilters() {
+function groupFilters(allBeers) {
   let filterArr = [];
+  let result;
   for (let i = 0; i < allBeers.length; i++) {
-    let result = filterArr.push("all", allBeers[i].category);
+    result = filterArr.push("all", allBeers[i].category);
   }
   cleanFilters(filterArr);
 }
@@ -51,8 +54,8 @@ function cleanFilters(categories) {
 }
 
 // create and append filters to dom - maria
-function appendFilters(filter) {
-  filter.forEach((f) => {
+function appendFilters(filters) {
+  filters.forEach((f) => {
     const filterOption = document.createElement("button");
     filterOption.setAttribute("class", "filter");
     filterOption.textContent = f;
@@ -63,12 +66,14 @@ function appendFilters(filter) {
 }
 
 // filters in action - maria
-function filterClicked() {
-  const filter = document.querySelectorAll(".filter");
-  filter.forEach((btn) => btn.addEventListener("click", sortItems));
+function filterClicked(allBeers) {
+  const filterBtns = document.querySelectorAll(".filter");
+  filterBtns.forEach((btn) => btn.addEventListener("click", function (e) {
+    sortItems(allBeers, e);
+  }));
 }
 
-function sortItems(e) {
+function sortItems(allBeers, e) {
   const filteredBeers = allBeers.filter(isBeertype);
 
   function isBeertype(beer) {
@@ -87,7 +92,7 @@ function sortItems(e) {
   if (activeFilter !== null) {
     activeFilter.classList.remove("active_filter");
   }
-  e.target.classList.toggle("active_filter");
+  e.target.classList.add("active_filter");
 
   return rebuildList(filteredBeers);
 }
@@ -120,10 +125,7 @@ export function eachBeerCard(beer) {
   const middleLayer = document.createElement("div");
   middleLayer.setAttribute("class", "middle_layer");
   const price = document.createElement("p");
-  //TODO: "DKK"removed
-
-  price.textContent = "DKK " + Math.floor(Math.random() * 100 + 10);
-
+  price.textContent = "DKK " + Math.floor(beer.alc * 10);
   const beerType = document.createElement("h3");
   beerType.textContent = beer.category;
 
@@ -132,7 +134,7 @@ export function eachBeerCard(beer) {
   const readMore = document.createElement("button");
   readMore.setAttribute("class", "read_more");
   readMore.textContent = "read more";
-  readMore.addEventListener("click", (res) => {
+  readMore.addEventListener("click", () => {
     openDetailedModal(beer);
   });
   const clone = document.querySelector("#counter").content.cloneNode(true);
@@ -160,7 +162,7 @@ export function eachBeerCard(beer) {
     count.addEventListener("click", removeFromBasket);
   });
 
-  functionalExtras();
+  functionalityExtras();
 }
 
 // modal with details for each beer - maria
@@ -178,7 +180,7 @@ function openDetailedModal(beer) {
   const beerTaste = clone.querySelector(".headline p");
   beerTaste.textContent = beer.description.appearance;
 
-  document.querySelector("main section").appendChild(clone);
+  document.querySelector("#products").appendChild(clone);
 
   const modal = document.querySelector("#beer_modal");
   modal.style.display = "block";
@@ -198,7 +200,7 @@ function openDetailedModal(beer) {
   });
 }
 
-// checkout
+// checkout modal creation - maria
 function checkoutButton() {
   const buttonClicked = document.querySelectorAll(".checkout");
   buttonClicked.forEach((btn) =>
@@ -217,23 +219,29 @@ function displayCheckout() {
   const body = document.querySelector("body");
   body.style.overflow = "hidden";
 
-  // TODO: remove overflow upon closing modal
+  // change active button
+  const activeBtn = document.querySelector(".active");
+  if (activeBtn !== null) {
+    activeBtn.classList.remove("active");
+  }
+  document.querySelector(".checkout").classList.add("active");
 
   //post beers on submit Krista
-  console.log(document.querySelector("form"));
   document.querySelector("form").addEventListener("submit", postOrder);
 
+  // payment method switch or closing checkout modal - maria
   switchPaymentMethod();
   closeCheckout(modalCheckout);
 }
 
 // close checkout page - maria
 function closeCheckout(modalCheckout) {
-  const returnBtn = document.querySelector(".reset");
+  const returnBtn = document.querySelector(".return");
   returnBtn.addEventListener("click", returnToProducts);
 
   function returnToProducts() {
     modalCheckout.style.display = "none";
+    document.querySelector("body").style.overflow = "auto";
     document.querySelector(".form-container").innerHTML = "";
     //clear input values in products list, remove beercart activity
     document.querySelectorAll(".count").forEach((input) => {
@@ -241,10 +249,17 @@ function closeCheckout(modalCheckout) {
     });
     document.querySelector(".checkout_beer").classList.remove("shake");
     document.querySelector(".amount_beers").classList.add("hide");
+
+    // change active button back
+    const activeBtn = document.querySelector(".active");
+    if (activeBtn !== null) {
+      activeBtn.classList.remove("active");
+    }
+    document.querySelector(".products").classList.add("active");
   }
 }
 
-function functionalExtras() {
+function functionalityExtras() {
   loadingScreen();
   switchUser();
 }
@@ -274,13 +289,10 @@ function switchPaymentMethod() {
   });
 
   function switchMethod(e) {
-    console.log("clicked", e.target);
-
     const creditCard = document.querySelector(".credit_card");
     const mobilePay = document.querySelector(".mobilepay");
     const formContainer = document.querySelector("form");
     if (e.target === creditCard) {
-      console.log("hey");
       mobilePay.classList.remove("active_filter");
       creditCard.classList.add("active_filter");
       formContainer.style.display = "block";
@@ -297,7 +309,6 @@ function switchPaymentMethod() {
 }
 
 function mobilePayPayment() {
-  console.log("sup");
 
   const mobilePayButton = document.createElement("button");
   mobilePayButton.setAttribute("class", "official_mobilepay");

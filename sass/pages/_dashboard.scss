@@ -1,7 +1,7 @@
 @use "../abstracts/variables" as a;
 @use '../abstracts/mixins' as mx;
 
-// main section
+// extras - chart and queue bar
 .chart-container {
   max-width: 370px;
   margin: auto;
@@ -46,6 +46,7 @@
   }
 }
 
+// main section
 .servings_orders {
   padding: 20px 40px 30px 40px;
   height: fit-content;
@@ -202,7 +203,7 @@
   color: a.$white;
   font-size: a.$links-nav;
   padding: 10px;
-  background-color: brown;
+  background-color: a.$red;
   border-radius: 4px;
   margin: 10px;
   animation: pulse 1s ease-in-out infinite;
