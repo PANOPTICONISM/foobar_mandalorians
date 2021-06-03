@@ -219,6 +219,13 @@ function displayCheckout() {
   const body = document.querySelector("body");
   body.style.overflow = "hidden";
 
+  // change active button
+  const activeBtn = document.querySelector(".active");
+  if (activeBtn !== null) {
+    activeBtn.classList.remove("active");
+  }
+  document.querySelector(".checkout").classList.add("active");
+
   //post beers on submit Krista
   document.querySelector("form").addEventListener("submit", postOrder);
 
@@ -242,6 +249,13 @@ function closeCheckout(modalCheckout) {
     });
     document.querySelector(".checkout_beer").classList.remove("shake");
     document.querySelector(".amount_beers").classList.add("hide");
+
+    // change active button back
+    const activeBtn = document.querySelector(".active");
+    if (activeBtn !== null) {
+      activeBtn.classList.remove("active");
+    }
+    document.querySelector(".products").classList.add("active");
   }
 }
 
