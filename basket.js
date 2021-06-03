@@ -42,7 +42,6 @@ function addCartActivity() {
     document.querySelector(".amount_beers").classList.remove("hide");
     document.querySelector(".amount_beers").innerHTML = "✓ ";
   } else {
-    console.log("empty");
     document.querySelector(".amount_beers").classList.add("hide");
     document.querySelector(".checkout_beer").classList.remove("shake");
   }
@@ -125,7 +124,6 @@ function editBasketMinus(e) {
     const price = Number(basket[beerLabel].beerCount) * Number(priceStr);
     calcPrice.textContent = `DKK ${price}`;
   } else {
-    console.log("delete me");
     const beerLabelCard = e.target.parentElement.parentElement;
     beerLabelCard.remove();
   }
@@ -153,7 +151,6 @@ export function removeFromBasket(e) {
   const productCard = e.target.parentElement.parentElement;
   const beerName = productCard.parentNode.querySelector("h2").textContent;
   const beerLabel = nameId(beerName);
-  console.log(beerLabel);
   const beerCount = e.currentTarget.parentElement.children[1];
   beerCount.value--;
 
@@ -169,7 +166,6 @@ export function removeFromBasket(e) {
   //if beers = 0, remove that specific beer form basket and also from object and update price
   if (beerLabel in basket && basket[beerLabel].beerCount == 0) {
     const beerInBasket = document.querySelector("#" + nameId(beerLabel));
-    console.log(beerInBasket);
     beerInBasket.remove();
     delete basket[beerLabel];
     showTotalPrice();
@@ -192,7 +188,6 @@ export function postOrder(e) {
   });
 
   const postData = JSON.stringify(orderData);
-  console.log(orderData);
   fetch("https://foobar-mandalorians.herokuapp.com/order", {
       method: "post",
       headers: {
@@ -202,13 +197,11 @@ export function postOrder(e) {
     })
     .then((res) => res.json())
     .then((postData) => {
-      console.log(postData);
       showConfirmation(postData.id);
     });
 }
 
 function showConfirmation(orderNr) {
-  console.log(orderNr);
   document.querySelector("#confirmation_modal").classList.remove("hide");
   document.querySelector(
     "#confirmation_modal .id"

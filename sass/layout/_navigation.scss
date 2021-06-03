@@ -8,6 +8,11 @@
   align-items: center;
   padding: 40px;
 
+  .logo {
+    max-width: 210px;
+    max-height: 70px;
+  }
+
   ul {
     padding: 0;
   }
@@ -83,7 +88,7 @@
 
   .log_in img {
     width: 30px;
-    height: auto;
+    height: 30px;
     margin-right: 10px;
   }
 }
