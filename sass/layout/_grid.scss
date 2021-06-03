@@ -41,6 +41,7 @@ header {
 .checkout_beer {
   grid-column: 12/-1;
   grid-row: 2;
+  justify-self: self-end;
 }
 
 .products {

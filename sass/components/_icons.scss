@@ -32,7 +32,9 @@
 
 // beer cart
 .checkout_beer {
-  padding: 20px;
+  position: absolute;
+  top: 30px;
+  right: 30px;
 
   .iconify {
     font-size: 35px;
