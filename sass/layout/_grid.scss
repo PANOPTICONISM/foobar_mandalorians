@@ -1,5 +1,6 @@
 @use '../abstracts/mixins' as mx;
 
+// main parts of the puzzle, positioning
 * {
   box-sizing: border-box;
 }
@@ -49,6 +50,7 @@ header {
   grid-row: 3;
 }
 
+// media query
 @media (min-width: mx.$screen-ipad) {
   header {
     grid-column: 1/2;

@@ -1,12 +1,12 @@
 @use "../abstracts/variables" as a;
 
+// typograhpy all around
 * {
   font-family: a.$primary-font;
 }
 
 button {
   font-weight: a.$font-weight-bold;
-  font-family: a.$primary-font;
 }
 
 // navigation
@@ -17,6 +17,7 @@ nav li a,
   font-size: a.$links-nav;
 }
 
+// headings
 h1 {
   font-weight: a.$font-weight-bolder;
   font-size: a.$h1;
@@ -129,12 +130,12 @@ h2 {
   font-family: a.$primary-font;
 
   h2 {
-    font-size: a.$readmore-h3;
+    font-size: a.$readmore-h2;
     margin-bottom: 5px;
   }
 
   h3 {
-    font-size: a.$readmore-h4;
+    font-size: a.$readmore-h3;
     margin: 0;
   }
 

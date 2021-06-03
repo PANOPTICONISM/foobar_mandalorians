@@ -1,6 +1,7 @@
 @use '../abstracts/variables' as v;
 @use '../abstracts/mixins' as mix;
 
+// read more about each beer modal
 #beer_modal {
     display: none;
     position: fixed;
@@ -52,7 +53,7 @@
     }
 }
 
-
+// media query
 @media (min-width: mix.$screen-ipad) {
     .details {
         max-width: 460px;

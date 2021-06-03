@@ -1,6 +1,7 @@
 @use "../abstracts/variables" as a;
 @use '../abstracts/mixins' as mx;
 
+// basket section
 .modal_container_b {
   padding: 20px;
   color: a.$white;
@@ -119,7 +120,7 @@ aside {
   }
 }
 
-
+// mobilepay button
 .official_mobilepay {
   background-color: a.$mobilepay;
   color: a.$white;
@@ -138,23 +139,7 @@ aside {
   }
 }
 
-// scrollbar themed
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #ffffff;
-}
-
-::-webkit-scrollbar-thumb {
-  background: a.$green-light;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: a.$green-darker;
-}
-
+// media query
 @media (min-width: mx.$screen-desktop) {
 
   .modal_container_b {

@@ -1,8 +1,8 @@
 @use '../abstracts/variables' as v;
 @use '../abstracts/mixins' as mix;
 
+// purchase confirmation modal
 #confirmation_modal {
-  //display: none;
   position: fixed;
   z-index: 3;
   left: 0;
@@ -55,6 +55,7 @@
   }
 }
 
+// media query
 @media (min-width: mix.$screen-laptop) {
   .modal_inner {
     width: 650px;

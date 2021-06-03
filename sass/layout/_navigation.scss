@@ -1,6 +1,7 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as mx;
 
+// navigation, aka sidebar
 .navigation {
   background-color: $green-dark;
   display: flex;
@@ -11,7 +12,6 @@
   .logo {
     width: 214px;
     height: 66px;
-    fill: azure;
   }
 
   ul {
@@ -171,6 +171,7 @@ header input:checked ~ .slide-in {
   right: 0;
 }
 
+// media queries
 @media (min-width: mx.$screen-ipad) {
   .hamburger,
   #toggle {
