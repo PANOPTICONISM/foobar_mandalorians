@@ -231,6 +231,7 @@ function displayCheckout() {
 
   // credit card
   creditCardSpacing();
+  phoneNumberCountries();
 
   // payment method switch or closing checkout modal - maria
   switchPaymentMethod();
@@ -283,14 +284,27 @@ function searchCorrectBeers(beers) {
   });
 }
 
-// form
+// form - credit card automatic spacing
 function creditCardSpacing() {
 
-  let creditCardInput = document.querySelector("#creditcard");
+  const creditCardInput = document.querySelector("#creditcard");
 
   creditCardInput.addEventListener('input', function (e) {
     e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
   });
+}
+
+// form - phone number
+function phoneNumberCountries() {
+  const phoneInputField = document.querySelector("#pnumber");
+
+  const phoneInput = window.intlTelInput(phoneInputField, {
+    preferredCountries: ["dk", "no", "pt", "de"],
+  });
+
+  phoneInputField.addEventListener('input', function (e) {
+    e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{2})/g, '$1 ').trim();
+  })
 }
 
 // switch payments method - maria

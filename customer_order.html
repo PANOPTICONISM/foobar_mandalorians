@@ -8,6 +8,9 @@
   <title>FooBar's beers</title>
   <meta name="description"
     content="Ready to get the evening started right? Here you can find all about our beers and more!" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 </head>
 
 <body>
@@ -180,8 +183,8 @@
           <label for="pnumber">Phone-number</label>
           <p>This number will only be used to send you your order number</p>
           <input id="pnumber" name="phonenumber" inputmode="tel" autocomplete="tel" type="text"
-            pattern="[\+]\d{2}[\s]?\d{2}[\s]?\d{2}[\s]?\d{2}[\s]?\d{2}" minlength="15" maxlength="15"
-            placeholder="e. g. +45 00 00 00 00" required />
+            pattern="[\+]\d{2}[\s]?\d{2}[\s]?\d{2}[\s]?\d{2}[\s]?\d{2}" minlength="11" maxlength="11"
+            placeholder="xx xx xx xx" required />
         </fieldset>
         <fieldset>
           <label for="cardname">Name on the card</label>
