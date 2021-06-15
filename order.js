@@ -229,6 +229,9 @@ function displayCheckout() {
   //post beers on submit Krista
   document.querySelector("form").addEventListener("submit", postOrder);
 
+  // credit card
+  creditCardSpacing();
+
   // payment method switch or closing checkout modal - maria
   switchPaymentMethod();
   closeCheckout(modalCheckout);
@@ -277,6 +280,16 @@ function searchCorrectBeers(beers) {
 
     const searchedList = beers.filter(isBeer);
     return rebuildList(searchedList);
+  });
+}
+
+// form
+function creditCardSpacing() {
+
+  let creditCardInput = document.querySelector("#creditcard");
+
+  creditCardInput.addEventListener('input', function (e) {
+    e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
   });
 }
 

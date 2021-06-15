@@ -50,14 +50,12 @@
 .servings_orders {
   padding: 20px 40px 30px 40px;
   height: fit-content;
-  height: -webkit-fill-available;
   z-index: -1;
 }
 
 .servings, .orders {
   max-width: 300px;
   height: fit-content;
-  height: -webkit-fill-available;
   margin: 15px auto;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(196,196,196,1);
       -moz-box-shadow: 0px 0px 5px 0px rgba(196,196,196,1);
