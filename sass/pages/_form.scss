@@ -35,7 +35,7 @@ form {
     border-radius: 20px;
     border: 1px solid a.$grey-form;
     outline: none;
-    padding: 6px;
+    padding: 6px 12px;
     margin-top: 5px;
     width: -webkit-fill-available;
 
@@ -71,4 +71,12 @@ form .credit_card_details span, form div span {
 
 .credit_card_details {
   margin-bottom: 20px;
+}
+
+#pnumber {
+  margin-top: 5px!important;
+}
+
+.iti__flag-container {
+  top: 5px!important;
 }

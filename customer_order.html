@@ -183,8 +183,8 @@
           <label for="pnumber">Phone-number</label>
           <p>This number will only be used to send you your order number</p>
           <input id="pnumber" name="phonenumber" inputmode="tel" autocomplete="tel" type="text"
-            pattern="[\+]\d{2}[\s]?\d{2}[\s]?\d{2}[\s]?\d{2}[\s]?\d{2}" minlength="11" maxlength="11"
-            placeholder="xx xx xx xx" required />
+            pattern="[\s]?\d{2}[\s]?\d{2}[\s]?\d{2}[\s]?\d{2}" minlength="8" maxlength="11" placeholder="xx xx xx xx"
+            required />
         </fieldset>
         <fieldset>
           <label for="cardname">Name on the card</label>
@@ -200,7 +200,7 @@
           </p>
           <input id="creditcard" name="creditcard" inputmode="numeric" type="text"
             pattern="[\s]?\d{4}[\s]?\d{4}[\s]?\d{4}[\s]?\d{4}" minlength="19" maxlength="19"
-            placeholder="xxxx xxxx xxxx xxxx" required />
+            placeholder="💳 0000 0000 0000 0000" required />
         </fieldset>
 
         <div class="credit_card_details">
@@ -208,19 +208,21 @@
             <label for="expirationdate">Expiration date</label>
             <div>
               <input id="expirationmonth" name="expirationmonth" inputmode="numeric" type="text" pattern="0[1-9]|1[0-2]"
-                minlength="2" maxlength="2" max="12" placeholder="Month" required />
+                minlength="2" maxlength="2" max="12" placeholder="MM" required />
               <span>/</span>
               <input id="expirationyear" name="expirationyear" inputmode="numeric" type="text" pattern="\d+"
-                minlength="2" maxlength="2" placeholder="Year" required />
+                minlength="2" maxlength="2" placeholder="YY" required />
             </div>
           </fieldset>
           <fieldset>
-            <label for="cvv">CVV</label>
+            <label for="cvv">CVV/CVC</label>
             <input id="cvv" name="cvv" inputmode="numeric" type="text" pattern="\d+" minlength="3" maxlength="3"
-              placeholder="e. g. 000" required />
+              placeholder="🔒 000" required />
           </fieldset>
         </div>
-
+        <p style="margin-bottom: 8px;"><span class="iconify" data-inline="false" data-icon="bx:bxs-lock-alt"
+            style="color: #111;margin-right: 4px;"></span>Your
+          transaction is secured with SSL encryption and protected under Danish law.</p>
         <p>
           By clicking “Beer me up”, I agree with FooBar’s Terms of Service and
           with purchasing the content in the basket summary.
