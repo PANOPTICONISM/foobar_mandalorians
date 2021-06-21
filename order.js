@@ -229,6 +229,10 @@ function displayCheckout() {
   //post beers on submit Krista
   document.querySelector("form").addEventListener("submit", postOrder);
 
+  // credit card
+  creditCardSpacing();
+  phoneNumberCountries();
+
   // payment method switch or closing checkout modal - maria
   switchPaymentMethod();
   closeCheckout(modalCheckout);
@@ -278,6 +282,29 @@ function searchCorrectBeers(beers) {
     const searchedList = beers.filter(isBeer);
     return rebuildList(searchedList);
   });
+}
+
+// form - credit card automatic spacing
+function creditCardSpacing() {
+
+  const creditCardInput = document.querySelector("#creditcard");
+
+  creditCardInput.addEventListener('input', function (e) {
+    e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
+  });
+}
+
+// form - phone number
+function phoneNumberCountries() {
+  const phoneInputField = document.querySelector("#pnumber");
+
+  const phoneInput = window.intlTelInput(phoneInputField, {
+    preferredCountries: ["dk", "no", "pt", "de"],
+  });
+
+  phoneInputField.addEventListener('input', function (e) {
+    e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{2})/g, '$1 ').trim();
+  })
 }
 
 // switch payments method - maria
