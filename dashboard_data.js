@@ -13,6 +13,10 @@ import {
   chart
 } from "./chart";
 
+import {
+  automaticDarkMode
+} from './dark_mode.js';
+
 //fetch data every 3sec krista
 function startLiveUpdate() {
   setInterval(async () => {
@@ -175,6 +179,7 @@ function displayUpcomingServings(serving) {
   document.querySelector(".serving-box").appendChild(copy);
 
   functionalExtras();
+  automaticDarkMode();
 }
 
 function displayUpcomingOrders(order) {
