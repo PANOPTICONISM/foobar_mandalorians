@@ -1,8 +1,5 @@
 // dark mode for the website - maria
 import Darkmode from 'darkmode-js';
-// import {
-//     showCurrentTime
-// } from './dashboard_data';
 
 const options = {
     bottom: '30px',
@@ -24,6 +21,8 @@ setTimeout(() => {
     const hour = time.substring(1, 3);
 
     if (hour >= 22 || hour <= 4) {
+        darkmode.toggle();
+    } else if (darkmode.isActivated() && hour > 4 && hour < 22) {
         darkmode.toggle();
     }
 }, 5000)
