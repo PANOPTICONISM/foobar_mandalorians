@@ -173,24 +173,33 @@
         <fieldset>
           <label for="username">Username</label>
           <p>
-            Give yourself a cool name with 2 to 10 letters and then try to
+            Give yourself a cool name with 2 to 10 characters and then try to
             find your order on one of our tv screens
           </p>
-          <input id="username" name="username" autocomplete="username" inputmode="text" type="text" minlength="2"
-            maxlength="10" placeholder="e. g. Foobar Inc." required />
+          <div class="inline">
+            <input id="username" name="username" autocomplete="username" inputmode="text" type="text" minlength="2"
+              maxlength="10" pattern="[a-zA-Z0-9]+" placeholder="e. g. Foobar Inc." required /><span
+              class="after"></span>
+          </div>
         </fieldset>
         <fieldset>
           <label for="pnumber">Phone-number</label>
           <p>This number will only be used to send you your order number</p>
-          <input id="pnumber" name="phonenumber" inputmode="tel" autocomplete="tel" type="text"
-            pattern="[\s]?\d{2}[\s]?\d{2}[\s]?\d{2}[\s]?\d{2}" minlength="8" maxlength="11" placeholder="xx xx xx xx"
-            required />
+          <div class="inline">
+            <input id="pnumber" name="phonenumber" inputmode="tel" autocomplete="tel" type="text"
+              pattern="[\s]?\d{2}[\s]?\d{2}[\s]?\d{2}[\s]?\d{2}" minlength="8" maxlength="11" placeholder="00 00 00 00"
+              required />
+            <span class="after"></span>
+          </div>
         </fieldset>
         <fieldset>
           <label for="cardname">Name on the card</label>
           <p>Full name as presented on your credit card</p>
-          <input id="cardname" name="cardname" inputmode="text" type="text" pattern="[a-zA-Z]+"
-            placeholder="Full name as stated on the card" required />
+          <div class="inline">
+            <input id="cardname" name="cardname" inputmode="text" type="text" pattern="[a-zA-Z]+"
+              placeholder="Full name as stated on the card" required />
+            <span class="after"></span>
+          </div>
         </fieldset>
         <fieldset>
           <label for="creditcard">Credit card number</label>
@@ -198,26 +207,38 @@
             This information will be used for this purchase only and not
             stored anywhere
           </p>
-          <input id="creditcard" name="creditcard" inputmode="numeric" type="text"
-            pattern="[\s]?\d{4}[\s]?\d{4}[\s]?\d{4}[\s]?\d{4}" minlength="19" maxlength="19"
-            placeholder="💳 0000 0000 0000 0000" required />
+          <div class="inline">
+            <input id="creditcard" name="creditcard" inputmode="numeric" type="text"
+              pattern="[\s]?\d{4}[\s]?\d{4}[\s]?\d{4}[\s]?\d{4}" minlength="19" maxlength="19"
+              placeholder="💳 0000 0000 0000 0000" required />
+            <span class="after"></span>
+          </div>
         </fieldset>
 
         <div class="credit_card_details">
           <fieldset>
             <label for="expirationdate">Expiration date</label>
-            <div>
-              <input id="expirationmonth" name="expirationmonth" inputmode="numeric" type="text" pattern="0[1-9]|1[0-2]"
-                minlength="2" maxlength="2" max="12" placeholder="MM" required />
-              <span>/</span>
-              <input id="expirationyear" name="expirationyear" inputmode="numeric" type="text" pattern="\d+"
-                minlength="2" maxlength="2" placeholder="YY" required />
+            <div class="exp">
+              <span class="inline">
+                <input id="expirationmonth" name="expirationmonth" inputmode="numeric" type="text"
+                  pattern="0[1-9]|1[0-2]" minlength="2" maxlength="2" max="12" placeholder="MM" required />
+                <span class="after"></span>
+              </span>
+              <span class="slash">/</span>
+              <span class="inline">
+                <input id="expirationyear" name="expirationyear" inputmode="numeric" type="text" pattern="\d+"
+                  minlength="2" maxlength="2" placeholder="YY" required />
+                <span class="after"></span>
+              </span>
             </div>
           </fieldset>
           <fieldset>
             <label for="cvv">CVV/CVC</label>
-            <input id="cvv" name="cvv" inputmode="numeric" type="text" pattern="\d+" minlength="3" maxlength="3"
-              placeholder="🔒 000" required />
+            <span class="inline">
+              <input id="cvv" name="cvv" inputmode="numeric" type="text" pattern="\d+" minlength="3" maxlength="3"
+                placeholder="🔒 CVV/CVC" required />
+              <span class="after"></span>
+            </span>
           </fieldset>
         </div>
         <p style="margin-bottom: 8px;"><span class="iconify" data-inline="false" data-icon="bx:bxs-lock-alt"

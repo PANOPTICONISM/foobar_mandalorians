@@ -23,7 +23,7 @@ setTimeout(() => {
     const time = document.querySelector(".time p").textContent;
     const hour = time.substring(1, 3);
 
-    if (hour >= 22) {
+    if (hour >= 22 || hour <= 4) {
         darkmode.toggle();
     }
 }, 5000)
