@@ -6,6 +6,10 @@ The first part was created to be presented on big screens across the bar where c
 
 The second part was to be used on the tablets found across every table at the bar or the client's personal devices - a purchase workflow, from products to payment getaway.
 
+## LIVE PREVIEW:
+
+<https://hopeful-banach-51fe97.netlify.app/>
+
 ## PACKAGES USED:
 
 PACKAGE FOR DARK MODE:
