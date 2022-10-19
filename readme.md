@@ -1,22 +1,27 @@
-# FooBar - school project
+# FooBar - Exam's Project
 
-A platform created to serve as FooBar's in bar system.
+A platform designed and developed for a bar called FooBar.
 
-The first part was created to be presented on big screens across the bar where clients can see their order on queue and when it's their time to be served, along with a chart showcasing the bar's most popular beers at any given time.
+The first screen was created to be showcased on big TV screens across the bar where customers can see their order in the queue and when it's their time to be served, along with a chart showcasing the bar's most popular beers at any given time.
 
-The second part was to be used on the tablets found across every table at the bar or the client's personal devices - a purchase workflow, from products to payment getaway.
+The second screen was created to be used on the tablets found across every table at the bar or the customer's personal devices - a purchase workflow, from products to payment getaway.
 
-## LIVE PREVIEW:
+## Live Preview
 
 <https://hopeful-banach-51fe97.netlify.app/>
 
-## PACKAGES USED:
+## Packages / resources used
 
-PACKAGE FOR DARK MODE:
+### Dark mode:
 https://www.npmjs.com/package/darkmode-js
 
-PACKAGE FOR CHART:
+### Chart:
 https://www.chartjs.org/
 
-LOADING SCREEN ANIMATION:
+### Loading screen animation:
 https://codepen.io/comehope/pen/rZeOQp
+
+## Installing
+`npm i`
+
+`npm run dev`
