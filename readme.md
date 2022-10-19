@@ -1,10 +1,10 @@
 # FooBar - Exam's Project
 
-A platform designed and developer for a bar named FooBar.
+A platform designed and developed for a bar called FooBar.
 
-The first screen was created to be presented on big TV screens across the bar where clients can see their order in the queue and when it's their time to be served, along with a chart showcasing the bar's most popular beers at any given time.
+The first screen was created to be showcased on big TV screens across the bar where customers can see their order in the queue and when it's their time to be served, along with a chart showcasing the bar's most popular beers at any given time.
 
-The second screen was created to be used on the tablets found across every table at the bar or the client's personal devices - a purchase workflow, from products to payment getaway.
+The second screen was created to be used on the tablets found across every table at the bar or the customer's personal devices - a purchase workflow, from products to payment getaway.
 
 ## Live Preview
 
