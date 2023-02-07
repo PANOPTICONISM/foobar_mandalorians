@@ -6,22 +6,24 @@ The first screen was created to be showcased on big TV screens across the bar wh
 
 The second screen was created to be used on the tablets found across every table at the bar or the customer's personal devices - a purchase workflow, from products to payment getaway.
 
-## Live Preview
+## Getting Started
 
-<https://hopeful-banach-51fe97.netlify.app/>
+```bash 
+npm i
+npm run dev
+```
 
-## Packages / resources used
+## Packages / Resources Used
 
-### Dark mode:
+- Dark mode:
 https://www.npmjs.com/package/darkmode-js
 
-### Chart:
+- Chart:
 https://www.chartjs.org/
 
-### Loading screen animation:
+- Loading screen animation:
 https://codepen.io/comehope/pen/rZeOQp
 
-## Installing
-`npm i`
+## Live Preview
 
-`npm run dev`
+- <https://hopeful-banach-51fe97.netlify.app/>
