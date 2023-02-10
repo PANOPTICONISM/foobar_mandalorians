@@ -1,15 +1,18 @@
+"use strict";
+
 import Chart from "chart.js/auto";
 
 let data = [];
 let label = [];
+
 // chart object
 export let chart = new Chart(myChart, {
-  //type of charts
+  // type of charts
   type: "line",
-  //data on X-axis
+  // data on X-axis
   data: {
     labels: label,
-    //data on Y-axis and their labels
+    // data on Y-axis and their labels
     datasets: [
       {
         data: data,

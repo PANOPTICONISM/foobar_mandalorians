@@ -1,4 +1,6 @@
-// dark mode for the website - maria
+"use strict";
+
+// dark mode for the website
 import Darkmode from 'darkmode-js';
 
 const options = {

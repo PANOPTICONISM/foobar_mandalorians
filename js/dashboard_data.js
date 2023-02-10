@@ -1,3 +1,5 @@
+"use strict";
+
 window.addEventListener("DOMContentLoaded", startLiveUpdate);
 
 import {
@@ -17,7 +19,7 @@ import {
   automaticDarkMode
 } from './dark_mode.js';
 
-//fetch data every 3sec krista
+// fetch data every 3 seconds
 function startLiveUpdate() {
   setInterval(async () => {
     const response = await fetch("https://foobar-mandalorians.herokuapp.com/");
@@ -26,12 +28,12 @@ function startLiveUpdate() {
   }, 3000);
 }
 
-//prepare data and call all the functions from here krista
+// prepare data and call all the functions from here
 function prepareData(dashboardData) {
-  //clear cards
+  // clear cards
   document.querySelector(".serving-box").innerHTML = "";
   document.querySelector(".order-box").innerHTML = "";
-  //clear chart canvas
+  // clear chart canvas
   chart.data.labels = [];
   let maxBeers = maxAmount(dashboardData.storage);
   const beerArr = chart.data.datasets[0].data.length;
@@ -43,7 +45,7 @@ function prepareData(dashboardData) {
   isLowOnStock(dashboardData.storage);
   dashboardData.storage.forEach((beer) => {
     const label = beer.name;
-    //calculate reverse, so lowers is highest nr
+    // calculate reverse, so lowers is highest nr
     const data = maxBeers / beer.amount;
     addData(chart, label, data);
   });
@@ -62,7 +64,7 @@ function prepareData(dashboardData) {
   showCurrentTime(time);
 }
 
-//update chart data krista
+// update chart data
 function addData(chart, label, data) {
   chart.data.labels.push(label);
   chart.data.datasets.forEach((dataset) => {
@@ -71,7 +73,7 @@ function addData(chart, label, data) {
   chart.update();
 }
 
-// queue size and bar - maria
+// queue size and bar
 function showQueueLength(q) {
   const queueNumber = document.querySelector(".queue-number span");
   queueNumber.textContent = q.length;
@@ -80,22 +82,22 @@ function showQueueLength(q) {
   bar.style.width = q.length + "0px";
 }
 
-// showint timestamp as time krista
+// showint timestamp as time
 function showCurrentTime(time) {
   document.querySelector(".time p").textContent = currentTime(time);
 }
 
-//populate template create missing elements and display servings krista
+// populate template create missing elements and display servings
 function displayUpcomingServings(serving) {
-  //this is data for serving list
+  // this is data for serving list
   const servingId = serving.id;
   const servingTime = serving.startTime;
   const beerServing = serving.order;
 
-  //clone template
+  // clone template
   const template = document.querySelector("#templ-serving").content;
   const copy = template.cloneNode(true);
-  //update elements with data
+  // update elements with data
   const orderId = copy.querySelector(".serving-id");
   orderId.textContent = `Order Nr - ${servingId}`;
   const time = copy.querySelector(".serving-time");
@@ -104,31 +106,31 @@ function displayUpcomingServings(serving) {
   const lastDigit = serving.id.toString().slice(-1);
   tableNr.textContent = Number(lastDigit) + 1;
 
-  //create beer list
+  // create beer list
   const beerUl = document.createElement("ul");
   beerUl.setAttribute("class", "beer");
   copy.querySelector(".beer-type").appendChild(beerUl);
 
-  //count beer name and display it as a number
+  // count beer name and display it as a number
   let count = 1;
   for (let i = 0; i < beerServing.length; i++) {
     if (beerServing[i] !== beerServing[i + 1]) {
-      // console.log(beerServing[i + 1]);
       let beerNameValue = `${beerServing[i]}`;
       let beerCount = `${count}`;
+
       if (beerNameValue === undefined) {
         console.log("beer is pouring");
       } else {
-        //create beer list
+        // create beer list
         const beerNamesLi = document.createElement("li");
-        //create span tag to fit in list
+        // create span tag to fit in list
         const liSpan = document.createElement("h2");
-        //create img element
+        // create img element
         const img = document.createElement("img");
         img.setAttribute("class", "beers");
-        //uses  fixname function to pass in specific val as param
+        // uses fixname function to pass in specific val as param
         img.src = nameId(beerServing[i].toLowerCase()) + ".png";
-        //this div now displays number of beers ordered-maria
+        // this div now displays number of beers ordered
         const imageBox = document.createElement("div");
         imageBox.setAttribute("class", "image_box");
         const beerInfo = document.createElement("div");
@@ -139,7 +141,7 @@ function displayUpcomingServings(serving) {
         imageBox.append(img);
         imageBox.append(beerAmount);
         liSpan.textContent = `${beerNameValue}`;
-        // add categories to beers - maria
+        // add categories to beers
         const beerType = document.createElement("h3");
         if (
           beerNameValue === "Fairy Tale Ale" ||
@@ -186,10 +188,10 @@ function displayUpcomingOrders(order) {
   let orderId = order.id;
   let orderTime = order.startTime;
   let beerOrder = order.order;
-  //clone template
+  // clone template
   const template = document.querySelector("#templ-orders").content;
   const copy = template.cloneNode(true);
-  //update elements with data
+  // update elements with data
   const orderNrId = copy.querySelector(".order-id");
   orderNrId.textContent = `Order Nr: ${orderId}`;
   const time = copy.querySelector(".order-time");
@@ -201,7 +203,7 @@ function displayUpcomingOrders(order) {
   const beerUl = document.createElement("ul");
   beerUl.setAttribute("class", "beer");
   copy.querySelector(".beer-type").appendChild(beerUl);
-  //count beer name and display it as a number
+  // count beer name and display it as a number
   let count = 1;
   for (let i = 0; i < beerOrder.length; i++) {
     if (beerOrder[i] !== beerOrder[i + 1]) {
@@ -210,15 +212,15 @@ function displayUpcomingOrders(order) {
       if (beerNameValue === undefined) {
         console.log("waiting for orders");
       } else {
-        //create beer list
+        // create beer list
         const beerNamesLi = document.createElement("li");
         //create span tag to fit in list
         const liSpan = document.createElement("h2");
-        //create img element
+        // create img element
         const img = document.createElement("img");
         img.setAttribute("class", "beers");
         img.src = nameId(beerOrder[i].toLowerCase()) + ".png";
-        //this div now displays number of beers ordered
+        // this div now displays number of beers ordered
         const imageBox = document.createElement("div");
         imageBox.setAttribute("class", "image_box");
         const beerInfo = document.createElement("div");
@@ -229,7 +231,7 @@ function displayUpcomingOrders(order) {
         imageBox.append(img);
         imageBox.append(beerAmount);
         liSpan.textContent = `${beerNameValue}`;
-        // add categories to beers - maria
+        // add categories to beers
         const beerType = document.createElement("h3");
         if (
           beerNameValue === "Fairy Tale Ale" ||
@@ -268,7 +270,7 @@ function displayUpcomingOrders(order) {
   document.querySelector(".order-box").appendChild(copy);
 }
 
-// if stock is almost empty, insert reminder - maria
+// if stock is almost empty, insert reminder
 function isLowOnStock(stock) {
   const lowOnStock = document.querySelector(".low_stock");
   lowOnStock.innerHTML = "";

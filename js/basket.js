@@ -1,12 +1,13 @@
 "use strict";
 
 import { lastStr, nameId } from "./helpers";
-//everything to do with basket starts here Krista
+
+// everything to do with basket starts here 
 export let basket = {};
 export let orderData = [];
 document.querySelector(".amount_beers").classList.add("hide");
 
-//target clicked elements to show in the list
+// target clicked elements to show in the list
 export function addToBasket(e) {
   const productCard = e.target.parentElement.parentElement;
   const beerName = productCard.parentNode.querySelector("h2").textContent;
@@ -24,14 +25,14 @@ export function addToBasket(e) {
       beerImg: productCard.parentNode.querySelector("img").src,
       beerCount: 1,
     };
-    //set key to our basket object, and add values
+    // set key to our basket object, and add values
     basket[beerLabel] = basketItem;
     addCartActivity();
   }
   showInBasket(beerLabel);
 }
 
-//beer cart
+// beer cart
 function addCartActivity() {
   let beersInCart = Object.keys(basket).length === 0;
   if (!beersInCart) {
@@ -44,7 +45,7 @@ function addCartActivity() {
   }
 }
 
-//create HTML elements and render in basket according to data
+// create HTML elements and render in basket according to data
 function showInBasket(beerLabel) {
   const item = basket[beerLabel];
   if (item === undefined) {
@@ -55,7 +56,8 @@ function showInBasket(beerLabel) {
   const quantity = Number(item.beerCount);
   const cardCopy = document.createElement("div");
   cardCopy.setAttribute("class", "cardItem");
-  //set ID to html elements same as obj key
+
+  // set ID to html elements same as obj key
   cardCopy.setAttribute("id", beerLabel);
   cardCopy.innerHTML = `<div class ="beer-card">
   <img src="${item.beerImg}"  class= "basketImg" alt="" />
@@ -75,7 +77,8 @@ function showInBasket(beerLabel) {
        `;
 
   const cardBeerName = document.querySelector("#" + nameId(beerLabel));
-  //if same beer clicked >1 add up only price and quantyty to basket, not whole new beer order card
+
+  // if same beer clicked >1 add up only price and quantyty to basket, not whole new beer order card
   if (cardBeerName != null) {
     cardBeerName.remove();
   }
@@ -93,7 +96,7 @@ function showInBasket(beerLabel) {
   showTotalPrice();
 }
 
-//edit items already in basket on +btn
+// edit items already in basket on +btn
 function editBasketPlus(e) {
   const beerLabel = e.target.parentElement.parentElement.id;
   const beerCount = e.target.parentElement.children[1];
@@ -108,7 +111,7 @@ function editBasketPlus(e) {
   showTotalPrice();
 }
 
-//edit items already in basket on -
+// edit items already in basket on -
 function editBasketMinus(e) {
   const beerLabel = e.target.parentElement.parentElement.id;
   const beerCount = e.target.parentElement.children[1];
@@ -132,10 +135,11 @@ function showTotalPrice() {
   price.forEach((beerPrice) => {
     let priceString = beerPrice.textContent;
     let price = lastStr(priceString);
-    //turn string into number and push to array total
+    // turn string into number and push to array total
     total.push(Number(price));
   });
-  //reduce to one number
+
+  // reduce to one number
   const totalPrice = total.reduce((total, beerItemNr) => {
     total += beerItemNr;
     return total;
@@ -150,16 +154,16 @@ export function removeFromBasket(e) {
   const beerCount = e.currentTarget.parentElement.children[1];
   beerCount.value--;
 
-  //prevent value in minus box to go under 0
+  // prevent value in minus box to go under 0
   if (beerCount.value < 1) {
     beerCount.value = 0;
     beerCount.disabled = true;
   }
-  //subtract 1 from what is current number of beers
+  // subtract 1 from what is current number of beers
   if (beerLabel in basket) {
     basket[beerLabel].beerCount -= 1;
   }
-  //if beers = 0, remove that specific beer form basket and also from object and update price
+  // if beers = 0, remove that specific beer form basket and also from object and update price
   if (beerLabel in basket && basket[beerLabel].beerCount == 0) {
     const beerInBasket = document.querySelector("#" + nameId(beerLabel));
     beerInBasket.remove();
@@ -170,9 +174,8 @@ export function removeFromBasket(e) {
   showInBasket(beerLabel);
 }
 
-//post data to server
+// post data to server
 export function postOrder(e) {
-  // e is on form
   e.preventDefault();
   orderData = [];
   const keys = Object.keys(basket);
@@ -208,7 +211,7 @@ function showConfirmation(orderNr) {
     .addEventListener("click", hideConfirmation);
 }
 
-//hide modal and reset form
+// hide modal and reset form
 function hideConfirmation() {
   document.querySelector("#confirmation_modal").classList.add("hide");
   document.querySelector("form").reset();

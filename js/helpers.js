@@ -1,4 +1,6 @@
-//time function
+"use strict";
+
+// time function
 export function currentTime(timestamp) {
   const date = new Date(timestamp);
   const hours = date.getHours();
@@ -8,19 +10,19 @@ export function currentTime(timestamp) {
   return formattedTime;
 }
 
-//last word in string
+// last word in string
 export function lastStr(str) {
   const lastSpace = str.lastIndexOf(" ");
   const lastWord = str.substring(lastSpace + 1);
   return lastWord;
 }
 
-//clear whitespaces
+// clear whitespaces
 export function nameId(name) {
   return name.replace(/\s/g, "");
 }
 
-//reverse nr in storage
+// reverse nr in storage
 export function maxAmount(storage) {
   let amountStat = [];
   storage.forEach((beer) => {

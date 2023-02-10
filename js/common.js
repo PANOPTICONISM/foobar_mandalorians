@@ -1,11 +1,12 @@
+"use strict";
 // images, search bar
 
-// remove loading screen once data is set - maria
+// remove loading screen once data is set
 export function loadingScreen() {
   document.querySelector(".loader-box").style.display = "none";
 }
 
-// switch user on the navigation - maria
+// switch user on the navigation
 export function switchUser() {
   const button = document.querySelector(".log_in button");
 

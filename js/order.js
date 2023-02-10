@@ -1,6 +1,6 @@
-("use strict");
+"use strict";
 
-import "./sass/customer.scss";
+import "../sass/customer.scss";
 import {
   loadingScreen,
   switchUser
@@ -12,10 +12,10 @@ import {
 } from "./basket";
 import "./dark_mode.js";
 
-// load on start - maria
+// load on start
 window.addEventListener("DOMContentLoaded", fetchData);
 
-// fetch data from api - maria
+// fetch data from api
 async function fetchData() {
   const beertypes = "https://foobar-mandalorians.herokuapp.com/beertypes";
   const response = await fetch(beertypes);
@@ -24,7 +24,7 @@ async function fetchData() {
   redirectData(data);
 }
 
-// handle what's required on load - maria
+// handle what's required on load
 function redirectData(beers) {
   beers.forEach(eachBeerCard);
   groupFilters(beers);
@@ -33,7 +33,7 @@ function redirectData(beers) {
   searchCorrectBeers(beers);
 }
 
-// array of all beertypes - maria
+// array of all beertypes
 function groupFilters(allBeers) {
   let filterArr = [];
   let result;
@@ -43,7 +43,7 @@ function groupFilters(allBeers) {
   cleanFilters(filterArr);
 }
 
-// clean array from repetitive categories - maria
+// clean array from repetitive categories
 function cleanFilters(categories) {
   function isUnique(a, b) {
     return categories.indexOf(a) == b;
@@ -53,7 +53,7 @@ function cleanFilters(categories) {
   appendFilters(cleanRepetitiveFilters);
 }
 
-// create and append filters to dom - maria
+// create and append filters to dom
 function appendFilters(filters) {
   filters.forEach((f) => {
     const filterOption = document.createElement("button");
@@ -65,7 +65,7 @@ function appendFilters(filters) {
   allButton.setAttribute("class", "filter active_filter");
 }
 
-// filters in action - maria
+// filters in action
 function filterClicked(allBeers) {
   const filterBtns = document.querySelectorAll(".filter");
   filterBtns.forEach((btn) => btn.addEventListener("click", function (e) {
@@ -97,13 +97,13 @@ function sortItems(allBeers, e) {
   return rebuildList(filteredBeers);
 }
 
-// rebuild beer list options upon clicked filter - maria
+// rebuild beer list options upon clicked filter
 function rebuildList(newList) {
   document.querySelector(".beers").innerHTML = "";
   newList.forEach(eachBeerCard);
 }
 
-// insert data into the DOM - maria
+// insert data into the DOM
 export function eachBeerCard(beer) {
   // create a box for each beer, with a class named card
   const beerCard = document.createElement("div");
@@ -152,7 +152,7 @@ export function eachBeerCard(beer) {
 
   document.querySelector(".beers").appendChild(beerCard);
 
-  //add&remove order and send to basket, Krista
+  // add and remove order and send to basket
   const beerPlus = document.querySelectorAll(".plus");
   beerPlus.forEach((count) => {
     count.addEventListener("click", addToBasket);
@@ -165,7 +165,7 @@ export function eachBeerCard(beer) {
   functionalityExtras();
 }
 
-// modal with details for each beer - maria
+// modal with details for each beer 
 function openDetailedModal(beer) {
   const clone = document.querySelector("#b_modal").content.cloneNode(true);
 
@@ -200,7 +200,7 @@ function openDetailedModal(beer) {
   });
 }
 
-// checkout modal creation - maria
+// checkout modal creation
 function checkoutButton() {
   const buttonClicked = document.querySelectorAll(".checkout");
   buttonClicked.forEach((btn) =>
@@ -226,19 +226,19 @@ function displayCheckout() {
   }
   document.querySelector(".checkout").classList.add("active");
 
-  //post beers on submit Krista
+  //post beers on submit
   document.querySelector("form").addEventListener("submit", postOrder);
 
   // credit card
   creditCardSpacing();
   phoneNumberCountries();
 
-  // payment method switch or closing checkout modal - maria
+  // payment method switch or closing checkout modal 
   switchPaymentMethod();
   closeCheckout(modalCheckout);
 }
 
-// close checkout page - maria
+// close checkout page
 function closeCheckout(modalCheckout) {
   const returnBtn = document.querySelector(".return");
   returnBtn.addEventListener("click", returnToProducts);
@@ -247,7 +247,7 @@ function closeCheckout(modalCheckout) {
     modalCheckout.style.display = "none";
     document.querySelector("body").style.overflow = "auto";
     document.querySelector(".form-container").innerHTML = "";
-    //clear input values in products list, remove beercart activity
+    // clear input values in products list, remove beercart activity
     document.querySelectorAll(".count").forEach((input) => {
       input.value = "0";
     });
@@ -268,7 +268,7 @@ function functionalityExtras() {
   switchUser();
 }
 
-// search bar - maria
+// search bar
 function searchCorrectBeers(beers) {
   const searchBar = document.getElementById("search-bar");
 
@@ -307,7 +307,7 @@ function phoneNumberCountries() {
   })
 }
 
-// switch payments method - maria
+// switch payments method
 function switchPaymentMethod() {
   const paymentButtons = document.querySelectorAll(".payment_options button");
 

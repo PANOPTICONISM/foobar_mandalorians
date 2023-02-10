@@ -24,6 +24,4 @@ https://www.chartjs.org/
 - Loading screen animation:
 https://codepen.io/comehope/pen/rZeOQp
 
-## Live Preview
-
-- <https://hopeful-banach-51fe97.netlify.app/>
+PS. The API is currently down.
